@@ -1,7 +1,12 @@
-\documentclass[12pt, a4paper, titlepage]{report}
+\documentclass[12pt, a4paper, titlepage]{article}
 \usepackage[spanish]{babel}
 \usepackage[utf8]{inputenc}
 \usepackage{graphicx}
+\usepackage{xcolor}
+
+\definecolor{guindapoli}{RGB}{102, 0, 51}
+\definecolor{azulescom}{RGB}{0, 0, 102}
+
 \begin{document}
 	
 	%PORTADA
@@ -16,18 +21,22 @@
 		\end{figure}
 		
 		\begin{center}
-		INSTITUTO POLITÉCNICO NACIONAL\\
+		\begin{LARGE}
+			\textcolor{guindapoli}{INSTITUTO POLITÉCNICO NACIONAL}\\
+		\end{LARGE}	
 		\vspace*{0.2in}
-		ESCUELA SUPERIOR DE CÓMPUTO\\
-		\vspace*{0.6in}
+		\begin{Large}
+			\textcolor{azulescom}{ESCUELA SUPERIOR DE CÓMPUTO}\\
+		\end{Large}		
+		\vspace*{0.4in}
 		\begin{large}
 			Trabajo Terminal I.\\
 		\end{large}
 		\vspace*{0.2in}
 		\begin{Large}
-			\textbf{Autentificación Mediante Chaffing And Winnowing En El Protocolo HTTP} \\
+			\textbf{Autentificación Mediante Chaffing And Winnowing En El Protocolo HTTP}\\2019-B003\\
 		\end{Large}
-		\vspace*{0.3in}
+		\vspace*{0.05in}
 		\rule{80mm}{0.1mm}\\
 		\vspace*{0.1in}
 		\begin{large}
@@ -45,31 +54,48 @@
 			Díaz Santiago Sandra\\
 		\end{large}
 		\end{center}
-
 	\end{titlepage}
-	\renewcommand*\contentsname{Índice}
-	\tableofcontents
+
+	\begin{appendix}
+		%%Índice
+		\renewcommand*\contentsname{Índice}
+		\tableofcontents
+		\newpage
+		%%índice de figuras
+		\listoffigures
+		\newpage
+		%%Índice de tablas
+		\newpage
+		\listoftables
+	\end{appendix}
+	\newpage
 	
-	\section{Introduction}
-	
-	This is the first section.
-	
-	Lorem  ipsum  dolor  sit  amet,  consectetuer  adipiscing  
-	elit.   Etiam  lobortisfacilisis sem.  Nullam nec mi et 
-	neque pharetra sollicitudin.  Praesent imperdietmi nec ante. 
-	Donec ullamcorper, felis non sodales...
-	
-	\section{Unnumbered Section}
-	
-	Lorem ipsum dolor sit amet, consectetuer adipiscing elit.  
-	Etiam lobortis facilisissem.  Nullam nec mi et neque pharetra 
-	sollicitudin.  Praesent imperdiet mi necante...
-	
-	\section{Second Section}
-	
-	Lorem ipsum dolor sit amet, consectetuer adipiscing elit.  
-	Etiam lobortis facilisissem.  Nullam nec mi et neque pharetra 
-	sollicitudin.  Praesent imperdiet mi necante...
-	
-	
+
+	\section{Introducción.}
+		\subsection{Planteamiento del problema.}
+		\subsection{Justificación.}
+		\subsection{Objetivos.}
+		\subsection{Metodología.}
+		\subsection{Estado del Arte.}
+	\newpage
+	\section{Marco Teórico.}
+		\subsection{Formato a decidir.}
+	\newpage
+	\section{Análisis}
+		\subsection{Prototipo I.}
+			\subsubsection{Herramientas a usar.}
+			\subsubsection{Estudio de requerimientos.}
+			\subsubsection{Reglas del negocio.}
+	\newpage
+	\section{Desarrollo}
+		\subsection{Prototipo I.}
+			\subsubsection{Diagrama de casos de uso.}
+			\subsubsection{Descripción de casos de uso.}
+			\subsubsection{Diagrama de flujo.}
+			\subsubsection{Flujo de datos.}
+			\subsubsection{Diagrama de clases.}
+			\subsubsection{Diagrama de secuencia.}
+			\subsubsection{Interfaz de usuario.}
+			\subsubsection{Requisitos de diseño.}
+			
 \end{document}
