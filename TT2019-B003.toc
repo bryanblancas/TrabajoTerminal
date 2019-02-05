@@ -1,0 +1,4 @@
+\babel@toc {spanish}{}
+\contentsline {section}{\numberline {0.1}Introduction}{1}
+\contentsline {section}{\numberline {0.2}Unnumbered Section}{1}
+\contentsline {section}{\numberline {0.3}Second Section}{1}
