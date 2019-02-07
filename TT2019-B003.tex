@@ -1,8 +1,12 @@
 \documentclass[12pt, a4paper, titlepage]{article}
 \usepackage[spanish]{babel}
 \usepackage[utf8]{inputenc}
+%%Imágenes
 \usepackage{graphicx}
+%%Colores de texto
 \usepackage{xcolor}
+%%Links
+\usepackage[hidelinks]{hyperref}
 
 \definecolor{guindapoli}{RGB}{102, 0, 51}
 \definecolor{azulescom}{RGB}{0, 0, 102}
@@ -77,7 +81,7 @@
 
 	\begin{appendix}
 		%%Índice
-		\renewcommand*\contentsname{{\textcolor{azulescom}{Índice.}}}
+		\href{}{\renewcommand*\contentsname{{\textcolor{azulescom}{Índice.}}}}
 		\tableofcontents
 		\newpage
 		%%índice de figuras
@@ -104,8 +108,12 @@
 	\newpage
 	\section{\textcolor{azulescom}{Análisis.}}
 		\subsection{Prototipo I.}
+			\subsubsection{Descripción.}
+				En este prototipo se busca la creación de una extensión de Google Chrome, que sea capaz de interceptar una petición HTTP hecha por el navegador.
 			\subsubsection{Herramientas a usar.}
 			\subsubsection{Estudio de requerimientos.}
+				\paragraph{Requerimientos Funcionales.\\ \\}
+				\textbf{PI\_RF1.} Mostrar
 			\subsubsection{Reglas del negocio.}
 	\newpage
 	\section{\textcolor{azulescom}{Desarrollo.}}
