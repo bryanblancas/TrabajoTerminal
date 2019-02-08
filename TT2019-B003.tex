@@ -112,6 +112,7 @@
 				En este prototipo se busca la creación de una extensión de Google Chrome, que sea capaz de interceptar una petición HTTP hecha por el navegador.
 			\subsubsection{Herramientas a usar.}
 			\subsubsection{Estudio de requerimientos.}
+				
 				\paragraph{Requerimientos Funcionales.\\ \\}
 				
 				{\setlength{\parindent}{12pt}
@@ -119,19 +120,27 @@
 
 				\textbf{PI\_RF2. Deshabilitar extensión.} El usuario podrá deshabilitar la extensión, para que ésta no vigile su actividad en el navegador.\\
 				
-				\textbf{PI\_RF3. Habilitar Extensión.} El usuario podrá habilitar la extensión, para que ésta vigile constantemente cuando éste realice una petición HTTP.\\
+				\textbf{PI\_RF3. Habilitar extensión.} El usuario podrá habilitar la extensión, para que ésta vigile constantemente cuando éste realice una petición HTTP.
 				}
 				
 				\paragraph{Requerimientos no Funcionales.\\ \\}
 				{\setlength{\parindent}{12pt}
+				
 				\textbf{PI\_RNF1. Plataforma de implementación.} La extensión será implementada en el navegador Google Chrome.\\
 				
 				\textbf{PI\_RNF2. Versión del navegador} La extensión funcionará a partir de la versión 65.0.3325.181.\\
 				
 				\textbf{PI\_RNF3. Tecnologías para la interfaz de usuario} Para el sistema se hará uso de HTML, JavaScript, CSS, JSON.\\
 				\footnote{Checar si es necesario especificar que debe estar habilitado JavaScript y si sería Funcional o No funcional}
-				}
-			\subsubsection{Reglas del negocio.}
+				
+				}\newpage
+			
+			\subsubsection{Reglas del negocio.\\}
+				{\setlength{\parindent}{12pt}
+					
+					\textbf{PI\_RN1. Confidencialidad de la actividad web.} En cuando el cliente lo indique por medio de la IU, la extensión deberá dejar de vigilar la actividad que el usuario realice en el navegador.\\
+					
+				}\newpage
 	\newpage
 	\section{\textcolor{azulescom}{Desarrollo.}}
 		\subsection{Prototipo I.}
