@@ -1,11 +1,29 @@
+<<<<<<< HEAD
 This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.10.31)  11 FEB 2019 17:36
+=======
+<<<<<<< HEAD
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.2.12)  12 FEB 2019 07:33
+=======
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.8.23)  11 FEB 2019 17:31
+>>>>>>> a9d778e8eba283414d7a6aff38b8b535fd48f19e
+>>>>>>> eb51532433153919505536fb8a3ff08714e9f716
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **TT2019-B003.tex
 (./TT2019-B003.tex
+<<<<<<< HEAD
 LaTeX2e <2017-04-15>
 Babel <3.18> and hyphenation patterns for 10 language(s) loaded.
+=======
+<<<<<<< HEAD
+LaTeX2e <2017-04-15>
+Babel <3.18> and hyphenation patterns for 6 language(s) loaded.
+=======
+LaTeX2e <2016/02/01>
+Babel <3.9q> and hyphenation patterns for 81 language(s) loaded.
+>>>>>>> a9d778e8eba283414d7a6aff38b8b535fd48f19e
+>>>>>>> eb51532433153919505536fb8a3ff08714e9f716
 (/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2014/09/29 v1.4h Standard LaTeX document class
 (/usr/share/texlive/texmf-dist/tex/latex/base/size12.clo
@@ -1207,6 +1225,7 @@ Package rerunfilecheck Info: File `TT2019-B003.out' has not changed.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 157.
  ) 
 Here is how much of TeX's memory you used:
+<<<<<<< HEAD
  6715 strings out of 494788
  95015 string characters out of 6177221
  188610 words of memory out of 5000000
@@ -1214,6 +1233,25 @@ Here is how much of TeX's memory you used:
  8193 words of font info for 29 fonts, out of 8000000 for 9000
  85 hyphenation exceptions out of 8191
  28i,8n,35p,243b,401s stack positions out of 5000i,500n,10000p,200000b,80000s
+=======
+<<<<<<< HEAD
+ 6715 strings out of 494861
+ 95015 string characters out of 6178804
+ 188365 words of memory out of 5000000
+ 9941 multiletter control sequences out of 15000+600000
+ 8193 words of font info for 29 fonts, out of 8000000 for 9000
+ 40 hyphenation exceptions out of 8191
+ 28i,8n,35p,243b,401s stack positions out of 5000i,500n,10000p,200000b,80000s
+=======
+ 6653 strings out of 493029
+ 94068 string characters out of 6136234
+ 191574 words of memory out of 5000000
+ 10091 multiletter control sequences out of 15000+600000
+ 8193 words of font info for 29 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 29i,8n,35p,243b,399s stack positions out of 5000i,500n,10000p,200000b,80000s
+>>>>>>> a9d778e8eba283414d7a6aff38b8b535fd48f19e
+>>>>>>> eb51532433153919505536fb8a3ff08714e9f716
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share
 /texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texliv
