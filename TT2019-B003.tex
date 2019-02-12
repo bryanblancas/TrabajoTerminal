@@ -103,8 +103,10 @@
 			En la actualidad todos los usuarios de internet necesitan guardar contraseñas para sus distintas cuentas en las diferentes páginas web en las que ingresa ya que recordarlas es un problema que avanza constantemente. El uso de estas contraseñas son utilizadas principalmente en correos electrónicos y redes sociales por lo que el robo de las mismas puede poner en riesgo la seguridad del usuario, así como también, existe la tediosa tarea de ingresar usuario y contraseña en cada sesion. Las contraseñas son comúnmente utilizadas para el inicio de sesion y existen diferentes métodos de autentificación para dicho inicio como lo son biométricos. En nuestro proyecto nos enfocaremos más en el uso de text password en donde se autentificará el usuario por medio de una extensión de Google Chrome. Con ayuda de esta extensión resolveremos los problemas comentados anteriormente, dando así comodidad y seguridad al usuario que habilite la extensión.
 		\newpage    
 		\subsection{Justificación.}
+
+		\subsection{Objetivos.}
 		
-\subsection{Objetivos.}
+		\subsection{Objetivos.}
 			Los usuarios deben de guardar las contraseñas en medios fisicos o digitales y perderlos presenta un grave problema de seguridad. La gran mayoria de servicios web han implementado una solución la cual es recordar tu usuario y contraseña para que se pueda automaticamente acceder al servicio. Dicha solucion presenta cierta vulnerabilidad ya que los archivos donde se guarda la información se puede copiar y con ello replicarlo a otra computadora.
 			En la figura 1, se muestra una tabla donde se comparan los diferentes métodos de autentificación basándose en la simplicidad de su aplicación para el usuario (extraída del artículo Comparison of Authentication Methods on Web Resources). Donde: 1 – Bajo desempeño, 2 - Medio desempeño y 3 – Alto desempeño.
 
@@ -167,7 +169,7 @@
 				Disco Duro: 500GB 
 				
 			
-\subsubsection{Estudio de requerimientos.}
+			\subsubsection{Estudio de requerimientos.}
 				
 				\paragraph{Requerimientos Funcionales.\\ \\}
 				
@@ -191,7 +193,7 @@
 				
 				}\newpage
 			
-			\subsubsection{Reglas del negocio.\\}
+			\subsubsection{Reglas del negocio.}
 				{\setlength{\parindent}{12pt}
 					
 					\textbf{PI\_RN1. Confidencialidad de la actividad web.} En cuando el cliente lo indique por medio de la IU, la extensión deberá dejar de vigilar la actividad que el usuario realice en el navegador.\\
@@ -201,24 +203,33 @@
 	\section{\textcolor{azulescom}{Desarrollo.}}
 		\subsection{Prototipo I.}
 			\subsubsection{Diagrama de casos de uso.}
-			Diagrama de casos de uso general para el prototipo I.
-			\begin{figure}[htb]
-				\begin{center}
-					\label{fig1} 
-					\includegraphics[width=17cm]{./imagenes/UCD_1.jpg}
-					\caption{Diagrama de casos de uso.}
+
+				Diagrama de casos de uso general para el prototipo I.
+				\begin{figure}[htb]
+					\begin{center}
+						\label{fig1} 
+						\includegraphics[width=17cm]{./imagenes/UCD_1.jpg}
+						\caption{Diagrama de casos de uso.}
+					\end{center}
+				\end{figure}\newpage	
+					
+			\subsubsection{Descripción de casos de uso.}
+				\footnote{EL actor es el navegador?}
+			
+				%%DESCRIPCIÓN PI_CU1
+				\begin{table}[htb]
 				\begin{tabular}{ |p{3.5cm}||p{9.5cm}|}
 					\hline
 					\rowcolor{guindapoli}
-					\multicolumn{2}{|c|}{\textbf{\textcolor{white}{Caso de uso: PI\_CU1. Interceptar petición.}}} \\
+					\multicolumn{2}{|c|}{\textbf{\textcolor{white}{Caso de uso: PI\_CU1. Interceptar petición.}}}\\
 					\hline
 					\rowcolor{azulclaro}Concepto & Descripción\\
 					\hline
 					\cellcolor{azulclaro}Actor & 
-					AF\\ 
+					Navegador de Google Chrome\\ 
 					\hline
 					\cellcolor{azulclaro}Propósito &
-					AX\\
+					Este caso de uso permite al \\
 					\hline
 					\cellcolor{azulclaro}Entradas &
 					AL\\
@@ -236,16 +247,67 @@
 					AL\\
 					\hline
 					\cellcolor{azulclaro}Errores &
-					AL\\
-													
+					AL\\					
 					\hline
 				\end{tabular}
 				\caption[DCU: PI\_CU1]{Descripción CU: PI\_CU1}
-				\end{center}
-			\end{figure}
+				\end{table}
+				
+				\paragraph{Trayectoria Principal.}
+				\paragraph{Fin de la Trayectoria Principal.}
+				
+					\newpage
+				%%DESCRIPCIÓN PI_CU2
+				\begin{table}[htb]
+					\begin{center}
+						\begin{tabular}{ |p{3.5cm}||p{9.5cm}|}
+							\hline
+							\rowcolor{guindapoli}
+							\multicolumn{2}{|c|}{\textbf{\textcolor{white}{Caso de uso: PI\_CU2. Habilitar extensión.}}}\\
+							\hline
+							\rowcolor{azulclaro}Concepto & Descripción\\
+							\hline
+							\cellcolor{azulclaro}Actor & 
+							AF\\ 
+							\hline
+							\cellcolor{azulclaro}Propósito &
+							AF\\
+							\hline
+							\cellcolor{azulclaro}Entradas &
+							AL\\
+							\hline
+							\cellcolor{azulclaro}Salidas &
+							AL\\
+							\hline
+							\cellcolor{azulclaro}Pre-condiciones&
+							AL\\
+							\hline
+							\cellcolor{azulclaro}Post-condiciones&
+							AL\\
+							\hline
+							\cellcolor{azulclaro}Reglas del negocio&
+							AL\\
+							\hline
+							\cellcolor{azulclaro}Errores &
+							AL\\
+							
+							\hline
+						\end{tabular}
+						\caption[DCU: PI\_CU2]{Descripción CU: PI\_CU2}
+					\end{center}
+				\end{table}
+				
+				\paragraph{Trayectoria Principal.}
+				\paragraph{Fin de la Trayectoria Principal.}
+				
+				\newpage
+				
+			\subsubsection{Diagrama de flujo.}
+
 			\subsubsection{Descripción de casos de uso.}
 			
-\subsubsection{Diagrama de flujo.}
+			\subsubsection{Diagrama de flujo.}
+
 			\subsubsection{Flujo de datos.}
 			\subsubsection{Diagrama de clases.}
 			\subsubsection{Diagrama de secuencia.}
@@ -253,4 +315,4 @@
 			\subsubsection{Requisitos de diseño.}
 			
 \end{document}
-\grid
+

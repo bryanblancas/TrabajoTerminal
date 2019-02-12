@@ -1,11 +1,12 @@
-\select@language {spanish}
+\babel@toc {spanish}{}
 \contentsline {section}{\numberline {A}\leavevmode {\color {azulescom}Introducci\IeC {\'o}n.}}{4}{appendix.Alph1}
 \contentsline {subsection}{\numberline {A.1}Planteamiento del problema.}{4}{subsection.Alph1.1}
 \contentsline {subsection}{\numberline {A.2}Justificaci\IeC {\'o}n.}{5}{subsection.Alph1.2}
 \contentsline {subsection}{\numberline {A.3}Objetivos.}{5}{subsection.Alph1.3}
 \contentsline {subsection}{\numberline {A.4}Objetivos.}{5}{subsection.Alph1.4}
-\contentsline {subsection}{\numberline {A.5}Metodolog\IeC {\'\i }a.}{5}{subsection.Alph1.5}
-\contentsline {subsection}{\numberline {A.6}Estado del Arte.}{5}{subsection.Alph1.6}
+\contentsline {subsection}{\numberline {A.5}Objetivos.}{5}{subsection.Alph1.5}
+\contentsline {subsection}{\numberline {A.6}Metodolog\IeC {\'\i }a.}{5}{subsection.Alph1.6}
+\contentsline {subsection}{\numberline {A.7}Estado del Arte.}{5}{subsection.Alph1.7}
 \contentsline {section}{\numberline {B}\leavevmode {\color {azulescom}Marco Te\IeC {\'o}rico.}}{6}{appendix.Alph2}
 \contentsline {subsection}{\numberline {B.1}Formato a decidir.}{6}{subsection.Alph2.1}
 \contentsline {section}{\numberline {C}\leavevmode {\color {azulescom}An\IeC {\'a}lisis.}}{7}{appendix.Alph3}
@@ -17,14 +18,20 @@
 \contentsline {subsubsection}{\numberline {C.1.3}Estudio de requerimientos.}{7}{subsubsection.Alph3.1.3}
 \contentsline {paragraph}{Requerimientos Funcionales.\\ \\}{7}{section*.6}
 \contentsline {paragraph}{Requerimientos no Funcionales.\\ \\}{8}{section*.7}
-\contentsline {subsubsection}{\numberline {C.1.4}Reglas del negocio.\\}{9}{subsubsection.Alph3.1.4}
+\contentsline {subsubsection}{\numberline {C.1.4}Reglas del negocio.}{9}{subsubsection.Alph3.1.4}
 \contentsline {section}{\numberline {D}\leavevmode {\color {azulescom}Desarrollo.}}{10}{appendix.Alph4}
 \contentsline {subsection}{\numberline {D.1}Prototipo I.}{10}{subsection.Alph4.1}
 \contentsline {subsubsection}{\numberline {D.1.1}Diagrama de casos de uso.}{10}{subsubsection.Alph4.1.1}
-\contentsline {subsubsection}{\numberline {D.1.2}Descripci\IeC {\'o}n de casos de uso.}{10}{subsubsection.Alph4.1.2}
-\contentsline {subsubsection}{\numberline {D.1.3}Diagrama de flujo.}{10}{subsubsection.Alph4.1.3}
-\contentsline {subsubsection}{\numberline {D.1.4}Flujo de datos.}{10}{subsubsection.Alph4.1.4}
-\contentsline {subsubsection}{\numberline {D.1.5}Diagrama de clases.}{10}{subsubsection.Alph4.1.5}
-\contentsline {subsubsection}{\numberline {D.1.6}Diagrama de secuencia.}{10}{subsubsection.Alph4.1.6}
-\contentsline {subsubsection}{\numberline {D.1.7}Interfaz de usuario.}{10}{subsubsection.Alph4.1.7}
-\contentsline {subsubsection}{\numberline {D.1.8}Requisitos de dise\IeC {\~n}o.}{10}{subsubsection.Alph4.1.8}
+\contentsline {subsubsection}{\numberline {D.1.2}Descripci\IeC {\'o}n de casos de uso.}{11}{subsubsection.Alph4.1.2}
+\contentsline {paragraph}{Trayectoria Principal.}{11}{section*.8}
+\contentsline {paragraph}{Fin de la Trayectoria Principal.}{11}{section*.9}
+\contentsline {paragraph}{Trayectoria Principal.}{12}{section*.10}
+\contentsline {paragraph}{Fin de la Trayectoria Principal.}{12}{section*.11}
+\contentsline {subsubsection}{\numberline {D.1.3}Diagrama de flujo.}{13}{subsubsection.Alph4.1.3}
+\contentsline {subsubsection}{\numberline {D.1.4}Descripci\IeC {\'o}n de casos de uso.}{13}{subsubsection.Alph4.1.4}
+\contentsline {subsubsection}{\numberline {D.1.5}Diagrama de flujo.}{13}{subsubsection.Alph4.1.5}
+\contentsline {subsubsection}{\numberline {D.1.6}Flujo de datos.}{13}{subsubsection.Alph4.1.6}
+\contentsline {subsubsection}{\numberline {D.1.7}Diagrama de clases.}{13}{subsubsection.Alph4.1.7}
+\contentsline {subsubsection}{\numberline {D.1.8}Diagrama de secuencia.}{13}{subsubsection.Alph4.1.8}
+\contentsline {subsubsection}{\numberline {D.1.9}Interfaz de usuario.}{13}{subsubsection.Alph4.1.9}
+\contentsline {subsubsection}{\numberline {D.1.10}Requisitos de dise\IeC {\~n}o.}{13}{subsubsection.Alph4.1.10}
