@@ -98,10 +98,40 @@
 
 	\section{\textcolor{azulescom}{Introducción.}}
 		\subsection{Planteamiento del problema.}
-			En la actualidad todos los usuarios de internet necesitan guardar contraseñas para sus distintas cuentas en las diferentes páginas web en las que ingresa ya que recordarlas es un problema que avanza constantemente. El uso de estas contraseñas son utilizadas principalmente en correos electrónicos y redes sociales por lo que el robo de las mismas puede poner en riesgo la seguridad del usuario, así como también, existe la tediosa tarea de ingresar usuario y contraseña en cada sesion. Las contraseñas son comúnmente utilizadas para el inicio de sesion y existen diferentes métodos de autentificación para dicho inicio como lo son biométricos. En nuestro proyecto nos enfocaremos más en el uso de text password en donde se autentificará el usuario por medio de una extensión de Google Chrome. Con ayuda de esta extensión resolveremos los problemas comentados anteriormente, dando así comodidad y seguridad al usuario que habilite la extensión.    
+			En la actualidad todos los usuarios de internet necesitan guardar contraseñas para sus distintas cuentas en las diferentes páginas web en las que ingresa ya que recordarlas es un problema que avanza constantemente. El uso de estas contraseñas son utilizadas principalmente en correos electrónicos y redes sociales por lo que el robo de las mismas puede poner en riesgo la seguridad del usuario, así como también, existe la tediosa tarea de ingresar usuario y contraseña en cada sesion. Las contraseñas son comúnmente utilizadas para el inicio de sesion y existen diferentes métodos de autentificación para dicho inicio como lo son biométricos. En nuestro proyecto nos enfocaremos más en el uso de text password en donde se autentificará el usuario por medio de una extensión de Google Chrome. Con ayuda de esta extensión resolveremos los problemas comentados anteriormente, dando así comodidad y seguridad al usuario que habilite la extensión.
+		\newpage    
 		\subsection{Justificación.}
+<<<<<<< HEAD
 		
 \subsection{Objetivos.}
+=======
+			Los usuarios deben de guardar las contraseñas en medios fisicos o digitales y perderlos presenta un grave problema de seguridad. La gran mayoria de servicios web han implementado una solución la cual es recordar tu usuario y contraseña para que se pueda automaticamente acceder al servicio. Dicha solucion presenta cierta vulnerabilidad ya que los archivos donde se guarda la información se puede copiar y con ello replicarlo a otra computadora.
+			En la figura 1, se muestra una tabla donde se comparan los diferentes métodos de autentificación basándose en la simplicidad de su aplicación para el usuario (extraída del artículo Comparison of Authentication Methods on Web Resources). Donde: 1 – Bajo desempeño, 2 - Medio desempeño y 3 – Alto desempeño.
+
+			
+			\begin{table}[]
+				\centering
+				\resizebox{13cm}{!} {
+					\begin{tabular}{l|l|l|l|l|l|l|l|}
+						\cline{2-8}
+						& Recordar & \begin{tabular}[c]{@{}l@{}}Otros\\ dispositivos\end{tabular} & Acciones & Facilidad & Tiempo & Errores & Recuperación \\ \hline
+						\multicolumn{1}{|l|}{Contraseñas}                                                      & 1        & 3                                                            & 2        & 3         & 3      & 2       & 3            \\ \hline
+						\multicolumn{1}{|l|}{Otros recursos}                                                   & 2        & 3                                                            & 3        & 3         & 3      & 3       & 2            \\ \hline
+						\multicolumn{1}{|l|}{\begin{tabular}[c]{@{}l@{}}Contraseñas \\ gráficas\end{tabular}}  & 1        & 1                                                            & 2        & 3         & 3      & 2       & 3            \\ \hline
+						\multicolumn{1}{|l|}{\begin{tabular}[c]{@{}l@{}}Contraseñas \\ dinamicas\end{tabular}} & 1        & 3                                                            & 2        & 2         & 3      & 2       & 2            \\ \hline
+						\multicolumn{1}{|l|}{Tokens}                                                           & 3        & 1                                                            & 1        & 2         & 2      & 3       & 1            \\ \hline
+						\multicolumn{1}{|l|}{Multivariación}                                                   & 1        & 1                                                            & 1        & 3         & 2      & 2       & 1            \\ \hline
+						\multicolumn{1}{|l|}{Cryptografía}                                                     & 3        & 1                                                            & 1        & 1         & 1      & 2       & 1            \\ \hline
+						\multicolumn{1}{|l|}{Biométricos}                                                      & 3        & 3                                                            & 2        & 3         & 2      & 2       & 1            \\ \hline
+					\end{tabular}
+				}
+			\caption{Comparación de la aplicación en los distintos métodos de autentificación}
+			\end{table}
+			
+			
+		\subsection{Objetivos.}
+		
+>>>>>>> e3d1417c2d466f1fe0b30f0d74c45f7fa3d5242b
 		\subsection{Metodología.}
 		\subsection{Estado del Arte.}
 	\newpage
@@ -113,6 +143,28 @@
 			\subsubsection{Descripción.}
 				En este prototipo se busca la creación de una extensión de Google Chrome, que sea capaz de interceptar una petición HTTP hecha por el navegador.
 			\subsubsection{Herramientas a usar.}
+				
+				Para el desarrollo de software de este prototipo, ocuparemos las siguientes tecnologías debido a que nos facilitan el desarrollo y nos proporcionan lo necesario para lograr nuestro objetivo para este prototipo: 
+				\paragraph {JavaScript. \\}
+				
+				En el ambito del hardware utilizaremos los equipos de cómputo con los cuales contamos actualmente los integrantes, donde se especificaran a continuación: 
+				
+				\paragraph 
+				Nombre: Arturo 
+				Marca: Asus
+				Modelo: X550vc
+				Procesador: Intel Core i5
+				Tarjeta de video: Nvidia GForce 720
+				Memoria RAM: 12GB
+				Disco Duro: 1TB
+				
+				Nombre: Gerardo
+				Marca: HP
+				Modelo: Pavilion G4
+				Procesador: Intel Core i3
+				Tarjeta de video: Tarjeta integrada Intel
+				Memoria RAM: 6GB
+				Disco Duro: 500GB 
 				
 			
 \subsubsection{Estudio de requerimientos.}
