@@ -3,10 +3,8 @@
 \contentsline {subsection}{\numberline {A.1}Planteamiento del problema.}{4}{subsection.Alph1.1}
 \contentsline {subsection}{\numberline {A.2}Justificaci\IeC {\'o}n.}{5}{subsection.Alph1.2}
 \contentsline {subsection}{\numberline {A.3}Objetivos.}{5}{subsection.Alph1.3}
-\contentsline {subsection}{\numberline {A.4}Objetivos.}{5}{subsection.Alph1.4}
-\contentsline {subsection}{\numberline {A.5}Objetivos.}{5}{subsection.Alph1.5}
-\contentsline {subsection}{\numberline {A.6}Metodolog\IeC {\'\i }a.}{5}{subsection.Alph1.6}
-\contentsline {subsection}{\numberline {A.7}Estado del Arte.}{5}{subsection.Alph1.7}
+\contentsline {subsection}{\numberline {A.4}Metodolog\IeC {\'\i }a.}{5}{subsection.Alph1.4}
+\contentsline {subsection}{\numberline {A.5}Estado del Arte.}{5}{subsection.Alph1.5}
 \contentsline {section}{\numberline {B}\leavevmode {\color {azulescom}Marco Te\IeC {\'o}rico.}}{6}{appendix.Alph2}
 \contentsline {subsection}{\numberline {B.1}Formato a decidir.}{6}{subsection.Alph2.1}
 \contentsline {section}{\numberline {C}\leavevmode {\color {azulescom}An\IeC {\'a}lisis.}}{7}{appendix.Alph3}
