@@ -11,6 +11,9 @@ int primo(int a){
 		if(a%i == 0)
 			return 0;
 	printf("%d\n", r);
+
+	/*sdfsdfsdfsdfsdfs*/
+
 	return 1;
 }
 
