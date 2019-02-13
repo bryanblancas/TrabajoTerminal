@@ -1,4 +1,7 @@
 #include <stdio.h>
+
+int hola(int);
+
 int main(int argc, char const *argv[]){
 	printf("Hola\n");
 
@@ -12,4 +15,8 @@ int main(int argc, char const *argv[]){
 	printf("hola 6\n");
 	printf("hola 7\n");
 	return 0;
+}
+
+int hola(int a){
+	printf("%d\n",a);
 }
