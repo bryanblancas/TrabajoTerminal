@@ -4,6 +4,7 @@ int primo(int a){
 	int r = 1;
 	while(r*r <= a)
 		r++;
+	printf("hahahehaehahehaehea\n");
 	r--;
 	for(int i = 2; i <= r; i++)
 		if(a%i == 0)
