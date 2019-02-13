@@ -20,3 +20,7 @@ int main(int argc, char const *argv[]){
 int hola(int a){
 	printf("%d\n",a);
 }
+
+int hola2(){
+	printf("hahaha\n");
+}
