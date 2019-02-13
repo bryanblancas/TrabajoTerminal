@@ -1,5 +1,16 @@
 #include <stdio.h>
 
+int primo(int a){
+	int r = 1;
+	while(r*r <= a)
+		r++;
+	r--;
+	for(int i = 2; i <= r; i++)
+		if(a%i == 0)
+			return 0;
+	return 1;
+}
+
 int hola(int);
 
 int main(int argc, char const *argv[]){
