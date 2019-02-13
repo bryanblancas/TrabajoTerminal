@@ -5,9 +5,11 @@ int primo(int a){
 	while(r*r <= a)
 		r++;
 	r--;
+	printf("acabe while\n");
 	for(int i = 2; i <= r; i++)
 		if(a%i == 0)
 			return 0;
+	printf("%d\n", r);
 	return 1;
 }
 
