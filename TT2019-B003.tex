@@ -9,6 +9,7 @@
 %%Links
 \usepackage[hidelinks]{hyperref}
 
+
 \definecolor{guindapoli}{RGB}{102, 0, 51}
 \definecolor{azulescom}{RGB}{0, 0, 102}
 \definecolor{azulclaro}{RGB}{222, 232, 255}
@@ -261,35 +262,41 @@
 					\rowcolor{azulclaro}Concepto & Descripción\\
 					\hline
 					\cellcolor{azulclaro}Actor & 
-					Navegador de Google Chrome\\ 
+					Navegador de Google Chrome.\\ 
 					\hline
 					\cellcolor{azulclaro}Propósito &
-					Este caso de uso permite al \\
+					Este caso de uso permite a la extensión interceptar una petición HTTP, realizada por el navegador Google Chrome por medio de algún agente (sistema o usuario) externo a éste.\\
 					\hline
 					\cellcolor{azulclaro}Entradas &
-					AL\\
+					Petición HTTP realizada por el navegador.\\
 					\hline
 					\cellcolor{azulclaro}Salidas &
-					AL\\
+					Petición HTTP cachada.\\
 					\hline
 					\cellcolor{azulclaro}Pre-condiciones&
-					AL\\
+					Algún agente externo (Sistema o usuario) ha ordenado al navegador mandar una petición HTTP.\\
 					\hline
 					\cellcolor{azulclaro}Post-condiciones&
-					AL\\
+					La extensión, deberá de interceptar la petición para poder modificarla.\\
 					\hline
 					\cellcolor{azulclaro}Reglas del negocio&
-					AL\\
+					-\\
 					\hline
 					\cellcolor{azulclaro}Errores &
-					AL\\					
+					La petición no se pudo interceptar. \newline La petición no es tipo HTTP.\\					
 					\hline
 				\end{tabular}
 				\caption[DCU: PI\_CU1]{Descripción CU: PI\_CU1}
 				\end{table}
 				
-				\paragraph{Trayectoria Principal.}
-				\paragraph{Fin de la Trayectoria Principal.}
+				\paragraph{... Trayectoria Principal ...}
+				\begin{enumerate}
+					\item \textbf{\textit{El Usuario}} o \textbf{\textit{El Sistema Externo}} realiza una petición en el navegador Google Chrome.\\
+					\item \textbf{\textit{La Extensión}} intercepta la petición antes de que salga a red.\\
+					\item \textbf{\textit{La Extensión}} puede modificar el contenido de la petición. \\
+					\item \textbf{\textit{La Extensión}} deja salir a red la petición.
+				\end{enumerate}
+				\paragraph{... Fin de la Trayectoria Principal ...}
 				
 					\newpage
 				%%DESCRIPCIÓN PI_CU2
