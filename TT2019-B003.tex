@@ -9,9 +9,11 @@
 %%Links
 \usepackage[hidelinks]{hyperref}
 
+
 \definecolor{guindapoli}{RGB}{102, 0, 51}
 \definecolor{azulescom}{RGB}{0, 0, 102}
 \definecolor{azulclaro}{RGB}{222, 232, 255}
+\definecolor{azulfuerte}{RGB}{60, 150, 250}
 
 \begin{document}
 	
@@ -252,12 +254,13 @@
 				\textbf{PI\_RNF3. Tecnologías para la interfaz de usuario} Para el sistema se hará uso de HTML, JavaScript, CSS, JSON.\\
 				\footnote{Checar si es necesario especificar que debe estar habilitado JavaScript y si sería Funcional o No funcional}
 				
-				}\newpage
+				}
 			
 			\subsubsection{Reglas del negocio.}
 				{\setlength{\parindent}{12pt}
 					
-					\textbf{PI\_RN1. Confidencialidad de la actividad web.} En cuando el cliente lo indique por medio de la IU, la extensión deberá dejar de vigilar la actividad que el usuario realice en el navegador.\\
+				\label{PI_RN1}
+				\textbf{PI\_RN1. Confidencialidad de la actividad web.} En cuando el cliente lo indique por medio de la IU, la extensión deberá dejar de vigilar la actividad que el usuario realice en el navegador. De igual forma, si el usuario indicara dejar de vigilar la actividad web, la extensión así lo hará.\\
 					
 				}\newpage
 	\newpage
@@ -284,40 +287,61 @@
 					\rowcolor{guindapoli}
 					\multicolumn{2}{|c|}{\textbf{\textcolor{white}{Caso de uso: PI\_CU1. Interceptar petición.}}}\\
 					\hline
-					\rowcolor{azulclaro}Concepto & Descripción\\
+					\rowcolor{azulfuerte}Concepto & Descripción\\
 					\hline
 					\cellcolor{azulclaro}Actor & 
-					Navegador de Google Chrome\\ 
+					Navegador de Google Chrome.\\ 
 					\hline
 					\cellcolor{azulclaro}Propósito &
-					Este caso de uso permite al \\
+					Este caso de uso permite a la extensión interceptar una petición HTTP, realizada por el navegador Google Chrome por medio de algún agente (sistema o usuario) externo a éste.\\
 					\hline
 					\cellcolor{azulclaro}Entradas &
-					AL\\
+					Petición HTTP realizada por el navegador.\\
 					\hline
 					\cellcolor{azulclaro}Salidas &
-					AL\\
+					Petición HTTP cachada.\\
 					\hline
 					\cellcolor{azulclaro}Pre-condiciones&
-					AL\\
+					Algún agente externo (Sistema o usuario) ha ordenado al navegador mandar una petición HTTP.\\
 					\hline
 					\cellcolor{azulclaro}Post-condiciones&
-					AL\\
+					La extensión, deberá de interceptar la petición para poder modificarla.\\
 					\hline
 					\cellcolor{azulclaro}Reglas del negocio&
-					AL\\
+					-\\
 					\hline
 					\cellcolor{azulclaro}Errores &
-					AL\\					
+					La petición no se pudo interceptar. \newline La petición no es tipo HTTP.\\					
 					\hline
 				\end{tabular}
 				\caption[DCU: PI\_CU1]{Descripción CU: PI\_CU1}
 				\end{table}
 				
-				\paragraph{Trayectoria Principal.}
-				\paragraph{Fin de la Trayectoria Principal.}
+				\paragraph{... Trayectoria Principal ...}
+				\begin{enumerate}
+					\item \textbf{\textit{El Usuario}} o \textbf{\textit{El Sistema Externo}} realiza una petición HTTP en el navegador Google Chrome.\\
+					\item \textbf{\textit{La Extensión}} intercepta la petición antes de que salga a red.\\
+					\item \textbf{\textit{La Extensión}} puede modificar el contenido de la petición. \\
+					\item \textbf{\textit{La Extensión}} deja salir a red la petición.
+				\end{enumerate}
+				\paragraph{... Fin de la Trayectoria Principal ...}
 				
-					\newpage
+				\paragraph{... Trayectoria Alternativa 1 ...}
+				\begin{enumerate}
+					\item \textbf{\textit{El Usuario}} o \textbf{\textit{El Sistema Externo}} no realiza una petición HTTP en el navegador Google Chrome.\\
+					\item \textbf{\textit{La Extensión}} ignora la petición.					
+				\end{enumerate}
+				\paragraph{... Fin de la Trayectoria Alternativa 1 ...}
+				
+				\paragraph{... Trayectoria Alternativa 2 ...}
+				\begin{enumerate}
+					\item \textbf{\textit{El Usuario}} o \textbf{\textit{El Sistema Externo}} realiza una petición HTTP en el navegador Google Chrome.\\
+					\item \textbf{\textit{La Extensión}} no puede interceptar la petición antes de que salga a red.\\
+					\item \textbf{\textit{La Extensión}} notifica que hubo un error al intentar interceptar la petición. 
+				\end{enumerate}
+				\paragraph{... Fin de la Trayectoria Alternativa 2 ...}
+				
+				\newpage
 				%%DESCRIPCIÓN PI_CU2
 				\begin{table}[htb]
 				\begin{center}
@@ -326,31 +350,31 @@
 					\rowcolor{guindapoli}
 					\multicolumn{2}{|c|}{\textbf{\textcolor{white}{Caso de uso: PI\_CU2. Habilitar extensión.}}}\\
 					\hline
-					\rowcolor{azulclaro}Concepto & Descripción\\
+					\rowcolor{azulfuerte}Concepto & Descripción\\
 					\hline
 					\cellcolor{azulclaro}Actor & 
-					AF\\ 
+					Usuario.\\ 
 					\hline
 					\cellcolor{azulclaro}Propósito &
-					AF\\
+					Este caso de uso, permite al usuario habilitar a la extensión, para que ésta sea capaz de ver todas las peticiones que realiza el navegador.\\
 					\hline
 					\cellcolor{azulclaro}Entradas &
-					AL\\
+					Indicación de habilitar extensión, mediante interfaz de usuario.\footnote{Si sería esta la entrada?}\\
 					\hline
 					\cellcolor{azulclaro}Salidas &
-					AL\\
+					Ninguna.\\
 					\hline
 					\cellcolor{azulclaro}Pre-condiciones&
-					AL\\
+					El usuario debe de haber instalado la extensión en Google Chrome y haber permitido su ejecución.\\
 					\hline
 					\cellcolor{azulclaro}Post-condiciones&
-					AL\\
+					La extensión verá todas las peticiones que realice el navegador.\\
 					\hline
 					\cellcolor{azulclaro}Reglas del negocio&
-					AL\\
+					\hyperref[PI_RN1]{PI\_RN1.}\\
 					\hline
 					\cellcolor{azulclaro}Errores &
-					AL\\
+					No se puede iniciar la vigilancia de la extensión.\\
 					
 					\hline
 				\end{tabular}
@@ -358,10 +382,94 @@
 				\end{center}
 				\end{table}
 				
-				\paragraph{Trayectoria Principal.}
-				\paragraph{Fin de la Trayectoria Principal.}
+				\paragraph{... Trayectoria Principal ...}
+				\begin{enumerate}
+					\item \textbf{\textit{El usuario}} da click en el ícono de la extensión \textbf{insert icon}.
+					\item \textbf{\textit{El usuario}} da click en el botón \textbf{insert button} "Habilitar extensión".
+					\item \textbf{\textit{La extensión}} empieza a vigilar las peticiones que se realicen a través del navegador.
+				\end{enumerate}
+				\paragraph{... Fin de la Trayectoria Principal ...}
+				
+				\paragraph{... Trayectoria Alternativa 1 ...}
+				\begin{enumerate}
+					\item \textbf{\textit{El usuario}} da click en el ícono de la extensión \textbf{insert icon}.
+					\item \textbf{\textit{El usuario}} da click en el botón \textbf{insert button} "Deshabilitar extensión".
+					\item \textbf{\textit{La extensión}} muestra mensaje de error "La extensión ya está deshabilitada".
+				\end{enumerate}
+				\paragraph{... Fin de la Trayectoria Alternativa 1 ...}
+				
+				\paragraph{... Trayectoria Alternativa 2 ...}
+				\begin{enumerate}
+					\item \textbf{\textit{El usuario}} no encuentra el ícono de la extensión \textbf{insert icon}.
+				\end{enumerate}
+				\paragraph{... Fin de la Trayectoria Alternativa 2 ...}
 				
 				\newpage
+				
+				\newpage
+				%%DESCRIPCIÓN PI_CU3
+				\begin{table}[htb]
+				\begin{center}
+				\begin{tabular}{ |p{3.5cm}||p{9.5cm}|}
+					\hline
+					\rowcolor{guindapoli}
+					\multicolumn{2}{|c|}{\textbf{\textcolor{white}{Caso de uso: PI\_CU3. Deshabilitar extensión.}}}\\
+					\hline
+					\rowcolor{azulfuerte}Concepto & Descripción\\
+					\hline
+					\cellcolor{azulclaro}Actor & 
+					Usuario.\\ 
+					\hline
+					\cellcolor{azulclaro}Propósito &
+					Este caso de uso, permite al usuario deshabilitar a la extensión, para que ésta ignore todas las peticiones que se realicen por medio del navegador.\\
+					\hline
+					\cellcolor{azulclaro}Entradas &
+					Indicación de deshabilitar extensión, mediante interfaz de usuario.\footnote{Si sería esta la entrada}\\
+					\hline
+					\cellcolor{azulclaro}Salidas &
+					Ninguna.\\
+					\hline
+					\cellcolor{azulclaro}Pre-condiciones&
+					El usuario debe de haber instalado la extensión en Google Chrome y haber permitido su ejecución.\\
+					\hline
+					\cellcolor{azulclaro}Post-condiciones&
+					La extensión dejará de ver todas las peticiones que realice el navegador.\\
+					\hline
+					\cellcolor{azulclaro}Reglas del negocio&
+					\hyperref[PI_RN1]{PI\_RN1.}\\
+					\hline
+					\cellcolor{azulclaro}Errores &
+					No se puede detener la vigilancia de la aplicación.\\
+					\hline
+				\end{tabular}
+				\caption[DCU: PI\_CU3]{Descripción CU: PI\_CU3}
+				\end{center}
+				\end{table}
+			
+				\paragraph{... Trayectoria Principal ...}
+				\begin{enumerate}
+					\item \textbf{\textit{El usuario}} da click en el ícono de la extensión \textbf{insert icon}.
+					\item \textbf{\textit{El usuario}} da click en el botón \textbf{insert button} "Deshabilitar extensión".
+					\item \textbf{\textit{La extensión}} deja de vigilar las peticiones que se realicen a través del navegador.
+				\end{enumerate}
+				\paragraph{... Fin de la Trayectoria Principal ...}
+				
+				\paragraph{... Trayectoria Alternativa 1 ...}
+				\begin{enumerate}
+					\item \textbf{\textit{El usuario}} da click en el ícono de la extensión \textbf{insert icon}.
+					\item \textbf{\textit{El usuario}} da click en el botón \textbf{insert button} "Habilitar extensión".
+					\item \textbf{\textit{La extensión}} muestra mensaje de error "La extensión ya está habilitada".
+				\end{enumerate}
+				\paragraph{... Fin de la Trayectoria Alternativa 1 ...}
+				
+				\paragraph{... Trayectoria Alternativa 2 ...}
+				\begin{enumerate}
+					\item \textbf{\textit{El usuario}} no encuentra el ícono de la extensión \textbf{insert icon}.
+				\end{enumerate}
+				\paragraph{... Fin de la Trayectoria Alternativa 2 ...}
+			
+				\newpage
+				%FIN DE LA DESCRIPCIÓN DE CASOS DE USO
 				
 			\subsubsection{Diagrama de flujo.}
 			\subsubsection{Flujo de datos.}
