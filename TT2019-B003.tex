@@ -170,6 +170,17 @@
 			
 	\newpage
 		\subsection{Objetivos.}
+			\subsubsection{Objetivo general. \\}
+			Realizar una extensión en Google Chrome que implemente un mecanismo de autentificación, implementando \textit{Chaffing and Winnowing}.\\
+			\subsubsection{Objetivos particulares.\\}
+			\begin{itemize}
+				\item Investigar e implementar el desarrollo de extensiones en Google Chrome.
+				\item Investigar sobre los mecanismos de autentificación.
+				\item Investigar sobre la técnica de \textit{Chaffing and Winnowing} para adaptar su implementación.
+				\item Inyectar el código (la autentificación) en el encabezado HTTP para enviar la petición al servidor. 
+				\item Modificar el código del servidor Apache para simular y comprobar el funcionamiento de la extensión.
+				\item Realizar pruebas de seguridad para comprobar la eficacia de la extensión. 
+			\end{itemize}
 		\subsection{Metodología.}
 		\subsection{Estado del Arte.}
 	\newpage
@@ -181,11 +192,16 @@
 			\subsubsection{Descripción.}
 				En este prototipo se busca la creación de una extensión de Google Chrome, que sea capaz de interceptar una petición HTTP hecha por el navegador.
 			\subsubsection{Herramientas a usar.}
-				
+				\paragraph{Software. \\}
 				Para el desarrollo de software de este prototipo, ocuparemos las siguientes tecnologías debido a que nos facilitan el desarrollo y nos proporcionan lo necesario para lograr nuestro objetivo para este prototipo: 
 				\paragraph {JavaScript. \\}
-				JavaScript es considerado como el lenguaje de programación de HTML y de la web. Es un lenguaje de programación fácil de usar y muy versátil para el hámbito de la comunicación en redes.\cite{refJavaScript} 
+				JavaScript es considerado como el lenguaje de programación de HTML y de la web. Es un lenguaje de programación fácil de usar y muy versátil para el hámbito de la comunicación en redes. Los programas, llamados scripts, se ejecutan en el navegador (Mozilla, Google Chrome, Internet Explorer, etc.) normalmente consisten en unas funciones que son llamadas desde el propio HTML cuando algún evento sucede.\\ 
+				Su primera aproximacción a un uso real fué en mayor parte para "dar vida a una página web", como dar animaciones a un boton, interacciones en tiempo real, entre otras más. 
+				JavaScript fué desarrollado por NetScape, a partir del lenguaje Java, que en ese momento éste lenguaje tenía mucho auge y popularidad, y su principal diferencia es que JavaScript solo "funciona" dentro de una página HTML.\\
+				JavaScript fué declarado como estándar del European Computer Manufacturers Association (ECMA) en 1997, y poco despúes también  fué estandarizado por ISO.\cite{refJavaScript} \\ 
 				
+				
+				\paragraph{Hardware. \\}
 				En el ambito del hardware utilizaremos los equipos de cómputo con los cuales contamos actualmente los integrantes, donde se especificaran a continuación: 
 				
 				\begin{table}[htb]
@@ -229,8 +245,6 @@
 						\rowcolor{white}Disco duro & 500GB\\
 					\end{tabular}
 				\end{table}
-				
-				
 			
 			\subsubsection{Estudio de requerimientos.}
 				
@@ -479,7 +493,8 @@
 			\subsubsection{Requisitos de diseño.}
 	%Para agregar una cita en el documento se usa \cite{refKey}, por automático los ordena conforme se van agregando
 	\begin{thebibliography}{20}
-		\bibitem{refJavaScript} https://javascript.info/intro \\
+		\bibitem{refJavaScript} https://www.dtic.upf.edu/~tnavarrete/fcsig/javascript.pdf \\
+		
 		
 	\end{thebibliography}		
 \end{document}
