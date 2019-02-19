@@ -9,7 +9,6 @@
 %%Links
 \usepackage[hidelinks]{hyperref}
 
-
 \definecolor{guindapoli}{RGB}{102, 0, 51}
 \definecolor{azulescom}{RGB}{0, 0, 102}
 \definecolor{azulclaro}{RGB}{222, 232, 255}
@@ -99,11 +98,13 @@
 	\end{appendix}
 	\newpage
 	
+	\textbf{\textcolor{azulescom}{\Huge{Capítulo 1.}}}
 
+	\renewcommand\thesection{\arabic{section}}	
 	\section{\textcolor{azulescom}{Introducción.}}
 		\subsection{Planteamiento del problema.}
 			En la actualidad todos los usuarios de internet necesitan guardar contraseñas para sus distintas cuentas en las diferentes páginas web en las que ingresa ya que recordarlas es un problema que avanza constantemente. El uso de estas contraseñas son utilizadas principalmente en correos electrónicos y redes sociales por lo que el robo de las mismas puede poner en riesgo la seguridad del usuario, así como también, existe la tediosa tarea de ingresar usuario y contraseña en cada sesion. Las contraseñas son comúnmente utilizadas para el inicio de sesion y existen diferentes métodos de autentificación para dicho inicio como lo son biométricos. En nuestro proyecto nos enfocaremos más en el uso de text password en donde se autentificará el usuario por medio de una extensión de Google Chrome. Con ayuda de esta extensión resolveremos los problemas comentados anteriormente, dando así comodidad y seguridad al usuario que habilite la extensión.
-		\newpage    
+		    
 		\subsection{Justificación.}
 			Los usuarios deben de guardar las contraseñas en medios fisicos o digitales y perderlos presenta un grave problema de seguridad. La gran mayoria de servicios web han implementado una solución la cual es recordar tu usuario y contraseña para que se pueda automaticamente acceder al servicio. Dicha solucion presenta cierta vulnerabilidad ya que los archivos donde se guarda la información se puede copiar y con ello replicarlo a otra computadora.
 			En el cuadro No.1, se muestra una tabla donde se comparan los diferentes métodos de autentificación basándose en la simplicidad de su aplicación para el usuario (extraída del artículo Comparison of Authentication Methods on Web Resources). Donde: 1 – Bajo desempeño, 2 - Medio desempeño y 3 – Alto desempeño.
@@ -168,11 +169,10 @@
 			\item Phishing: Hace referencia a programas que se hacen pasar por entidades confiables para interceptar los datos que desean.
 		\end{itemize}
 			
-	\newpage
 		\subsection{Objetivos.}
-			\subsubsection{Objetivo general. \\}
+			\subsubsection{Objetivo general. }
 			Realizar una extensión en Google Chrome que implemente un mecanismo de autentificación, implementando \textit{Chaffing and Winnowing}.\\
-			\subsubsection{Objetivos particulares.\\}
+			\subsubsection{Objetivos particulares.}
 			\begin{itemize}
 				\item Investigar e implementar el desarrollo de extensiones en Google Chrome.
 				\item Investigar sobre los mecanismos de autentificación.
@@ -186,7 +186,7 @@
 	\newpage
 	\section{\textcolor{azulescom}{Marco Teórico.}}
 		Como sabemos hasta ahora haremos uso de una extensión de Google Chrome, por lo que empecemos explicando que son estas extensiones. Una extensión de Google Chrome es una pequeña aplicación que se instala en el navegador que, en cierta medida, mejora la navegación del usuario. Estas extensiones tienen diferentes funcionalidades, que, como se dijo anteriormente, facilitan al usuario durante su navegacion por la internet. Existen una infinidad de extensiones hoy en día con funcionalidades inimaginables para distintas paginas, redes sociales, media, etc. La instalación de las extensiones es muy fácil gracias a Chrome Web Store. Como sabemos, Chrome Web Store es una tienda en línea de aplicaciones web para el navegador Google Chrome, y la cual es desarrollada y mantenida por Google (La tienda también cuenta temas visuales para el navegador). Esta tienda es mas intuitiva y amigable para cualquier usuario, facilitando la instalción de las extensiones con un simple click.
-	\newpage
+	
 	\section{\textcolor{azulescom}{Análisis.}}
 		\subsection{Prototipo I.}
 			\subsubsection{Descripción.}
@@ -292,7 +292,6 @@
 				\end{figure}\newpage	
 					
 			\subsubsection{Descripción de casos de uso.}
-				\footnote{EL actor es el navegador?}
 			
 				%%DESCRIPCIÓN PI_CU1
 				\begin{table}[htb]
@@ -373,7 +372,7 @@
 					Este caso de uso, permite al usuario habilitar a la extensión, para que ésta sea capaz de ver todas las peticiones que realiza el navegador.\\
 					\hline
 					\cellcolor{azulclaro}Entradas &
-					Indicación de habilitar extensión, mediante interfaz de usuario.\footnote{Si sería esta la entrada?}\\
+					Indicación de habilitar extensión, mediante interfaz de usuario.\\
 					\hline
 					\cellcolor{azulclaro}Salidas &
 					Ninguna.\\
@@ -438,7 +437,7 @@
 					Este caso de uso, permite al usuario deshabilitar a la extensión, para que ésta ignore todas las peticiones que se realicen por medio del navegador.\\
 					\hline
 					\cellcolor{azulclaro}Entradas &
-					Indicación de deshabilitar extensión, mediante interfaz de usuario.\footnote{Si sería esta la entrada}\\
+					Indicación de deshabilitar extensión, mediante interfaz de usuario.\\
 					\hline
 					\cellcolor{azulclaro}Salidas &
 					Ninguna.\\
