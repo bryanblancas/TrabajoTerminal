@@ -101,74 +101,18 @@
 	
 
 	\section{\textcolor{azulescom}{Introducción.}}
-		\subsection{Planteamiento del problema.}
-			En la actualidad todos los usuarios de internet necesitan guardar contraseñas para sus distintas cuentas en las diferentes páginas web en las que ingresa ya que recordarlas es un problema que avanza constantemente. El uso de estas contraseñas son utilizadas principalmente en correos electrónicos y redes sociales por lo que el robo de las mismas puede poner en riesgo la seguridad del usuario, así como también, existe la tediosa tarea de ingresar usuario y contraseña en cada sesion. Las contraseñas son comúnmente utilizadas para el inicio de sesion y existen diferentes métodos de autentificación para dicho inicio como lo son biométricos. En nuestro proyecto nos enfocaremos más en el uso de text password en donde se autentificará el usuario por medio de una extensión de Google Chrome. Con ayuda de esta extensión resolveremos los problemas comentados anteriormente, dando así comodidad y seguridad al usuario que habilite la extensión.
-		\newpage    
-		\subsection{Justificación.}
-			Los usuarios deben de guardar las contraseñas en medios fisicos o digitales y perderlos presenta un grave problema de seguridad. La gran mayoria de servicios web han implementado una solución la cual es recordar tu usuario y contraseña para que se pueda automaticamente acceder al servicio. Dicha solucion presenta cierta vulnerabilidad ya que los archivos donde se guarda la información se puede copiar y con ello replicarlo a otra computadora.
-			En el cuadro No.1, se muestra una tabla donde se comparan los diferentes métodos de autentificación basándose en la simplicidad de su aplicación para el usuario (extraída del artículo Comparison of Authentication Methods on Web Resources). Donde: 1 – Bajo desempeño, 2 - Medio desempeño y 3 – Alto desempeño.
-			
-			\begin{table}[htb]
-				\centering
-				\resizebox{13cm}{!} {
-					\begin{tabular}{l|l|l|l|l|l|l|l|}
-						\cline{2-8}
-						& Recordar & \begin{tabular}[c]{@{}l@{}}Otros\\ dispositivos\end{tabular} & Acciones & Facilidad & Tiempo & Errores & Recuperación \\ \hline
-						\multicolumn{1}{|l|}{Contraseñas}                                                      & 1        & 3                                                            & 2        & 3         & 3      & 2       & 3            \\ \hline
-						\multicolumn{1}{|l|}{Otros recursos}                                                   & 2        & 3                                                            & 3        & 3         & 3      & 3       & 2            \\ \hline
-						\multicolumn{1}{|l|}{\begin{tabular}[c]{@{}l@{}}Contraseñas \\ gráficas\end{tabular}}  & 1        & 1                                                            & 2        & 3         & 3      & 2       & 3            \\ \hline
-						\multicolumn{1}{|l|}{\begin{tabular}[c]{@{}l@{}}Contraseñas \\ dinamicas\end{tabular}} & 1        & 3                                                            & 2        & 2         & 3      & 2       & 2            \\ \hline
-						\multicolumn{1}{|l|}{Tokens}                                                           & 3        & 1                                                            & 1        & 2         & 2      & 3       & 1            \\ \hline
-						\multicolumn{1}{|l|}{Multivariación}                                                   & 1        & 1                                                            & 1        & 3         & 2      & 2       & 1            \\ \hline
-						\multicolumn{1}{|l|}{Cryptografía}                                                     & 3        & 1                                                            & 1        & 1         & 1      & 2       & 1            \\ \hline
-						\multicolumn{1}{|l|}{Biométricos}                                                      & 3        & 3                                                            & 2        & 3         & 2      & 2       & 1            \\ \hline
-					\end{tabular}
-				}
-				\caption{Comparación de la aplicación en los distintos métodos de autentificación}
-			\end{table}
-			
-			La tabla anterior concentra las siguientes caracteristicas:
-			
-			\begin{itemize}
-				\item Recordar: Hace referencia a que tan complicado es que un usuario se acuerde de los datos necesarios para la autentificación. 
-				\item Otros dispositivos: El usuario usa una entidad externa para facilitar su autentificación.
-				\item Acciones: Hace referencia a que tantas acciones adicionales se deben de realizar para autentificarse.
-				\item Facilidad: Simplicidad de tecnología.
-				\item Tiempo: Cantidad de recursos temporales que consume el método de autentificación.
-				\item Errores: Posibles errores durante la autentificación. 
-				\item Recuperación: Denota la dificultad de recuperar la clave de acceso en caso de pérdida.
-			\end{itemize}
-				
-			En el cuadro No.2 se muestra una tabla comparativa del nivel de seguridad en los distintos métodos de autentificación, donde 1 - baja seguridad, 2 – media seguridad y 3 – alta seguridad.
-			
-			\begin{table}[htb]
-				\centering
-				\resizebox{10cm}{!} {
-					\begin{tabular}{l|l|l|l|l|}
-						\cline{2-5}
-						& \begin{tabular}[c]{@{}l@{}}Ataque por\\ fuerza bruta\end{tabular} & Observación & \begin{tabular}[c]{@{}l@{}}Hackeo\\ indirecto\end{tabular} & Phishing \\ \hline
-						\multicolumn{1}{|l|}{Contraseñas}                                                      & 1                                                                 & 1           & 1                                                          & 1        \\ \hline
-						\multicolumn{1}{|l|}{Otros recursos}                                                   & 2                                                                 & 2           & 3                                                          & 3        \\ \hline
-						\multicolumn{1}{|l|}{\begin{tabular}[c]{@{}l@{}}Contraseñas \\ gráficas\end{tabular}}  & 1                                                                 & 1           & 2                                                          & 2        \\ \hline
-						\multicolumn{1}{|l|}{\begin{tabular}[c]{@{}l@{}}Contraseñas \\ dinamicas\end{tabular}} & 2                                                                 & 3           & 2                                                          & 2        \\ \hline
-						\multicolumn{1}{|l|}{Tokens}                                                           & 3                                                                 & 3           & 3                                                          & 3        \\ \hline
-						\multicolumn{1}{|l|}{Multivariación}                                                   & 1                                                                 & 1           & 3                                                          & 3        \\ \hline
-						\multicolumn{1}{|l|}{Cryptografía}                                                     & 3                                                                 & 3           & 3                                                          & 3        \\ \hline
-						\multicolumn{1}{|l|}{Biométricos}                                                      & 3                                                                 & 3           & 1                                                          & 1        \\ \hline
-					\end{tabular}
-				}
-			\caption{Comparación de la seguridad en los dstintos métodos de autentificación}
-			\end{table}
-		La tabla se enfoca principalmente en los siguientes problemas de seguridad: 
+		En la actualidad los usuarios de internet necesitan guardar contraseñas para sus distintas cuentas en las diferentes páginas web en las que ingresa ya que recordarlas es un problema que avanza constantemente. El uso constante de contraseñas incita a los usuarios a guardar sus contraseñas en medios fisicos o digitales y perderlos presenta un grave problema de seguridad. La gran mayoria de servicios web han implementado una solución la cual es recordar tu usuario y contraseña para qué el usuario pueda acceder automaticamente al servicio. Dicha solucion presenta cierta vulnerabilidad ya que los archivos donde se guarda la información se pueden copiar y con ello replicarlo a otro ordenador.
 		
-		\begin{itemize}
-			\item Ataque por fuerza bruta: Se descifra el método de autentificación con una gran cantidad de intentos, usualmente generados por un programa.
-			\item Observación: Cuando se intenta ver directamente los datos necesarios para la autentificación desde una distancia cercana hasta incluso usando binoculares, cámaras o algún otro dispositivo.
-			\item Hackeo indirecto: El usuario confía sus datos del método de autentificación a terceros quienes pueden ser atacados. 
-			\item Phishing: Hace referencia a programas que se hacen pasar por entidades confiables para interceptar los datos que desean.
-		\end{itemize}
-			
-	\newpage
+		Las contraseñas son usadas principalemente en correos electrónicos, redes sociales, bancos en linea, entre otros importantes sitios web. Por lo que el robo de las mismas puede poner en riesgo la seguridad del usuario e ingresar sus datos de usuario y contraseña en cada sesion pueden ser faciles de robar dado qué, quedan a la vista de las personas de su alrededor.
+		Cómo se menciono anteriormente las contraseñas son comúnmente utilizadas para el inicio de sesión y éstas deben contener multiples caractéres para así ser más seguras pero al mismo tiempo se vuelven más complicadas al momento de recordarlas. 
+		
+		\paragraph {}
+		Es por ello, que en este trabajo terminal, propone una forma de autentificación por medio de Chaffing and Winnowing y con la ayuda de una extensión de Google Chrome, el cual servirá para la inyección de las credenciales de Login del usuario en el protocolo HTTP, y así, si un servicio web tiene éste tipo de seguridad disponible lo pueda validar. 
+		
+		Este trabajo, tiene como objetivo, mejorar los aspectos antes mencionados como lo son la comodidad de recordar contraseñas y la seguridad. Gracias a éste proyecto el usuario podrá ingresar a sus páginas favoritas sin la necesidad de ingresar su usuario y contraseña constantemente, y con la seguridad de que sus contraseñas no seran robadas ya que no se almacenarán en ningún sitio o documento dentro del ordenador del usuario.
+		
+		
+		\newpage
 		\subsection{Objetivos.}
 			\subsubsection{Objetivo general. \\}
 			Realizar una extensión en Google Chrome que implemente un mecanismo de autentificación, implementando \textit{Chaffing and Winnowing}.\\
@@ -186,6 +130,68 @@
 	\newpage
 	\section{\textcolor{azulescom}{Marco Teórico.}}
 		Como sabemos hasta ahora haremos uso de una extensión de Google Chrome, por lo que empecemos explicando que son estas extensiones. Una extensión de Google Chrome es una pequeña aplicación que se instala en el navegador que, en cierta medida, mejora la navegación del usuario. Estas extensiones tienen diferentes funcionalidades, que, como se dijo anteriormente, facilitan al usuario durante su navegacion por la internet. Existen una infinidad de extensiones hoy en día con funcionalidades inimaginables para distintas paginas, redes sociales, media, etc. La instalación de las extensiones es muy fácil gracias a Chrome Web Store. Como sabemos, Chrome Web Store es una tienda en línea de aplicaciones web para el navegador Google Chrome, y la cual es desarrollada y mantenida por Google (La tienda también cuenta temas visuales para el navegador). Esta tienda es mas intuitiva y amigable para cualquier usuario, facilitando la instalción de las extensiones con un simple click.
+		
+		En el cuadro No.1, se muestra una tabla donde se comparan los diferentes métodos de autentificación basándose en la simplicidad de su aplicación para el usuario (extraída del artículo Comparison of Authentication Methods on Web Resources). Donde: 1 – Bajo desempeño, 2 - Medio desempeño y 3 – Alto desempeño.
+		
+		\begin{table}[htb]
+			\centering
+			\resizebox{13cm}{!} {
+				\begin{tabular}{l|l|l|l|l|l|l|l|}
+					\cline{2-8}
+					& Recordar & \begin{tabular}[c]{@{}l@{}}Otros\\ dispositivos\end{tabular} & Acciones & Facilidad & Tiempo & Errores & Recuperación \\ \hline
+					\multicolumn{1}{|l|}{Contraseñas}                                                      & 1        & 3                                                            & 2        & 3         & 3      & 2       & 3            \\ \hline
+					\multicolumn{1}{|l|}{Otros recursos}                                                   & 2        & 3                                                            & 3        & 3         & 3      & 3       & 2            \\ \hline
+					\multicolumn{1}{|l|}{\begin{tabular}[c]{@{}l@{}}Contraseñas \\ gráficas\end{tabular}}  & 1        & 1                                                            & 2        & 3         & 3      & 2       & 3            \\ \hline
+					\multicolumn{1}{|l|}{\begin{tabular}[c]{@{}l@{}}Contraseñas \\ dinamicas\end{tabular}} & 1        & 3                                                            & 2        & 2         & 3      & 2       & 2            \\ \hline
+					\multicolumn{1}{|l|}{Tokens}                                                           & 3        & 1                                                            & 1        & 2         & 2      & 3       & 1            \\ \hline
+					\multicolumn{1}{|l|}{Multivariación}                                                   & 1        & 1                                                            & 1        & 3         & 2      & 2       & 1            \\ \hline
+					\multicolumn{1}{|l|}{Cryptografía}                                                     & 3        & 1                                                            & 1        & 1         & 1      & 2       & 1            \\ \hline
+					\multicolumn{1}{|l|}{Biométricos}                                                      & 3        & 3                                                            & 2        & 3         & 2      & 2       & 1            \\ \hline
+				\end{tabular}
+			}
+			\caption{Comparación de la aplicación en los distintos métodos de autentificación}
+		\end{table}
+		
+		La tabla anterior concentra las siguientes caracteristicas:
+		
+		\begin{itemize}
+			\item Recordar: Hace referencia a que tan complicado es que un usuario se acuerde de los datos necesarios para la autentificación. 
+			\item Otros dispositivos: El usuario usa una entidad externa para facilitar su autentificación.
+			\item Acciones: Hace referencia a que tantas acciones adicionales se deben de realizar para autentificarse.
+			\item Facilidad: Simplicidad de tecnología.
+			\item Tiempo: Cantidad de recursos temporales que consume el método de autentificación.
+			\item Errores: Posibles errores durante la autentificación. 
+			\item Recuperación: Denota la dificultad de recuperar la clave de acceso en caso de pérdida.
+		\end{itemize}
+		
+		En el cuadro No.2 se muestra una tabla comparativa del nivel de seguridad en los distintos métodos de autentificación, donde 1 - baja seguridad, 2 – media seguridad y 3 – alta seguridad.
+		
+		\begin{table}[htb]
+			\centering
+			\resizebox{10cm}{!} {
+				\begin{tabular}{l|l|l|l|l|}
+					\cline{2-5}
+					& \begin{tabular}[c]{@{}l@{}}Ataque por\\ fuerza bruta\end{tabular} & Observación & \begin{tabular}[c]{@{}l@{}}Hackeo\\ indirecto\end{tabular} & Phishing \\ \hline
+					\multicolumn{1}{|l|}{Contraseñas}                                                      & 1                                                                 & 1           & 1                                                          & 1        \\ \hline
+					\multicolumn{1}{|l|}{Otros recursos}                                                   & 2                                                                 & 2           & 3                                                          & 3        \\ \hline
+					\multicolumn{1}{|l|}{\begin{tabular}[c]{@{}l@{}}Contraseñas \\ gráficas\end{tabular}}  & 1                                                                 & 1           & 2                                                          & 2        \\ \hline
+					\multicolumn{1}{|l|}{\begin{tabular}[c]{@{}l@{}}Contraseñas \\ dinamicas\end{tabular}} & 2                                                                 & 3           & 2                                                          & 2        \\ \hline
+					\multicolumn{1}{|l|}{Tokens}                                                           & 3                                                                 & 3           & 3                                                          & 3        \\ \hline
+					\multicolumn{1}{|l|}{Multivariación}                                                   & 1                                                                 & 1           & 3                                                          & 3        \\ \hline
+					\multicolumn{1}{|l|}{Cryptografía}                                                     & 3                                                                 & 3           & 3                                                          & 3        \\ \hline
+					\multicolumn{1}{|l|}{Biométricos}                                                      & 3                                                                 & 3           & 1                                                          & 1        \\ \hline
+				\end{tabular}
+			}
+			\caption{Comparación de la seguridad en los dstintos métodos de autentificación}
+		\end{table}
+		La tabla se enfoca principalmente en los siguientes problemas de seguridad: 
+		
+		\begin{itemize}
+			\item Ataque por fuerza bruta: Se descifra el método de autentificación con una gran cantidad de intentos, usualmente generados por un programa.
+			\item Observación: Cuando se intenta ver directamente los datos necesarios para la autentificación desde una distancia cercana hasta incluso usando binoculares, cámaras o algún otro dispositivo.
+			\item Hackeo indirecto: El usuario confía sus datos del método de autentificación a terceros quienes pueden ser atacados. 
+			\item Phishing: Hace referencia a programas que se hacen pasar por entidades confiables para interceptar los datos que desean.
+		\end{itemize}
 	\newpage
 	\section{\textcolor{azulescom}{Análisis.}}
 		\subsection{Prototipo I.}
@@ -493,9 +499,11 @@
 			\subsubsection{Requisitos de diseño.}
 	%Para agregar una cita en el documento se usa \cite{refKey}, por automático los ordena conforme se van agregando
 	\begin{thebibliography}{20}
-		\bibitem{refJavaScript} https://www.dtic.upf.edu/~tnavarrete/fcsig/javascript.pdf \\
-		
-		
+		\bibitem{refJavaScript} https://www.dtic.upf.edu/~tnavarrete/fcsig/javascript.pdf 
+		\bibitem{refJavaScript}
+		https://norfipc.com/internet/extensiones-mas-utiles-practicas-navegador-google-chrome.html
+		\bibitem{refJavaScript}
+		https://blog.ensalza.com/diccionario/que-es-una-extension-google-chrome
 	\end{thebibliography}		
 \end{document}
 
