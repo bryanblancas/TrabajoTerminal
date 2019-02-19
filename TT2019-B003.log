@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.2.12)  19 FEB 2019 12:38
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.2.12)  19 FEB 2019 13:01
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -613,7 +613,7 @@ LaTeX Info: Redefining \nameref on input line 17.
 \@outlinefile=\write3
 \openout3 = `TT2019-B003.out'.
 
-<./imagenes/logoipn.png, id=96, 176.66pt x 236.885pt>
+<./imagenes/logoipn.png, id=104, 176.66pt x 236.885pt>
 File: ./imagenes/logoipn.png Graphic file (type png)
 <use ./imagenes/logoipn.png>
 Package pdftex.def Info: ./imagenes/logoipn.png  used on input line 26.
@@ -1257,7 +1257,7 @@ Package babel Info: Redefining spanish shorthand "!
 (babel)             in language  on input line 364.
 Package babel Info: Redefining spanish shorthand "?
 (babel)             in language  on input line 364.
-<./imagenes/UCD_1.jpg, id=218, 684.5575pt x 363.3575pt>
+<./imagenes/UCD_1.jpg, id=228, 684.5575pt x 363.3575pt>
 File: ./imagenes/UCD_1.jpg Graphic file (type jpg)
 <use ./imagenes/UCD_1.jpg>
 Package pdftex.def Info: ./imagenes/UCD_1.jpg  used on input line 370.
@@ -1625,15 +1625,9 @@ LaTeX Info: Redefining \% on input line 23.
 )
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 582.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 582.
+Package rerunfilecheck Info: File `TT2019-B003.out' has not changed.
+(rerunfilecheck)             Checksum: 65A719900A02B0471400FA578F854DE4;1980.
 
-
-Package rerunfilecheck Warning: File `TT2019-B003.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `TT2019-B003.out':
-(rerunfilecheck)             Before: F4FCE5F424B64CF9E0D7FDAD3E8A2D2E;1818
-(rerunfilecheck)             After:  65A719900A02B0471400FA578F854DE4;1980.
 
 LaTeX Warning: There were multiply-defined labels.
 
@@ -1641,31 +1635,25 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 582.
  ) 
 Here is how much of TeX's memory you used:
  6929 strings out of 494861
- 97684 string characters out of 6178804
+ 97678 string characters out of 6178804
  198624 words of memory out of 5000000
- 10070 multiletter control sequences out of 15000+600000
+ 10072 multiletter control sequences out of 15000+600000
  9418 words of font info for 34 fonts, out of 8000000 for 9000
  40 hyphenation exceptions out of 8191
  34i,18n,35p,1018b,506s stack positions out of 5000i,500n,10000p,200000b,80000s
-pdfTeX warning (dest): name{subsubsection.Alph1.1.2} has been referenced but 
-does not exist, replaced by a fixed one
-
-pdfTeX warning (dest): name{subsubsection.Alph1.1.1} has been referenced but do
-es not exist, replaced by a fixed one
-
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/
-share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></usr/shar
-e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texli
-ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texm
-f-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/
-fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/ty
-pe1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ
-ic/amsfonts/cm/cmti12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
-fonts/latxfont/lasy10.pfb>
-Output written on TT2019-B003.pdf (21 pages, 200891 bytes).
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></us
+r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></usr/sh
+are/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/tex
+live/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/te
+xmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dis
+t/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/
+type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/pu
+blic/amsfonts/cm/cmti12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
+msfonts/latxfont/lasy10.pfb>
+Output written on TT2019-B003.pdf (21 pages, 201064 bytes).
 PDF statistics:
- 357 PDF objects out of 1000 (max. 8388607)
- 318 compressed objects within 4 object streams
- 109 named destinations out of 1000 (max. 500000)
- 195 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 363 PDF objects out of 1000 (max. 8388607)
+ 324 compressed objects within 4 object streams
+ 107 named destinations out of 1000 (max. 500000)
+ 211 words of extra memory for PDF output out of 10000 (max. 10000000)
 
