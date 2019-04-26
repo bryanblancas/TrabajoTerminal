@@ -38,7 +38,7 @@
 									},
 									"font": "Arial;13;0",
 									"left": 466,
-									"top": 58,
+									"top": 138,
 									"width": 68.63720703125,
 									"height": 13,
 									"text": "Inicio",
@@ -47,7 +47,7 @@
 							],
 							"font": "Arial;13;0",
 							"left": 456,
-							"top": 48,
+							"top": 128,
 							"width": 88.63720703125,
 							"height": 33,
 							"nameLabel": {
@@ -72,7 +72,7 @@
 									},
 									"font": "Arial;13;0",
 									"left": 474,
-									"top": 146,
+									"top": 210,
 									"width": 61,
 									"height": 26,
 									"text": "Realizar Petición",
@@ -81,7 +81,7 @@
 							],
 							"font": "Arial;13;0",
 							"left": 464,
-							"top": 136,
+							"top": 200,
 							"width": 81,
 							"height": 46,
 							"nameLabel": {
@@ -110,7 +110,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": 518,
-									"top": 101,
+									"top": 173,
 									"height": 13,
 									"alpha": 1.5707963267948966,
 									"distance": 15,
@@ -128,7 +128,7 @@
 								"$ref": "AAAAAAFqUtNNloCOEDk="
 							},
 							"lineStyle": 2,
-							"points": "504:80;504:136",
+							"points": "504:160;504:200",
 							"nameLabel": {
 								"$ref": "AAAAAAFqUtQbL4ClGio="
 							}
@@ -151,7 +151,7 @@
 									},
 									"font": "Arial;13;0",
 									"left": 474,
-									"top": 261,
+									"top": 290,
 									"width": 55.64990234375,
 									"height": 52,
 									"text": "Obtener estado de la extensión",
@@ -160,7 +160,7 @@
 							],
 							"font": "Arial;13;0",
 							"left": 464,
-							"top": 251,
+							"top": 280,
 							"width": 75.64990234375,
 							"height": 72,
 							"nameLabel": {
@@ -189,7 +189,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": 518,
-									"top": 209,
+									"top": 255,
 									"height": 13,
 									"alpha": 1.5707963267948966,
 									"distance": 15,
@@ -207,7 +207,7 @@
 								"$ref": "AAAAAAFqUtOrJICY4Do="
 							},
 							"lineStyle": 2,
-							"points": "504:181;504:251",
+							"points": "504:245;504:280",
 							"nameLabel": {
 								"$ref": "AAAAAAFqUtVsjYD/9vY="
 							}
@@ -268,7 +268,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": 513,
-									"top": 346,
+									"top": 360,
 									"height": 13,
 									"alpha": 1.5707963267948966,
 									"distance": 15,
@@ -286,7 +286,7 @@
 								"$ref": "AAAAAAFqUtVsFYD2Lzc="
 							},
 							"lineStyle": 2,
-							"points": "499:322;499:384",
+							"points": "499:351;499:384",
 							"nameLabel": {
 								"$ref": "AAAAAAFqUtW7S4ERl4U="
 							}
@@ -309,7 +309,7 @@
 									},
 									"font": "Arial;13;0",
 									"left": 754,
-									"top": 970,
+									"top": 906,
 									"width": 62.1435546875,
 									"height": 26,
 									"text": "Interceptar Petición",
@@ -318,7 +318,7 @@
 							],
 							"font": "Arial;13;0",
 							"left": 744,
-							"top": 960,
+							"top": 896,
 							"width": 82.1435546875,
 							"height": 46,
 							"nameLabel": {
@@ -343,7 +343,7 @@
 									},
 									"font": "Arial;13;0",
 									"left": 538,
-									"top": 1314,
+									"top": 1194,
 									"width": 68.63720703125,
 									"height": 13,
 									"text": "Fin",
@@ -352,7 +352,7 @@
 							],
 							"font": "Arial;13;0",
 							"left": 528,
-							"top": 1304,
+							"top": 1184,
 							"width": 88.63720703125,
 							"height": 33,
 							"nameLabel": {
@@ -407,7 +407,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": 344,
-									"top": 1235,
+									"top": 1131,
 									"height": 13,
 									"alpha": 1.5707963267948966,
 									"distance": 15,
@@ -425,7 +425,7 @@
 								"$ref": "AAAAAAFqUtW6zYEIEjA="
 							},
 							"lineStyle": 2,
-							"points": "440:409;344:409;344:1256;571:1256;571:1304",
+							"points": "440:409;344:409;344:1152;571:1152;571:1184",
 							"nameLabel": {
 								"$ref": "AAAAAAFqUttgVYH2ZI0="
 							}
@@ -756,7 +756,7 @@
 									},
 									"font": "Arial;13;0",
 									"left": 754,
-									"top": 861,
+									"top": 826,
 									"width": 62.13720703125,
 									"height": 26,
 									"text": "Almacenar Certificado",
@@ -765,7 +765,7 @@
 							],
 							"font": "Arial;13;0",
 							"left": 744,
-							"top": 851,
+							"top": 816,
 							"width": 82.13720703125,
 							"height": 46,
 							"nameLabel": {
@@ -794,7 +794,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": 797,
-									"top": 809,
+									"top": 791,
 									"height": 13,
 									"alpha": 1.5707963267948966,
 									"distance": 15,
@@ -812,7 +812,7 @@
 								"$ref": "AAAAAAFqUxae5cycJbY="
 							},
 							"lineStyle": 2,
-							"points": "783:781;783:851",
+							"points": "783:781;783:816",
 							"nameLabel": {
 								"$ref": "AAAAAAFqUxzFoszueTk="
 							}
@@ -839,7 +839,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": 798,
-									"top": 921,
+									"top": 871,
 									"height": 13,
 									"alpha": 1.5707963267948966,
 									"distance": 15,
@@ -857,7 +857,7 @@
 								"$ref": "AAAAAAFqUxzFH8zlK7o="
 							},
 							"lineStyle": 2,
-							"points": "784:896;784:960",
+							"points": "784:861;784:896",
 							"nameLabel": {
 								"$ref": "AAAAAAFqUx2BXcz6woc="
 							}
@@ -880,7 +880,7 @@
 									},
 									"font": "Arial;13;0",
 									"left": 754,
-									"top": 1085,
+									"top": 1002,
 									"width": 54.18994140625,
 									"height": 26,
 									"text": "Generar Chaffing",
@@ -889,7 +889,7 @@
 							],
 							"font": "Arial;13;0",
 							"left": 744,
-							"top": 1075,
+							"top": 992,
 							"width": 74.18994140625,
 							"height": 46,
 							"nameLabel": {
@@ -918,7 +918,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": 796,
-									"top": 1033,
+									"top": 959,
 									"height": 13,
 									"alpha": 1.5707963267948966,
 									"distance": 15,
@@ -936,7 +936,7 @@
 								"$ref": "AAAAAAFqUtYPhoEsiD4="
 							},
 							"lineStyle": 2,
-							"points": "782:1005;782:1075",
+							"points": "782:941;782:992",
 							"nameLabel": {
 								"$ref": "AAAAAAFqUx3BAM0Lnr8="
 							}
@@ -959,7 +959,7 @@
 									},
 									"font": "Arial;13;0",
 									"left": 754,
-									"top": 1200,
+									"top": 1090,
 									"width": 54.18994140625,
 									"height": 26,
 									"text": "Liberar Petición",
@@ -968,7 +968,7 @@
 							],
 							"font": "Arial;13;0",
 							"left": 744,
-							"top": 1190,
+							"top": 1080,
 							"width": 74.18994140625,
 							"height": 46,
 							"nameLabel": {
@@ -997,7 +997,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": 794,
-									"top": 1148,
+									"top": 1051,
 									"height": 13,
 									"alpha": 1.5707963267948966,
 									"distance": 15,
@@ -1015,7 +1015,7 @@
 								"$ref": "AAAAAAFqUx3AoM0CDlQ="
 							},
 							"lineStyle": 2,
-							"points": "780:1120;780:1190",
+							"points": "780:1037;780:1080",
 							"nameLabel": {
 								"$ref": "AAAAAAFqUx4XQ80elzI="
 							}
@@ -1042,7 +1042,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": 672,
-									"top": 1265,
+									"top": 1161,
 									"height": 13,
 									"alpha": 1.5707963267948966,
 									"distance": 15,
@@ -1060,7 +1060,7 @@
 								"$ref": "AAAAAAFqUx4W080Vlns="
 							},
 							"lineStyle": 2,
-							"points": "776:1235;776:1256;571:1256;571:1304",
+							"points": "776:1125;776:1152;571:1152;571:1184",
 							"nameLabel": {
 								"$ref": "AAAAAAFqUx5z/80qUzI="
 							}
@@ -1384,6 +1384,18 @@
 								"$ref": "AAAAAAFqUuu+EIIxz2s="
 							},
 							"subViews": [
+								{
+									"_type": "LabelView",
+									"_id": "AAAAAAFqVa4M65oi0N0=",
+									"_parent": {
+										"$ref": "AAAAAAFqUuu+EYIz62M="
+									},
+									"font": "Arial;13;0",
+									"left": 698,
+									"top": 93,
+									"width": 87.4326171875,
+									"height": 13
+								},
 								{
 									"_type": "LabelView",
 									"_id": "AAAAAAFqUwtilsu6IGo=",
@@ -1733,6 +1745,18 @@
 								"$ref": "AAAAAAFqUyBnD80zBdA="
 							},
 							"subViews": [
+								{
+									"_type": "LabelView",
+									"_id": "AAAAAAFqVa4M8JpBVY4=",
+									"_parent": {
+										"$ref": "AAAAAAFqUyBnD801ewM="
+									},
+									"font": "Arial;13;0",
+									"left": 394,
+									"top": 101,
+									"width": 87.4326171875,
+									"height": 13
+								},
 								{
 									"_type": "LabelView",
 									"_id": "AAAAAAFqUyBnEM07Ncw=",
@@ -2290,6 +2314,99 @@
 							"nameLabel": {
 								"$ref": "AAAAAAFqVald5c2xyZY="
 							}
+						},
+						{
+							"_type": "DFDDataStoreView",
+							"_id": "AAAAAAFqVa6CBJqFrDk=",
+							"_parent": {
+								"$ref": "AAAAAAFqUuuhXoItthg="
+							},
+							"model": {
+								"$ref": "AAAAAAFqVa6CA5qDVVg="
+							},
+							"subViews": [
+								{
+									"_type": "LabelView",
+									"_id": "AAAAAAFqVa6CBJqGs6Q=",
+									"_parent": {
+										"$ref": "AAAAAAFqVa6CBJqFrDk="
+									},
+									"font": "Arial;13;0",
+									"left": 828,
+									"top": 290,
+									"width": 65.76171875,
+									"height": 26,
+									"text": "Petición HTTP",
+									"wordWrap": true
+								},
+								{
+									"_type": "LabelView",
+									"_id": "AAAAAAFqVa6CBJqHGHE=",
+									"_parent": {
+										"$ref": "AAAAAAFqVa6CBJqFrDk="
+									},
+									"font": "Arial;13;0",
+									"left": 813,
+									"top": 290,
+									"height": 13
+								}
+							],
+							"font": "Arial;13;0",
+							"left": 808,
+							"top": 280,
+							"width": 95.76171875,
+							"height": 46,
+							"nameLabel": {
+								"$ref": "AAAAAAFqVa6CBJqGs6Q="
+							},
+							"idLabel": {
+								"$ref": "AAAAAAFqVa6CBJqHGHE="
+							}
+						},
+						{
+							"_type": "DFDDataFlowView",
+							"_id": "AAAAAAFqVa6CS5qQ9Ww=",
+							"_parent": {
+								"$ref": "AAAAAAFqUuuhXoItthg="
+							},
+							"model": {
+								"$ref": "AAAAAAFqVa6CS5qOz64="
+							},
+							"subViews": [
+								{
+									"_type": "EdgeLabelView",
+									"_id": "AAAAAAFqVa6CS5qRtU4=",
+									"_parent": {
+										"$ref": "AAAAAAFqVa6CS5qQ9Ww="
+									},
+									"model": {
+										"$ref": "AAAAAAFqVa6CS5qOz64="
+									},
+									"visible": false,
+									"font": "Arial;13;0",
+									"left": 762,
+									"top": 275,
+									"height": 13,
+									"alpha": 1.5707963267948966,
+									"distance": 15,
+									"hostEdge": {
+										"$ref": "AAAAAAFqVa6CS5qQ9Ww="
+									},
+									"edgePosition": 1
+								}
+							],
+							"font": "Arial;13;0",
+							"head": {
+								"$ref": "AAAAAAFqVa6CBJqFrDk="
+							},
+							"tail": {
+								"$ref": "AAAAAAFqUu/2TIJA2Ng="
+							},
+							"lineStyle": 2,
+							"points": "762:271;762:296;808:296",
+							"nameLabel": {
+								"$ref": "AAAAAAFqVa6CS5qRtU4="
+							}
 						}
 					]
 				},
@@ -2335,6 +2452,19 @@
 							},
 							"target": {
 								"$ref": "AAAAAAFqUvBlzIJVgPQ="
+							}
+						},
+						{
+							"_type": "DFDDataFlow",
+							"_id": "AAAAAAFqVa6CS5qOz64=",
+							"_parent": {
+								"$ref": "AAAAAAFqUu/2S4I+UrM="
+							},
+							"source": {
+								"$ref": "AAAAAAFqUu/2S4I+UrM="
+							},
+							"target": {
+								"$ref": "AAAAAAFqVa6CA5qDVVg="
 							}
 						}
 					]
@@ -2503,6 +2633,14 @@
 						"$ref": "AAAAAAFqUuuhXoIsqNo="
 					},
 					"name": "Liberar Petición"
+				},
+				{
+					"_type": "DFDDataStore",
+					"_id": "AAAAAAFqVa6CA5qDVVg=",
+					"_parent": {
+						"$ref": "AAAAAAFqUuuhXoIsqNo="
+					},
+					"name": "Petición HTTP"
 				}
 			]
 		}
