@@ -2,8 +2,11 @@
 \usepackage[spanish]{babel}
 \usepackage[utf8]{inputenc}
 \usepackage[linesnumbered,lined,boxed,commentsnumbered]{algorithm2e}
+\usepackage{enumitem,kantlipsum}
 \usepackage{float}
 \usepackage{subfig}
+\usepackage{booktabs}% http://ctan.org/pkg/booktabs
+\newcommand{\tabitem}{~~\llap{\textbullet}~~}
 %%Imágenes
 \usepackage{graphicx}
 %%Colores de texto 
@@ -182,10 +185,10 @@
     \renewcommand{\appendixname}{Capítulo}
     \chapter{\textcolor{azulescom}{Introducción}}
 
-	\renewcommand\thesection{\arabic{section}}	
+	%\renewcommand\thesection{\arabic{section}}	
 	%\section{Introducción.}
 		
-		En la actualidad la mayor\'ia de los usuarios de internet necesitan guardar contraseñas para sus distintas cuentas en las diferentes páginas web a las que ingresan, ya que recordarlas es un problema debido a la gran cantidad de servicios que se utilizan. Como consecuencia de que la autentificaci\'on por contraseña es la más utilizada en los servicio web hoy en día \cite{ComparisonAuthenticationMethodsResources}, los distintos servicios web han implementado mecanismos de seguridad tales como contraseñas que contengan un mínimo de caracteres determinados, al menos un caracter especial, entre otros. Esto ha provocado que éstas sean más difíciles de recordar y han orillado a los usuarios a optar por guardarlas en medios físicos o digitales para recordarlas cuando sea necesario. 
+		En la actualidad la mayor\'ia de los usuarios de internet necesitan guardar contraseñas para sus distintas cuentas en las diferentes páginas web a las que ingresan, ya que recordarlas es un problema debido a la gran cantidad de servicios que se utilizan. Como consecuencia de que la autentificaci\'on por contraseña es la más utilizada en los servicio web hoy en día \cite{ComparisonAuthenticationMethodsResources}, los distintos servicios web han implementado mecanismos de seguridad tales como contraseñas que contengan un mínimo de caracteres determinados, al menos un carácter especial, entre otros. Esto ha provocado que éstas sean más difíciles de recordar y han orillado a los usuarios a optar por guardarlas en medios físicos o digitales para recordarlas cuando sea necesario. 
 		Sin embargo, perder esas claves (principalmente con los medios físicos) presenta un grave problema de seguridad, teniendo como consecuencia: perdida de datos sensibles, robo de identidad, robo de cuentas bancarias, etc.\\
 		
 		La gran mayoría de servicios web han implementado la función ''recordar contraseña'', la cual hace que el usuario no tenga que ingresar sus credenciales\footnote{Credenciales se entiende como los datos que un servicio web requiere para poder acceder al él. Comúnmente son 'usuario' y 'contraseña'.} cada vez que se quiere acceder al servicio. Esta función por lo general hace uso de cookies que es información almacenada en el explorador web del usuario, esto representa una amenaza de seguridad ya que permite rastrear la información de navegación del usuario, muy útil para sitios fraudulentos o se puede presentar un robo de cookies con el cual los intrusos podrían hacerse pasar como el usuario, entre otros problemas que \'estas representan.
@@ -223,9 +226,11 @@
         
         Es por ello, que este proyecto busca beneficiar al usuario evitando que tenga que ingresar sus credenciales continuamente, y sin que el sistema tenga que guardar las credenciales del servicio web que el usuario use. Por lo tanto, este proyecto brinda una alternativa segura de autentificación en un servicio web. \\
         
+    
+    \begin{comment}
     \section{Estado del arte}
     Como se ha mencionado anteriormente el método de autentificación \textit{usuario y contraseña} debe hacerse siempre que se desee ingresar al servicio, a menos que se le recuerde al usuario la contraseña por medio de cookies. Para esto, IBM ha implementado una autentificación de usuarios mediante el inicio de sesión único, la ultima versión (IBM TRIRIGA 10.6.0 \& IBM TRIRIGA Application Platform 3.6.0) fue creada en el año 2018 \cite{refIBMTRIRIGAYear}. Esta autentificación está implementada para obtener acceso a \textbf{IBM TRIRIGA} \footnote{IBM TRIRIGA es un sistema de gestión del espacio de trabajo integrado (IWMS) que incrementa el rendimiento operativo, financiero y medioambiental de sus instalaciones y bienes inmuebles.}, en esta plataforma es necesario autentificar un usuario como usuario valido del sistema y concederle acceso a las aplicaciones y funciones de la suite \footnote{El término suite hace referencia a un conjunto de aplicaciones y herramientas de software incluidas en un sólo paquete y que, por lo general, comparten un aspecto similar y se integran entre sí.} de aplicaciones de \textit{IBM TRIRIGA}. El inicio de sesión único (\Gls{Single Sign-On}) proporciona a los usuarios una vía para gestionar el acceso a varias aplicaciones de su entorno. \\
-    \textit{TRIRIGA Application Platform} utiliza su propia autentificación nativa de forma predeterminada. Con la autentificación nativa, el usuario especifíca su nombre de usuario y su contraseña en una pantalla de inicio de sesión de IBM TRIRIGA, luego entonces, la plataforma autentifica el usuario comparando el nombre de usuario y la contraseña almacenados en la base de datos de IBM TRIRIGA.\cite{refIBMTRIRIGA} \\
+    \textit{TRIRIGA Application Platform} utiliza su propia autentificación nativa de forma predeterminada. Con la autentificación nativa, el usuario especifíca su nombre de usuario y su contraseña en una pantalla de inicio de sesión de IBM TRIRIGA, luego entonces, la plataforma autentifica el usuario comparando el nombre de usuario y la contraseña almacenados en la base de datos de IBM TRIRIGA \cite{refIBMTRIRIGA}. \\
     El proceso de este tipo de autentificacion de TRIRIGA es el siguiente:
     \begin{itemize}
         \item El usuario especifíca la URL del servidor web en un navegador o accede a la aplicación mediante un cliente.
@@ -234,137 +239,228 @@
         \item Si el inicio de sesión es satisfactorio, el servidor web añade las credenciales de usuario a la cabecera HTTP y las envía al servidor de aplicaciones.
         \item El servidor de aplicaciones procesa las credenciales de usuario e inicia la sesión en la aplicación.
     \end{itemize}
+    \end{comment}
     
 	    
 	\section{Metodolog\'ia.}
-		El proceso de desarrollo que seguiremos estará basado en la metodología de prototipos evolutivos, el cual consiste en la implementación parcial del proyecto cumpliendo con los requerimientos que van surgiendo a lo largo del desarrollo, de esta manera es posible ir experimentando con un prototipo parcialmente funcional e identificar posibles mejoras o fallas con el fin de lograr el objetivo final.
-		Esta metodología está compuesta por las siguientes fases:
-		\begin{itemize}
-		    \item Fase de investigación preliminar.
-		    \item Especificación de requerimientos y prototipos
-		    \item Diseño técnico
-		    \item Programación y pruebas
-		    \item Operación y mantenimiento
-		\end{itemize}
+		El proceso de desarrollo que seguiremos estará basado en la metodología de ''\textbf{Prototipos Evolutivos}''. Esta metodología ayuda a los desarrolladores a mejorar la comprensión del proyecto a elaborar cuando los requerimientos no están completamente definidos. Así mismo, el paradigma nos brinda la posibilidad de utilizar fragmentos de programas existentes o aplicar herramientas que nos permitan generar rápidamente proyectos que funcionen \cite{Pressman}.\\ 
+		Al utilizar este paradigma de desarrollo se busca que, mediante la implementación parcial del proyecto, vayan surgiendo requerimientos no vistos desde el planteamiento del problema, de esta manera, nos es posible ir experimentando con un prototipo parcialmente funcional e identificar posibles mejoras o fallas, con el fin de lograr el objetivo final. \\
 		
-        
-        Primero tendremos la fase de “investigación preliminar”, donde se van a definir las metas principales, después en la fase de “especificación de requerimientos y prototipos", se hace el diseño básico para dar paso a la creación del primer prototipo correspondiente, y después verificar el cumplimiento de los requerimientos y de ser necesario modificarlo hasta que los cumpla. En la tercera fase (diseño técnico) se realiza un diseño detallado y la documentación necesaria para que en la cuarta fase (programación y pruebas) se implemente y se pruebe el prototipo. Finalmente, en la última fase (Operación y mantenimiento) se hace la liberación y el mantenimiento del prototipo final.
-        
+		En la Figura 1.1, se muestra un diagrama de las fases de esta metodología. Primeramente, tenemos la fase de 'Comunicación' en donde el equipo de desarrollo se reúne para definir los objetivos generales del proyecto, se identifican los requerimientos conocidos y se detectan las áreas de mayor atención. Después, se llevan a cabo las fases 'Plan rápido' y 'Diseño rápido' en donde se hace un análisis del prototipo actual y se modela para dar paso al desarrollo del prototipo ('Construcción del prototipo'). Finalmente, para terminar una iteración, se realiza la fase 'Despliegue, entrega y retroalimentación' en donde se evalúa el funcionamiento realizando pruebas que nos brindan una retroalimentación para mejorar los requerimientos \cite{Pressman}.
+		
+		 \begin{figure}[H]
+			\begin{center}	                      \includegraphics[width=9cm]{./imagenes/Introduccion/Meto_Prototipos.jpeg}
+			\caption[Fases de la metodología por prototipos]{Diagrama de los fases de la metodología de prototipos evolutivos.}
+			\end{center}
+		\end{figure}
+	
         Para nuestro proyecto realizaremos 4 prototipos, los cuales son: 
         \begin{enumerate}
+        
+        
             \item Creación de extensión de Google Chrome para interceptar la petición \acrshort{http}. 
             \begin{itemize}
-                \item Investigación preliminar: 
+                \item Comunicación y plan rápido: 
                 \begin{itemize}
+                    \item Descripción del prototipo.
                     \item Investigar sobre el desarrollo de extensiones en Google Chrome.
                 \end{itemize}
-                \item Especificación de requerimientos y prototipos:
+                \item Modelado y diseño rápido:
                 \begin{itemize}
                     \item Ejecución de la extensión sobre Google Chrome.
                     \item Detectar petición \acrshort{http} e interceptarla.
-                    \item Subir archivo autentificador a la extensión.
                 \end{itemize}
-                \item Diseño técnico: 
-                \begin{itemize}
-                    \item Documentación del prototipo.
-                \end{itemize}
-                \item Documentación del prototipo.
+                \item Construcción del prototipo: 
                 \begin{itemize}
                     \item Desarrollo de la extensión.
+                    \item Documentación del prototipo.
+                \end{itemize}
+                \item Despliegue, entrega y retroalimentación.
+                \begin{itemize}
                     \item Pruebas de la extensión.
                 \end{itemize}
             \end{itemize}
+            
+            
             \item Inyección de código autentificador (Chaffing) en el encabezado \acrshort{http}. 
             \begin{itemize}
-                \item Investigación preliminar: 
+                \item Comunicación y plan rápido: 
                 \begin{itemize}
+                    \item Descripción del prototipo.
                     \item Investigación sobre el método Chaffing and Winnowing. 
                 \end{itemize}
-                \item Especificación de requerimientos y prototipos: 
+                \item Modelado y diseño rápido: 
                 \begin{itemize}
-                    \item  Lectura del archivo autentificador.
-                    \item  Análisis del protocolo \acrshort{http}. 
-                    \item  Inyección del código autentificador sobre el protocolo \acrshort{http}.
-                    \item Mandar petición a servidor.
+                    \item  Obtención del archivo autentificador.
+                    \item  Análisis del protocolo \acrshort{http}.
+                    \item  Inyección del certificado autentificador sobre el protocolo \acrshort{http}.
+                    \item Liberar petición.
                 \end{itemize}
-                \item Diseño técnico:
-                \begin{itemize}
-                    \item Documentación del prototipo. 
-                \end{itemize}
-                \item Programación y pruebas: 
+                \item Construcción del prototipo:
                 \begin{itemize}
                     \item Desarrollo del complemento de la extensión. 
                     \item Creación del algoritmo de inyección de código. 
+                    \item Documentación del prototipo. 
+                \end{itemize}
+                \item Despliegue, entrega y retroalimentación: 
+                \begin{itemize}
                     \item Pruebas de la extensión. 
                 \end{itemize}
             \end{itemize}
+            
+            
             \item Modificación del servidor Apache para recibir el protocolo con la inyección de código.
             \begin{itemize}
-                \item  Investigación preliminar: 
+                \item  Comunicación y plan rápido: 
                 \begin{itemize}
                     \item Investigación sobre el servidor Apache.
                     \item Analizar la arquitectura del servidor Apache
                     \item Investigación sobre la versión conveniente a modificar.
                 \end{itemize}
-                \item Especificación de requerimientos y prototipos: 
+                \item Modelado y diseño rápido: 
                 \begin{itemize}
                     \item Recibir petición \acrshort{http} de la extensión. 
                     \item  Detectar el tipo de autentificación que se usará.
                 \end{itemize}
-                \item Diseño técnico: 
-                \begin{itemize}
-                    \item Documentación del prototipo.
-                \end{itemize}
-                \item Programación y pruebas:
+                \item Construcción del prototipo: 
                 \begin{itemize}
                     \item Descargar la versión del servidor Apache a usar.
                     \item Modificación del código del servidor Apache para detectar el tipo de autentificación que se usará. 
+                    \item Realizar la fase de Winnowing.
+                    \item Documentación del prototipo.
+                \end{itemize}
+                \item Despliegue, entrega y retroalimentación:
+                \begin{itemize}
                     \item Pruebas de funcionamiento.
                 \end{itemize}
             \end{itemize}
-            \item Realización de la autentificación (Winnowing) en el servidor para realizar el login.
+            
+            
+            \item Realización de certificado autentificador.
             \begin{itemize}
-                \item Investigación y pruebas
+                \item Comunicación y plan rápido:
                 \begin{itemize}
-                    \item  Investigar sobre la implementación de autenticador en distintos servidores 
+                    \item  Investigar sobre la implementación de autentificación en servidores 
                 \end{itemize}
-                \item Especificación de requerimientos y prototipos:
+                \item Modelado y diseño rápido:
                 \begin{itemize}
-                    \item Recibir la petición.
-                    \item Descifrar la petición.
+                    \item Generar certificado.
+                    \item Mandar certificado.
                     \item Dar respuesta al usuario.
                 \end{itemize}
-                \item Diseño técnico:
+                \item Construcción del prototipo:
                 \begin{itemize}
+                    \item Creación del servidor que obtenga el certificado autentificador.
+                    \item Verificación del código autentificador en el servidor apache.
                     \item Documentación del prototipo. 
                 \end{itemize}
-                \item Programación y pruebas:
+                \item Despliegue, entrega y retroalimentación:
                 \begin{itemize}
-                    \item Creación de algoritmo que obtenga el código autentificador del protocolo \acrshort{http}.
-                    \item Verificación del código autentificador.
-                    \item Responder al usuario.
                     \item Pruebas de funcionamiento.
                 \end{itemize}
             \end{itemize}
         \end{enumerate}
 		% \subsection{Estado del Arte.}
+	    
+	    %   %   %   %   %   %   %   %   %
+		%		                        %
+		%       ESTADO DEL ARTE         %
+		%                               %
+	    %   %   %   %   %   %   %   %   %
+	    
+	\chapter{\textcolor{azulescom}{Estado del arte}}
+    Con la finalidad de darle al lector un panorama más amplio sobre la importancia y el impacto del proyecto a desarrollar, se procede a explicar otros servicios similares al que se presenta en este proyecto:\\
+    
+    \section{Kerberos (CISCO)}
+    Kerberos es un servicio confiable de autenticación de terceros basado en el modelo presentado por Needham y Schroeder. Cuando un usuario hace peticiones a un servicio, su identidad debe ser establecida. Para hacer esto, un boleto \footnote{Un boleto contiene el nombre del servidor, el nombre del cliente, la dirección de Internet del cliente, un grupo fecha/hora, un curso de la vida, y una clave de sesión aleatoria. Se utiliza para pasar con seguridad la identidad de la persona a quien le fue publicado el boleto entre el servidor de autenticación y el servidor externo.} se presenta al servidor, junto con la prueba que el boleto fue publicado al usuario, y no fue robado originalmente. \\ Kerberos guarda en una base de datos sus clientes y sus claves privadas. La clave privada es un número grande que solamente conoce Kerberos y el cliente y la cual esta cifrada. Los servicios de red que requieren la autenticación se registran en Kerberos, al igual que los clientes que desean utilizar esos servicios.\\
+    Kerberos también genera las claves privadas temporales, llamadas las claves de la sesión, que se dan a dos clientes y nadie más. Una clave de la sesión se puede utilizar para cifrar los mensajes entre estos.\\
+    Cada mensaje no sólo se autentica si no también se cifra. Los mensajes privados son utilizados, por ejemplo, por el servidor de Kerberos para enviar las contraseñas sobre la red \cite{refKerberos}.\\
+    
+    \section{Tririga (IBM)}
+    IBM ha implementado una autentificación de usuarios mediante el inicio de sesión único, la ultima versión (IBM Tririga Application Platform 3.6.0) fue creada en el año 2018 \cite{refIBMTRIRIGAYear}. Esta autentificación está implementada para obtener acceso a \textbf{IBM Tririga} \footnote{IBM Tririga es un sistema de gestión del espacio de trabajo integrado (IWMS) que incrementa el rendimiento operativo, financiero y medioambiental de sus instalaciones y bienes inmuebles.}, en esta plataforma es necesario autentificar un usuario como usuario valido del sistema y concederle acceso a las aplicaciones y funciones de la suite \footnote{El término suite hace referencia a un conjunto de aplicaciones y herramientas de software incluidas en un sólo paquete y que, por lo general, comparten un aspecto similar y se integran entre sí.} de aplicaciones de IBM Tririga. El inicio de sesión único (\Gls{Single Sign-On}) proporciona a los usuarios una vía para gestionar el acceso a varias aplicaciones de su entorno \cite{refIBMTRIRIGA}. \\
+    
+    \begin{comment}
+        \textit{TRIRIGA Application Platform} utiliza su propia autentificación nativa de forma predeterminada. Con la autentificación nativa, el usuario especifíca su nombre de usuario y su contraseña en una pantalla de inicio de sesión de IBM TRIRIGA, luego entonces, la plataforma autentifica el usuario comparando el nombre de usuario y la contraseña almacenados en la base de datos de IBM TRIRIGA \cite{refIBMTRIRIGA}. \\
+        
+        El proceso de este tipo de autentificacion de TRIRIGA es el siguiente:
+        \begin{itemize}
+            \item El usuario especifíca la URL del servidor web en un navegador o accede a la aplicación mediante un cliente.
+            \item Es posible que se le solicite al usuario que especifique un nombre de usuario o una contraseña, o bien que se inicie la sesión inmediatamente. El inicio de sesión inmediato, sin que el servidor cuestione al navegador o al cliente, no está soportado en algunas configuraciones.
+            \item El servidor web, el servidor de aplicaciones o el plug-in de autenticación verifica la información con el origen de la autenticación.
+            \item Si el inicio de sesión es satisfactorio, el servidor web añade las credenciales de usuario a la cabecera HTTP y las envía al servidor de aplicaciones.
+            \item El servidor de aplicaciones procesa las credenciales de usuario e inicia la sesión en la aplicación.
+        \end{itemize}
+    \end{comment}
+    
+    \begin{table}[H]
+        \begin{tabular}{c|l|l|}
+        \cline{2-3}
+        \multicolumn{1}{l|}{\textbf{}} & \multicolumn{1}{c|}{\cellcolor[HTML]{34CDF9}\textbf{Ventajas}} & \multicolumn{1}{c|}{\cellcolor[HTML]{34CDF9}\textbf{Desventajas}} \\ \hline
+        \multicolumn{1}{|c|}{\cellcolor[HTML]{34CDF9}\textit{\textbf{\begin{tabular}[c]{@{}c@{}}K\\ e\\ r\\ b\\ e\\ r\\ o\\ s\end{tabular}}}} & \begin{tabular}[c]{@{}l@{}}- Kerberos proporciona una \\ interfaz para los clientes de \\ la aplicación y los servidores \\ de aplicaciones.\\ - Métodos de cifrado seguros \\ y rápidos.\\ - Aislamiento de información \\ sensible y no sensible.\\ - Es posible tener copias de la \\ base de datos en diversas \\ máquinas auxiliares.\end{tabular} & \begin{tabular}[c]{@{}l@{}}- El curso de vida de un boleto \\ debe tener un balance adecuado \\ entre seguridad y conveniencia.\\ - La información puede ser \\ vulnerada si el usuario olvida \\ finalizar su sesión.\\ - Posibles problemas de \\ compatibilidad con las proxys.\end{tabular} \\ \hline
+        \multicolumn{1}{|c|}{\cellcolor[HTML]{34CDF9}\textit{\textbf{\begin{tabular}[c]{@{}c@{}}T\\ r\\ i\\ r\\ i\\ g\\ a\end{tabular}}}} & \begin{tabular}[c]{@{}l@{}}- Soporta los métodos de inserción \\ del nombre de usuario en una \\ cabecera HTTP.\\ - Distinción entre mayúsculas y \\ minúsculas.- Eliminación de \\ nombre de dominio.\end{tabular} & \begin{tabular}[c]{@{}l@{}}- Se puede crear una \\ vulnerabilidad al mantener \\ abierto el puerto HTTP.\\ - Este servicio es exclusivo \\ para un usuario en específico.\end{tabular} \\ \hline
+        \end{tabular}
+    \caption{Tabla comparativa de estado del arte}
+    \label{tab:my-table}
+    \end{table}
 	
+    %\section{Contribuciones del trabajo terminal propuesto}
+    %    Se proponen las siguientes mejoras y adiciones con respecto a los proyectos anteriores:
+	    
 	\chapter{\textcolor{azulescom}{Marco teórico}}
 	    
 	    %   %   %   %   %   %   %   %   %   
 		%		                        %
-		%           INTRODUCCIÓN        %
+		%         MARCO TEORICO         %
 		%                               %
 	    %   %   %   %   %   %   %   %   %
-	    \section{Introducci\'on.}
-	        Dado que este Trabajo terminal relaciona temáticas muy enfocadas a la seguridad y aspectos web, es necesario conocer algunos conceptos e ideas fundamentales tanto para entender el trabajo como para conocer su funcionamiento, por lo tanto será necesario hablar de métodos de autentificación, criptografía y acerca del método \textit{Chaffing and Winnowing} que es la parte medular de todo este trabajo; en este marco teórico se explicará de manera breve y con un enfoque directo el uso que le daremos a estos conceptos en el proyecto.
+	    %\begin{comment}
+	    %\section{Introducci\'on.}
+	        
+	        Dado que este Trabajo terminal relaciona temáticas muy enfocadas a la seguridad y aspectos web, es necesario conocer algunos conceptos e ideas fundamentales tanto para entenderlo como para conocer su funcionamiento, por lo tanto será necesario hablar del protocolo HTTP, métodos de autentificación, criptografía y acerca del método \textit{Chaffing and Winnowing} que es la parte medular de todo este trabajo; en este marco teórico se explicará de manera breve y con un enfoque directo el uso que le daremos a estos conceptos en el proyecto.
+	    %\end{comment}
 	    %   %   %   %   %   %   %   %   %   
 		%		                        %
-		%   MÉTODOS DE autentificación    %
+		%               HTTP            %
 		%                               %
 	    %   %   %   %   %   %   %   %   %
-	    \section{Métodos de autententicación en internet.}
-	    Con la evolución de la web, distintas páginas ofrecen ciertos servicios a los usuarios y con la finalidad de dar una experiencia óptima y segura, se requiere que una persona o usuario se identifique para el uso de estos servicios, es aquí donde entra en juego el papel de los métodos de autentificación. Para poder asegurar la confidencialidad de la información manejada en todos estos servicios, es necesario restringir el acceso de este, para esto se utiliza la identificación y la autenticación; la identificación es un procedimiento donde el sujeto es reconocido por algún \acrshort{id}, esto es equivalente al saber una parte de información en específico, mientras que la autenticación es el proceso de validación de si el sujeto es la persona quien dice ser al tratar de identificarse.\cite{articuloAxel}\\
+	    \section{Protocolo HTTP}
+    	    Desde 1990, el protocolo HTTP (Hypertext Transfer Protocol, Protocolo de transferencia de hipertexto) es el protocolo más utilizado en Internet. La versión 0.9 solo tenía la finalidad de transferir los datos a través de Internet (en particular páginas web escritas en HTML). La versión 1.0 del protocolo (la más utilizada) permite la transferencia de mensajes con encabezados que describen el contenido de los mensajes mediante la codificación MIME.
+
+            El propósito del protocolo HTTP es permitir la transferencia de archivos (principalmente, en formato HTML). entre un navegador (el cliente) y un servidor web (denominado, entre otros, httpd en equipos UNIX) localizado mediante una cadena de caracteres denominada dirección URL. \cite{protocoloHTTP}
+            
+            La comunicación entre el navegador y el servidor al que se quiere acceder se realiza de la siguiente manera:
+            \begin{figure}[H]
+        			\begin{center}	                  \includegraphics[width=11cm]{./imagenes/MarcoTeorico/HTTPcs.png}
+        				\caption{Comunicaci\'on Cliente - Servidor en el protocolo HTTP}
+        			\end{center}
+        	\end{figure}
+        	El navegador realiza una solicitud HTTP y el servidor procesa la solicitud y después envía una respuesta HTTP. En realidad, la comunicación se realiza en más etapas si se considera el procesamiento de la solicitud en el servidor. Dado que sólo nos ocupamos del protocolo HTTP, no se explicará la parte del procesamiento en el servidor en esta sección del artículo. 
+        	\subsubsection{Solicitud HTTP}
+        	    Una solicitud HTTP es un conjunto de líneas que el navegador envía al servidor. Comprende:
+        	    \begin{itemize}
+        	        \item \textbf{Una línea de solicitud: } una línea que especifica el tipo de documento solicitado, el método que se aplicará y la versión del protocolo utilizada. La línea está formada por tres elementos que deben estar separados por un espacio: el método, la dirección URL y la versión del protocolo utilizada por el cliente (por lo general, HTTP/1.0)
+        	        \item \textbf{Los campos del encabezado de solicitud: } un conjunto de líneas opcionales que permiten aportar información adicional sobre la solicitud y/o el cliente (navegador, sistema operativo, etc.). Cada una de estas líneas está formada por un nombre que describe el tipo de encabezado, seguido de dos puntos (:) y el valor del encabezado.
+        	        \item \textbf{ El cuerpo de la solicitud: }un conjunto de líneas opcionales que deben estar separadas de las líneas precedentes por una línea en blanco y, por ejemplo, permiten que se envíen datos por un comando POST durante la transmisión de datos al servidor utilizando un formulario. 
+        	    \end{itemize}
+            \subsubsection{Respuesta HTTP}
+                Una respuesta HTTP es un conjunto de líneas que el servidor envía al navegador. Está constituida por:
+                \begin{itemize}
+                    \item \textbf{Una línea de estado: } una línea que especifica la versión del protocolo utilizada y el estado de la solicitud en proceso mediante un texto explicativo y un código. La línea está compuesta por tres elementos que deben estar separados por un espacio: La línea está formada por tres elementos que deben estar separados por un espacio: la versión del protocolo utilizada, el código de estado y el significado del código.
+                    \item \textbf{Los campos del encabezado de respuesta: } un conjunto de líneas opcionales que permiten aportar información adicional sobre la respuesta y/o el servidor. Cada una de estas líneas está compuesta por un nombre que califica el tipo de encabezado, seguido por dos puntos (:) y por el valor del encabezado Cada una de estas líneas está formada por un nombre que describe el tipo de encabezado, seguido de dos puntos (:) y el valor del encabezado.
+                    \item \textbf{El cuerpo de la respuesta: } contiene el documento solicitado. 
+                \end{itemize}
+
+
+               
+	    
+	    
+	    %   %   %   %   %   %   %   %   %   
+		%		                        %
+		%   MÉTODOS DE autentificación  %
+		%                               %
+	    %   %   %   %   %   %   %   %   %
+	    \section{Métodos de autentificación en internet.}
+	    Con la evolución de la web, distintas páginas ofrecen ciertos servicios a los usuarios y con la finalidad de dar una experiencia óptima y segura, se requiere que una persona o usuario se identifique para el uso de estos servicios, es aquí donde entra en juego el papel de los métodos de autentificación. Para poder asegurar la confidencialidad de la información manejada en todos estos servicios, es necesario restringir el acceso de este, para esto se utiliza la identificación y la autenticación; la identificación es un procedimiento donde el sujeto es reconocido por algún \acrshort{id}, esto es equivalente al saber una parte de información en específico, mientras que la autenticación es el proceso de validación de si el sujeto es la persona quien dice ser al tratar de identificarse \cite{ComparisonAuthenticationMethodsResources}.\\
 	    
 	    Para probar una identidad, el sujeto presenta algo llamado "factor de autenticación", principalmente existen 4: 
 	    \begin{itemize}
@@ -375,7 +471,7 @@
 	    \end{itemize}
 	    Hoy en  día, la autenticación por contraseña es el método más utilizado, más que otra cosa por su ventaja principal: su simplicidad de utilización, sin embargo, así como tiene una gran ventaja, la autenticación por contraseña también tiene muchos problemas y desventajas de seguridad.
 	    
-	    A continuación, mostraremos algunas tablas comparativas que serviran para tener una mejor perspectiva de las ventajas,d esventajas, vulnerabilidades de los diferentes métodos de autenticación, entre otras cosas:
+	    A continuación, mostraremos algunas tablas comparativas que serviran para tener una mejor perspectiva de las ventajas, desventajas, vulnerabilidades de los diferentes métodos de autenticación, entre otras cosas:
 		
 		\begin{table}[H]
 			\centering
@@ -439,12 +535,12 @@
 	    \textbf{Seguridad en internet}
 	    En la actualidad, el incremento constante de internet ha impactado directamente en la seguridad de la información que se maneja cotidianamente y por la mayoría de usuarios. Existen infinidad de sitios donde es aplicada la seguridad, ya que sin ésta, se verían afectados todos los usuarios en  sus cuentas, pudiendo verse afectados desde un posible \Gls{Robo de Identidad} (Robo de identidad), hasta la perdida de dinero real dado que la base de algunas de éstas paginas son E-Commerce, estas paginas implican el manejo de tarjetas de crédito, paypal, etc.\\
 		
-		Uno de los puntos más críticos de la seguridad en Internet son las herramientas que interactúan de forma directa con los usuarios. Es común escuchar sobre fallas en los sistemas de protección de los servidores más frecuentemente utilizados, por ejemplo Apache, NGINX, IIS, etc. O en los lenguajes de programación en que son escritas las aplicaciones. \cite{refSeguridadWeb} Sin embargo, la vulnerabilidad más grande dentro de un sistema, son los ataques directos a los usuarios finales durante la autentificación.\\
+		Uno de los puntos más críticos de la seguridad en Internet son las herramientas que interactúan de forma directa con los usuarios. Es común escuchar sobre fallas en los sistemas de protección de los servidores más frecuentemente utilizados, por ejemplo Apache, NGINX, IIS, etc. O en los lenguajes de programación en que son escritas las aplicaciones \cite{refSeguridadWeb}. Sin embargo, la vulnerabilidad más grande dentro de un sistema, son los ataques directos a los usuarios finales durante la autentificación.\\
 	    
 	    Una de las técnicas de autentificación que actualmente se usa es ''recordar la sesión'' usando las ''cookies'', en la siguiente sección, nos adentraremos en definir qué son las cookies y exponer sus vulnerabilidades.
 	    
 	    \subsection{Cookies. }
-		Durante la navegación por internet, la información sobre la computadora puede ser colectada y almacenada. Ésta puede ser de carácter general sobre el equipo y puede ser también información más específica sobre los hábitos de navegación del usuario, toda esta información guardada se le conoce como \Gls{cookies}\cite{refCookies}. \\
+		Durante la navegación por internet, la información sobre la computadora puede ser colectada y almacenada. Ésta puede ser de carácter general sobre el equipo y puede ser también información más específica sobre los hábitos de navegación del usuario, toda esta información guardada se le conoce como \Gls{cookies}. \\
 		A continuación se muestran los diferentes tipos de cookies que existen para los navegadores.
 		
 		\begin{itemize}
@@ -458,7 +554,7 @@
             \item \textbf{Cookies publicitarias:} Recogen datos sobre la gestión de los espacios publicitarios.
         \end{itemize}
 		
-		Las cookies persistentes son aquellas que se almacenan en el equipo para que las preferencias personales puedan ser retenidas, ayudan a los sitios web a recordar tu información y ajustes cuando los visitas más adelante. Esto conlleva un acceso más rápido y sencillo ya que, por ejemplo, no se tiene que iniciar sesión de nuevo. Además de la autentificación, otras páginas web tienen más funciones para las cookies permanentes, como: selección de idioma, selección de tema, preferencias de menú, marca-páginas internos de la web, o favoritos. \cite{refCookiesPersistentes}
+		Las cookies persistentes son aquellas que se almacenan en el equipo para que las preferencias personales puedan ser retenidas, ayudan a los sitios web a recordar tu información y ajustes cuando los visitas más adelante. Esto conlleva un acceso más rápido y sencillo ya que, por ejemplo, no se tiene que iniciar sesión de nuevo. Además de la autentificación, otras páginas web tienen más funciones para las cookies permanentes, como: selección de idioma, selección de tema, preferencias de menú, marca-páginas internos de la web, o favoritos.
 		Muchos navegadores pueden ajustar el periodo de tiempo en que las cookies persistentes deben ser almacenadas. \\
 		
 		Gracias a las cookies persistentes, las direcciones de correo electrónico aparecen por default cuando se abre el correo electrónico, o en páginas de inicio personalizadas cuando se visita en línea un comercio. Si un atacante obtiene acceso puede recopilar información personal del usuario través de estos archivos y poder robar toda información del usuario. Es fácil acceder a estas cookies y obtener fácilmente la información del usuario, por lo que es necesario que el usuario nunca deje vulnerable esta información o en su debido caso borrar cookies al término de cada sesión.
@@ -483,28 +579,28 @@
 	    %   %   %   %   %   %   %   %   %
 	    \section{Introducción a la Criptografía.}
 	        \subsection{Criptología.}
-	            Para comprender que es la criptografía, es necesario que comprendamos qué es la ''\textit{Criptología}'', palabra que proviene del griego <<\textit{kryptós}>> (oculto) y <<\textit{logos}>> (estudio). Según la Real Academia Española significa 'estudio de los sistemas, claves y lenguajes ocultos o secretos', sin embargo, brindándole un contexto a esta definición decimos que es el arte y ciencia que se encarga de diseñar sistemas para ocultar mensajes, y buscar la manera de romper dichos sistemas. \cite{refCriptology}\\
+	            Para comprender que es la criptografía, es necesario que comprendamos qué es la ''\textit{Criptología}'', palabra que proviene del griego <<\textit{kryptós}>> (oculto) y <<\textit{logos}>> (estudio). Según la Real Academia Española significa 'estudio de los sistemas, claves y lenguajes ocultos o secretos', sin embargo, brindándole un contexto a esta definición decimos que es el arte y ciencia que se encarga de diseñar sistemas para ocultar mensajes, y buscar la manera de romper dichos sistemas \cite{refCriptology}.\\
 	            La criptología contiene dos ramas, las cuales son: el criptoanálisis y la criptografía. Ésta última es de vital importancia en este trabajo terminal, por lo que a continuación se explicará qué es, su historia, sus objetivos y sus usos que tiene esta rama en la actualidad.
             \subsection{Criptografía.}
                 ''\textit{Criptografía}'', palabra proveniente del griego <<\textit{kryptós}>> (oculto) y <<\textit{graphos}>> (escribir), es definida por la Real Academia Española como 'el arte de escribir con clave secreta o de un modo enigmático'. Nuevamente, la definición de la RAE nos da un panorama general de lo que trata esta rama de la criptología, sin embargo, en la actualidad tenemos definiciones más extensas y precisas que nos ayudan a entender las funciones de este arte.\\
                 
                 A continuación, se presentan dos definiciones de la criptografía, cabe mencionar que estás definiciones están orientadas al uso de la criptografía en la informática y las telecomunicaciones actualmente.\\
-                Jorge Ramio Aguirre nos brinda la siguiente definición en su libro 'Seguridad informática y criptografía'. \cite{refRamioAguirre}
+                Jorge Ramio Aguirre nos brinda la siguiente definición en su libro 'Seguridad informática y criptografía' \cite{refRamioAguirre}.
                 \begin{center}
                     \textit{''Rama inicial de las matemáticas y en la actualidad también de la informática y la telemática, que hace uso de métodos y técnicas con el objeto principal de cifrar, y por tanto proteger, un mensaje o archivo por medio de un algoritmo, usando una o más claves.''}
                 \end{center}
-                Finalmente, Menezes, Van Oorschot y Vanstone, no brindan en su libro una definición formal de lo que es la criptografía (traducción). \cite{refHandBookOfAppliedCryptography}
+                Finalmente, Menezes, Van Oorschot y Vanstone, no brindan en su libro una definición formal de lo que es la criptografía (traducción) \cite{refHandBookOfAppliedCryptography}.
                 \begin{center}
                     \textit{''Estudio de técnicas matemáticas relacionadas con los aspectos de la seguridad de la información tales como la confidencialidad, la integridad de datos, la autentificación de entidad y del origen de datos. La criptografía no comprende sólo a los medios para proveer seguridad de información, sino a un conjunto de técnicas.''}
                 \end{center}
                 A elección del lector elegir aquella definición que le convenza más, nosotros una vez finalizado la exposición de estas definiciones de criptografía, continuaremos con una breve remembranza de la historia de esta disciplina.\\
                 
-                En egipto hace 4000 años, tuvo su primera aparición la criptografía, cuando un maestro egipcio escribió la historia de su señor utilizando jeroglíficos poco comunes tratando de imprimir cierta jerarquía. Este primer acercamiento a la criptografía, utilizaba las técnicas de sustitución y transposición de símbolos de una manera similar a la base del concepto general de cifrado. Posteriormente, las antiguas civilizaciones occidentales comienzan a adoptar estas técnicas para mantener determinada información oculta, principalmente con propósitos militares, diplomáticos y religiosos. Mientras la criptografía crecía alrededor del mundo, el criptoanálisis también lo hacía, con el objetivo de hallar el mensaje original a partir de un mensaje cifrado, sin conocer el método utilizado. \cite{refSandra}\cite{refCriptografia}\\
+                En egipto hace 4000 años, tuvo su primera aparición la criptografía, cuando un maestro egipcio escribió la historia de su señor utilizando jeroglíficos poco comunes tratando de imprimir cierta jerarquía. Este primer acercamiento a la criptografía, utilizaba las técnicas de sustitución y transposición de símbolos de una manera similar a la base del concepto general de cifrado. Posteriormente, las antiguas civilizaciones occidentales comienzan a adoptar estas técnicas para mantener determinada información oculta, principalmente con propósitos militares, diplomáticos y religiosos. Mientras la criptografía crecía alrededor del mundo, el criptoanálisis también lo hacía, con el objetivo de hallar el mensaje original a partir de un mensaje cifrado, sin conocer el método utilizado \cite{refSandra} \cite{refCriptografia}.\\
                 
                 El la historia conocida después de lo antes mencionado, existe un punto crucial en el desarrollo de la criptografía tal y como la conocemos hoy en día hasta la llegada de las computadoras. Este punto fue la Segunda Guerra Mundial, en donde se construyeron máquinas de cifrado mecánicas y electromecánicas que aceleraban el proceso de cifrado y descifrado. Los alemanes desarrollaron la famosa máquina 'Enigma', que precisamente mediante unos rotores automatizaba el proceso de cifrado y descifrado de mensaje, brindándole al ejército una ventaja considerable en la inversión de tiempo en la comunicación.
                 
             \subsubsection{Criptografía moderna.}
-                En la actualidad, el término \textit{'criptografía moderna'} hace alusión al desarrollo de esta ciencia en las áreas de la teoría de la información y las comunicaciones. Claude Shannon, considerado por muchos como el padre de la criptografía matemática, en su libro ''Sistemas secretos'' estableció las bases para las implementaciones de los algoritmos actuales a mediados de los años 50s. \cite{refCriptografia}\\
+                En la actualidad, el término \textit{'criptografía moderna'} hace alusión al desarrollo de esta ciencia en las áreas de la teoría de la información y las comunicaciones. Claude Shannon, considerado por muchos como el padre de la criptografía matemática, en su libro ''Sistemas secretos'' estableció las bases para las implementaciones de los algoritmos actuales a mediados de los años 50s \cite{refCriptografia}.\\
                 En los años 70s, el público general tuvo acceso al trabajo de Claude, además surgió la llegada de las computadoras y la publicación el primer borrador del algoritmo de criptografía simétrica DES, el cual fue el primer algoritmo público, basado en técnicas matemáticas y criptográficas modernas. Todo ello representó los cimientos para un rápido crecimiento en la criptografía, hasta eventualmente llegar a otro hecho sumamente relevante que determinó gran parte de las transacciones que realizamos hoy en día en internet. Dicho hecho fue el artículo de las nuevas direcciones de criptografía hecho por Whitfield Diffie y Martin Hellman, el cual trataba de un nuevo método para distribuir llaves, que eventualmente se llamaría criptografía asimética.
                 
             \subsection{Objetivos de la criptografía.}
@@ -516,7 +612,7 @@
                     \item \textbf{No repudio:} este objetivo previene que una entidad niegue un envío de información de un acuerdo preestablecido.
                 \end{itemize}
             \subsection{Usos de la criptografía.}
-                Los usos que tiene la criptografía son muy variadas, dependiendo del ámbito donde se está aplicando. Las siguientes usos, son sólo algunas de los tantos que hay y provienen de distintos objetivos que tiene la criptografía aplicada a la seguridad de la información. \cite{refCriptografia}
+                Los usos que tiene la criptografía son muy variadas, dependiendo del ámbito donde se está aplicando. Las siguientes usos, son sólo algunas de los tantos que hay y provienen de distintos objetivos que tiene la criptografía aplicada a la seguridad de la información \cite{refCriptografia}.
                 \begin{itemize}
                     \item \textbf{Autorización:} permiso concreto, de una parte o entidad, para el acceso o la realización de una tarea especifica.
                     \item \textbf{Validación:} proveer una autorización para el uso o la manipulación de información o recursos.
@@ -530,8 +626,8 @@
                 Anteriormente en la historia de la criptografía, se hizo una rápida mención del nacimiento de estos dos métodos de cifrado, en esta sección se explicará más profundamente sus funciones con el fin de que el lector conozca un poco más y entienda porque hemos decidido utilizar determinado método para cumplir con los objetivos de este trabajo.
                 
                 \subsubsection{Criptografía simétrica.}
-                En la criptografía simétrica, tanto el emisor como el receptor comparten una única llave secreta para cifrar y descifrar la información que se deseé transmitir. Esto implica que ambas partes de la comunicación deben tener un acuerdo antes de que se realice la comunicación. La seguridad de este tipo de algoritmos radica en mantener segura la llave secreta, por tanto, si ésta es revelada, cualquiera con acceso a ella puede descifrar el mensaje. Por estas razones, este tipo de criptografía puede ser visto como ''criptografía de llave privada''. Algunos de los algoritmos más famosos de criptografía simétrica son: DES (Data Encryption Standard), TripleDES, AES (Advanced Encryption Standard) y IDEA (International Data Encryption Algorithm).\cite{refChaffing}\\
-                En el siguiente esquema se muestran los pasos que sigue un protocolo de criptografía simétrica. Definados 'A' como una entidad que pretende enviar un mensaje a otra entidad llamada 'B'. Luego entonces, ambas partes acordarán una 'Llave Secreta' con la que 'A' cifrará el mensaje utilizando un algoritmo establecido, mandando el resultado (Texto Cifrado) a 'B' que decifrará el mensaje con la misma llave y algoritmo que 'A'.
+                En la criptografía simétrica, tanto el emisor como el receptor comparten una única llave secreta para cifrar y descifrar la información que se deseé transmitir. Esto implica que ambas partes de la comunicación deben tener un acuerdo antes de que se realice la comunicación. La seguridad de este tipo de algoritmos radica en mantener segura la llave secreta, por tanto, si ésta es revelada, cualquiera con acceso a ella puede descifrar el mensaje. Por estas razones, este tipo de criptografía puede ser visto como ''criptografía de llave privada''. Algunos de los algoritmos más famosos de criptografía simétrica son: DES (Data Encryption Standard), TripleDES, AES (Advanced Encryption Standard) y IDEA (International Data Encryption Algorithm) \cite{refCriptografia}.\\
+                En el esquema de la Figura 2.1, se muestran los pasos que sigue un protocolo de criptografía simétrica. Definados 'A' como una entidad que pretende enviar un mensaje a otra entidad llamada 'B'. Luego entonces, ambas partes acordarán una 'Llave Secreta' con la que 'A' cifrará el mensaje utilizando un algoritmo establecido, mandando el resultado (Texto Cifrado) a 'B' que descifrará el mensaje con la misma llave y algoritmo que 'A'.
                 
                 \begin{figure}[H]
         			\begin{center}	                  \includegraphics[width=14cm]{./imagenes/MarcoTeorico/cripto_simetrica.png}
@@ -541,10 +637,10 @@
         		
         		\subsubsection{Criptografía asimétrica.}
         		La  criptografía  de  clave  pública  fue  inventada  en 1976  por  los  matemáticos  Whitfield Diffie y Martin Hellman y es la base de la criptografía moderna. \\
-        		En los algoritmos de criptografía asimétrica, el receptor posee una llave pública y una llave privada para poder descifrar los mensajes. Las claves privadas deben ser conocidas únicamente por su propietario, mientras que la correspondiente clave pública puede ser dada a conocer abiertamente. Si un usuario quiere enviar a otro un mensaje de forma que sólo el receptor pueda entenderlo, lo codificará con la clave pública del receptor y éste utilizará su clave privada, que solo él tiene, para poder leerlo. Dicho esto, podemos llamar llave de cifrado a la llave publica y llave de descifrado a la llave privada, siendo ambas totalmente diferentes una de la otra. Algunos de los algoritmos más famosos de criptografía asimétrica son: RSA y ElGamal. \cite{refChaffing}\\
+        		En los algoritmos de criptografía asimétrica, el receptor posee una llave pública y una llave privada para poder descifrar los mensajes. Las claves privadas deben ser conocidas únicamente por su propietario, mientras que la correspondiente clave pública puede ser dada a conocer abiertamente. Si un usuario quiere enviar a otro un mensaje de forma que sólo el receptor pueda entenderlo, lo codificará con la clave pública del receptor y éste utilizará su clave privada, que solo él tiene, para poder leerlo. Dicho esto, podemos llamar llave de cifrado a la llave publica y llave de descifrado a la llave privada, siendo ambas totalmente diferentes una de la otra. Algunos de los algoritmos más famosos de criptografía asimétrica son: RSA y ElGamal \cite{refCriptografia}.\\
         		La criptografía asimétrica está basada en la utilización de números primos muy grandes. Si multiplicamos entre sí dos números primos muy grandes, el resultado obtenido no puede descomponerse eficazmente, es decir, utilizando los métodos aritméticos más avanzados en las computadoras más avanzadas sería necesario utilizar durante miles de millones de años tantas computadoras como átomos existen en el universo. El proceso será más seguro cuanto mayor sea el tamaño de los números primos utilizados.\\
         		
-        		En el siguiente esquema se muestran los pasos que sigue un protocolo de criptografía simétrica. Definamos 'A' como una entidad que desea enviar información a otra llamada 'B'. Luego entonces, 'B' enviará a 'A' su llave pública para que 'A' cifre la información utilizandola. Cuando la información (TextoCifrado) haya viajado a través del canal inseguro para que 'B' la reciba, 'B' decifrará el TextoCifrado con su llave privada.
+        		En el esquema de la Figura 2.2, se muestran los pasos que sigue un protocolo de criptografía asimétrica. Definamos 'A' como una entidad que desea enviar información a otra llamada 'B'. Luego entonces, 'B' enviará a 'A' su llave pública para que 'A' cifre la información utilizandola. Cuando la información (TextoCifrado) haya viajado a través del canal inseguro para que 'B' la reciba, 'B' descifrará el TextoCifrado con su llave privada.
         		
         		\begin{figure}[H]
         			\begin{center}	                  \includegraphics[width=14cm]{./imagenes/MarcoTeorico/cripto_asimetrica.png}
@@ -553,7 +649,7 @@
         		\end{figure}
         		
     		\textbf{Algoritmo RSA.}\\
-    		\textit{RSA} es el algoritmo de cifrado asimétrico más popular en la actualidad. Creado por Ron Rivest, Adi Shamir y Leonard Adleman y publicado en el año 1977. El algoritmo es considerado seguro, en tanto sean utilizadas llaves de longitud suficientemente seguras (se siguen utilizando llaves de 1024 bits, pero ya se recomienda al menos una longitud de 2048). El algoritmo sirve tanto para cifrar y descifrar, así como también para la generación de firmas digitales. Es, en la actualidad, ampliamente utilizado en protocolos de comercio electrónico. La seguridad \textit{RSA} está basada en la dificultad de realizar el \textit{factoreo} de números grandes. La llave privada y la publica son generadas o calculadas en función de un par de números primos, del orden de los 200 dígitos o más grandes aún. \cite{refCriptografia} \\
+    		\textit{RSA} es el algoritmo de cifrado asimétrico más popular en la actualidad. Creado por Ron Rivest, Adi Shamir y Leonard Adleman y publicado en el año 1977. El algoritmo es considerado seguro, en tanto sean utilizadas llaves de longitud suficientemente seguras (se siguen utilizando llaves de 1024 bits, pero ya se recomienda al menos una longitud de 2048). El algoritmo sirve tanto para cifrar y descifrar, así como también para la generación de firmas digitales. Es, en la actualidad, ampliamente utilizado en protocolos de comercio electrónico. La seguridad \textit{RSA} está basada en la dificultad de realizar el \textit{factoreo} de números grandes. La llave privada y la publica son generadas o calculadas en función de un par de números primos, del orden de los 200 dígitos o más grandes aún \cite{refCriptografia}. \\
     		Al describir ya concretamente al algoritmo, se establece que para la generación del para de llaves (Llave publica y privada) se deberán seleccionar dos números primos grandes aleatorios, $p$ y $q$, y se calculara $n$ como su producto:
     		
     		\begin{center}
@@ -597,19 +693,19 @@
 	    %   %   %   %   %   %   %   %   %
             
             \subsection{Criptografía a nivel de aplicación.}
-                La criptografía a nivel de aplicación se entiende como aplicaciones o programas informáticos que hacen uso de diferentes técnicas criptográficas. Al hablar de criptografía en el nivel de aplicación, también podría considerarse a los protocolos criptográficos de alto nivel, los cuales determinan como han de comunicarse ambas partes, que algoritmos usar, define formatos, etc.\cite{refCriptografia} 
+                La criptografía a nivel de aplicación se entiende como aplicaciones o programas informáticos que hacen uso de diferentes técnicas criptográficas. Al hablar de criptografía en el nivel de aplicación, también podría considerarse a los protocolos criptográficos de alto nivel, los cuales determinan como han de comunicarse ambas partes, que algoritmos usar, define formatos, etc \cite{refCriptografia}.
                 
                 \subsubsection{SSL/TLS.}
                 Secure Sockets Layer (SSL) provee servicios de seguridad entre la capa TCP y las aplicaciones que hacer uso de esa capa. Actualmente, la sucesora de SSL es TLS (Transport Layer Service), sin embargo, lo acuñado que está el término SSL hace que se use indistintamente para referirse a TLS, aunado a ello, las diferencias entre la última versión de SSL (SSL3.0) y la primera versión de TLS (TLSv1) son menores, por lo que en el desarrollo de este reporte, utilizaremos el término SSL/TLS.\\
                 
                 SSL/TLS provee entonces confidencialidad, lográndola con criptografía asimétrica y controlando la integridad de los datos utilizando un MAC (Message Authentication Code).\\
                 
-                El proceso de comunicación del protocolo establece, como primer paso, la negociación de ambas partes de los algoritmos a utilizar. Luego, procede al intercambio de llaves públicas y a la autentificación basada en certificados digitales para, finalmente, cifrar de manera simétrica los datos o información a transferir.\cite{refCriptografia}\\
+                El proceso de comunicación del protocolo establece, como primer paso, la negociación de ambas partes de los algoritmos a utilizar. Luego, procede al intercambio de llaves públicas y a la autentificación basada en certificados digitales para, finalmente, cifrar de manera simétrica los datos o información a transferir \cite{refCriptografia}.\\
                 
                 En nuestro proyecto, usaremos SSL/TLS para brindar confidencialidad al canal de comunicación entre la extensión y el servidor autentificador. Esto se explicará más a detalle en el análisis del Prototipo IV.
                 
                 \subsubsection{OpenSSL}
-	            OpenSSL es un proyecto de código abierto que implementa funciones criptográficas sin limitaciones dentro de una librería y que provee diversas herramientas útiles. OpenSSL actualmente implementa SSL2.0, SSL3.0 y TLSv.\cite{refCriptografia}\\
+	            OpenSSL es un proyecto de código abierto que implementa funciones criptográficas sin limitaciones dentro de una librería y que provee diversas herramientas útiles. OpenSSL actualmente implementa SSL2.0, SSL3.0 y TLSv \cite{refCriptografia}.\\
 	            
 	            Dentro de las herramientas que tiene se encuentran: 
 	            \begin{itemize}
@@ -628,17 +724,17 @@
 	    \section{Chaffing and Winnowing.}
 	    \subsection{Historia}
 	    Chaffing and Winnowing es una técnica que logra confidencialidad sin usar ning\'un proceso de cifrado para el env\'io de datos sobre un canal inseguro. El nombre \textbf{Chaffing and Winnowing} el nombre proviene de la agricultura: D\'espues de que el grano ha sido cosechado y trillado, el grano es mezclado con paja fibrosa no comestible. La paja y el grano son separados por el movimiento de las hojas y la paja es descartada.
-	    \'Esta t\'ecnica fue creada por Ron Rivest y fue publicada en un articulo en l\'inea el 18 de Marzo de 1998. \cite{refRivestMIT}
+	    \'Esta t\'ecnica fue creada por Ron Rivest y fue publicada en un articulo en l\'inea el 18 de Marzo de 1998 \cite{refCryptohraphyWithoutEncryption}.
 	    A\'unque parece ser similar a un cifrado tradicional y esteganograf\'ia, chaffing and winnowing no puede ser clasificado como uno de ellos.\\
 	    \'Esta t\'ecnica permite el env\'io de datos evitando la responsabilidad del cifrado de su contenido. Cuando se usa chaffing and winnowing, el emisor transmite el mensaje sin cifrar (texto plano). Aunque el emisor y el receptor comparten una llave, ellos la usan s\'olo para autentificar. Sin embargo, una tercera parte puede hacer su comunicaci\'on confidencial durante el env\'io simult\'aneo de mensajes especialmente mensajes diseñados a traves del mismo canal.
 	    
 	    \subsection{¿Qu\'e es Chaffing and Winnowing?}
 	    
 	    \paragraph{}
-	        Chaffing and Winnowing es un nuevo esquema establecido por Rivest en 1998. Este esquema ofrece confidencialidad para el contenido de un mensaje sin involucrarse con cifrado ni estenografía. \cite{refChaffing}
+        Chaffing and Winnowing es un nuevo esquema establecido por Rivest en 1998. Este esquema ofrece confidencialidad para el contenido de un mensaje sin involucrarse con cifrado ni estenografía \cite{refCriptografia}.
 	    
         El proceso \textbf{Chaffing} no hace uso de un cifrado por lo que no tiene una ''clave de cifrado''. Este proceso consiste en agregar paquetes inv\'alidos (Informaci\'on innecesaria) al mensaje a enviar, haciendo que el mensaje viaje seguro a la vista de todos los posibles ''atacantes''.\\
-        El proceso de \textbf{Winnowing} no emplea alg\'un tipo de cifrado, por lo que al igual que el proceso chaff no tiene una ''clave de descifrado''. Intentando regular la confidencialidad que provee un cifrado damos paso a la esteganograf\'ia y el proceso de winnowing.\cite{refRivestMIT}
+        El proceso de \textbf{Winnowing} no emplea alg\'un tipo de cifrado, por lo que al igual que el proceso chaff no tiene una ''clave de descifrado''. Intentando regular la confidencialidad que provee un cifrado damos paso a la esteganograf\'ia y el proceso de winnowing \cite{refCryptohraphyWithoutEncryption}.
         
         \paragraph{}
         Existen dos partes en el envio de mensajes con winnowing: Autentificaci\'on (Agregando MACs) y agregando paquetes chaff. Nosotros nos enfocaremos mas al uso de paquetes chaff para el env\'io seguro de informaci\'on, ya que, el receptor es quien remueve los paquetes chaff para obtener el mensaje original. 
@@ -656,7 +752,7 @@
 		
 		En el escenario anterior Alice y Bob se están comunicando mutuamente por un canal de comunicación no seguro, en donde son enviados paquetes no cifrados. Alice y Bob comparten la llave de autentificación la cual será usada para el proceso de autentificación. Cuando Alice envía un mensaje a Bob, su mensaje es autenticado de su lado y es enviado a Charles antes de ser enviado a Bob. Charles agrega los paquetes chaff a la secuencia transmitida por Alice, al agregar los paquetes chaff, Charles provee confidencialidad para la comunicación entre Alice y Bob. Pero donde Charles no conoce la llave secreta compartida entre Alice y Bob. Por lo que el proceso de chaffing no necesita ningún conocimiento de la llave secreta de autentificación compartida.
 		\paragraph{}
-		\textbf{Escenario 2:} Alice se comunica con Bob en un camino de comunicación inseguro y en el cual Charles no agrega los paquetes chaff si no que multiplexa los flujos de las otras dos partes (David y Elaine). Este escenario es diferente al anterior, ya que se multiplexo el flujo de datos de Alice y Bob con el flujo de datos de David y Jane, y cuando el paquete llega a Bob el flujo de paquetes de David hacia Jane es el chaff de Bob y es descartado y vice versa para Jane.
+		\textbf{Escenario 2:} Alice se comunica con Bob en un camino de comunicación inseguro y en el cual Charles no agrega los paquetes chaff si no que multiplexa los flujos de las dos partes (David y Alice). Este escenario es diferente al anterior, ya que se multiplexa el flujo de datos de Alice y Bob con el flujo de datos de David y Jane, y cuando el paquete llega a Bob el flujo de paquetes de David hacia Jane es el chaff de Bob y es descartado y vice versa para Jane.
 		
 		\begin{figure}[H]
 			\begin{center}	                  \includegraphics[width=14cm]{./imagenes/MarcoTeorico/escenario2.png}
@@ -665,20 +761,20 @@
 		\end{figure}
 		
 		\paragraph{}
-		\textbf{Escenario 3:} Alicia se comunica con Bob en un canal de comunicación inseguro y Alice no agrega los paquetes chaff. En este escenario, Alice desarrolla la autentificación de sus mensajes, por lo que Alice aplica chaffing para autentificar los mensajes y producir una secuencia de paquetes que serán transmitidos a Bob por la vía de Charles. Bob lleva a cabo el proceso de winnowing para recuperar el mensaje original.
+		\textbf{Escenario 3:} Alice se comunica con Bob en un canal de comunicación inseguro y Alice no agrega los paquetes chaff. En este escenario, Alice desarrolla la autentificación de sus mensajes, por lo que Alice aplica chaffing para autentificar los mensajes y producir una secuencia de paquetes que serán transmitidos a Bob por la vía de Charles. Bob lleva a cabo el proceso de winnowing para recuperar el mensaje original.
 		
 		\subsection{Objetivo de Chaffing and Winnowing}
 		
 		\paragraph{}
 		El objetivo de seguridad del esquema de chaffing-and-winnowing es proporcionar privacidad en un entorno simétrico. 
-        Desde un punto de vista de seguridad, este esquema debe tratarse simplemente como un esquema de cifrado simétrico. Hay algunos procesos de ''cifrado'' que toman un mensaje y crean un ''texto cifrado'', y algún proceso de ''descifrado'' toma el texto cifrado y recupera el mensaje, ambos operando bajo una clave secreta en com\'un. (Para el esquema Chaffing and Winnowing es la clave para el MAC). Estos procesos no se implementan de manera ''habitual'', pero, de manera abstracta, deben existir, de lo contrario no se logra la privacidad.  \cite{refRivestSeguridad} \cite{refEncontrarLuegoAdivinar}  
+        Desde un punto de vista de seguridad, este esquema debe tratarse simplemente como un esquema de cifrado simétrico. Hay algunos procesos de ''cifrado'' que toman un mensaje y crean un ''texto cifrado'', y algún proceso de ''descifrado'' toma el texto cifrado y recupera el mensaje, ambos operando bajo una clave secreta en com\'un. (Para el esquema Chaffing and Winnowing es la clave para el MAC). Estos procesos no se implementan de manera ''habitual'', pero, de manera abstracta, deben existir, de lo contrario no se logra la privacidad  \cite{refRivestSeguridad} \cite{refEncontrarLuegoAdivinar}.  
         \begin{center}
             \textit{''No es una propiedad de seguridad novedosa, sino un conjunto novedoso de restricciones en los procesos dirigidos a lograr una propiedad de seguridad estándar''\\
             ''Encontrar-luego-adivinar''. Extensión más directa al caso simétrico de la noción de indistinguibilidad.}
         \end{center}
 		
 		Haciendo uso de \textbf{Chaffing and Winnowing} se asegura que los adversarios no obtengan información del mensaje transmitido a lo largo de un canal de comunicación inseguro entre dos partes. \\
-		Rivest propone un esquema, el cual cuenta con tres partes principales. \cite{refChaffing}
+		Rivest propone un esquema, el cual cuenta con tres partes principales \cite{refCryptohraphyWithoutEncryption}.
 		\begin{enumerate}
 		    \item \textbf{Autentificación} Es el proceso de descomponer el mensaje original en un paquete más pequeño y complementar cada paquete con un código de autentificación de mensaje (MAC).
 		    \item \textbf{Chaffing} Es el proceso de agregar paquetes inválidos (Chaff packets).
@@ -694,14 +790,14 @@
 		    \item Contenido del paquete
 		    \item Código de autentificación del mensaje
 		\end{itemize}
-		Cuando son enviados los paquetes, el mensaje con el texto plano se descompone en pequeños paquetes los cuales contienen datos y el tamaño del paquete original. Entonces, el emisor (Alice) usa el algoritmo de \textbf{código de autentificación de mensaje} (MAC) para generar el valor MAC para ser agregado al paquete y el cual se basa en el número de serie, contenido del paquete y la llave autentificación. A continuación se muestra la salida del paquete después del proceso de autentificaci\'on.
+		Cuando son enviados los paquetes, el mensaje con el texto plano se descompone en pequeños paquetes los cuales contienen datos y el tamaño del paquete original. Entonces, el emisor (Alice) usa el algoritmo de \textbf{código de autentificación de mensaje} (MAC) para generar el valor MAC para ser agregado al paquete y el cual se basa en el número de serie, contenido del paquete y la llave autentificación. La Figura 2.5, muestra la salida del paquete después del proceso de autentificaci\'on.
 		\begin{figure}[H]
 			\begin{center}	                  \includegraphics[width=7cm]{./imagenes/MarcoTeorico/descomposicionChaffing.png}
 				\caption{Secuencia de Chaffing después del proceso de autentificación.}
 			\end{center}
 		\end{figure}
 		Esta secuencia de paquetes es enviada a Charles (ISP) para llevar a cabo el proceso de Chaffing. Charles agrega paquetes chaff a la secuencia de paquetes antes de ser enviados por medio del canal de comunicación y ser recibidos por Bob. \\
-		Existen dos maneras donde Charles puede enviar la secuencia de chaff hacia Bob. La primera es enviando aleatoriamente mezclados los paquetes chaff para formar una secuencia y la otra manera es enviarlos de manera ordenada por el n\'umero de serie seguido del contenido del mensaje. En la siguiente figura se muestra cómo es el proceso de chaff en esta secuencia.
+		Existen dos maneras donde Charles puede enviar la secuencia de chaff hacia Bob. La primera es enviando aleatoriamente mezclados los paquetes chaff para formar una secuencia y la otra manera es enviarlos de manera ordenada por el n\'umero de serie seguido del contenido del mensaje. En la Figura 2.6, se muestra cómo es el proceso de chaff en esta secuencia.
 		\begin{figure}[H]
          \centering
           \subfloat[Primera manera]{
@@ -713,7 +809,7 @@
          \caption[Formas del proceso de chaff]{Las dos maneras para el proceso de chaff pueden ser utilizadas. Los paquetes chaff son los mensajes de color rojo.}
          \label{f:Enfoques}
         \end{figure}
-		Una vez que la secuencia de chaff llega a Bob, el último proceso es Winnowing. Bob determina la secuencia del mensaje que es válida del paquete chaff usando una función hash para el contenido de cada paquete y la llave de autentificación para re-calcular el MAC y compararlo contra el MAC del paquete recibido, si la comparación falla, el paquete chaff es descartado. Si la comparaci\'on es valida, entonces el paquete es parte del mensaje original. La siguiente imagen muestra el proceso completo de chaffing and winnowing.
+		Una vez que la secuencia de chaff llega a Bob, el último proceso es Winnowing. Bob determina la secuencia del mensaje que es válida del paquete chaff usando una función hash para el contenido de cada paquete y la llave de autentificación para re-calcular el MAC y compararlo contra el MAC del paquete recibido, si la comparación falla, el paquete chaff es descartado. Si la comparaci\'on es valida, entonces el paquete es parte del mensaje original. En la Figura 2.7, se muestra el proceso completo de Chaffing and Winnowing \cite{refCryptohraphyWithoutEncryption}.
 
 		\begin{figure}[H]
 			\begin{center}	                  \includegraphics[width=14cm]{./imagenes/MarcoTeorico/chaff_winn.png}
@@ -732,7 +828,7 @@
 		
 		\subsection{All-or-Nothing and the Package Transform (AONT)}
         
-        All-or-Nothing and the Package Transform es una variación dentro de la tecnica Chaffing and Winnowing, donde se mejora la eficiencia de su esquema original. AONT es la transformación de pre-procesamiento que permite a las partes enviar más datos (en términos de bit) por paquete en lugar de solo uno. Este pre-procesamiento es una transformación sin cifrado que toma el mensaje de texto sin formato y produce un mensaje empaquetado que luego se procesa de la manera normal de Chaffing and Winnowing. Las definiciones de la transformación AONT son las siguientes:
+        All-or-Nothing and the Package Transform es una variación dentro de la tecnica Chaffing and Winnowing, donde se mejora la eficiencia de su esquema original. AONT es la transformación de pre-procesamiento que permite a las partes enviar más datos (en términos de bit) por paquete en lugar de solo uno. Este pre-procesamiento es una transformación sin cifrado que toma el mensaje de texto sin formato y produce un mensaje empaquetado que luego se procesa de la manera normal de Chaffing and Winnowing \cite{refAONT}. Las definiciones de la transformación AONT son las siguientes:
         
         \begin{enumerate}
             \item El algoritmo de transformación es \textbf{reversible}: Dado el bloque de mensaje transformado, el receptor puede obtener el mensaje de texto sin formato original.
@@ -774,8 +870,8 @@
         
         \paragraph{}
         AONT toma el mensaje de texto sin formato de entrada y los transforma, luego crea un bloque para almacenar los mensajes transformados antes de pasar al proceso de autentificación. Después, se genera el paquete Chaff (la cantidad de paquetes Chaff no tiene que ser igual a los paquetes de la informaci\'on \'util).\\
-        Esta técnica produce una menor sobrecarga que la sugerencia número 1. El AONT ofrece más confidencialidad al esquema de Chaffing and Winnowing, ya que el adversario debe recibir todo el bloque de mensajes de transformación e identificar correctamente todo el paquete de la informaci\'on \'util para obtener el mensaje de texto original. La siguiente figura muestra la
-        descripción general de Chaffing y Winnowing si se agrega la función AONT.
+        Esta técnica produce una menor sobrecarga que la sugerencia número 1. El AONT ofrece más confidencialidad al esquema de Chaffing and Winnowing, ya que el adversario debe recibir todo el bloque de mensajes de transformación e identificar correctamente todo el paquete de la informaci\'on \'util para obtener el mensaje de texto original. La Figura 2.8, muestra la
+        descripción general de Chaffing y Winnowing si se agrega la función AONT \cite{refAONT}.
         
         \begin{figure}[H]
 			\begin{center}	          \includegraphics[width=14cm]{./imagenes/MarcoTeorico/chaffVsCrypto.png}
@@ -799,17 +895,18 @@
         
         Nosotros podríamos clasificar Chaffing and Winnowing como un método de cifrado, pero volvamos a recordar el principio de un Cifrado.
         El principal objetivo de un cifrado es ocultar el mensaje en texto plano de tal manera que oculta su contenido con el uso de una clave de cifrado para el texto cifrado.
-        Por otro lado, en el esquema original de Chaffing and Winnowing, una llave compartida es usada con el fin de autentificar la validación de los paquetes ya sea del emisor o del receptor. Además, Chaffing and Winnowing no hace uso de ninguna técnica de cifrado para ocultar el contenido de un mensaje y que nadie pueda ver dicho mensaje, solo aquellos con la llave correspondiente pueden determinar que paquetes contienen la información valida. En la \hyperref[C&W_AONT]{figura 2.8}, se muestra como se puede ver el esquema Chaffing and Winnowing como una técnica de cifrado. \\
+        Por otro lado, en el esquema original de Chaffing and Winnowing, una llave compartida es usada con el fin de autentificar la validación de los paquetes ya sea del emisor o del receptor. Además, Chaffing and Winnowing no hace uso de ninguna técnica de cifrado para ocultar el contenido de un mensaje y que nadie pueda ver dicho mensaje, solo aquellos con la llave correspondiente pueden determinar que paquetes contienen la información valida. En la \hyperref[C&W_AONT]{Figura 2.8}, se muestra como se puede ver el esquema Chaffing and Winnowing como una técnica de cifrado. \\
         
         Chaffing y Winnowing pueden verse como \textbf{un tipo especial de esquema de cifrado simétrico}, ya que la operación \textbf{chaffing} es similar al ''proceso de cifrado''. En la operación de chaffing, el texto cifrado se crea para producir un paquete de la informaci\'on \'util no válido que se envía al receptor. Luego, el receptor realiza el ''proceso de descifrado'', que implica descartar el paquete de desperdicios y recuperar el mensaje original. Ambas operaciones operan bajo una llave secreta común que se usa para derivar el valor MAC.\\
         
-        Pero la diferencia es, \textit{Chaffing y Winnowing} dos partes que no buscan lograr la confidencialidad. El emisor comparte una clave secreta con el receptor para que el receptor pueda usar la clave secreta para autentificarse (si se afirma que el mensaje recibido proviene del remitente deseado). Pero la ganancia de confidencialidad proviene de la dificultad de distinguir el paquete Chaff del paquete de la informaci\'on \'util. Mientras que en el cifrado, la clave se utiliza para lograr la confidencialidad mediante la creación de texto cifrado que oculta el contenido del mensaje de personas.\\
+        Pero la diferencia es, \textit{Chaffing y Winnowing} dos partes que no buscan lograr la confidencialidad. El emisor comparte una clave secreta con el receptor para que el receptor pueda usar la clave secreta para autentificarse (si se afirma que el mensaje recibido proviene del remitente deseado). Pero la ganancia de confidencialidad proviene de la dificultad de distinguir el paquete Chaff del paquete de la informaci\'on \'util. Mientras que en el cifrado, la clave se utiliza para lograr la confidencialidad mediante la creación de texto cifrado que oculta el contenido del mensaje de personas \cite{refCryptohraphyWithoutEncryption}.\\
         
-        Chaffing y Winnowing junto con el esquema AONT, el esquema en sí es muy parecido al cifrado, excepto que la clave que se usa en la transformación AONT, se elige aleatoriamente cada vez en lugar de fijarla. Además, el último bloque de mensajes es exclusivo o de la clave y todo el hash del bloque de mensajes está allí para garantizar que cualquier modificación en el bloque de mensajes cambiará la clave $K'$ calculado por el receptor. Por lo tanto, el último bloque de mensajes ${m'}_{s'}$ está allí solo con el propósito de autentificación. Por lo tanto, Chaffing y Winnowing con el esquema AONT no pueden ser clasificados bajo cifrado.\\
+        Chaffing y Winnowing junto con el esquema AONT, el esquema en sí es muy parecido al cifrado, excepto que la clave que se usa en la transformación AONT, se elige aleatoriamente cada vez en lugar de fijarla. Además, el último bloque de mensajes es exclusivo o de la clave y todo el hash del bloque de mensajes está allí para garantizar que cualquier modificación en el bloque de mensajes cambiará la clave $K'$ calculado por el receptor. Por lo tanto, el último bloque de mensajes ${m'}_{s'}$ está allí solo con el propósito de autentificación. Por lo tanto, Chaffing y Winnowing con el esquema AONT no pueden ser clasificados bajo cifrado \cite{refAONT}.\\
         
         \subsubsection{Chaffing and Winnowing vs Esteganograf\'ia}
+        La esteganografía trata de cómo ocultar, dentro de un mensaje público, información secreta. La agregación de información 'extra' es también un secreto, es decir, nadie externo a la comunicación sabe que en ese mensaje público se ha agregado información \cite{refCriptografia}. Un ejemplo de esta técnica de cifrado, se puede visualizar claramente en la utilización de tinta invisible en cartas. El emisor escribe una carta común y corriente con tinta visible, pero además, escribe información secreta con tinta invisible. Luego entonces, el receptor, aplicando el método correspondiente, descubrirá la información mandada con tinta invisible, pero agentes externos, ni siquiera saben la existencia de dicha información. En la actualidad, la esteganografía es muy utilizada para ocultar información en archivos de imágenes.\\
         
-        Para algunas personas, Chaffing and Winnowing puede ser clasificado como una técnica esteganograf\'ia. Sin embargo, el objetivo principal de la estenografía es el de ocultar el mensaje original dentro de otro tipo de mensaje, por lo tanto, nadie aparte del emisor y el receptor sabrá que hay un mensaje oculto. Contrario a Chaffing and Winnowing, en donde cualquiera puede ver el contenido del mensaje, ya que este método no trata de esconderlo de los posibles atacantes. Otra diferencia es que en esteganograf\'ia el emisor tiene que ocultar el mensaje el mismo, mientras que en Chaffing and Winnowing no necesariamente es así, ya que una ''tercera parte'' puede hacerlo.\\
+        Para algunas personas, Chaffing and Winnowing puede ser clasificado como una técnica esteganograf\'ia. Sin embargo, el objetivo principal de la estenografía, como se mencionó antes, es el de ocultar el mensaje original dentro de otro mensaje, por lo tanto, nadie aparte del emisor y el receptor sabrá que hay un mensaje oculto. Contrario a Chaffing and Winnowing, en donde cualquiera puede ver el contenido del mensaje, ya que este método no trata de esconderlo de los posibles atacantes. Otra diferencia es que en esteganograf\'ia el emisor tiene que ocultar el mensaje el mismo, mientras que en Chaffing and Winnowing no necesariamente es así, ya que una ''tercera parte'' puede hacerlo \cite{refChaffingVsEsteganografia}.\\
         
         Por lo tanto, Chaffing and Winnowing no puede ser considerado como esteganograf\'ia.\\
         
@@ -934,10 +1031,10 @@
     		Estos servicios forman parte de la factibilidad técnica ya que sin ellos no se podría realizar este proyecto y por eso mismo generan un costo, dicho costo se menciona en la Factibilidad Económica.
     		
     	    \subsection{Factibilidad Operativa}
-    	    Los recursos operativos de este proyecto se calcularon con base en los recursos humanos con los que se cuenta y un análisis de las horas que el personal estará en operación trabajando sobre este, el cual se muestra a continuación:
+    	    Los recursos operativos de este proyecto se calcularon con base en los recursos humanos con los que se cuenta y un análisis de las horas que el personal estará en operación trabajando sobre éste, el cual se muestra a continuación:
     	    
     	    \begin{table}[H]
-    			\begin{tabular}{|p{1.7cm}|p{1.6cm}||p{1.6cm}||p{1.6cm}||p{1.6cm}|p{1.6cm}|p{1.6cm|}}
+    			\begin{tabular}{|p{1.7cm}|p{1.6cm}||p{1.6cm}||p{1.6cm}||p{1.6cm}|p{1.6cm}|p{1.6cm}|}
     				\hline
     				\rowcolor{guindapoli}
     				\multicolumn{7}{|c|}{\textbf{\textcolor{white}{Horas a trabajar en el desarrollo del proyecto}}}\\
@@ -1008,29 +1105,27 @@
 			
 			Oficialmente CSS no tiene nada que ver con HTML4, no es parte de la especificación, es de hecho, un complemento desarrollado para superar las limitaciones y reducir la complejidad de HTML. Al principio, atributos dentro de las etiquetas HTML proveóan estilos esenciales para cada elemento, pero a medida que HTML evolucionó, la escritura de códigos se volvió más compleja y html por sí mismo no pudo satisfacer más las demandas de los diseñadores. En consecuencia a esta demanda, CSS fue adoptado como la forma de separar la estructura de la presentación, y ha ido creciendo y ganando importancia, pero siempre desarrollado en paralelo enfocado en las necesidades de los diseñadores y apartado de la estructura de HTML.\\
 			
-			La versión 3 de CSS sigue el mismo camino, pero esta vez con un mayor compromiso. La especificación de HTML5 fue desarrollada considerando CSS a cargo del diseño, Debido a esta consideración, la integración entre HTML y CSS es ahora vital para el desarrollo web y esta razón por la que cada vez que mencionamos HTML5 también estamos haciendo referencia a CSS3, aunque oficialmente se trate de dos tecnologías completamente separadas. Las nuevas características incorporadas en CSS3 están siendo implementadas e incluidas junto al resto de la especificación en navegadores compatibles con HTML5. 
-			\cite{refElGranLibro}%Pag 19 pdf
+			La versión 3 de CSS sigue el mismo camino, pero esta vez con un mayor compromiso. La especificación de HTML5 fue desarrollada considerando CSS a cargo del diseño, Debido a esta consideración, la integración entre HTML y CSS es ahora vital para el desarrollo web y esta razón por la que cada vez que mencionamos HTML5 también estamos haciendo referencia a CSS3, aunque oficialmente se trate de dos tecnologías completamente separadas. Las nuevas características incorporadas en CSS3 están siendo implementadas e incluidas junto al resto de la especificación en navegadores compatibles con HTML5 \cite{refElGranLibro}.
 			
 			\paragraph {JavaScript. \\}
 			JavaScript es considerado como el lenguaje de programación de html y de la web. Es un lenguaje de programación fácil de usar y muy versátil para el ámbito de la comunicación en redes. Los programas, llamados "scripts", se ejecutan en el navegador (Mozilla, Google Chrome, Internet Explorer, etc.) normalmente consisten en unas funciones que son llamadas desde el propio html cuando algún evento sucede.\\\\
 			Su primera aproximación a un uso real, fue en mayor parte para "dar vida a una página web", como dar animaciones a un botón, interacciones en tiempo real, entre otras más. 
 			JavaScript fue desarrollado por \Gls{NetScape}, a partir del lenguaje Java, que en ese momento tenía mucho auge y popularidad, y su principal diferencia es que JavaScript sólo "funciona" dentro de una página html.\\
-			JavaScript fue declarado como estándar del European Computer Manufacturers Association (ECMA) en 1997, y poco después, también fue estandarizado por ISO.\cite{refJavaScript} \\\\ 
+			JavaScript fue declarado como estándar del European Computer Manufacturers Association (ECMA) en 1997, y poco después, también fue estandarizado por ISO \cite{refJavaScript}. \\ 
 			JavaScript es un lenguaje interpretado, usado mayormente como complemento de ciertos objetivos específicos, sin embargo, uno de las innovaciones que ayudó a JavaScript fue el desarrollo de nuevos motores de interpretación, creados para acelerar el procesamiento del código. La clave de los motores más exitosos fue transformar el código de Javascript en código máquina para obtener una velocidad de ejecución mejor que antes. Esto a la vez permitió superar viejas limitaciones de rendimiento y confirmar el lenguaje JavaScript como la mejor opción para la Web.\\\\
 			
-			Para aprovechar esta prometedora plataforma de trabajo ofrecida por los nuevos navegadores, JavaScript fue expandido en cuestión de portabilidad e integración, a la vez, interfaces de programación de aplicaciones (APIs) fueron incorporando por defecto con cada navegador para asistir a JavaScript en funciones elementales. El objetivo de esto, fue principalmente hacer disponible poderosas funciones a través de técnicas de programación sencillas y estándares, expandiendo el alcance del lenguaje y facilitando la creación de programas útiles para la Web.\cite{refElGranLibro}
+			Para aprovechar esta prometedora plataforma de trabajo ofrecida por los nuevos navegadores, JavaScript fue expandido en cuestión de portabilidad e integración, a la vez, interfaces de programación de aplicaciones (APIs) fueron incorporando por defecto con cada navegador para asistir a JavaScript en funciones elementales. El objetivo de esto, fue principalmente hacer disponible poderosas funciones a través de técnicas de programación sencillas y estándares, expandiendo el alcance del lenguaje y facilitando la creación de programas útiles para la Web \cite{refElGranLibro}.
 			
 			\paragraph{CryptoJs. \\}
-				CryptoJs es una colección estándar y segura de algoritmos criptográficos implementados para JavaScript usando las mejores practicas y patrones. Es rápida y tiene una interfaz consistente y simple. Cuenta con algoritmos tales como: Hasher Algorithms (SHA-1, SHA-2), Cipher Algorithms (DES, AES), Block Modes and Padding, por mencionar algunos. \cite{refCryptoJs} El objetivo de usar esta herramienta es usar los métodos ya implementados en \textit{CryptoJs} para la generación de código hash para una mejor y rápida ejecución del sistema.
+				CryptoJs es una colección estándar y segura de algoritmos criptográficos implementados para JavaScript usando las mejores practicas y patrones. Es rápida y tiene una interfaz consistente y simple. Cuenta con algoritmos tales como: Hasher Algorithms (SHA-1, SHA-2), Cipher Algorithms (DES, AES), Block Modes and Padding, por mencionar algunos \cite{refCryptoJs}. El objetivo de usar esta herramienta es usar los métodos ya implementados en \textit{CryptoJs} para la generación de código hash para una mejor y rápida ejecución del sistema.
 				
-				\paragraph{Algortimo MD5. \\}
-				El algoritmo de \textbf{hashing} criptográfico \textit{MD5} es una versión mejorada de su antecesor, MD4. Las siglas MD corresponden a \textit{Message Digest} o resumen de mensaje y fueron diseñados por \textit{Ron Rivest}.
-				El algoritmo produce, a partir de una entrada no limitada en cuanto a su tamaño, un \textit{hash} criptográfico, o resumen de mensaje, de 128 bits de longitud. Se lo emplea actualmente en diferentes aplicaciones de seguridad, una de las mas populares es la comprobación de integridad de archivos. Estas comprobaciones suelen representarse en una cadena de 32 caracteres alfanuméricos, que corresponden a los 16 bytes en formato hexadecimal. \cite{refCriptografia}\\
+				\paragraph{Función Hash SHA-1. \\}
+				La función hash SHA-1 se emplea actualmente en diferentes aplicaciones de seguridad, una de las mas populares es la comprobación de integridad de archivos. Estas comprobaciones suelen representarse en una cadena de 40 caracteres alfanuméricos, que corresponden a los 160 bits que genera dicha función hash. SHA-1 fue desarrollado por US National Security Agency (NSA)\footnote{NSA lidera el gobierno de Estados Unidos en el área de Criptografía con el fin de obtener una ventaja de decisión para la Nación y sus aliados en todas las circunstancias.} y publicado por National Institute of Standarda and Technology (NIST)\footnote{NIST es uno de los laboratorios de ciencias físicas más antiguos de Estados Unidos.}. Esta función hash es la segunda iteración de la función hash SHA-0 \cite{refSHA1}.\\
 				
 				El uso del algoritmo de hashing se empleará en la creación del certificado para un usuario (tomando como parámetros el nombre de usuario y su contraseña), debido a que en este prototipo aun no se cuenta con el \textit{servidor autentificador}. El mensaje como resultado de aplicar el algoritmo hash, se inyectará en el protocolo HTTP, como se ha mencionado en la descripción del prototipo II.
 				
 				\paragraph{Wireshark. \\}
-				Wireshark es una analizador de paquetes de red. Un analizador captura paquetes de red y muestra los datos del paquete con el mayor detalle posible. Ésta herramienta es software libre y es el mejor analizador de paquetes hoy en día. \cite{refWireshark} Utilizaremos Wireshark para analizar los paquetes que viajan a través de la red, en este caso la petición modificada la cual contiene el certificado y el patrón ocultados mediante el método \textit{Chaffing}.
+				Wireshark es una analizador de paquetes de red. Un analizador captura paquetes de red y muestra los datos del paquete con el mayor detalle posible. Ésta herramienta es software libre y es el mejor analizador de paquetes hoy en día \cite{refWireshark}. Utilizaremos Wireshark para analizar los paquetes que viajan a través de la red, en este caso la petición modificada la cual contiene el certificado y el patrón ocultados mediante el método \textit{Chaffing}.
 				\label{WiresharkDefinition}
 			
 			
@@ -1040,7 +1135,7 @@
 			\begin{table}[H]
 				\begin{tabular}{|p{3.5cm}||p{10cm}|}
 					\rowcolor{guindapoli}
-					\multicolumn{2}{|c|}{\textbf{\textcolor{white}{Equipo de hardware utilizado.}}}\\
+					\multicolumn{2}{|c|}{\textbf{\textcolor{white}{Equipo de hardware utilizado. [1]}}}\\
 					\hline
 					\rowcolor{azulclaro}Marca & Asus\\
 					\hline
@@ -1053,13 +1148,14 @@
 					\rowcolor{azulclaro}Memoria RAM & 12 GB\\
 					\hline
 					\rowcolor{white}Disco duro & 1TB\\
+					\hline
 				\end{tabular}
 			\end{table}
 			
 			\begin{table}[H]
 				\begin{tabular}{|p{3.5cm}||p{10cm}|}
 					\rowcolor{guindapoli}
-					\multicolumn{2}{|c|}{\textbf{\textcolor{white}{Equipo de hardware utilizado.}}}\\
+			        \multicolumn{2}{|c|}{\textbf{\textcolor{white}{Equipo de hardware utilizado. [2]}}}\\
 					\hline
 					\rowcolor{azulclaro}Marca & HP\\
 					\hline
@@ -1072,13 +1168,14 @@
 					\rowcolor{azulclaro}Memoria RAM & 6 GB\\
 					\hline
 					\rowcolor{white}Disco duro & 500GB\\
+					\hline
 				\end{tabular}
 			\end{table}
 			
 			\begin{table}[H]
 				\begin{tabular}{|p{3.5cm}||p{10cm}|}
 					\rowcolor{guindapoli}
-					\multicolumn{2}{|c|}{\textbf{\textcolor{white}{Equipo de hardware utilizado.}}}\\
+					\multicolumn{2}{|c|}{\textbf{\textcolor{white}{Equipo de hardware utilizado. [3]}}}\\
 					\hline
 					\rowcolor{azulclaro}Marca & DELL\\
 					\hline
@@ -1091,13 +1188,14 @@
 					\rowcolor{azulclaro}Memoria RAM & 16 GB\\
 					\hline
 					\rowcolor{white}Disco duro & 1TB\\
+					\hline
 				\end{tabular}
 			\end{table}
     	    
     	    \begin{table}[H]
 				\begin{tabular}{|p{3.5cm}||p{10cm}|}
 					\rowcolor{guindapoli}
-					\multicolumn{2}{|c|}{\textbf{\textcolor{white}{Equipo de hardware utilizado.}}}\\
+					\multicolumn{2}{|c|}{\textbf{\textcolor{white}{Equipo de hardware utilizado. [4]}}}\\
 					\hline
 					\rowcolor{azulclaro}Marca & HP\\
 					\hline
@@ -1110,6 +1208,7 @@
 					\rowcolor{azulclaro}Memoria RAM & 8 GB\\
 					\hline
 					\rowcolor{white}Disco duro & 1TB\\
+					\hline
 				\end{tabular}
 			\end{table}
     	    
@@ -1126,7 +1225,22 @@
         		\includegraphics[width=15cm]{./imagenes/Analisis/ArquitecturaSistema.png}
         		\caption{Arquitectura General del Sistema}
 	            \end{center}
-	        \end{figure}    	
+	        \end{figure}    
+	        \subsection{Descripci\'on de la arquitectura del sistema.}
+	            El sistema se compone de 3 grandes bloques los cuales se comunicar\'an v\'ia red:
+	            \begin{enumerate}
+	                \item \textbf{Navegador Chrome con la Extensi\'on instalada}: Este primer bloque es el que se encuentra interactuando directamente con el usuario de nuestro sistema, consiste en la extensión creada por nosotros y el navegador en el que el usuario realiza peticiones a diferentes servicios en la web.
+	                \item \textbf{Servidor autentificador:} Este bloque va ser el encargado de generar los certificados para cada usuario que se registre en la extensión y enviarlos a la extensión. Para la generación de dichos certificados utilizaremos una autoridad certificadora con lo que garantizamos la seguridad de estos mismos. Por otro lado para almacenar los datos de nuestros usuarios contaremos con una tabla que contenga como principales campos:
+	                    \begin{itemize}
+	                        \item Usuario
+	                        \item Contraseña
+	                        \item Certificado
+	                    \end{itemize}
+	                \item \textbf{Servidor web con API instalada: }En este módulo el servicio web contar\'a con una API, que se encargará de reconocer las peticiones que se reciban con nuestro método de autenticación y ser\'a la encargada de interpretar los datos y facilitarle la informaci\'on de autenticaci\'on al servicio.
+	                Es importante destacar que el servicio almacenar\'a el certificado en cuesti\'on para que el usuario pueda autenticarse la próxima vez de forma automática.
+	            \end{enumerate}
+	        
+	        Es importante mencionar que la comunicaci\'on entre cada uno de los bloques se realizar\'a mediante t\'ecnicas que permitan la confidencialidad de los datos, por un lado la comunicación del certificado que viajará entre la extensión y el servicio web se encontrará oculto mediante Chaffing and Winnowing y el patr\'on necesario para el m\'etodo se encontrar\'a cifrado mediante RSA. La comunicación entre el Servidor autentificador y la Extensión se encontrar\'a oculto mediante un socket seguro. 
     	
     	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 		%                                                       %
@@ -1143,7 +1257,7 @@
 	            \end{center}
 	        \end{figure}   
 	        
-	        NOTA: en la sección de desarrolla, cada prototipo describirá sus casos de uso correspondientes para su funcionamiento.
+	        NOTA: en la sección de desarrollo, cada prototipo describirá sus casos de uso correspondientes para su funcionamiento.
 	        
 	    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 		%                                                       %
@@ -1227,7 +1341,7 @@
 		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 		\section{Prototipo II.}
 		    \subsection{Descripción.}
-		    En este prototipo se busca que la extensión de Google Chrome pueda modificar la petición HTTP previamente interceptada. La modificación se hará sólo mientras la extensión esté habilitada, y tiene como objetivo inyectar el certificado autentificador en el encabezado del protocolo. Este certificado será simulado (sólo para este prototipo) por la misma extensión a partir de los datos del inicio de sesión. Para la creación de dicho certificado, se usará el algoritmo de hashing MD5, tomando como argumentos de entrada usuario y contraseña, generando así, una cadena resultante de 128 bits, sin embargo, para los siguientes prototipos, se manejará una autoridad certificadora la cual recibirá los datos del inicio de sesión para que genere el certificado del usuario. Una vez que dicho certificado es inyectado, la extensión deberá liberar la petición para que salga a red.\\
+		    En este prototipo se busca que la extensión de Google Chrome pueda modificar la petición HTTP previamente interceptada. La modificación se hará sólo mientras la extensión esté habilitada, y tiene como objetivo inyectar el certificado autentificador en el encabezado del protocolo. Este certificado será simulado (sólo para este prototipo) por la misma extensión a partir de los datos del inicio de sesión. Para la creación de dicho certificado, se usará el algoritmo de hashing SHA-1, tomando como argumentos de entrada usuario y contraseña, generando así, una cadena resultante de 160 bits, sin embargo, para los siguientes prototipos, se manejará una autoridad certificadora la cual recibirá los datos del inicio de sesión para que genere el certificado del usuario. Una vez que dicho certificado es inyectado, la extensión deberá liberar la petición para que salga a red.\\
 		    
 		    El propósito de este prototipo es utilizar la técnica de \textit{Chaffing and Winnowing} en este nuevo método de autentificación, para evitarle al usuario la tediosa tarea de ingresar sus credenciales cada vez que accede al servicio y brindarle la seguridad necesaria al iniciar de sesión.\\
 		    
@@ -1298,7 +1412,8 @@
                 
                 \caption{Generación del chaffing}
             \end{algorithm}
-		    
+            
+		   \paragraph{}
 		   Primero vamos a analizar el algoritmo del \textit{patrón de chaffing} con un pequeño ejemplo (utilizaremos datos de variables más cortos); supongamos que nuestro certificado es el siguiente: 
 		    \begin{center}
 		        $C_k = MITZ057abZ251$
@@ -1325,7 +1440,7 @@
     			\end{center}
     		\end{figure}
     		
-    		Este algoritmo nos permite llenar de unos el número de veces del tamaño de nuestro certificado, lo que nos asegura que cada posición le corresponde a un caracter ya sea del certificado o de la petición a enviar. Supongamos que al terminar este algoritmo, nuestro arreglo queda algo parecido a lo siguiente:
+    		Este algoritmo nos permite llenar de unos el número de veces del tamaño de nuestro certificado, lo que nos asegura que cada posición le corresponde a un carácter ya sea del certificado o de la petición a enviar. Supongamos que al terminar este algoritmo, nuestro arreglo queda algo parecido a lo siguiente:
     		
     		\begin{figure}[H]
     			\begin{center}	                  \includegraphics[width=14cm]{./imagenes/Desarrollo/Prototipo_2/algorithm1_3.png}
@@ -1335,7 +1450,7 @@
 		    
 		    
 		    
-		    El segundo algoritmo realizará el chaff utilizando el patrón generado en el algoritmo anterior, obtendrá el byte de control y a partir de este, comenzará un contador para recorrer todos los bytes del patrón de chaffing, ademas contaremos con otros 2 contadores más: \textit{contCert} que irá recorriendo cada caracter de nuestro certificado, y \textit{countHTTP} que recorrerá los de la petición HTTP. Si en la posición de éste contador se encuentra un 0, entonces quiere decir que debemos de agarrar el siguiente caracter de nuestro certificado, basándonos en el contador del certificado, de la misma manera si se encuentra un 1, se agarrará el siguiente caracter de la petición, y estos se irán concatenando en una nueva cadena (\textit{protocolChaffed}). Al final, para incrementar la seguridad de nuestro \textit{chaff}, se realizará un corrimiento que se ve en la función de \textit{binaryCicleRightShiftByByte}\footnote{Este corrimiento será cíclico y basado en el código ASCII, es decir, se escogerá el caracter de n bytes a su derecha módulo de 256.}.
+		    El segundo algoritmo realizará el chaff utilizando el patrón generado en el algoritmo anterior, obtendrá el byte de control y a partir de este, comenzará un contador para recorrer todos los bytes del patrón de chaffing, ademas contaremos con otros 2 contadores más: \textit{contCert} que irá recorriendo cada carácter de nuestro certificado, y \textit{countHTTP} que recorrerá los de la petición HTTP. Si en la posición de éste contador se encuentra un 0, entonces quiere decir que debemos de agarrar el siguiente carácter de nuestro certificado, basándonos en el contador del certificado, de la misma manera si se encuentra un 1, se agarrará el siguiente carácter de la petición, y estos se irán concatenando en una nueva cadena (\textit{protocolChaffed}). Al final, para incrementar la seguridad de nuestro \textit{chaff}, se realizará un corrimiento que se ve en la función de \textit{binaryCicleRightShiftByByte}\footnote{Este corrimiento será cíclico y basado en el código ASCII, es decir, se escogerá el carácter de n bytes a su derecha módulo de 256.}.
 		    
 		    \begin{figure}[H]
     			\begin{center}	                  \includegraphics[width=14cm]{./imagenes/Desarrollo/Prototipo_2/algorithm2_1.png}
@@ -1349,15 +1464,15 @@
 
 				\begin{comment}
 				\paragraph{API FileSystem \\}
-				Consiste en una API muy útil para trabajar con archivos en el entorno de desarrollo de Google Chrome, soporta la entrada de archivos y directorios desde una computadora personal. La ventaja de esta API es que no es necesario acceder a todos los archivos del usuario, si no que se crea una especie de unidad virtual en donde se localizan los archivos que el usuario deseé utilizar, en este caso en la extensión. \cite{filesystemmozilla} 
+				Consiste en una API muy útil para trabajar con archivos en el entorno de desarrollo de Google Chrome, soporta la entrada de archivos y directorios desde una computadora personal. La ventaja de esta API es que no es necesario acceder a todos los archivos del usuario, si no que se crea una especie de unidad virtual en donde se localizan los archivos que el usuario deseé utilizar, en este caso en la extensión \cite{filesystemmozilla}.
 				
 				%\paragraph {hay que usar otra madre pero no se que alv. \\}
 				\paragraph{OpenSSL}
-				SSL (Secure Sockets Layer o capa de conexión segura) es un estándar de seguridad global que permite la transferencia de datos cifrados entre un navegador y un servidor web. Es utilizado por millones\cite{opensslmillones} de empresas e individuos en línea a fin de disminuir el riesgo de robo y manipulación de información confidencial (como números de tarjetas de crédito, nombres de usuario, contraseñas, correos electrónicos, etc.) por parte de hackers y ladrones de identidades. Básicamente, la capa SSL permite que dos partes tengan una "conversación" privada.
+				SSL (Secure Sockets Layer o capa de conexión segura) es un estándar de seguridad global que permite la transferencia de datos cifrados entre un navegador y un servidor web. Es utilizado por millones \cite{opensslmillones} de empresas e individuos en línea a fin de disminuir el riesgo de robo y manipulación de información confidencial (como números de tarjetas de crédito, nombres de usuario, contraseñas, correos electrónicos, etc.) por parte de hackers y ladrones de identidades. Básicamente, la capa SSL permite que dos partes tengan una "conversación" privada.
 				Para establecer esta conexión segura, se instala en un servidor web un certificado SSL (también llamado "certificado digital") que cumple dos funciones: Autenticar la identidad del sitio web, garantizando a los visitantes que no están en un sitio falso y cifrar la información transmitida.
 				Openssl es una api que proporciona un entorno adecuado para encriptar los datos enviados a otra computadora dentro de una red y a su vez desencriptarlos adecuadamente por el receptor, evitando así, el acceso a la información por intrusos con la utilización de sniffer.
 				El conjunto de herramientas OpenSSL es una característica de FreeBSD que ofrece una capa cifrada de transporte sobre la capa normal de comunicación, permitiendo la combinación con muchas aplicaciones y servicios de red. 
-                Uno de los usos más comunes de OpenSSL es ofrecer certificados para usar con aplicaciones de software. Estos certificados aseguran que las credenciales de la compañía o individuo son válidos y no son fraudulentos. Si el certificado en cuestión no ha sido verificado por uno de las diversas “autoridades certificadoras” o CA, suele generarse una advertencia al respecto. Una autoridad de certificados es una compañía, que firma certificados para validar credenciales de individuos o compañías. Este proceso tiene un costo asociado y no es un requisito imprescindible para usar certificados, aunque puede darle un poco de tranquilidad a los usuarios. \cite{openssl}
+                Uno de los usos más comunes de OpenSSL es ofrecer certificados para usar con aplicaciones de software. Estos certificados aseguran que las credenciales de la compañía o individuo son válidos y no son fraudulentos. Si el certificado en cuestión no ha sido verificado por uno de las diversas “autoridades certificadoras” o CA, suele generarse una advertencia al respecto. Una autoridad de certificados es una compañía, que firma certificados para validar credenciales de individuos o compañías. Este proceso tiene un costo asociado y no es un requisito imprescindible para usar certificados, aunque puede darle un poco de tranquilidad a los usuarios \cite{openssl}.
                 %filesystemmozilla https://developer.mozilla.org/es/docs/Web/API/FileSystem
 				% opensslmillones https://www.verisign.com/es_LA/website-presence/online/ssl-certificates/index.xhtml
 				%openssl https://www.globalsign.com/es/centro-de-informacion-ssl/que-es-ssl/
@@ -1421,7 +1536,7 @@
             \textbf{PII\_RN4. Acceso a internet.} Se debe de contar con acceso a internet para que la extensión pueda enviar al servidor la petición modificada.\\
             \label{PII_RN4}
 				
-			\textbf{PII\_RN5. Longitud de código autentificador.} La longitud del código autentificador es de 32 caracteres, debido a que la función de MD5 es un algoritmo de codificación de 128 bits que genera un hash hexadecimal de 32 caracteres, independientemente de la longitud de la palabra de entrada (nombre de usuario y contraseña).\\
+			\textbf{PII\_RN5. Longitud de código autentificador.} La longitud del código autentificador es de 40 caracteres, debido a que la función de SHA-1 es un algoritmo de codificación de 160 bits que genera un hash hexadecimal de 40 caracteres, independientemente de la longitud de la palabra de entrada (nombre de usuario y contraseña).\\
 			\label{PII_RN5}
 			
 			\textbf{PII\_RN6. Longitud del campo de usuario.} La longitud del usuario no debe pasar de 20 caracteres, y mínimo será de 3 caracteres.\\
@@ -1788,7 +1903,7 @@
     				\end{center}
     			\end{figure}
 		        \subsubsection{Descripción diagrama de flujo.}
-		        El primer paso del diagrama de flujo es esperar a que el usuario realice una petición web a algún servidor, luego obtener el estado actual de la extensión para saber si se encuentra habilitada o no, para luego realizar la comprobación correspondiente, es decir, "Extensión habilitada", en caso de que no se encuentre habilitada se acaba el flujo y ya no se realiza ninguna acción, en caso de que si se encuentre habilitada se intercepta la petici\'on HTTP y se evita que salga de la extensión, para este entonces se crea una nueva pestaña y se muestra toda la información de la petici\'on, hasta este paso damos por concluido el prototipo 1.
+		        El primer paso del diagrama de flujo es esperar a que el usuario realice una petición web a algún servidor, luego obtener el estado actual de la extensión para saber si se encuentra habilitada o no, para luego realizar la comprobación correspondiente, es decir, ''Extensión habilitada'', en caso de que no se encuentre habilitada se acaba el flujo y ya no se realiza ninguna acción, en caso de que si se encuentre habilitada se intercepta la petici\'on HTTP y se evita que salga de la extensión, para este entonces se crea una nueva pestaña y se muestra toda la información de la petici\'on, hasta este paso damos por concluido el prototipo 1.
     			\subsection{Diagrama de flujo de datos (DFD).}
         			\begin{figure}[H]
         			    \begin{center}
@@ -1808,7 +1923,7 @@
 			
 			\subsubsection{Descripción diagrama de clases.}
 			    
-			    \large StatusSniffer
+			    StatusSniffer
 			    \begin{enumerate}
     		        \item \textbf{status} : Variable que permite conocer y almacenar el status de la extensión (Habilitada/Deshabilitada).
     		        \begin{enumerate}
@@ -1821,7 +1936,7 @@
     		        \end{enumerate}
 			    \end{enumerate}
 		        
-	            \large Sniffer
+	            Sniffer
 			    \begin{enumerate}
     		        \item \textbf{request} : Variable que almacena los valores de la cabecera HTTP.
     		        \begin{enumerate}
@@ -1834,7 +1949,7 @@
     		        \end{enumerate}
 			    \end{enumerate}
 			    
-			    \large Request
+			    Request
 			    \begin{enumerate}
     		        \item \textbf{url} : Variable que almacena la URL requerida.
     		        \begin{enumerate}
@@ -1878,7 +1993,7 @@
     		        \end{enumerate}
 			    \end{enumerate}
 			    
-			    \large HTTPHeaders
+			    HTTPHeaders
 			    \begin{enumerate}
     		        \item \textbf{name} : Variable que almacena el nombre del header a mandar junto con la petición.
     		        \begin{enumerate}
@@ -1921,30 +2036,49 @@
 				    \caption[Diagrama de secuencia 1 del Prototipo I]{Diagrama de secuencia del PI\_CU1. Realizar petición.}
 			        \end{center}
 			    \end{figure}
+			    
+			    \paragraph{Descripción:}
+			    Para realizar una petición, es necesario seguir la siguiente secuencia. Primeramente, el usuario ingresa un URL al navegador, para que este construya la petición que mandará. Una vez que ha construido la petición, la manda a red, pero antes de eso la extensión que actúa como un sniffer, la interceptará.
+			    
 			    \subsubsection{Diagrama de secuencia 2}
 			    \begin{figure}[H]
 				    \begin{center} \includegraphics[width=15cm]{./imagenes/Desarrollo/Prototipo_1/P1_SD_UC2.png}
 				    \caption[Diagrama de secuencia 2 del Prototipo I]{Diagrama de secuencia del PI\_CU2. Habilitar extensión.}
 			        \end{center}
 			    \end{figure}
+			    
+			    \paragraph{Descripción:}
+			    Para habilitar la extensión, el usuario necesita primero abrir la extensión. Una vez abierta la extensión, debe de dar click en el botón 'habilitar', para que la extensión ejecute la orden y se mantenga habilitada.
+			    
 			    \subsubsection{Diagrama de secuencia 3}
 			    \begin{figure}[H]
 				    \begin{center} \includegraphics[width=15cm]{./imagenes/Desarrollo/Prototipo_1/P1_SD_UC3.png}
 				    \caption[Diagrama de secuencia 3 del Prototipo I]{Diagrama de secuencia del PI\_CU3. Deshabilitar extensión.}
 			        \end{center}
 			    \end{figure}
+			    
+			    \paragraph{Descripción:}
+			    Para deshabilitar la extensión, el usuario necesita primero abrir la extensión. Una vez abierta la extensión, debe de dar click en el botón 'deshabilitar', para que la extensión ejecute la orden y se mantenga deshabilitada.
+			    
 			    \subsubsection{Diagrama de secuencia 4}
 			    \begin{figure}[H]
 				    \begin{center} \includegraphics[width=15cm]{./imagenes/Desarrollo/Prototipo_1/P1_SD_UC4.png}
 				    \caption[Diagrama de secuencia 4 del Prototipo I]{Diagrama de secuencia del PI\_CU4. Interceptar petición.}
 			        \end{center}
 			    \end{figure}
+			    
+			    \paragraph{Descripción:}
+			    Una vez que el navegador ha enviado la petición, la extensión la interceptará. Lo primero que hace la extensión para conseguirlo es recibir la petición y bloquear su salida. Con ello la petición jamás saldrá a red y por ende no llegará al servidor.
+			    
 			    \subsubsection{Diagrama de secuencia 5}
 			    \begin{figure}[H]
 				    \begin{center} \includegraphics[width=15cm]{./imagenes/Desarrollo/Prototipo_1/P1_SD_UC5.png}
 				    \caption[Diagrama de secuencia 5 del Prototipo I]{Diagrama de secuencia del PI\_CU5. Mostrar petición.}
 			        \end{center}
 			    \end{figure}
+			        
+			    \paragraph{Descripción:}
+			    Una vez que la extensión ha interceptado la petición, envía al navegador la información ésta. para que en otra pestaña el navegador muestre la información y el usuario la pueda ver.
 			        
 			\subsection{Diagrama de actividades}
 			    \begin{figure}[H]
@@ -1969,26 +2103,35 @@
 			    
 			\subsection{Interfaz de usuario.}
 			    
+			    \subsubsection{Icono de la extensión.}
+			    La extensión tendrá el icono mostrado en la Figura 4.11. Este icono es el único medio de acceso a la extensión, ya que ese es el funcionamiento por defecto que Google Chrome nos brinda.
+			    
 			    \begin{figure}[H]
 					\begin{center}	\includegraphics[width=9cm]{./imagenes/Desarrollo/Prototipo_1/escom.png}
 						\caption{Logo de la extensión.}
 					\end{center}
 				\end{figure}
+				
+				\subsubsection{Pantalla Inicial.}
+			    En las Figuras 4.12 y 4.13, se muestra la pantalla inicial de la extensión, la única interfaz de usuario que hay en este prototipo. En la figura 4.12, se muestra el estado de la extensión debajo del titulo 'Chaffing and Winnowing', el cual es 'Activado', por lo que el botón que se muestra se llama 'Desactivado'. Por el contrario, en la Figura 4.13, la extensión está en estado 'Desactivado', por lo que el botón se llama 'Activar'.
 			  
 			    \begin{figure}[H]
-					\begin{center}	\includegraphics[width=13cm]{./imagenes/Desarrollo/Prototipo_1/UI_activado.png}
+					\begin{center}	\includegraphics[width=10cm]{./imagenes/Desarrollo/Prototipo_1/UI_activado.png}
 						\caption{Pantalla inicial. Servicio activado.}
 					\end{center}
 				\end{figure}
 				\label{UI_ACTIVADO_4.7}
 				
 				\begin{figure}[H]
-					\begin{center}	\includegraphics[width=13
-					cm]{./imagenes/Desarrollo/Prototipo_1/UI_desactivado.png}
+					\begin{center}	
+					\includegraphics[width=10cm]{./imagenes/Desarrollo/Prototipo_1/UI_desactivado.png}
 						\caption{Pantalla inicial. Servicio desactivado.}
 					\end{center}
 				\end{figure}
 				\label{UI_DESACTIVADO_4.8}
+				
+				\subsubsection{Nueva pestaña.}
+				En la Figura 4.14, se muestra la pantalla de la 'nueva pestaña' que genera la extensión para mostrar el contenido del encabezado de la petición HTTP que realizó el usuario.
 				
 				\begin{figure}[H]
 					\begin{center}	\includegraphics[width=13cm]{./imagenes/Desarrollo/Prototipo_1/UI_tabDatos.png}
@@ -2187,7 +2330,7 @@
 				\begin{enumerate}
 				    \item \textbf{\textit{La extensión}} ha creado el certificado autentificador.
 				    \item \textbf{\textit{La extensión}} guarda el certificado en storage.
-				    \item \textbf{\textit{La extensión}} muestra al usuario el siguiente mensaje ''Certificado guardado en Storage'' en la pantalla \hyperref[UI_certSavedInStorage]{\textbf{Figura 4.19 Certificado guardado en Storage.}}
+				    \item \textbf{\textit{La extensión}} muestra al usuario el siguiente mensaje ''Certificado guardado en Storage'' en la pantalla \hyperref[UI_certSavedInStorage]{\textbf{Figura 4.19. Certificado guardado en Storage.}}
 				\end{enumerate}
 				\paragraph{... Fin de la Trayectoria Principal ...}
 				
@@ -2357,7 +2500,7 @@
 			    
 			    \newpage
 			    \subsubsection{Descripción de diagrama de clases}
-			    \large User
+			    User
 			    \begin{enumerate}
     		        \item \textbf{user} : Variable que permite almacenar el valor del campo nombre de usuario.
     		        \begin{enumerate}
@@ -2378,12 +2521,12 @@
 			    \end{enumerate}
 			        
 		        \paragraph{}
-	            \large Certificate
+	            Certificate
 			    \begin{enumerate}
     		        \item \textbf{cert} : Variable que permite almacenar el valor del certificado autentificador.
     		        \begin{enumerate}
     		            \item Tipo de dato: \textbf{byte []}.
-    		            \item Longitud: \textbf{32 bytes}.
+    		            \item Longitud: \textbf{40 bytes}.
     		        \end{enumerate}
     		        \item \textbf{user} : Variable que permite almacenar el usuario actual que se está utilizando.
     		        \begin{enumerate}
@@ -2399,7 +2542,7 @@
 			    \end{enumerate}
 			    
 			    \paragraph{}
-	            \large Chaffing
+	            Chaffing
 			    \begin{enumerate}
     		        \item \textbf{patternChaffing} : Variable que permite almacenar el patrón de \textit{chaffing}.
     		        \begin{enumerate}
@@ -2421,6 +2564,7 @@
     		            \item doChaffing() : método que realiza el chaffing en la petición HTTP.
     		        \end{enumerate}
 			    \end{enumerate}
+
 
             \subsection{Diagramas de secuencia.}       
             \begin{comment}   
@@ -2444,11 +2588,17 @@
     				\end{center}
     			\end{figure}
     			
+			    \paragraph{Descripción:}
+			    como primeros dos pasos de la secuencia para iniciar sesión en la extensión, el usuario ingresa su nombre de usuario y su contraseña, para después iniciar sesión en la extensión. Una vez que el usuario ha dado la orden de iniciar sesión, la extensión valida el nombre de usuario y la contraseña, retornando un mensaje en caso de que alguno de estos dos valores esté mal. 
+    			
     			\begin{figure}[H]
     				\begin{center}    		    	\includegraphics[width=15cm]{./imagenes/Desarrollo/Prototipo_2/P2_SD_UC2.png}
     				\caption[Diagrama de secuencia 2 del Prototipo II]{Diagrama de secuencia del PII\_CU2. Generación del certificado autentificador.}
     				\end{center}
     			\end{figure}
+    			
+    			\paragraph{Descripción:}
+    			Una vez que el usuario ha iniciado sesión, la extensión procede a generar el certificado autentificador. Para ello se obtienen el nombre y la contraseña de usuario para concatenarlos en una única cadena y mandarlos a una función que genere un código HASH (sólo en este prototipo), para después obtener el certificado autentificador.
     			
     			\begin{figure}[H]
     				\begin{center}    		    	\includegraphics[width=15cm]{./imagenes/Desarrollo/Prototipo_2/P2_SD_UC3.png}
@@ -2456,11 +2606,17 @@
     				\end{center}
     			\end{figure}
     			
+    			\paragraph{Descripción:}
+    			Una vez que se ha generado el código autentificador, es necesario almacenarlo en el Storage de la extensión, para ello la extensión abre una nueva entrada en el Storage y almacena el certificado en ella. Finalmente, la extensión retorna un mensaje del estatus del almacenamiento, para que el usuario se entere si fue exitoso o no.
+    			
     			\begin{figure}[H]
     				\begin{center}    		    	\includegraphics[width=15cm]{./imagenes/Desarrollo/Prototipo_2/P2_SD_UC4.png}
     				\caption[Diagrama de secuencia 4 del Prototipo II]{Diagrama de secuencia del PII\_CU4. Generación del chaffing.}
     				\end{center}
     			\end{figure}
+    			
+    			\paragraph{Descripción:}
+    			Cuando un usuario haga una petición, el navegador enviará dicha petición al servidor correspondiente. Sin embargo, en este momento es cuando la extensión interviene para realizar los pasos necesarios para generar el chaffing. Primeramente, la extensión intercepta la petición para elegir el encabezado a inyectar. Una vez que ha elegido el encabezado, busca obtener el certificado autentificador del Storage, para con base en él, crear el patrón de chaffing con el que se realizará la etapa de chaffing. Finalmente, la extensión agrega el patrón generado a una nueva entrada en el encabezado HTTP interceptado y le manda la señal al navegador para que éste la mande nuevamente. 
     			
     			\begin{figure}[H]
     				\begin{center}    		    	\includegraphics[width=15cm]{./imagenes/Desarrollo/Prototipo_2/P2_SD_UC5.png}
@@ -2468,6 +2624,8 @@
     				\end{center}
     			\end{figure}
     		
+    		    \paragraph{Descripción:}
+    		    El navegador una vez que recibe la señal de liberar petición, simplemente tiene que ejecutar su funcionamiento de 'realizar petición' para que ésta salga a red y busque llegar a su destino.
     		
     		\subsection{Diagrama de actividades}
     		    \begin{figure}[H]
@@ -2483,18 +2641,27 @@
             	El otro camino a seguir por el usuario es realizar una búsqueda en el navegador, en la cual el navegador realiza la petición y la extensión recibe la misma. Modificándola siempre y cuando se encuentre un certificado guardado en \textit{Storage}. Si este proceso es válido, se genera el proceso de Chaffing y se libera la petición. El servidor se encarga de mandar dicha petición almacenada y en donde el analizador \textit{Wireshark} se encarga de capturar la petición para mostrarla.
 			
     		\subsection{Interfaz de usuario.}
-    
+                
+                \subsubsection{Pantalla Inicial.}
+                Esta pantalla es la primer vista que el usuario tiene el sistema. Aparece al darle click a la extensión en su icono correspondiente. En ella, el usuario puede activar y desactivar la extensión, tal y como en el Prototipo I, pero además, tiene un botón llamado 'Iniciar Sesión', el cual al darle click abrirá la pantalla 'Tab de la extensión' (Figura 4.26). La Figura 4.25, muestra como se ve la pantalla.
+                
     		    \begin{figure}[H]
     				\begin{center}	\includegraphics[width=9cm]{./imagenes/Desarrollo/Prototipo_2/UI_inicio.PNG}
     					\caption{Pantalla inicial.}
     				\end{center}
     			\end{figure}
+    			
+    			\subsubsection{Tab de la extensión.}
+    			Esta pantalla es la interfaz que se le brinda al usuario para que inicie sesión y obtenga su certificado autentificador. La Figura 4.26 muestra la pantalla. En ella se aprecian únicamente dos campos para introducir texto ('Ingrese su email' y 'Ingrese su contraseña'), y un botón llamado 'Iniciar Sesión'.
     			  
     		    \begin{figure}[H]
     				\begin{center}	\includegraphics[width=15cm]{./imagenes/Desarrollo/Prototipo_2/UI_webpage.PNG}
     					\caption{Tab de la extensión. Permite inicio de sesión}
     				\end{center}
     			\end{figure}
+    			
+    			\subsubsection{Mensajes de estado.}
+    			Los mensajes de estado, son mensajes que notifican al usuario errores, éxitos o problemas que se presentan al momento de realizar una acción en la extensión. La Figura 4.27 muestra el mensaje que se muestra el usuario tras haber guardado el certificado autentificador con éxito en el Storage de la extensión. La Figura 4.28 notifica al usuario que existió un error al querer guardar el certificado en el Storage de la extensión. Finalmente, la Figura 4.29, muestra que hubo un problema al querer obtener el certificado del Storage de la extensión. 
     			
     			\begin{figure}[H]
     				\begin{center}	\includegraphics[width=10cm]{./imagenes/Desarrollo/Prototipo_2/UI_certSavedInStorage.jpeg}
@@ -2538,7 +2705,7 @@
         \section{Prototipo I.}
             Para verificar el funcionamiento de este primer prototipo, precederemos a habilitar la extensión y realizar distintas peticiones para verificar que la extensión bloquee la salida de la petición y la imprima en otra pestaña del navegador.
             
-            Como primera prueba, se desactivará la extensión para mostrar que se puede utilizar el navegador de manera común.
+            Como primera prueba, se desactivará la extensión para mostrar que se puede utilizar el navegador de manera común. Las Figuras 5.1 y 5.2, ejemplifican lo anterior.
             
             \begin{figure}[H]
         		\begin{center}	\includegraphics[width=13cm]{./imagenes/Pruebas/Prototipo_1/P_desactivado1.jpeg}
@@ -2552,7 +2719,7 @@
         		\end{center}
         	\end{figure}
         	
-        	Una vez activada la extensión, la misma empezará a bloquear las peticiones que se hagan a través del navegador \textit{Google Chrome}. Sea cual sea la petición, la extensión la bloqueará.
+        	Una vez activada la extensión, la misma empezará a bloquear las peticiones que se hagan a través del navegador \textit{Google Chrome}, como se muestra en las Figuras 5.3 y 5.5. Sea cual sea la petición, la extensión la bloqueará.
         	
         	\begin{figure}[H]
         		\begin{center}	\includegraphics[width=13cm]{./imagenes/Pruebas/Prototipo_1/P_activado1.jpeg}
@@ -2560,7 +2727,7 @@
         		\end{center}
         	\end{figure}
         	
-        	La petición bloqueada será mostrada en una nueva pestaña del navegador donde se muestra todo el encabezado. Se trabajara sobre este encabezado la inyección del codigo autentificador en el Prototipo II.
+        	La petición bloqueada será mostrada en una nueva pestaña del navegador, como se aprecia en las Figuras 5.4 y 5.6, donde se muestra todo el encabezado. Se realizará sobre este encabezado la inyección del codigo autentificador en el Prototipo II.
         	
         	\begin{figure}[H]
         		\begin{center}	\includegraphics[width=13cm]{./imagenes/Pruebas/Prototipo_1/P_activado1_mostrarPeticion.jpeg}
@@ -2584,7 +2751,7 @@
         	
     
         \section{Prototipo II.}
-            Para verificar que nuestro prototipo funciona correctamente procedemos a mostrar una prueba del funcionamiento del mismo.\\ Primeramente se necesita iniciar sesión en la extensión, esto con el fin de obtener un certificado y que el mismo se guarde en el storage de Google Chrome. En la prueba iniciamos sesión con los siguientes datos: 
+            Para verificar que nuestro prototipo funciona correctamente procedemos a mostrar una prueba del funcionamiento del mismo.\\ Primeramente se necesita iniciar sesión en la extensión, esto con el fin de obtener un certificado y que el mismo se guarde en el storage de Google Chrome. En la prueba iniciamos sesión con los siguientes datos (Figura 5.7): 
     
             \begin{itemize}
                 \item \textbf{usuario}: usuarioPrueba
@@ -2600,7 +2767,7 @@
         	\begin{center}
         	    \textbf{3cc09605f15d36fcd7b14cc7795921fe}
         	\end{center}
-        	Como siguiente paso, este código hash se guarda en el \textit{Storage} de Google Chrome y se da aviso del estado de este procedimiento.
+        	Como siguiente paso, este código hash se guarda en el \textit{Storage} de Google Chrome y se da aviso del estado de este procedimiento (Figura 5.8).
 	
         	\begin{figure}[H]
         		\begin{center}	\includegraphics[width=9cm]{./imagenes/Pruebas/Prototipo_2/certificadoStorage.PNG}
@@ -2608,7 +2775,7 @@
         		\end{center}
         	\end{figure}
 	
-        	Una vez que el certificado se haya guardado con éxito en el \textit{Storage} de Google Chrome, realizamos una búsqueda en Google Chrome, para esta prueba se hizo una petición a un servidor local, montado en \textit{Apache Tomcat} previamente instalado en otra maquina dentro de una red LAN \footnote{Una red de área local o LAN (Local Area Network) es una red de computadoras que abarca un área reducida a una casa, un departamento o un edificio.}. Esta petición será bloqueada por la extensión para inyectar el codigo con \textit{Chaffing} en el protocolo HTTP en el apartado de \textit{headers}.
+        	Una vez que el certificado se haya guardado con éxito en el \textit{Storage} de Google Chrome, realizamos una búsqueda en Google Chrome, para esta prueba se hizo una petición a un servidor local, montado en \textit{Apache Tomcat} previamente instalado en otra maquina dentro de una red LAN \footnote{Una red de área local o LAN (Local Area Network) es una red de computadoras que abarca un área reducida a una casa, un departamento o un edificio.}. Esta petición será bloqueada por la extensión, como en la Figura 5.9, para inyectar el codigo con \textit{Chaffing} en el protocolo HTTP en el apartado de \textit{headers}.
 	
             \begin{figure}[H]
         		\begin{center}	\includegraphics[width=10cm]{./imagenes/Pruebas/Prototipo_2/pageBlocked.jpeg}
@@ -2616,7 +2783,7 @@
         		\end{center}
         	\end{figure}
     
-            Una vez inyectado el certificado autentificador, se envía la petición con el protocolo modificado al servidor destino. Para verificar que a través de la red se envía la petición modificada se hace uso del analizador de paquetes \hyperref[WiresharkDefinition]{Wireshark}.\\ La siguiente imagen muestra la petición enviada al servidor, donde en el apartado de \textit{Hypertext Transfer Protocol} se observa que en \textbf{Accept} está inyectado el certificado con \textit{Chaffing} y en \textbf{Pattern} está inyectado el patrón realizar el \textit{winnowing} en el servidor (en el siguiente prototipo).
+            Una vez inyectado el certificado autentificador, se envía la petición con el protocolo modificado al servidor destino. Para verificar que a través de la red se envía la petición modificada se hace uso del analizador de paquetes \hyperref[WiresharkDefinition]{Wireshark}.\\ La Figura 5.10, muestra la petición enviada al servidor, donde en el apartado de \textit{Hypertext Transfer Protocol} se observa que en \textbf{Accept} está inyectado el certificado con \textit{Chaffing} y en \textbf{Pattern} está inyectado el patrón realizar el \textit{winnowing} en el servidor (en el siguiente prototipo).
     
             \begin{figure}[H]
         		\begin{center}	\includegraphics[width=13cm]{./imagenes/Pruebas/Prototipo_2/wiresharkFull.jpeg}
@@ -2624,87 +2791,122 @@
         		\end{center}
         	\end{figure}
 	
-        	Para un análisis más específico, se muestra la petición en una herramienta que proporciona wireshark, \textit{Show Packet Bytes...}, la cual muestra el encabezado completo, teniendo una herramienta para seleccionar la codificación del texto. Nosotros elegimos la codificación ISO8859-1, ya que en ésta nos permite ver de manera legible el encabezado.
+        	Para un análisis más específico, se muestra la petición en una herramienta que proporciona wireshark, \textit{Show Packet Bytes...}, la cual muestra el encabezado completo, teniendo una herramienta para seleccionar la codificación del texto (Figura 5.11). Nosotros elegimos la codificación ISO8859-1, ya que en ésta nos permite ver de manera legible el encabezado.
 	
         	\begin{figure}[H]
         		\begin{center}	\includegraphics[width=13cm]{./imagenes/Pruebas/Prototipo_2/wiresharkFrame_ISO_header.jpeg}
         			\caption{Análisis de petición en \textit{Show Packet Bytes...}}
         		\end{center}
         	\end{figure}
+        	
+        	
 	\newpage
-	\chapter{\textcolor{azulescom}{Conclusión}}
-	Al terminar este trabajo nos pudimos percatar de todas las nuevas tecnologías que existen y de lo complejo que es ocultar un mensaje no reconocido en las cabeceras HTTP de las peticiones que viajan a través de internet, así como de la complejidad que este Trabajo terminal implica ya que al diseñar la arquitectura completa del sistema analizamos cada uno de los bloques que lo iba a conformar y lo complejo que era cada uno de ellos, pero también aprendimos mucho acerca de cuestiones de seguridad en las extensiones de Google Chrome, por otro lado investigamos mucho sobre mecanismos de autentificación y la manera en la que ellos trabajan sobre la red buscando ser lo más seguro posible para todos los usuarios y así mismo confirmamos la necesidad de un método que nos proporcione confidencialidad como lo es Chaffing and Winnowing.
+	\chapter{\textcolor{azulescom}{Avances y trabajo por hacer.}}
+	    Como segunda parte de este Trabajo Terminal se realizará el análisis y desarrollo de los prototipos 3 y 4 que representan dos de los bloques más importantes de este trabajo terminal, por el lado del prototipo 3 se implementara un servicio web que implementará una API con el propósito de realizar el Winnowing de la petición HTTP modificada por lo que implica una modificación al servidor Apache para que reconozca este tipo de peticiones, por otro lado se implementará un método de cifrado asimétrico mediante RSA para comunicar el patrón resultante de Chaffing de manera segura entre la extensión y el servicio web, de esta manera buscamos autentificar al usuario de manera rápida, eficiente y sencilla para los usuarios. Por otro lado el prototipo 4 consiste en la implementación de un servidor autentificador que será el encargado de crear y  almacenar cada uno de los certificados correspondientes para cada usuario con el fin de que éstos los puedan obtener fácilmente en su extensión logrando que se puedan iniciar múltiples sesiones en diferentes extensiones, siempre cuidando que este certificado se encuentre lo más seguro posible.
+	    Como podemos analizar aún nos falta una gran parte de este extenso trabajo pero confiamos en nuestro equipo y en nuestra habilidad para poder resolver todas las problemáticas que se nos presenten en el camino.
+	\newpage
 	
-	A lo largo del desarrollo de los dos primeros prototipos tuvimos muchas dificultades sobre como íbamos a enviar la petición HTTP modificada con el código autentificador y su respectivo patrón sin lograr que cualquier usuario pueda identificarlos fácilmente por lo que realizamos varios cambios a la idea principal de nuestro algoritmo y resultó uno mucho más seguro y mas confidencial de lo que esperábamos. Estamos consientes de que llevamos implementada una pequeña parte de todo el sistema pero tenemos claro cómo lo vamos a realizar y la complejidad que este representa.
-	\chapter{\textcolor{azulescom}{Trabajo a futuro (TT2)}}
-	Como segunda parte de este Trabajo Terminal se realizará el análisis y desarrollo de los prototipos 3 y 4 que representan dos de los bloques más importantes de este trabajo terminal, por el lado del prototipo 3 se implementara un servicio web que implementará una API con el propósito de realizar el Winnowing de la petición HTTP modificada por lo que implica una modificación al servidor Apache para que reconozca este tipo de peticiones, por otro lado se implementará un método de cifrado asimétrico mediante RSA para comunicar el patrón resultante de Chaffing de manera segura entre la extensión y el servicio web, de esta manera buscamos autentificar al usuario de manera rápida, eficiente y sencilla para los usuarios. Por otro lado el prototipo 4 consiste en la implementación de un servidor autentificador que será el encargado de crear y  almacenar cada uno de los certificados correspondientes para cada usuario con el fin de que éstos los puedan obtener fácilmente en su extensión logrando que se puedan iniciar múltiples sesiones en diferentes extensiones, siempre cuidando que este certificado se encuentre lo más seguro posible.
-	Como podemos analizar todavía nos falta una gran parte de este extenso trabajo pero confiamos en nuestro equipo y en nuestra habilidad para poder resolver todas las problemáticas que se nos presenten en el camino.
-	\newpage
+	\begin{comment}
+    	Al terminar este trabajo nos pudimos percatar de todas las nuevas tecnologías que existen y de lo complejo que es ocultar un mensaje no reconocido en las cabeceras HTTP de las peticiones que viajan a través de internet, así como de la complejidad que este Trabajo terminal implica ya que al diseñar la arquitectura completa del sistema analizamos cada uno de los bloques que lo iba a conformar y lo complejo que era cada uno de ellos, pero también aprendimos mucho acerca de cuestiones de seguridad en las extensiones de Google Chrome, por otro lado investigamos mucho sobre mecanismos de autentificación y la manera en la que ellos trabajan sobre la red buscando ser lo más seguro posible para todos los usuarios y así mismo confirmamos la necesidad de un método que nos proporcione confidencialidad como lo es Chaffing and Winnowing.
+    	
+    	A lo largo del desarrollo de los dos primeros prototipos tuvimos muchas dificultades sobre como íbamos a enviar la petición HTTP modificada con el código autentificador y su respectivo patrón sin lograr que cualquier usuario pueda identificarlos fácilmente por lo que realizamos varios cambios a la idea principal de nuestro algoritmo y resultó uno mucho más seguro y mas confidencial de lo que esperábamos. Estamos consientes de que llevamos implementada una pequeña parte de todo el sistema pero tenemos claro cómo lo vamos a realizar y la complejidad que este representa.
+    	
+    	\chapter{\textcolor{azulescom}{Trabajo a futuro (TT2)}}
+    	Como segunda parte de este Trabajo Terminal se realizará el análisis y desarrollo de los prototipos 3 y 4 que representan dos de los bloques más importantes de este trabajo terminal, por el lado del prototipo 3 se implementara un servicio web que implementará una API con el propósito de realizar el Winnowing de la petición HTTP modificada por lo que implica una modificación al servidor Apache para que reconozca este tipo de peticiones, por otro lado se implementará un método de cifrado asimétrico mediante RSA para comunicar el patrón resultante de Chaffing de manera segura entre la extensión y el servicio web, de esta manera buscamos autentificar al usuario de manera rápida, eficiente y sencilla para los usuarios. Por otro lado el prototipo 4 consiste en la implementación de un servidor autentificador que será el encargado de crear y  almacenar cada uno de los certificados correspondientes para cada usuario con el fin de que éstos los puedan obtener fácilmente en su extensión logrando que se puedan iniciar múltiples sesiones en diferentes extensiones, siempre cuidando que este certificado se encuentre lo más seguro posible.
+    	Como podemos analizar todavía nos falta una gran parte de este extenso trabajo pero confiamos en nuestro equipo y en nuestra habilidad para poder resolver todas las problemáticas que se nos presenten en el camino.
+    	\newpage
+	\end{comment}
     
 	%Para agregar una cita en el documento se usa \cite{refKey}, por automático los ordena conforme se van agregando
 	\newpage
 
     \begin{thebibliography}{20}
-	    \bibitem{ComparisonAuthenticationMethodsResources} A. Komarova y A. Menshchikov, Comparison of Authentication Methods on Web Resources, St. Petersburg, Russia: St. Petersburg National Research University of Information, 2016. 
-		\bibitem{refCriptology}A. Beutelspacher, Cryptology, Washington, D.C.: Mathematical Association of America, 1994.
-		%Cryptology, Albrecht BeutelSpacher
-		%https://books.google.com.mx/books?id=cTyBo6LvvMEC&printsec=frontcover&dq=cryptology&hl=es&sa=X&ved=0ahUKEwjcxLC9lP7gAhVNMqwKHXCBCn4Q6AEIKTAA#v=onepage&q=cryptology&f=false   
-        
-        \bibitem{refRamioAguirre} J. R. Aguirre, Seguridad Informática y Criptografía, Madrid, España: Universidad Politécnica de Madrid, 2006.
-        %Seguridad informática y criptografía
-        \bibitem{refHandBookOfAppliedCryptography} 
-        A. J. Menezes, P. v. Oorschot y S. Vanstone, Handbook of Applied Cryptography, FL, USA: CRC Press, 1996. %Menezes, Van Oorschot y Vanston, Handbook Of Applied Cryptography
-        \bibitem{refSandra} S. D. Santiago, Generacion De Sucesiones Criptograficamente Fuertes, México, Df: Uam , 2005.
-        \bibitem{refCriptografia} A. Maiorano, Criptografia: Tecnicas De Desarrollo Para Profesionales, Buenos Aires, Argentina: Alfaomega, 2009.
-		\bibitem{refJavaScript}
-		Mozzilla,«JavaScript» 22 Abril 2018. [En línea]. Disponble:
-		https://developer.mozilla.org/en-US/docs/Web/JavaScript [Último acceso: 15 Enero 2019].
-		%https://www.dtic.upf.edu/~tnavarrete/fcsig/javascript.pdf
-		\bibitem{refElGranLibro}J. D. Gauchat, El gran libro de HTML5, CSS3 y Javascript, Barcelona: MARCOMBO, S.A., 2012. % https://gutl.jovenclub.cu/wp-content/uploads/2013/10/El+gran+libro+de+HTML5+CSS3+y+Javascrip.pdf
-		\bibitem{refSeguridadWeb} UNAM,«Aspectos Básicos de la Seguridad en Aplicaciones Web,» 19 Abril 2016. [En línea]. Disponble: https://www.seguridad.unam.mx/historico/documento/\\index.html-id=17. [Último acceso: 15 Enero 2019].
+        \bibitem{protocoloHTTP} CCM, «El protocolo HTTP,» [En línea]. Available: https://es.ccm.net/contents/264-el-protocolo-http. [Último acceso: 6 Mayo 2019].
+	
+	    \bibitem{refSeguridadWebAguilar}  
+		A. Aguilera Hernández (2014, abril 25), Sugerencias de Seguridad para Sitios Web, [En línea]. Disponible: https://www.seguridad.unam.mx/historico/documento/index.html-id=1143. [Último acceso: 15 de febrero del 2019].
+	    
+	    \bibitem{refRamioAguirre} 
+        J. R. Aguirre, \textit{Seguridad Informática y Criptografía}, 2da edición, Madrid, España: Universidad Politécnica de Madrid, 2006.
+	    
+	    \bibitem{refRivestSeguridad}
+		M. Bellare y A. Boldyreva, ''The Security of Chaffing and Winnowing'', California, San Diego, 2015. Disponible: http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.\\1.160.4853\&rep=rep1\&type=pdf. [Último acceso: 5 de mayo del 2019].
+	
+		\bibitem{refCriptology} 
+		A. Beutelspacher, \textit{Cryptology}, edición 1994, Washington, Estados Unidos de América: Mathematical Association of America, 1994.
+		
+		\bibitem{refSandra} 
+        S. Díaz Santiago, ''Generacion De Sucesiones Criptográficamente Fuertes'', tesis de Maestría, División de ciencias básicas e ingeniería, UAM, D.F., México, 2005.
+		
 		\bibitem{refRoboIdentidad}
-		UNAM, «Robo de Identidad y Consecuencias Sociales,» 16 Junio 2011. [En línea]. Available: https://www.seguridad.unam.mx/historico/documento/\\index.html-id=16?fbclid=IwAR0u8WAXORvBxZ3H-aMzlBhd-6o7g8ycS88eRu7nY1t1XVtCufhEcQ7hWDs. [Último acceso: 2019 Febrero 15].
-		\bibitem{refSeguridadWebAguilar} Aguilar, A., Hernández, A. 25 de Abril de 2014). Obtenido de Sugerencias de Seguridad para Sitios Web: http://www.seguridad.unam.mx/documento-id=1143
-		\bibitem{refCookies}
-		Fundación Wikimedia, Inc., «Cookie (informática),» 23 abril 2019. [En línea]. Available: https://es.wikipedia.org/wiki/Cookie\_(informatica). [Último acceso: 2019 abril 28].
-		\bibitem{refCookiesPersistentes}
-    	allaboutcookies.org, «¿Para qué se utilizan las cookies permanentes?,» 2019. [En línea]. Available: http://www.allaboutcookies.org/es/galletas/cookies-persistentes-utilizados-para.html. [Último acceso: 2019 abril 28].
-		\bibitem{refTiposdeCookies}
-		S. Juliá, «Qué son las cookies, tipos de cookies y cómo cumplir la ley,» 2019. [En línea]. Available: http://www.gadae.com/blog/que-son-las-cookies-tipos-de-cookies-y-como-cumplir-la-ley/. [Último acceso: 28 abril 2019].
-		\bibitem{refFuncionalidadCookies}
-		Oficina de Seguridad del Internauta, «Entre cookies y privacidad,» 18 julo 2018. [En línea]. Available: https://www.osi.es/es/actualidad/blog/2018/07/18/entre-cookies-y-privacidad. [Último acceso: 28 abril 2019].
-		\bibitem{refCryptography}
-	    Universidad Politécnica de Madrid, «Criptografía,» 2004. [En línea]. Available: http://www.dma.fi.upm.es/recursos/aplicaciones/matema\\tica/\_discreta/web/aritmetica/\_modular/criptografia.html. [Último acceso: 20 abril 2019].
-		\bibitem{refChaffing}   
-    	University of Bath, «Dissertation,» 2007. [En línea]. Available: http://www.cs.bath.ac.uk/~mdv/courses/CM30082/proje\\cts.bho/2007-8/durongdej-r-dissertation-2007-8.pdf. [Último acceso: 28 abril 2019].
-		\bibitem{refRivestSeguridad}
-		The Pennsylvania State University, «Rivest Seguridad,» 2019. [En línea]. Available: http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.\\1.160.4853\&rep=rep1\&type=pdf. [Último acceso: 28 abril 2019].
+		C. C. Espinosa Madrigal (2011, junio 16), Robo de Identidad y Consecuencias Sociales, [En línea]. Disponible: https://www.seguridad.unam.mx/historico/documento/\\index.html-id=16?fbclid=IwAR0u8WAXORvBxZ3H-aMzlBhd-6o7g8ycS88eRu7nY1t1XVtCufhEcQ7hWDs. [Último acceso: 15 de febrero del 2019].
+		
+		\bibitem{refSHA1}
+        T. Fisher (2019), What Is SHA-1 and How Is It Used for Data Verification?, [En línea]. Disponible: https://www.lifewire.com/what-is-sha-1-2626011. [Último acceso: 5 mayo 2019].
+		
+		\bibitem{refElGranLibro} 
+		J. D. Gauchat, \textit{El gran libro de HTML5, CSS3 y Javascript}, 1ra edición, Barcelona, España: MARCOMBO S.A., 2012. 
+		
 		\bibitem{refEncontrarLuegoAdivinar}
-		S.  GOLDWASSER  ANDS. MICALI, “Probabilistic encryption,”Journal  of Computer andSystem Science, Vol. 28, 1984, pp. 270–299.
-		\bibitem{refRivestMIT}
-		R. L. Rivest, «Chaffing and Winnowing: Confidentiality without Encryption,» 18 marzo 1998 . [En línea]. Available: https://people.csail.mit.edu/rivest/Chaffing.txt. [Último acceso: 15 febrero 2018].
-		\bibitem{articuloAxel}
-		Springer International Publishing AG 2018
-        A. Abraham et al. (eds.), Proceedings of the Second International
-        Scientific Conference “Intelligent Information Technologies for Industry” (IITI’17),
-        Advances in Intelligent Systems and Computing 679, DOI 10.1007/978-3-319-68321-8\_11
-        \bibitem{filesystemmozilla}
-        Mozilla. (2019, 19 marzo). FileSystem. Recuperado 29 abril, 2019, de https://developer.mozilla.org/es/docs/Web/API/FileSystem
-        \bibitem{opensslmillones}
-         VeriSign, Inc., «Todo lo que debe saber sobre certificados SSL,» 2019. [En línea]. Available: https://www.verisign.com/es\_LA/website-presence/online/ssl-certificates/index.xhtml. [Último acceso: 28 abril 2019].
-        \bibitem{openssl}
-        GlobalSign, «¿Qué es SSL?,» 2019. [En línea]. Available: https://www.globalsign.com/es/centro-de-informacion-ssl/que-es-ssl/. [Último acceso: 20 abril 2019].
-        \bibitem{refCryptoJs}
-        Google code, «crypto-js,» 2019. [En línea]. Available: https://code.google.com/archive/p/crypto-js/\#MD5. [Último acceso: 20 abril 2019].
-        \bibitem{refWireshark}
-        wireshark, «What is Wireshark?,» 2019. [En línea]. Available: https://www.wireshark.org/docs/wsug\_html\_chunked/Chap\\terIntroduction.html\#ChIntroWhatIs. [Último acceso: 20 abril 2019].
-        \bibitem{refRSA}
-        O. S. OCAÑA, ANÁLISIS, ESTUDIO Y DESARROLLO DE CRIPTOGRAFÍA DE CURVAS ELÍPTICAS, Mexico,DF: UNAM, 2008. Recuperado de: http://www.ptolomeo.unam.mx:8080/xmlui/bitstream/han\\dle/132.248.52.100/10047/Tesis\_Completa.pdf?sequence=1
+		S.  Goldwasser y S. Micali, ''Probabilistic encryption'', \textit{Journal  of Computer and System Science}, vol. 28, no. 4, pp. 270–299, 1984.
+		
+		\bibitem{refCryptoJs}
+        Google code (2019), crypto-js, [En línea]. Disponible: https://code.google.com/archive/p/crypto-js/. [Último acceso: 5 de mayo del 2019].
+		
+		\bibitem{refIBMTRIRIGAYear}
+        IBM Community (2019), TRIRIGA Wiki Home, [En línea]. DIsponible: 	https://www.ibm.com/developerworks/community/wikis\\
+        /home?lang=en\#!/wiki/IBM\%20TRIRIGA1. [Último acceso: 5 mayo 2019].
+        
         \bibitem{refIBMTRIRIGA}
-        Administración de IBM TRIRIGA Application Platform «Autenticación de usuarios mediante el inicio de sesión único,» 2019. [En línea]. Available: https://www.ibm.com/support/knowledgecenter/es/SSHE\\B3\_3.6.0/com.ibm.tap.doc/sso\_topics/t\_ctr\_authenticate.html. [Último acceso: 03 mayo 2019].
-        \bibitem{refIBMTRIRIGAYear}
-        IBM Community «TRIRIGA Wiki Home,» 2019. [En línea]. Available: 	https://www.ibm.com/developerworks/community/wikis\\
-        /home?lang=en\#!/wiki/IBM\%20TRIRIGA1. [Último acceso: 03 mayo 2019].
+        IBM (2019), IBM TRIRIGA Application Platform, [En línea]. Disponible: https://www.ibm.com/support/knowledgecenter/es/SSHEB3\_3.6.0/co m.ibm.tap.doc/sso\_topics/t\_ctr\_authenticate.html. [Último acceso: 5 mayo 2019].
+		
+	    \bibitem{refFuncionalidadCookies}
+		Jose Luis (2018, julio 18), Entre cookies y privacidad,  Oficina de Seguridad del Internauta, [En línea]. Disponible: https://www.osi.es/es/actualidad/blog/2018/07/18/entre-cookies-y-privacidad. [Último acceso: 5 de mayo del 2019].
+		
+		\bibitem{ComparisonAuthenticationMethodsResources} 
+	    A. Komarova y A. Menshchikov, ''Comparison of Authentication Methods on Web Resources'' en Proceedings of the Second International Scientific Conference ''Intelligent Information Technologies for Industry'', Varna, Bulgaria, 14–16 Septiembre, 2017, pp 106-120.
+	    
+	    \bibitem{refAONT}
+    	J. Larkin, ''Implementation of Chaffing and Winnowing: providing confidentiality without encryption'', tesis de Licenciatura en Ciencias de la Computación, University of Bath Bath, Inglaterra, 2006. [En línea]. Disponible: 
+    	https://pdfs.semanticscholar.org/5520/1a43a747f4a3fb554f241c7b7bc76 36b4a07.pdf. [Último acceso: 5 de mayo del 2019].
+		
+		\bibitem{refCriptografia} 
+        A. Maiorano, \textit{Criptografia: Tecnicas De Desarrollo Para Profesionales}, 1ra edición, D.F., México: Alfaomega, 2009.
+		
+		\bibitem{refChaffingVsEsteganografia} 
+    	A. Maurya1, P. Kumar Saini y N. Goel, ''Chaffing and Winnowing without using steganography and encryption technique'', \textit{International Journal of Information Technology and Knowledge Management}, vol. 4, no. 4, pp 515-517, Diciembre, 2011
+		
+		\bibitem{refHandBookOfAppliedCryptography} 
+        A. J. Menezes, P. v. Oorschot y S. Vanstone, \textit{Handbook of Applied Cryptography}, 1ra edición, Florida, Estados Unidos de América: CRC Press, 1996.
+		
+		\bibitem{refJavaScript} 
+		Mozilla (2019, mayo 2), JavaScript. [En línea]. Disponble:
+		https://developer.mozilla.org/en-US/docs/Web/JavaScript [Último acceso: 5 de mayo del 2019].
+		
+		\bibitem{filesystemmozilla}
+        Mozilla, (2019, 19 marzo), FileSystem, [En línea]. Disponible: https://developer.mozilla.org/es/docs/Web/API/FileSystem. [Último acceso: 5 de mayo del 2019].
+		
+		\bibitem{Pressman} 
+		R. S. Pressman, \textit{Ingeniería del Software. Un enfoque práctico}, 7ma edición, D.F, México: McGraw-Hill, 2010.
+		
+		\bibitem{refCryptohraphyWithoutEncryption}
+		R. L. Rivest, ''Chaffing and Winnowing: Confidentiality without Encryption'', Laboratorio de ciencias de la computación del MIT, Massachusetts, Estados Unidos de América, 1998.
+		
+		\bibitem{refSeguridadWeb} 
+		A. Romero Mier y Terán y M. A. Vasquéz Martínez (2016, abril 19), Aspectos Básicos de la Seguridad en Aplicaciones Web. [En línea]. Disponble: https://www.seguridad.unam.mx/historico/documento/\\index.html-id=17. [Último acceso: 5 de mayo del 2019].
+        
+        \bibitem{refCryptography}
+	    Universidad Politécnica de Madrid (2004), Criptografía, [En línea]. Disponible: http://www.dma.fi.upm.es/recursos/aplicaciones/matematica\_ discreta/web/aritmetica\_modular/criptografia.html. [Último acceso: 5 de mayo del 2019].
+	    
+	    \bibitem{opensslmillones}
+        VeriSign Inc. (2019), Todo lo que debe saber sobre certificados SSL, [En línea]. Disponible: https://www.verisign.com/es\_LA/website-presence/online/ssl-certificates/index.xhtml. [Último acceso: 5 de mayo del 2019].
+        
+        \bibitem{refWireshark}
+        Wireshark (2019), What is Wireshark?, [En línea]. Disponible: https://www.wireshark.org/docs/wsug\_html\_chunked/Chap\\terIntroduction.html\#ChIntroWhatIs. [Último acceso: 20 abril 2019].
+        
+        \bibitem{refKerberos}
+        Kerberos (2019), Descripción del Kerberos un servicio de autenticación para los sistemas de red abierta, [En línea]. Disponible: https://www.cisco.com/c/es\_mx/support/docs/security-vpn/kerberos/16087-1.html\#whatisit
+        
 	\end{thebibliography}	
 
 \end{document}
