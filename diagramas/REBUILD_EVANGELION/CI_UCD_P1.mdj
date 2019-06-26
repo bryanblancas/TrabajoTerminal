@@ -870,7 +870,7 @@
 											"top": 547.5,
 											"width": 265,
 											"height": 13,
-											"text": "CI_CU9. Generación de Chaffing"
+											"text": "CI_CU8. Generación de Chaffing"
 										},
 										{
 											"_type": "LabelView",
@@ -3898,7 +3898,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFqUH4r8rOEw/c="
 					},
-					"name": "CI_CU9. Generación de Chaffing",
+					"name": "CI_CU8. Generación de Chaffing",
 					"ownedElements": [
 						{
 							"_type": "UMLInclude",
