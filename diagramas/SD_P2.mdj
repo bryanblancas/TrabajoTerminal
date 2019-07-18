@@ -62,7 +62,7 @@
 													},
 													"font": "Arial;13;0",
 													"left": 102.97900390625,
-													"top": 21,
+													"top": 13,
 													"width": 75.42626953125,
 													"height": 13,
 													"text": "P2_SD_UC1"
@@ -75,7 +75,7 @@
 													},
 													"font": "Arial;13;1",
 													"left": 37,
-													"top": 21,
+													"top": 13,
 													"width": 60.97900390625,
 													"height": 13,
 													"text": "interaction"
@@ -83,7 +83,7 @@
 											],
 											"font": "Arial;13;0",
 											"left": 32,
-											"top": 16,
+											"top": 8,
 											"width": 601,
 											"height": 425,
 											"nameLabel": {
@@ -2127,7 +2127,8 @@
 							"_parent": {
 								"$ref": "AAAAAAFqf6DHxjH57js="
 							},
-							"name": "Role1"
+							"name": "Role1",
+							"type": ""
 						},
 						{
 							"_type": "UMLAttribute",
@@ -2135,7 +2136,8 @@
 							"_parent": {
 								"$ref": "AAAAAAFqf6DHxjH57js="
 							},
-							"name": "Role2"
+							"name": "Role2",
+							"type": ""
 						}
 					]
 				},
@@ -2184,7 +2186,7 @@
 													"top": 5,
 													"width": 75.42626953125,
 													"height": 13,
-													"text": "SD_P2_UC3"
+													"text": "P2_SD_UC3"
 												},
 												{
 													"_type": "LabelView",
@@ -2859,7 +2861,8 @@
 							"_parent": {
 								"$ref": "AAAAAAFqgJcs/WjLQnI="
 							},
-							"name": "Role1"
+							"name": "Role1",
+							"type": ""
 						},
 						{
 							"_type": "UMLAttribute",
@@ -2867,7 +2870,8 @@
 							"_parent": {
 								"$ref": "AAAAAAFqgJcs/WjLQnI="
 							},
-							"name": "Role2"
+							"name": "Role2",
+							"type": ""
 						}
 					]
 				},
@@ -2916,7 +2920,7 @@
 													"top": 10,
 													"width": 75.42626953125,
 													"height": 13,
-													"text": "SD_P2_UC4"
+													"text": "P2_SD_UC4"
 												},
 												{
 													"_type": "LabelView",
@@ -4216,7 +4220,8 @@
 							"_parent": {
 								"$ref": "AAAAAAFqgJ3tCmoCFqU="
 							},
-							"name": "Role1"
+							"name": "Role1",
+							"type": ""
 						},
 						{
 							"_type": "UMLAttribute",
@@ -4224,7 +4229,8 @@
 							"_parent": {
 								"$ref": "AAAAAAFqgJ3tCmoCFqU="
 							},
-							"name": "Role2"
+							"name": "Role2",
+							"type": ""
 						},
 						{
 							"_type": "UMLAttribute",
@@ -4232,7 +4238,8 @@
 							"_parent": {
 								"$ref": "AAAAAAFqgJ3tCmoCFqU="
 							},
-							"name": "Role3"
+							"name": "Role3",
+							"type": ""
 						}
 					]
 				},
@@ -4959,7 +4966,8 @@
 							"_parent": {
 								"$ref": "AAAAAAFqgKUJmWuh6kw="
 							},
-							"name": "Role1"
+							"name": "Role1",
+							"type": ""
 						},
 						{
 							"_type": "UMLAttribute",
@@ -4967,7 +4975,8 @@
 							"_parent": {
 								"$ref": "AAAAAAFqgKUJmWuh6kw="
 							},
-							"name": "Role2"
+							"name": "Role2",
+							"type": ""
 						},
 						{
 							"_type": "UMLAttribute",
@@ -4975,7 +4984,8 @@
 							"_parent": {
 								"$ref": "AAAAAAFqgKUJmWuh6kw="
 							},
-							"name": "Role3"
+							"name": "Role3",
+							"type": ""
 						}
 					]
 				}
