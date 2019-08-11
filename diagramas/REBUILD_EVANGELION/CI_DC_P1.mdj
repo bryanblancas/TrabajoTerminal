@@ -2617,7 +2617,7 @@
 											"font": "Arial;13;1",
 											"left": 501,
 											"top": 719,
-											"width": 119.58984375,
+											"width": 121.01171875,
 											"height": 13,
 											"text": "Certificate"
 										},
@@ -2652,7 +2652,7 @@
 									"font": "Arial;13;0",
 									"left": 496,
 									"top": 712,
-									"width": 129.58984375,
+									"width": 131.01171875,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAFqUJny7IExIk4="
@@ -2689,7 +2689,7 @@
 											"font": "Arial;13;0",
 											"left": 501,
 											"top": 742,
-											"width": 119.58984375,
+											"width": 121.01171875,
 											"height": 13,
 											"text": "-byteArray cert",
 											"horizontalAlignment": 0
@@ -2706,7 +2706,7 @@
 											"font": "Arial;13;0",
 											"left": 501,
 											"top": 757,
-											"width": 119.58984375,
+											"width": 121.01171875,
 											"height": 13,
 											"text": "-User user",
 											"horizontalAlignment": 0
@@ -2715,7 +2715,7 @@
 									"font": "Arial;13;0",
 									"left": 496,
 									"top": 737,
-									"width": 129.58984375,
+									"width": 131.01171875,
 									"height": 38
 								},
 								{
@@ -2740,7 +2740,7 @@
 											"font": "Arial;13;0",
 											"left": 501,
 											"top": 780,
-											"width": 119.58984375,
+											"width": 121.01171875,
 											"height": 13,
 											"text": "+int getLength()",
 											"horizontalAlignment": 0
@@ -2757,9 +2757,9 @@
 											"font": "Arial;13;0",
 											"left": 501,
 											"top": 795,
-											"width": 119.58984375,
+											"width": 121.01171875,
 											"height": 13,
-											"text": "+string getCert()",
+											"text": "+Certificate getCert()",
 											"horizontalAlignment": 0
 										},
 										{
@@ -2774,7 +2774,7 @@
 											"font": "Arial;13;0",
 											"left": 501,
 											"top": 810,
-											"width": 119.58984375,
+											"width": 121.01171875,
 											"height": 13,
 											"text": "+void generateCert()",
 											"horizontalAlignment": 0
@@ -2783,7 +2783,7 @@
 									"font": "Arial;13;0",
 									"left": 496,
 									"top": 775,
-									"width": 129.58984375,
+									"width": 131.01171875,
 									"height": 53
 								},
 								{
@@ -2826,7 +2826,7 @@
 							"containerChangeable": true,
 							"left": 496,
 							"top": 712,
-							"width": 129.58984375,
+							"width": 131.01171875,
 							"height": 116,
 							"nameCompartment": {
 								"$ref": "AAAAAAFqUJny7IEwllw="
@@ -3638,7 +3638,7 @@
 										"$ref": "AAAAAAFqUKGBQKmdVOA="
 									},
 									"font": "Arial;13;0",
-									"left": 537,
+									"left": 538,
 									"top": 674,
 									"width": 65.3935546875,
 									"height": 13,
@@ -3661,7 +3661,7 @@
 									},
 									"visible": null,
 									"font": "Arial;13;0",
-									"left": 584,
+									"left": 585,
 									"top": 673,
 									"height": 13,
 									"alpha": 1.5707963267948966,
@@ -3682,7 +3682,7 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 540,
+									"left": 541,
 									"top": 677,
 									"height": 13,
 									"alpha": -1.5707963267948966,
@@ -3704,7 +3704,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": 570,
-									"top": 673,
+									"top": 672,
 									"height": 13,
 									"alpha": 0.5235987755982988,
 									"distance": 30,
@@ -3724,7 +3724,7 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 583,
+									"left": 584,
 									"top": 674,
 									"height": 13,
 									"alpha": 0.7853981633974483,
@@ -3745,7 +3745,7 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 542,
+									"left": 543,
 									"top": 670,
 									"height": 13,
 									"alpha": -0.5235987755982988,
@@ -3766,7 +3766,7 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 570,
+									"left": 571,
 									"top": 678,
 									"height": 13,
 									"alpha": -0.5235987755982988,
@@ -3786,8 +3786,8 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 583,
-									"top": 675,
+									"left": 584,
+									"top": 674,
 									"height": 13,
 									"alpha": -0.7853981633974483,
 									"distance": 40,
@@ -3806,7 +3806,7 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 543,
+									"left": 544,
 									"top": 684,
 									"height": 13,
 									"alpha": 0.5235987755982988,
@@ -3852,7 +3852,7 @@
 								"$ref": "AAAAAAFqUJ/3V6BUQVk="
 							},
 							"lineStyle": 1,
-							"points": "554:654;557:711",
+							"points": "554:654;558:711",
 							"showVisibility": true,
 							"nameLabel": {
 								"$ref": "AAAAAAFqUKGBQamiJ+o="
@@ -4289,7 +4289,7 @@
 									"_parent": {
 										"$ref": "AAAAAAFqUJny64EtqKw="
 									},
-									"name": "string getCert"
+									"name": "Certificate getCert"
 								},
 								{
 									"_type": "UMLOperation",
