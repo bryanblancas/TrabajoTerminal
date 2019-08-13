@@ -36,7 +36,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFqUH4r8rOEw/c="
 					},
-					"name": "UseCaseDiagram1",
+					"name": "CI_P1",
 					"ownedViews": [
 						{
 							"_type": "RectangleView",
@@ -273,7 +273,7 @@
 											"top": 174.5,
 											"width": 250,
 											"height": 13,
-											"text": "PII_CU1. Inicio de sesión en la extensión"
+											"text": "CI_CU5. Inicio de sesión en la extensión"
 										},
 										{
 											"_type": "LabelView",
@@ -306,7 +306,7 @@
 									"font": "Arial;13;0",
 									"left": 614.5,
 									"top": 167.5,
-									"width": 261.41162109375,
+									"width": 260,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAFqUH6EI7O3Cpg="
@@ -472,7 +472,7 @@
 											"top": 251.5,
 											"width": 312,
 											"height": 13,
-											"text": "PII_CU2. Generación del certificado autentificador"
+											"text": "CI_CU6. Generación del certificado autentificador"
 										},
 										{
 											"_type": "LabelView",
@@ -671,7 +671,7 @@
 											"top": 342.5,
 											"width": 344,
 											"height": 13,
-											"text": "PII_CU3.  Almacenamiento del certificado autentificador"
+											"text": "CI_CU7.  Almacenamiento del certificado autentificador"
 										},
 										{
 											"_type": "LabelView",
@@ -704,7 +704,7 @@
 									"font": "Arial;13;0",
 									"left": 834,
 									"top": 335.5,
-									"width": 355.3125,
+									"width": 354,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAFqUIDnurRlj4U="
@@ -870,7 +870,7 @@
 											"top": 547.5,
 											"width": 265,
 											"height": 13,
-											"text": "PII_CU4. Generación de Chaffing"
+											"text": "CI_CU9. Generación de Chaffing"
 										},
 										{
 											"_type": "LabelView",
@@ -1069,7 +1069,7 @@
 											"top": 427.5,
 											"width": 194,
 											"height": 13,
-											"text": "PII_CU5. Liberación de Petición"
+											"text": "CI_CU9. Liberación de Petición"
 										},
 										{
 											"_type": "LabelView",
@@ -1102,7 +1102,7 @@
 									"font": "Arial;13;0",
 									"left": 914.5,
 									"top": 420.5,
-									"width": 205.05078125,
+									"width": 204,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAFqUIIToLT4vZA="
@@ -1731,9 +1731,9 @@
 											"font": "Arial;13;1",
 											"left": 479.5,
 											"top": 547.5,
-											"width": 155,
+											"width": 156,
 											"height": 13,
-											"text": "PI_CU1. Realizar petición"
+											"text": "CI_CU1. Realizar petición"
 										},
 										{
 											"_type": "LabelView",
@@ -1766,7 +1766,7 @@
 									"font": "Arial;13;0",
 									"left": 474.5,
 									"top": 540.5,
-									"width": 166.05078125,
+									"width": 166.76806640625,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAFqUJr5S8S/T/w="
@@ -1861,7 +1861,7 @@
 							"containerChangeable": true,
 							"left": 440,
 							"top": 536,
-							"width": 234,
+							"width": 235,
 							"height": 35,
 							"nameCompartment": {
 								"$ref": "AAAAAAFqUJr5S8S+j3Y="
@@ -1925,9 +1925,9 @@
 											"font": "Arial;13;1",
 											"left": 467.5,
 											"top": 435.5,
-											"width": 173,
+											"width": 174,
 											"height": 13,
-											"text": "PI_CU4. Interceptar Petición"
+											"text": "CI_CU4. Interceptar Petición"
 										},
 										{
 											"_type": "LabelView",
@@ -1960,7 +1960,7 @@
 									"font": "Arial;13;0",
 									"left": 462.5,
 									"top": 428.5,
-									"width": 184.10986328125,
+									"width": 184.8271484375,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAFqUJudQcUwM7s="
@@ -2060,7 +2060,7 @@
 							"containerChangeable": true,
 							"left": 424,
 							"top": 424,
-							"width": 260,
+							"width": 261,
 							"height": 35,
 							"nameCompartment": {
 								"$ref": "AAAAAAFqUJudQcUvJeU="
@@ -2104,7 +2104,7 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 568,
+									"left": 569,
 									"top": 490,
 									"height": 13,
 									"alpha": 1.5707963267948966,
@@ -2124,7 +2124,7 @@
 										"$ref": "AAAAAAFqUJu2w8V1m9Y="
 									},
 									"font": "Arial;13;0",
-									"left": 559,
+									"left": 560,
 									"top": 487,
 									"width": 55.65625,
 									"height": 13,
@@ -2147,7 +2147,7 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 539,
+									"left": 540,
 									"top": 491,
 									"height": 13,
 									"alpha": -1.5707963267948966,
@@ -2166,7 +2166,7 @@
 								"$ref": "AAAAAAFqUJudQcUuohw="
 							},
 							"lineStyle": 1,
-							"points": "553:459;556:535",
+							"points": "554:459;557:535",
 							"showVisibility": true,
 							"nameLabel": {
 								"$ref": "AAAAAAFqUJu2xMV4IKE="
@@ -2219,9 +2219,9 @@
 											"font": "Arial;13;1",
 											"left": 410.5,
 											"top": 331.5,
-											"width": 168,
+											"width": 169,
 											"height": 13,
-											"text": "PI_CU2. Habilitar extensión"
+											"text": "CI_CU2. Habilitar extensión"
 										},
 										{
 											"_type": "LabelView",
@@ -2254,7 +2254,7 @@
 									"font": "Arial;13;0",
 									"left": 405.5,
 									"top": 324.5,
-									"width": 179.05078125,
+									"width": 179.76806640625,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAFqUJvlucXxpLU="
@@ -2354,7 +2354,7 @@
 							"containerChangeable": true,
 							"left": 368,
 							"top": 320,
-							"width": 253,
+							"width": 254,
 							"height": 35,
 							"nameCompartment": {
 								"$ref": "AAAAAAFqUJvlucXwqwg="
@@ -2398,7 +2398,7 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 509,
+									"left": 511,
 									"top": 390,
 									"height": 13,
 									"alpha": 1.5707963267948966,
@@ -2418,8 +2418,8 @@
 										"$ref": "AAAAAAFqUJwCJsY2sXM="
 									},
 									"font": "Arial;13;0",
-									"left": 544,
-									"top": 383,
+									"left": 545,
+									"top": 382,
 									"width": 55.65625,
 									"height": 13,
 									"alpha": 4.181966624004534,
@@ -2460,7 +2460,7 @@
 								"$ref": "AAAAAAFqUJudQcUuohw="
 							},
 							"lineStyle": 1,
-							"points": "543:423;504:355",
+							"points": "544:423;504:355",
 							"showVisibility": true,
 							"nameLabel": {
 								"$ref": "AAAAAAFqUJwCM8Y5hFE="
@@ -2513,9 +2513,9 @@
 											"font": "Arial;13;1",
 											"left": 415,
 											"top": 123.5,
-											"width": 190,
+											"width": 191,
 											"height": 13,
-											"text": "PI_CU3. Deshabilitar extensión"
+											"text": "CI_CU3. Deshabilitar extensión"
 										},
 										{
 											"_type": "LabelView",
@@ -2548,7 +2548,7 @@
 									"font": "Arial;13;0",
 									"left": 410,
 									"top": 116.5,
-									"width": 201.45166015625,
+									"width": 202.1689453125,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAFqUJwcgcZg5co="
@@ -2648,7 +2648,7 @@
 							"containerChangeable": true,
 							"left": 368,
 							"top": 112,
-							"width": 284,
+							"width": 285,
 							"height": 35,
 							"nameCompartment": {
 								"$ref": "AAAAAAFqUJwcgcZfHBQ="
@@ -2818,7 +2818,7 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 454,
+									"left": 455,
 									"top": 143,
 									"height": 13,
 									"alpha": -0.5235987755982988,
@@ -2838,7 +2838,7 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 444,
+									"left": 445,
 									"top": 134,
 									"height": 13,
 									"alpha": -0.7853981633974483,
@@ -2858,7 +2858,7 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 473,
+									"left": 474,
 									"top": 163,
 									"height": 13,
 									"alpha": 0.5235987755982988,
@@ -2904,7 +2904,7 @@
 								"$ref": "AAAAAAFqUH4+g7OLtRU="
 							},
 							"lineStyle": 1,
-							"points": "250:313;484:147",
+							"points": "250:313;485:147",
 							"showVisibility": true,
 							"nameLabel": {
 								"$ref": "AAAAAAFqUJ1HtciY+BM="
@@ -2961,7 +2961,7 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 382,
+									"left": 383,
 									"top": 502,
 									"height": 13,
 									"alpha": 1.5707963267948966,
@@ -2982,7 +2982,7 @@
 									},
 									"visible": null,
 									"font": "Arial;13;0",
-									"left": 384,
+									"left": 385,
 									"top": 487,
 									"height": 13,
 									"alpha": 1.5707963267948966,
@@ -3003,7 +3003,7 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 377,
+									"left": 378,
 									"top": 531,
 									"height": 13,
 									"alpha": -1.5707963267948966,
@@ -3087,7 +3087,7 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 427,
+									"left": 428,
 									"top": 509,
 									"height": 13,
 									"alpha": -0.5235987755982988,
@@ -3107,7 +3107,7 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 427,
+									"left": 428,
 									"top": 496,
 									"height": 13,
 									"alpha": -0.7853981633974483,
@@ -3127,7 +3127,7 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 427,
+									"left": 428,
 									"top": 537,
 									"height": 13,
 									"alpha": 0.5235987755982988,
@@ -3173,7 +3173,7 @@
 								"$ref": "AAAAAAFqUJoyHcOPvDg="
 							},
 							"lineStyle": 1,
-							"points": "310:511;451:535",
+							"points": "310:511;452:535",
 							"showVisibility": true,
 							"nameLabel": {
 								"$ref": "AAAAAAFqUJ1YTcjqXLU="
@@ -3594,7 +3594,7 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 773,
+									"left": 774,
 									"top": 505,
 									"height": 13,
 									"alpha": 1.5707963267948966,
@@ -3614,7 +3614,7 @@
 										"$ref": "AAAAAAFqUKU3xd4ZgkY="
 									},
 									"font": "Arial;13;0",
-									"left": 748,
+									"left": 749,
 									"top": 474,
 									"width": 55.65625,
 									"height": 13,
@@ -3637,7 +3637,7 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 780,
+									"left": 781,
 									"top": 476,
 									"height": 13,
 									"alpha": -1.5707963267948966,
@@ -3656,7 +3656,7 @@
 								"$ref": "AAAAAAFqUIF1lbSVblA="
 							},
 							"lineStyle": 1,
-							"points": "930:535;625:459",
+							"points": "930:535;626:459",
 							"showVisibility": true,
 							"nameLabel": {
 								"$ref": "AAAAAAFqUKU3xt4cxlE="
@@ -3767,7 +3767,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFqUH4r8rOEw/c="
 					},
-					"name": "PII_CU1. Inicio de sesión en la extensión",
+					"name": "CI_CU5. Inicio de sesión en la extensión",
 					"ownedElements": [
 						{
 							"_type": "UMLExtend",
@@ -3824,7 +3824,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFqUH4r8rOEw/c="
 					},
-					"name": "PII_CU2. Generación del certificado autentificador",
+					"name": "CI_CU6. Generación del certificado autentificador",
 					"ownedElements": [
 						{
 							"_type": "UMLInclude",
@@ -3847,7 +3847,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFqUH4r8rOEw/c="
 					},
-					"name": "PII_CU3.  Almacenamiento del certificado autentificador",
+					"name": "CI_CU7.  Almacenamiento del certificado autentificador",
 					"ownedElements": [
 						{
 							"_type": "UMLAssociation",
@@ -3898,7 +3898,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFqUH4r8rOEw/c="
 					},
-					"name": "PII_CU4. Generación de Chaffing",
+					"name": "CI_CU9. Generación de Chaffing",
 					"ownedElements": [
 						{
 							"_type": "UMLInclude",
@@ -3929,7 +3929,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFqUH4r8rOEw/c="
 					},
-					"name": "PII_CU5. Liberación de Petición",
+					"name": "CI_CU9. Liberación de Petición",
 					"ownedElements": [
 						{
 							"_type": "UMLInclude",
@@ -4050,7 +4050,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFqUH4r8rOEw/c="
 					},
-					"name": "PI_CU1. Realizar petición"
+					"name": "CI_CU1. Realizar petición"
 				},
 				{
 					"_type": "UMLUseCase",
@@ -4058,7 +4058,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFqUH4r8rOEw/c="
 					},
-					"name": "PI_CU4. Interceptar Petición",
+					"name": "CI_CU4. Interceptar Petición",
 					"ownedElements": [
 						{
 							"_type": "UMLInclude",
@@ -4094,7 +4094,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFqUH4r8rOEw/c="
 					},
-					"name": "PI_CU2. Habilitar extensión"
+					"name": "CI_CU2. Habilitar extensión"
 				},
 				{
 					"_type": "UMLUseCase",
@@ -4102,7 +4102,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFqUH4r8rOEw/c="
 					},
-					"name": "PI_CU3. Deshabilitar extensión"
+					"name": "CI_CU3. Deshabilitar extensión"
 				}
 			]
 		}
