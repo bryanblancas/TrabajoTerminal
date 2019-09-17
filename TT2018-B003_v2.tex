@@ -1,3 +1,4 @@
+
 \documentclass[12pt, a4paper, titlepage]{report}
 \usepackage[spanish]{babel}
 \usepackage[utf8]{inputenc}
@@ -21,8 +22,8 @@
 \newcommand*{\img}[1]{%
     \raisebox{-.3\baselineskip}{%
         \includegraphics[
-        height=1cm,
-        width=2cm,
+        height=2.5cm,
+        width=3cm,
         keepaspectratio,
         ]{#1}%
     }%
@@ -1275,8 +1276,15 @@
 	            \end{center}
 	        \end{figure}   
 	        
-	        NOTA: En la sección diseño, cada prototipo describirá sus casos de uso correspondientes para su funcionamiento.
+	        NOTA: En la sección 4 "Diseño", cada prototipo describirá sus casos de uso correspondientes para su funcionamiento.
 	
+		%%%%
+		%
+		% El caso de uso de "registrarse en el servidor", "revocar" autentificador sería de la autoridad o de la extensión o ambos
+		%
+		%
+		%%%%
+		
 		
 		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 		%                                                       %
@@ -1289,29 +1297,20 @@
 		\section{Componente I. Extensión.}
 		    \subsection{Descripción.}
 		    
-		    Este prototipo permite a la extensión poder interceptar peticiones hechas por el usuario a través del navegador de Google Chrome, una vez que se intercepte la petición, ésta podrá ser modificada. La modificación se hará sólo mientras la extensión esté habilitada, y tiene como objetivo inyectar el certificado autentificador en el encabezado del protocolo. Este certificado será simulado (sólo para este prototipo) por la misma extensión a partir de los datos del inicio de sesión. Para la creación de dicho certificado, se usará el algoritmo de hashing SHA-1, tomando como argumentos de entrada usuario y contraseña, generando así, una cadena resultante de 160 bits, sin embargo, para los siguientes prototipos, se manejará una autoridad certificadora la cual recibirá los datos del inicio de sesión para que genere el certificado del usuario. Una vez que dicho certificado es inyectado, la extensión deberá liberar la petición para que salga a red.\\
+		    Este componente permite a la extensión poder interceptar peticiones hechas por el usuario a través del navegador de Google Chrome.\\
+		    Una vez que se intercepte la petición, ésta podrá ser modificada. La modificación se hará sólo mientras la extensión esté habilitada, y tiene como objetivo inyectar el certificado autentificador en el encabezado del protocolo una vez que se haya llevado a cabo el proceso de Chaffing. Cuando dicho certificado sea inyectado, la extensión deberá liberar la petición para que salga a red.\\
+		    Este certificado será único por cada usuario y será obtenido desde el Componente II cuando el usuario inicie sesión en la extensión. Si el usuario no puede iniciar sesión debido a que no tiene una cuenta, desde la extensión se podrá registrar para poder obtener su certificado.\\
+		    Además, el usuario podrá cerrar la sesión en la extensión si es que así lo desea, lo que eliminaría el certificado de la máquina local del usuario. Por otro lado, si el usuario desea revocar su certificado, lo podrá hacer también desde este componente.\\
+		    %Para la creación de dicho certificado, se usará el algoritmo de hashing SHA-1, tomando como argumentos de entrada usuario y contraseña, generando así, una cadena resultante de 160 bits, sin embargo, para los siguientes prototipos, se manejará una autoridad certificadora la cual recibirá los datos del inicio de sesión para que genere el certificado del usuario. 
 		    
 		    El propósito de este prototipo es utilizar la técnica de \textit{Chaffing and Winnowing} en este nuevo método de autentificación, para evitarle al usuario la tediosa tarea de ingresar sus credenciales cada vez que accede al servicio y brindarle la seguridad necesaria al iniciar de sesión.\\
 		    
-		    Para inyectar el certificado autentificador, es necesario crear un \textit{''patrón de chaffing''}, este patrón lo generaremos aleatoriamente para después mandarlo junto con la petición HTTP. Por el momento, dicho patrón no irá cifrado, ya que para esto es necesario la implementación del servidor del servicio web de prueba, para poder conocer su llave pública y cifrar el patrón. Sin embargo, en el prototipo 1 del subsistema 3 se implementará el servidor y con ello su cifrado asimétrico. El objetivo de mandar el patrón junto con el protocolo HTTP, es que el servidor pueda leer el patrón y realizar la etapa de \textit{winnowing}, para extraer el certificado.\\
+		    Para inyectar el certificado autentificador, es necesario crear un \textit{''patrón de chaffing''}, este patrón lo generaremos aleatoriamente para después mandarlo junto con la petición HTTP.
+		    Dicho patrón irá cifrado con la clave pública del Componente III (Servicio web). El objetivo de mandar el patrón junto con el protocolo HTTP, es que l servidor pueda descifrar el patrón con su clave privada y con él realizar la etapa de \textit{winnowing} para extraer el certificado.\\
+		    %Por el momento, dicho patrón no irá cifrado, ya que para esto es necesario la implementación del servidor del servicio web de prueba, para poder conocer su llave pública y cifrar el patrón. Sin embargo, en el prototipo 1 del subsistema 3 se implementará el servidor y con ello su cifrado asimétrico. El objetivo de mandar el patrón junto con el protocolo HTTP, es que el servidor pueda leer el patrón y realizar la etapa de \textit{winnowing}, para extraer el certificado.\\
             
-          
-				\begin{comment}
-				\paragraph{API FileSystem \\}
-				Consiste en una API muy útil para trabajar con archivos en el entorno de desarrollo de Google Chrome, soporta la entrada de archivos y directorios desde una computadora personal. La ventaja de esta API es que no es necesario acceder a todos los archivos del usuario, si no que se crea una especie de unidad virtual en donde se localizan los archivos que el usuario deseé utilizar, en este caso en la extensión \cite{filesystemmozilla}.
-				
-				%\paragraph {hay que usar otra madre pero no se que alv. \\}
-				\paragraph{OpenSSL}
-				SSL (Secure Sockets Layer o capa de conexión segura) es un estándar de seguridad global que permite la transferencia de datos cifrados entre un navegador y un servidor web. Es utilizado por millones \cite{opensslmillones} de empresas e individuos en línea a fin de disminuir el riesgo de robo y manipulación de información confidencial (como números de tarjetas de crédito, nombres de usuario, contraseñas, correos electrónicos, etc.) por parte de hackers y ladrones de identidades. Básicamente, la capa SSL permite que dos partes tengan una "conversación" privada.
-				Para establecer esta conexión segura, se instala en un servidor web un certificado SSL (también llamado "certificado digital") que cumple dos funciones: Autenticar la identidad del sitio web, garantizando a los visitantes que no están en un sitio falso y cifrar la información transmitida.
-				Openssl es una api que proporciona un entorno adecuado para encriptar los datos enviados a otra computadora dentro de una red y a su vez desencriptarlos adecuadamente por el receptor, evitando así, el acceso a la información por intrusos con la utilización de sniffer.
-				El conjunto de herramientas OpenSSL es una característica de FreeBSD que ofrece una capa cifrada de transporte sobre la capa normal de comunicación, permitiendo la combinación con muchas aplicaciones y servicios de red. 
-                Uno de los usos más comunes de OpenSSL es ofrecer certificados para usar con aplicaciones de software. Estos certificados aseguran que las credenciales de la compañía o individuo son válidos y no son fraudulentos. Si el certificado en cuestión no ha sido verificado por uno de las diversas “autoridades certificadoras” o CA, suele generarse una advertencia al respecto. Una autoridad de certificados es una compañía, que firma certificados para validar credenciales de individuos o compañías. Este proceso tiene un costo asociado y no es un requisito imprescindible para usar certificados, aunque puede darle un poco de tranquilidad a los usuarios \cite{openssl}.
-                %filesystemmozilla https://developer.mozilla.org/es/docs/Web/API/FileSystem
-				% opensslmillones https://www.verisign.com/es_LA/website-presence/online/ssl-certificates/index.xhtml
-				%openssl https://www.globalsign.com/es/centro-de-informacion-ssl/que-es-ssl/
-				\end{comment}
-			
+
+
 			%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 			%                                                       %
 			%                                                       %
@@ -1324,27 +1323,36 @@
 				\subsubsection{Requerimientos Funcionales.}
 				{\setlength{\parindent}{12pt}
 				
-				\textbf{CI\_RF1. Interceptar petición \acrshort{http}.} La extensión deberá interceptar la petición \acrshort{http} del navegador, en cuanto el usuario realice alguna a través de éste.\\
+			    \textbf{CI\_RF1. Interceptar petición \acrshort{http}.} La extensión deberá interceptar la petición \acrshort{http} del navegador, en cuanto el usuario realice alguna a través de éste.\\
 
 				\textbf{CI\_RF2. Deshabilitar extensión.} El usuario podrá deshabilitar la extensión, para que ésta no vigile su actividad en el navegador.\\
 				
 				\textbf{CI\_RF3. Habilitar extensión.} El usuario podrá habilitar la extensión, para que ésta vigile las peticiones \acrshort{http}.\\
 				
-				\textbf{CI\_RF4. Validar petición.} La extensión deberá analizar la petición previamente recibida, y validar si ésta es HTTP(S) o no.\\
+				\textbf{CI\_RF4. Validar petición.} La extensión deberá analizar la petición previamente interceptada, y validar si ésta es HTTP(S) o no.\\
 				
-				\textbf{CI\_RF5. Bloquear salida de petición.} La extensión deberá evitar que la petición salga a red, deteniéndola para aplicar la etapa de \textit{Chaffing}.\\ 
+				\textbf{CI\_RF5. Interceptar petición.} La extensión deberá evitar que la petición salga a red, deteniéndola para aplicar la etapa de \textit{Chaffing}.\\ 
 				
 				\textbf{CI\_RF6. Inicio de sesi\'on en la extensi\'on.} La extensi\'on contar\'a con una interfaz para el ingreso de datos del usuario, donde ingresará un usuario y contraseña. \\  
 				
-                \textbf{CI\_RF7. Generación del certificado autentificador.} Para este prototipo, la generación del certificado autentificador se har\'a del lado del cliente, simulando la tarea de una entidad certificadora, permitiendo as\'i generar automáticamente esta llave la cual servir\'a para el proceso de \textit{chaffing} del mensaje en el protocolo HTTP.\\
+                \textbf{CI\_RF7. Obtención del certificado autentificador.} La extensión, mediante el inicio de sesión del usuario, se conectará al Componente II (Servidor autentificador) para obtener el certificado autentificador.\\ 
                 
-                \textbf{CI\_RF8. Almacenamiento del certificado autentificador.} La extensi\'on deberá almacenar el certificado autentificador.\\
+                \textbf{CI\_RF8. Almacenamiento del certificado autentificador.} La extensi\'on deberá almacenar el certificado autentificador devuelto por la autoridad certificadora.\\
                 
                 \textbf{CI\_RF9. Generación de patrón de \textit{Chaffing}.} La extensión generará un patrón para poder implementar el método de \textit{Chaffing}. Este patrón será generado al azar, y es aquel que se usará para introducir el código autentificador en el protocolo HTTP.\\
                 
-				\textbf{CI\_RF10. Etapa de \textit{Chaffing}.} Por medio del m\'etodo \textit{Chaffing} se crearán paquetes para agregar al encabezado HTTP que se ha interceptado gracias al requerimiento funcional CI\_RF1. Interceptar petición HTTP, utilizando el patrón de \textit{Chaffing} del requerimiento funcional CI\_RF9. Generación de patrón de \textit{Chaffing}\\
+				\textbf{CI\_RF10. Etapa de \textit{Chaffing}.} Por medio del m\'etodo \textit{Chaffing} se agregará al encabezado HTTP el certificado del usuario, utilizando el patrón de \textit{Chaffing} del requerimiento funcional CI\_RF9. Generación de patrón de \textit{Chaffing}\\
                     
-                \textbf{CI\_RF11. Liberaci\'on de Petición.} Se liberar\'a el bloqueo a la petici\'on HTTP impuesto por el requerimiento funcional CI\_RF5. Bloquear salida de petición.
+                \textbf{CI\_RF11. Liberaci\'on de Petición.} Se liberar\'a el bloqueo a la petici\'on HTTP impuesto por el requerimiento funcional CI\_RF5. Interceptar petición.\\
+                
+                \textbf{CI\_RF12. Cierre de sesión en la extensión.} El usuario podrá cerrar sesión en la extensión para que ésta no siga guardando su certificado.\\
+                
+                \textbf{CI\_RF13. Registro en servidor autentificador.} La extensión contará con una interfaz para el ingreso de datos del usuario, para que éste se registre en el servidor y pueda obtener un certificado. Los datos a ingresar seŕan: Nombre de usuario, email, y contraseña.\\
+                
+                \textbf{CI\_RF14. Revocar certificado.} El usuario podrá, mediante la interfaz de la extensión, revocar su certificado en caso de que así lo deseé. La interfaz requerirá que se introduzca el email correspondiente al usuario y la contraseña para validar la identidad del usuario. \\
+                
+                \textbf{CI\_RF15. Ver contraseña.} Si el usuario así lo desea, podrá habilitar la función ver contraseña cuando escribe. Este requerimiento se usara en los requerimientos CI\_RF6. Inicio de sesión en la extensión y CI\_RF13. Registro en servidor autentificador.\\
+                
                 
 		        }
 				
@@ -1361,11 +1369,12 @@
 				
 				\textbf{CI\_RNF5. Conexión a internet.} Para el funcionamiento de la extensión, no es necesario que se tenga conexión a internet.\\
 				
-				\textbf{CI\_RNF6. Tamaño del código autentificador.} El tamaño del código autentificador es de 160 bits. Para este prototipo se hará uso de la función \textit{hash} tomando como argumentos el nombre de usuario y contraseña del usuario que se desea generar el código de hash.\\
+				\textbf{CI\_RNF6. Tamaño del código autentificador.} El tamaño del código autentificador es de 10496 bits.\\
 				
 				\textbf{CI\_RNF7. Almacenado de archivo en la extensión.} Se necesita tener almacenado el archivo en la extensión de Google Chrome. Específicamente, utilizamos el \textbf{Storage} para almacenarlo. \\
 				
 				\textbf{CI\_RNF8. Conexión a internet.} Para el funcionamiento de este prototipo, es necesario tener acceso a internet. \\
+				
 				}
 		    
 		    \subsection{Reglas del negocio.}
@@ -1386,7 +1395,7 @@
             \textbf{CI\_RN5. Acceso a internet.} Se debe de contar con acceso a internet para que la extensión pueda enviar al servidor la petición modificada.\\
             \label{CI_RN5}
 				
-			\textbf{CI\_RN6. Longitud de código autentificador.} La longitud del código autentificador es de 40 caracteres, debido a que la función de SHA-1 es un algoritmo de codificación de 160 bits que genera un hash hexadecimal de 40 caracteres.\\
+			\textbf{CI\_RN6. Longitud de código autentificador.} La longitud del código autentificador es de 1312 caracteres.\\
 			\label{CI_RN6}
 			
 			\textbf{CI\_RN7. Longitud del campo de usuario.} La longitud del usuario no debe pasar de 20 caracteres, y mínimo será de 3 caracteres.\\
@@ -1396,14 +1405,22 @@
 			La longitud de la contraseña no debe pasar de 16 caracteres, y mínimo sera de 8 caracteres.\\
 			\label{CI_RN8}
 			
-			\textbf{CI\_RN9. Caracteres permitidos en campo usuario.} Los caracteres permitidos en el campo de usuario son unicamente símbolos alfanúmericos y guion bajo.\\
+			\textbf{CI\_RN9. Caracteres permitidos en campo usuario.} Los caracteres permitidos en el campo de usuario son únicamente símbolos alfanuméricos y guion bajo.\\
 			\label{CI_RN9}
 			
-			\textbf{CI\_RN10. Caracteres permitidos en campo contraseña.} Los caracteres permitidos en el campo de contraseña son unicamente símbolos alfanúmericos así como los s\'imbolos \_ @ / \# ? .\\
+			\textbf{CI\_RN10. Caracteres permitidos en campo contraseña.} Los caracteres permitidos en el campo de contraseña son únicamente símbolos alfanuméricos así como los s\'imbolos \_ @ / \# ? .\\
 			\label{CI_RN10}
 			
 			\textbf{CI\_RN11. Formato de contraseña.} La contraseña debe tener al menos un número y una letra mayúscula.\\
 			\label{CI_RN11}
+			
+			\textbf{CI\_RN12. Longitud del campo email.}
+			La longitud del email no debe pasar de 100 caracteres, y mínimo sera de 7 caracteres.\\
+			\label{CI_RN12}
+			
+			\textbf{CI\_RN13. Caracteres permitidos en campo email.}
+			Los caracteres permitidos en el campo email son únicamente símbolos alfanuméricos así como los símbolos '.' '@' '\_' '-' ',' '()\{\}[]'.\\
+			\label{CI_RN13}
 				
 	    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 		%                                                       %
@@ -1433,7 +1450,11 @@
 				
 				\textbf{CII\_RF4. Devolver certificado.} La autoridad certificadora deberá enviar el certificado correspondiente al usuario quien realiza la solicitud para obtener el certificado.\\
 				
-				\textbf{CII\_RF5. Actualizar certificado.} La autoridad certificadora deberá actualizar el certificado cuanto éste haya caducado.
+				\textbf{CII\_RF5. Actualizar certificado.} La autoridad certificadora deberá actualizar el certificado cuanto éste haya caducado.\\
+				
+				\textbf{CII\_RF6. Revocar certificado.} La autoridad certificadora deberá revocar un certificado de acuerdo a la petición dada por el usuario, si esta petición tiene los datos correctos del usuario, su certificado ligado al mismo se eliminará, se creará uno nuevo y se le asignará a dicho usuario.\\
+				
+				\textbf{CII\_RF7. Verificar certificado.} La autoridad certificadora deberá poder verificar un certificado dado por el servicio web, esto con el fin de conocer si dicho certificado fue creado y proveído por ella misma o no.
                 
 		        }
 		        
@@ -1457,8 +1478,20 @@
             \textbf{CII\_RN2. Conexión a la base de datos.} La autoridad certificadora cuenta con un pull de conexiones a la base de datos para poder insertar u obtener certificados de los usuarios.\\
             \label{CII_RN2}
             
-            \textbf{CII\_RN3. Conexión SSL.} La autoridad certificadora tiene una conexión SSL con la extensión para poder así enviar el certificado de manera segura y cifrada.\\
+            \textbf{CII\_RN3. Conexión SSL.} La autoridad certificadora cuenta con un certificado auto firmado, el cual le permitirá tener una conexión SSL con la extensión para poder así enviar el certificado de dicho usuario de manera segura y cifrada.\\
             \label{CII_RN3}
+            
+            \textbf{CII\_RN4. Control de acceso.} La autoridad certificadora sera controlado mediante un control de acceso FTP, permitiendo así tener mayor seguridad ante cualquier ataque.\\
+            \label{CII_RN4}
+            
+            \textbf{CII\_RN5. Parámetros POST.} La autoridad certificadora recibirá mediante método POST peticiones las cuales tendrán como datos: Correo electronico (email), nombre de usuario, y password (Con hash 256).\\
+            \label{CII_RN5}
+            
+            \textbf{CII\_RN6. Parámetros GET.} La autoridad certificadora enviará una pagina como respuesta si el usuario aprueba el uso del certificado de la autoridad certificadora.\\
+            \label{CII_RN6}
+            
+            \textbf{CII\_RN7. Respuestas a peticiones.} La autoridad certificadora podrá devolver un certificado creado por ella misma. Así como también devolver códigos de respuestas, como lo son: 200 (Se realizo petición correctamente) ó 404 (No se encontró usuario).\\
+            \label{CII_RN7}
 			
 			%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     		%                                                       %
@@ -1519,19 +1552,24 @@
 	    
 	\chapter{\textcolor{azulescom}{Diseño.}}
 			
+		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		%                               %
+		%    Desarrollo Componente 1    %
+		%                               %
+		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 		\section{Componente I.}
 		 
 		    \subsection{Diagrama de casos de uso}
 			    
 			    \begin{figure}[H]
-		            \begin{center}			                \includegraphics[width=16cm]{./imagenes/Disenio/Componente_1/CI_UCD_P1.png}
+		            \begin{center}			                \includegraphics[width=16cm]{./imagenes/Disenio/Componente_1/CI_UCD.png}
 						\caption{Diagrama de casos de uso del Componente I.}
                     \end{center}    					
 				\end{figure}
 			    
 	        \subsection{Descripción de casos de uso.}
 			    
-			    %%Descripcion PI_CU1
+			    %DESCRIPCIÓN CI_CU1
 			    \begin{table}[H]
 				\begin{tabular}{ |p{3.5cm}||p{9.5cm}|}
 					\hline
@@ -1581,8 +1619,9 @@
 					\item \textbf{\textit{El navegador}} realiza la petición.					
 				\end{enumerate}
 				\paragraph{... Fin de la Trayectoria Alternativa 1 ...}
+				\newpage
 				
-				%%Descripcion PI_CU2
+				%DESCRIPCIÓN CI_CU2
 				\begin{table}[H]
 				\begin{center}
 				\begin{tabular}{ |p{3.5cm}||p{9.5cm}|}
@@ -1623,19 +1662,26 @@
 				
 				\paragraph{... Trayectoria Principal ...}
 				\begin{enumerate}
-					\item \textbf{\textit{El usuario}} da click en el ícono de la extensión \img{imagenes/Disenio/Componente_1/escom.png}.
-					\item \textbf{\textit{El usuario}} da click en el botón \img{imagenes/Disenio/Componente_1/boton_activar.png}.
+					
+					\item \textbf{\textit{El usuario}} da click en el ícono de la extensión \img{imagenes/Disenio/Componente_1/UI_icon_escom.png}.
+					
+					\item \textbf{\textit{El usuario}} da click en el botón 'Activar' \img{imagenes/Disenio/Componente_1/UI_btn_activate.png}.
+					
 					\item \textbf{\textit{La extensión}} empieza a vigilar las peticiones que se realicen a través del navegador.
+					
 				\end{enumerate}
 				\paragraph{... Fin de la Trayectoria Principal ...}
 				
 				\paragraph{... Trayectoria Alternativa 1 ...}
 				\begin{enumerate}
-				    \item \textbf{\textit{La extensión}} no muestra el botón \img{imagenes/Disenio/Componente_1/boton_activar.png}, por ende el usuario no puede dar click.
+				
+				    \item \textbf{\textit{La extensión}} no muestra el botón 'Activar' \img{imagenes/Disenio/Componente_1/UI_btn_activate.png}, por ende el usuario no puede dar click.
+				
 				\end{enumerate}
 				\paragraph{... Fin de la Trayectoria Alternativa 1 ...}
+				\newpage
 				
-				%%Descricpion PI_CU3
+				%DESCRIPCIÓN CI_CU3
 				\begin{table}[H]
 				\begin{center}
 				\begin{tabular}{ |p{3.5cm}||p{9.5cm}|}
@@ -1675,71 +1721,30 @@
 			
 				\paragraph{... Trayectoria Principal ...}
 				\begin{enumerate}
-					\item \textbf{\textit{El usuario}} da click en el ícono de la extensión \img{imagenes/Disenio/Componente_1/escom.png}.
-					\item \textbf{\textit{El usuario}} da click en el botón \img{imagenes/Disenio/Componente_1/boton_desactivar.png}.
+					
+					\item \textbf{\textit{El usuario}} da click en el ícono de la extensión \img{imagenes/Disenio/Componente_1/UI_icon_escom.png}.
+					
+					\item \textbf{\textit{El usuario}} da click en el botón \img{imagenes/Disenio/Componente_1/UI_btn_deactivate.png}.
+					
 					\item \textbf{\textit{La extensión}} deja de vigilar las peticiones que se realicen a través del navegador.
+				
 				\end{enumerate}
 				\paragraph{... Fin de la Trayectoria Principal ...}
 				
 		        \paragraph{... Trayectoria Alternativa 1 ...}
 				\begin{enumerate}
-				     \item \textbf{\textit{La extensión}} no muestra el botón \img{imagenes/Disenio/Componente_1/boton_desactivar.png}, por ende el usuario no puede dar click.
+				     \item \textbf{\textit{La extensión}} no muestra el botón \img{imagenes/Disenio/Componente_1/UI_btn_deactivate.png}, por ende el usuario no puede dar click.
 				\end{enumerate}
 				\paragraph{... Fin de la Trayectoria Alternativa 1 ...}
+				\newpage 
 				
-				%%Descricpion PI_CU4
-				\begin{table}[H]
-				\begin{center}
-				\begin{tabular}{ |p{3.5cm}||p{9.5cm}|}
-					\hline
-					\rowcolor{guindapoli}
-					\multicolumn{2}{|c|}{\textbf{\textcolor{white}{Caso de uso: CI\_CU4. Interceptar petición.}}}\\
-					\hline
-					\rowcolor{azulfuerte}Concepto & Descripción\\
-					\hline
-					\cellcolor{azulclaro}Actor & 
-					 -.\\ 
-					\hline
-					\cellcolor{azulclaro}Propósito &
-					Este caso de uso interceptará las peticiones HTTP que el navegador realice para su analisis.\\
-					\hline
-					\cellcolor{azulclaro}Entradas &
-					Petición realizada por el navegador\\
-					\hline
-					\cellcolor{azulclaro}Salidas &
-					-\\
-					\hline
-					\cellcolor{azulclaro}Pre-condiciones&
-				    \textbf{CI\_CU1.} \newline \textbf{CI\_CU2.}\\
-					\hline
-					\cellcolor{azulclaro}Post-condiciones&-\\
-					\hline
-					\cellcolor{azulclaro}Reglas del negocio&
-					\hyperref[CI_RN1]{\textbf{CI\_RN1.}} \newline
-					\hyperref[CI_RN3]{\textbf{CI\_RN3.}}\\
-					\hline
-					\cellcolor{azulclaro}Errores &
-					La petición no se genera correctamente.\\
-					\hline
-				\end{tabular}
-				\caption[DCU: CI\_CU4]{Descripción CU: CI\_CU4}
-				\end{center}
-				\end{table}
-			    \label{PI_CU4}
-				\paragraph{... Trayectoria Principal ...}
-				\begin{enumerate}
-					\item \textbf{\textit{El usuario}} ingresa una URL en el navegador. 
-					\item \textbf{\textit{El navegador}} genera una petición HTTP. 
-					\item \textbf{\textit{La extensión}} Intercepta la petición realizada por el navegador para su análisis
-				\end{enumerate}
-				\paragraph{... Fin de la Trayectoria Principal ...}
-			    
-				%%DESCRIPCIÓN PI_CU5
+				
+				%%DESCRIPCIÓN CI_CU4
 				\begin{table}[H]
     				\begin{tabular}{ |p{3.5cm}||p{9.5cm}|}
     					\hline
     					\rowcolor{guindapoli}
-    					\multicolumn{2}{|c|}{\textbf{\textcolor{white}{Caso de uso: CI\_CU5. Inicio de sesión en la extensión}}}\\
+    					\multicolumn{2}{|c|}{\textbf{\textcolor{white}{Caso de uso: CI\_CU4. Inicio de sesión en la extensión}}}\\
     					\hline
     					\rowcolor{azulfuerte}Concepto & Descripción\\
     					\hline
@@ -1747,20 +1752,20 @@
     					Usuario\\ 
     					\hline
     					\cellcolor{azulclaro}Propósito &
-    					Este caso de uso permite al usuario poder iniciar sesión en la extensión para posteriormente obtener un código autentificador, basado en esos datos, al cual se le aplicará \textit{Chaffing}. \newline
-    					Sólo se requerirá iniciar sesión una sola vez, ya que después, sólo es necesario CIr el código generado para autentificarse en el servicio web.\\
+    					Este caso de uso permite al usuario poder iniciar sesión en la extensión para posteriormente obtener un código autentificador, es decir, el certificado del usuario, al cual se le aplicará \textit{Chaffing}. \newline
+    					Sólo se requerirá iniciar sesión una sola vez ya que después de ello el certificado se guardará en la extensión.\\
     					\hline
     					\cellcolor{azulclaro}Entradas &
     					Usuario y Contraseña\\
     					\hline
     					\cellcolor{azulclaro}Salidas &
-    					Código autentificador el cual hace referencia al usuario iniciado\\
+    					Certificado del usuario que acaba de iniciar sesión.\\
     					\hline
     					\cellcolor{azulclaro}Pre-condiciones&
-    					Haber instalado la extensión en el navegador Google Chrome y habiéndola habilitado.\\
+    					Haber instalado la extensión en el navegador Google Chrome y haberla habilitado.\\
     					\hline
     					\cellcolor{azulclaro}Post-condiciones&
-    					Con los datos introducidos por el usuario, se obtendrá el código autentificador del mismo, para que lo guarde en su dispositivo y lo pueda usar después.\\
+    					Por medio de los datos introducidos por el usuario, se obtendrá el certificado del mismo para que se pueda realizar la etapa de chaffing al momento que deseé identificarse en un servicio web.\\
     					\hline
     					\cellcolor{azulclaro}Reglas del negocio&
     					\hyperref[CI_RN2]{\textbf{CI\_RN1.}} \newline \hyperref[CI_RN3]{\textbf{CI\_RN4.}} \newline
@@ -1771,10 +1776,145 @@
     					\hyperref[CI_RN10]{\textbf{CI\_RN11.}} \\
     					\hline
     					\cellcolor{azulclaro}Errores &
-    					No se encuentra usuario registrado \newline 
-    					No se puede obtener el código autentificador\newline
-    					No se pudo guardar el código autentificador\newline
-    					Contraseña no válida\\					
+    					No se encuentra usuario registrado. \newline 
+    					No se puede obtener el código autentificador.\newline
+    					No se pudo guardar el código autentificador.\newline
+    					Contraseña no válida.\newline
+    					Email no válido.\\					
+    					\hline
+    				\end{tabular}
+				\caption[DCU: CI\_CU4]{Descripción CU: CI\_CU4}
+				\end{table}
+				
+				\paragraph{... Trayectoria Principal ...}
+				\begin{enumerate}
+					
+					\item \textbf{\textit{El usuario}} da click en el ícono de la extensión \img{imagenes/Disenio/Componente_1/UI_icon_escom.png}.
+					
+					\item \textbf{\textit{EL usuario}} da click en el botón 'Iniciar sesión' \img{imagenes/Disenio/Componente_1/UI_btn_login.png}.
+					
+					\item \textbf{\textit{La extensión}} abre en una nueva pestaña del navegador la página principal de la extensión.
+					
+					\item \textbf{\textit{El usuario}} llena correctamente los campos del formulario, los cuales son: 'Email' y 'Contraseña'.
+					
+					\item \textbf{\textit{EL usuario}} da click en el botón 'Iniciar sesión' \img{imagenes/Disenio/Componente_1/UI_btn_login.png}.
+					
+					\item \textbf{\textit{La extensión}} despliega un popup con la información de la obtención del certificado.
+					
+					\item \textbf{\textit{El usuario}} da click en el botón 'Aceptar' \img{imagenes/Disenio/Componente_1/UI_btn_accept.png}
+				
+				\end{enumerate}
+				\paragraph{... Fin de la Trayectoria Principal ...}
+				
+				
+				\paragraph{... Trayectoria Alternativa 1 ...}
+				\begin{enumerate}
+				
+					\item \textbf{\textit{El usuario}} da click en el ícono de la extensión \img{imagenes/Disenio/Componente_1/UI_icon_escom.png}.
+					
+					\item \textbf{\textit{EL usuario}} da click en el botón 'Iniciar sesión' \img{imagenes/Disenio/Componente_1/UI_btn_login.png}.
+					
+					\item \textbf{\textit{La extensión}} abre en una nueva pestaña del navegador la página principal de la extensión.
+					
+					\item \textbf{\textit{El usuario}} da click en el botón 'Iniciar sesión' \img{imagenes/Disenio/Componente_1/UI_btn_loginMainPage.png}.
+					
+					\item \textbf{\textit{La extensión}} abre la página de inicio de sesión.
+					
+					\item \textbf{\textit{El usuario}} llena correctamente los campos del formulario, los cuales son: 'Email' y 'Contraseña'.
+					
+					\item \textbf{\textit{EL usuario}} da click en el botón 'Iniciar sesión' \img{imagenes/Disenio/Componente_1/UI_btn_login.png}.
+					
+					\item \textbf{\textit{La extensión}} despliega un popup con la información de la obtención del certificado.
+					
+				\end{enumerate}
+				\paragraph{... Fin de la Trayectoria Alternativa 1 ...}
+			    
+			    
+			    \paragraph{... Trayectoria Alternativa 2 ...}
+				\begin{enumerate}
+					
+					\item \textbf{\textit{El usuario}} da click en el ícono de la extensión \img{imagenes/Disenio/Componente_1/UI_icon_escom.png}.
+					
+					\item \textbf{\textit{EL usuario}} da click en el botón 'Iniciar sesión' \img{imagenes/Disenio/Componente_1/UI_btn_login.png}.
+					
+					\item \textbf{\textit{La extensión}} abre en una nueva pestaña del navegador la página principal de la extensión.
+					
+					\item \textbf{\textit{El usuario}} llena incorrectamente al menos un campo del formulario.
+					
+					\item \textbf{\textit{EL usuario}} da click en el botón 'Iniciar sesión' \img{imagenes/Disenio/Componente_1/UI_btn_login.png}.
+					
+					\item \textbf{\textit{La extensión}} despliega un popup en donde informa cuál campo está llenado de forma incorrecta.
+					
+					\item \textbf{\textit{El usuario}} da click en el botón 'Aceptar' \img{imagenes/Disenio/Componente_1/UI_btn_accept.png}.
+					
+					\item \textbf{\textit{La extensión}} retorna al formulario sin realizar ninguna otra acción.
+					
+				\end{enumerate}
+				\paragraph{... Fin de la Trayectoria Alternativa 2 ...}
+			    
+			    
+			    \paragraph{... Trayectoria Alternativa 3 ...}
+				\begin{enumerate}
+				
+					\item \textbf{\textit{El usuario}} da click en el ícono de la extensión \img{imagenes/Disenio/Componente_1/UI_icon_escom.png}.
+					
+					\item \textbf{\textit{EL usuario}} da click en el botón 'Iniciar sesión' \img{imagenes/Disenio/Componente_1/UI_btn_login.png}.
+					
+					\item \textbf{\textit{La extensión}} abre en una nueva pestaña del navegador la página principal de la extensión.
+					
+					\item \textbf{\textit{El usuario}} da click en el botón 'Iniciar sesión' \img{imagenes/Disenio/Componente_1/UI_btn_login.png}.
+					
+					\item \textbf{\textit{La extensión}} abre la página de inicio de sesión.
+					
+					\item \textbf{\textit{El usuario}} llena incorrectamente al menos un campo del formulario.
+					
+					\item \textbf{\textit{EL usuario}} da click en el botón 'Iniciar sesión' \img{imagenes/Disenio/Componente_1/UI_btn_login.png}.
+					
+				    \item \textbf{\textit{La extensión}} despliega un popup en donde informa cuál campo está llenado de forma incorrecta.
+					
+					\item \textbf{\textit{El usuario}} da click en el botón 'Aceptar' \img{imagenes/Disenio/Componente_1/UI_btn_accept.png}.
+					
+					\item \textbf{\textit{La extensión}} retorna al formulario sin realizar ninguna otra acción.
+					
+				\end{enumerate}
+				\paragraph{... Fin de la Trayectoria Alternativa 3 ...}
+				\newpage
+			    
+			    
+				%DESCRIPCIÓN CI_CU5
+				\begin{table}[H]
+    				\begin{tabular}{ |p{3.5cm}||p{9.5cm}|}
+    					\hline
+    					\rowcolor{guindapoli}
+    					\multicolumn{2}{|c|}{\textbf{\textcolor{white}{Caso de uso: CI\_CU5. Cerrar sesión en la extensión.}}}\\
+    					\hline
+    					\rowcolor{azulfuerte}Concepto & Descripción\\
+    					\hline
+    					\cellcolor{azulclaro}Actor & 
+    					Usuario\\ 
+    					\hline
+    					\cellcolor{azulclaro}Propósito &
+    					Este caso de uso permite al usuario cerrar su sesión en el ordenador que se encuentre en ese momento, siempre y cuando haya iniciado sesión anteriormente. El objetivo es que se elimine su certificado de la extensión.\\
+    					\hline
+    					\cellcolor{azulclaro}Entradas &
+    					-\\
+    					\hline
+    					\cellcolor{azulclaro}Salidas &
+    					Sesión cerrada, en este momento la extensión se encuentra sin usuario logueado.\\
+    					\hline
+    					\cellcolor{azulclaro}Pre-condiciones&
+    					\textbf{CI\_CU4}.\\
+    					\hline
+    					\cellcolor{azulclaro}Post-condiciones&
+    					La extensión debe mantenerse habilitada para su correcto funcionamiento.\\
+    					\hline
+    					\cellcolor{azulclaro}Reglas del negocio&
+    					\hyperref[CI_RN1]{\textbf{CI\_RN1.}} \newline \hyperref[CI_RN4]{\textbf{CI\_RN4.}} \newline
+    					\hyperref[CI_RN5]{\textbf{CI\_RN5.}}\\
+    					\hline
+    					\cellcolor{azulclaro}Errores &
+    					No se puede cerrar sesión.
+    					\\					
     					\hline
     				\end{tabular}
 				\caption[DCU: CI\_CU5]{Descripción CU: CI\_CU5}
@@ -1782,111 +1922,202 @@
 				
 				\paragraph{... Trayectoria Principal ...}
 				\begin{enumerate}
-					\item \textbf{\textit{El Usuario}} realiza un inicio de sesión por primera vez en la extensión.
-					\item \textbf{\textit{La extensión}} obtendrá los parametros de usuario y contraseña para generar un código autentificador único.
+				
+					\item \textbf{\textit{El usuario}} da click en el ícono de la extensión \img{imagenes/Disenio/Componente_1/UI_icon_escom.png}.
+					
+					\item \textbf{\textit{El usuario}} da click en el botón 'Cerrar sesión' \img{imagenes/Disenio/Componente_1/UI_btn_logout.png}.
+					
+					\item \textbf{\textit{La extensión}} cierra la sesión del usuario.
+					
 				\end{enumerate}
 				\paragraph{... Fin de la Trayectoria Principal ...}
 				
 				\paragraph{... Trayectoria Alternativa 1 ...}
 				\begin{enumerate}
-					\item \textbf{\textit{El Usuario}} ingresa usuario y/o contraseña no validos.
-					\item \textbf{\textit{La extensión}} no podrá obtener los datos del usuario.
+				
+					\item \textbf{\textit{El usuario}} da click en el ícono de la extensión \img{imagenes/Disenio/Componente_1/UI_icon_escom.png}.
+					
+					\item \textbf{\textit{El usuario}} da click en el botón 'Cerrar sesión' \img{imagenes/Disenio/Componente_1/UI_btn_logout.png}.
+					
+					\item \textbf{\textit{La extensión}} no puede cerrar la sesión y lo informa al usuario por medio de un popup.
+					
 				\end{enumerate}
 				\paragraph{... Fin de la Trayectoria Alternativa 1 ...}
-				
 				\newpage
 				
-				%%DESCRIPCIÓN PI_CU6
+				
+				
+				% DESCRIPCIÓN CI_CU6
 				\begin{table}[H]
     				\begin{tabular}{ |p{3.5cm}||p{9.5cm}|}
     					\hline
     					\rowcolor{guindapoli}
-    					\multicolumn{2}{|c|}{\textbf{\textcolor{white}{Caso de uso: CI\_CU6. Generación del certificado autentificador.}}}\\
+    					\multicolumn{2}{|c|}{\textbf{\textcolor{white}{Caso de uso: CI\_CU6. Registrarse en servidor autentificador.}}}\\
     					\hline
     					\rowcolor{azulfuerte}Concepto & Descripción\\
     					\hline
     					\cellcolor{azulclaro}Actor & 
-    					 -\\ 
+    					 Usuario \\ 
     					\hline
     					\cellcolor{azulclaro}Propósito &
-    					Este caso de uso generará un certificado para el usuario, basados en los datos que ingrese en la extensión (usuario y contraseña).\\
+    					Este caso de uso permitirá al usuario poder registrarse en el servidor autentificador si es que no tiene una cuenta con la cual poder iniciar sesión.\\
     					\hline
     					\cellcolor{azulclaro}Entradas &
-    					Usuario y contraseña ingresados en la extensión.\\
+    					Nombre de usuario, email y contraseña ingresados por el usuario en la extensión.\\
     					\hline
     					\cellcolor{azulclaro}Salidas &
-    					Certificado autentificador del usuario.\\
+					    Estatus de operación.\\
     					\hline
     					\cellcolor{azulclaro}Pre-condiciones&
-    					Contar con la extensión habilitada. e ingresar un usuario y contraseña\\
+    					-\\
     					\hline
     					\cellcolor{azulclaro}Post-condiciones&
     					 -\\
     					\hline
     					\cellcolor{azulclaro}Reglas del negocio&
+    					\hyperref[CI_RN5]{\textbf{CI\_RN5.}} \newline
     				    \hyperref[CI_RN7]{\textbf{CI\_RN7.}} \newline
     				    \hyperref[CI_RN8]{\textbf{CI\_RN8.}} \newline
     				    \hyperref[CI_RN9]{\textbf{CI\_RN9.}} \newline
     				    \hyperref[CI_RN10]{\textbf{CI\_RN10.}} \newline
-    				    \hyperref[CI_RN11]{\textbf{CI\_RN11.}} \\
+    				    \hyperref[CI_RN11]{\textbf{CI\_RN11.}} \newline
+    				    \hyperref[CI_RN12]{\textbf{CI\_RN12.}} \newline
+    				    \hyperref[CI_RN13]{\textbf{CI\_RN13.}} \\
     					\hline
     					\cellcolor{azulclaro}Errores &
-    					Error al generar el certificado.\\
+    					Error en el nombre de usuario. \newline
+    					Error en el email.\newline
+    					Error en la contraseña.\newline
+    					No se pudo registrar al usuario.\\
     					\hline
     				\end{tabular}
 				\caption[DCU: CI\_CU6]{Descripción CU: CI\_CU6}
 				\end{table}
-				\label{PII_CU2}
+				\label{CI_CU6}
 				
 				\paragraph{... Trayectoria Principal ...}
 				\begin{enumerate}
-					\item \textbf{\textit{La extensión}} generará un código autentificador basado en los datos ingresados por el usuario.
+				    
+				    \item \textbf{\textit{El usuario}} da click en el ícono de la extensión \img{imagenes/Disenio/Componente_1/UI_icon_escom.png}.
+				    
+				    \item \textbf{\textit{La extensión}} despliega un popup.
+					
+					\item \textbf{\textit{El usuario}} da click en el botón 'Iniciar Sesión' \img{imagenes/Disenio/Componente_1/UI_btn_login.png}
+					
+					\item \textbf{\textit{La extensión}} abre una página en otra pestaña del navegador.
+					
+					\item \textbf{\textit{El usuario}} da click en el botón 'Registrarse' \img{imagenes/Disenio/Componente_1/UI_btn_logup.png}
+					
+					\item \textbf{\textit{La extensión}} muestra la página para registrarse.
+					
+					\item \textbf{\textit{El usuario}} llena los datos del formulario correctamente, los cuales son: 'Nombre de usuario', 'Email', 'Contraseña' y 'Repetir contraseña'.
+					
+					\item \textbf{\textit{El usuario}} da click en el botón 'Crear Usuario' \img{imagenes/Disenio/Componente_1/UI_btn_newUser.png}
+					
+					\item \textbf{\textit{La extensión}} despliega un popup de confirmación.
+					
+					\item \textbf{\textit{El usuario}} da click en el botón '!Si, continuar!' \img{imagenes/Disenio/Componente_1/UI_btn_continueNewUser.png}
+					
+			        \item \textbf{\textit{La extensión}} despliega el estado de la operación.
+			        
+			        \item \textbf{\textit{El usuario}} da click en el botón 'Iniciar sesión' \img{imagenes/Disenio/Componente_1/UI_btn_login.png}
+			        
+			        \item \textbf{\textit{La extensión}} redirige a la página de inicio de sesión.
+					
 				\end{enumerate}
 				\paragraph{... Fin de la Trayectoria Principal ...}
 				
+				
 				\paragraph{... Trayectoria Alternativa 1 ...}
 				\begin{enumerate}
-				    \item \textbf{\textit{La extensión}} no puede generar el código autentificador.
-					\item \textbf{\textit{La extensión}} mostrará al usuario un mensaje de dicho error.
+				    
+				    \item \textbf{\textit{El usuario}} da click en el ícono de la extensión \img{imagenes/Disenio/Componente_1/UI_icon_escom.png}.
+				    
+				    \item \textbf{\textit{La extensión}} despliega un popup.
+					
+					\item \textbf{\textit{El usuario}} da click en el botón 'Iniciar Sesión' \img{imagenes/Disenio/Componente_1/UI_btn_login.png}
+					
+					\item \textbf{\textit{La extensión}} abre una página en otra pestaña del navegador.
+					
+					\item \textbf{\textit{El usuario}} da click en el botón 'Registrarse' \img{imagenes/Disenio/Componente_1/UI_btn_logup.png}
+					
+					\item \textbf{\textit{La extensión}} muestra la página para registrarse.
+					
+					\item \textbf{\textit{El usuario}} llena al menos un campo del formulario incorrectamente.
+					
+					\item \textbf{\textit{El usuario}} da click en el botón 'Crear Usuario' \img{imagenes/Disenio/Componente_1/UI_btn_newUser.png}
+					
+					\item \textbf{\textit{La extensión}} despliega un popup en donde informa cuál campo está llenado de forma incorrecta.
+					
+					\item \textbf{\textit{El usuario}} da click en el botón 'Aceptar' \img{imagenes/Disenio/Componente_1/UI_btn_accept.png}
+					
+					\item \textbf{\textit{La extensión}} retorna al formulario sin realizar ninguna otra acción.
 				\end{enumerate}
 				\paragraph{... Fin de la Trayectoria Alternativa 1 ...}
 				
+				
+				\paragraph{... Trayectoria Alternativa 2 ...}
+				\begin{enumerate}
+				    
+				    \item \textbf{\textit{El usuario}} da click en el ícono de la extensión \img{imagenes/Disenio/Componente_1/UI_icon_escom.png}.
+				    
+				    \item \textbf{\textit{La extensión}} despliega un popup.
+					
+					\item \textbf{\textit{El usuario}} da click en el botón 'Iniciar Sesión' \img{imagenes/Disenio/Componente_1/UI_btn_login.png}
+					
+					\item \textbf{\textit{La extensión}} abre una página en otra pestaña del navegador.
+					
+					\item \textbf{\textit{El usuario}} da click en el botón 'Registrarse' \img{imagenes/Disenio/Componente_1/UI_btn_logup.png}
+					
+					\item \textbf{\textit{La extensión}} muestra la página para registrarse.
+					
+					\item \textbf{\textit{El usuario}} llena los datos del formulario correctamente, los cuales son: 'Nombre de usuario', 'Email', 'Contraseña' y 'Repetir contraseña'.
+					
+					\item \textbf{\textit{El usuario}} da click en el botón 'Crear Usuario' \img{imagenes/Disenio/Componente_1/UI_btn_newUser.png}
+					
+					\item \textbf{\textit{La extensión}} despliega un popup de confirmación.
+					
+					\item \textbf{\textit{El usuario}} da click en el botón 'Cancelar' \img{imagenes/Disenio/Componente_1/UI_btn_cancelNewUser.png}
+					
+			        \item \textbf{\textit{La extensión}} retorna al formulario sin realizar ninguna otra acción.
+					
+				\end{enumerate}
+				\paragraph{... Fin de la Trayectoria Alternativa 2 ...}
 				\newpage
 
-				%
-				%
-				%       DESCRIPCIÓN PII_CU7
-			    %
-                %
-                
+			
+			    % DESCRIPCIÓN CI_CU7
 				\begin{table}[H]
     				\begin{tabular}{ |p{3.5cm}||p{9.5cm}|}
     					\hline
-    					\rowcolor{guindapoli}  					\multicolumn{2}{|c|}{\textbf{\textcolor{white}{Caso de uso: CI\_CU7. Almacenamiento del certificado autentificador.}}}\\
+    					\rowcolor{guindapoli}  					\multicolumn{2}{|c|}{\textbf{\textcolor{white}{Caso de uso: CI\_CU7. Revocar certificado.}}}\\
     					\hline
     					\rowcolor{azulfuerte}Concepto & Descripción\\
     					\hline
     					\cellcolor{azulclaro}Actor & 
-    					-\\ 
+    					Usuario\\ 
     					\hline
     					\cellcolor{azulclaro}Propósito &
-    					Este caso de uso permite que la extensión guarde el certificado autentificador, para que el usuario no tenga que hacerlo por el mismo. De esta manera, la extensión tendrá acceso al certificado cada que éste sea requerido.\newline El lugar donde se guarda dicho certificado es en ''Google Chrome Storage'', una zona de memoria que Google Chrome nos brinda al desarrollar una extensión para el navegador.\\
+    					El usuario tendrá la opción de actualizar su certificado generando uno nuevo, con la finalidad de que el usuario tenga un mejor control de sus credenciales.\\
     					\hline
     					\cellcolor{azulclaro}Entradas &
     					Certificado autentificador.\\
     					\hline
     					\cellcolor{azulclaro}Salidas &
-    					-\\
+    					Certificado autentificador.\\
     					\hline
     					\cellcolor{azulclaro}Pre-condiciones&
-    					\textbf{{CI\_CU6.}}. \\
+    					\textbf{{CI\_CU4}}, \textbf{CI\_CU6}. \\
     					\hline
     					\cellcolor{azulclaro}Post-condiciones&
-    					-\\
+    					\textbf{CI\_CU4}\\
     					\hline
     					\cellcolor{azulclaro}Reglas del negocio&
-    					\hyperref[CI_RN6]{\textbf{CI\_RN6.}}\\
-    					\hline
+    			        \hyperref[CI_RN4]{\textbf{CI\_RN4.}}\newline
+    			        \hyperref[CI_RN5]{\textbf{CI\_RN5.}}\newline	
+    				    \hyperref[CI_RN6]{\textbf{CI\_RN6.}}\\
+    				    \hline
+    				    
     					\cellcolor{azulclaro}Errores &
     				    No se puede almacenar el certificado autentificador.\\
     					\hline
@@ -1897,8 +2128,8 @@
 				\paragraph{... Trayectoria Principal ...}
 				\begin{enumerate}
 				    \item \textbf{\textit{La extensión}} ha creado el certificado autentificador.
-				    \item \textbf{\textit{La extensión}} guarda el certificado en storage.
-				    \item \textbf{\textit{La extensión}} muestra al usuario el siguiente mensaje ''Certificado guardado en Storage'' en la figura \ref{fig:UI_certSavedInStorage}
+				    \item \textbf{\textit{La extensión}} actualiza las credenciales de su nuevo certificado.
+				     %\ref{fig:UI_certSavedInStorage}
 				\end{enumerate}
 				\paragraph{... Fin de la Trayectoria Principal ...}
 				
@@ -1906,11 +2137,11 @@
 				\begin{enumerate}
 				    \item \textbf{\textit{La extensión}} no ha creado el certificado autentificador.
 					\item \textbf{\textit{La extensión}} no guarda el certificado autentificador en storage. 
-					\item \textbf{\textit{La extensión}} muestra al usuario el siguiente mensaje ''Certificado no encontrado'' en la figura \ref{fig:UI_certNotSavedInStorage}
+					 \ref{fig:UI_certNotSavedInStorage}
 				\end{enumerate}
 				\paragraph{... Fin de la Trayectoria Alternativa 1 ...}
 				
-					\paragraph{... Trayectoria Alternativa 2 ...}
+				\paragraph{... Trayectoria Alternativa 2 ...}
 				\begin{enumerate}
 				    \item \textbf{\textit{La extensión}} ha creado  el certificado autentificador.
 					\item \textbf{\textit{La extensión}} no puede guardar el certificado autentificador en storage. 
@@ -1918,140 +2149,31 @@
 				\end{enumerate}
 				\paragraph{... Fin de la Trayectoria Alternativa 2 ...}
 				
-				\newpage
-			%
-			%   Desc PII_CU8
-			%
-			    \begin{table}[H]
-    				\begin{tabular}{ |p{3.5cm}||p{9.5cm}|}
-    					\hline
-    					\rowcolor{guindapoli}  					\multicolumn{2}{|c|}{\textbf{\textcolor{white}{Caso de uso: CI\_CU8. Generación de Chaffing}}}\\
-    					\hline
-    					\rowcolor{azulfuerte}Concepto & Descripción\\
-    					\hline
-    					\cellcolor{azulclaro}Actor & 
-    					-\\ 
-    					\hline
-    					\cellcolor{azulclaro}Propósito &
-    					Este caso de uso es el encargado de generar la petición modificada, es decir, de combinar el certificado con la petición HTTP mediande el método de Chaffing que decidimos aplicar.\\
-    					\hline
-    					\cellcolor{azulclaro}Entradas &
-    					Certificado autentificador y Petición HTTP válida.\\
-    					\hline
-    					\cellcolor{azulclaro}Salidas &
-    					Petición HTTP modificada.\\
-    					\hline
-    					\cellcolor{azulclaro}Pre-condiciones&
-    					\textbf{{CI\_CU4.}}. \\
-    					\hline
-    					\cellcolor{azulclaro}Post-condiciones&
-    					-\\
-    					\hline
-    					\cellcolor{azulclaro}Reglas del negocio&
-    					\hyperref[CI_RN3]{\textbf{CI\_RN3.}}\\
-    					\hline
-    					\cellcolor{azulclaro}Errores &
-    				    No se tenga una petición HTTP válida. No se cuente con un c\'odigo autentificador válido.\\
-    					\hline
-    				\end{tabular}
-				\caption[DCU: CI\_CU8]{Descripción CU: CI\_CU8}
-				\end{table}
-				
-				\paragraph{... Trayectoria Principal ...}
+				\paragraph{... Trayectoria Alternativa 3 ...}
 				\begin{enumerate}
-				    \item \textbf{\textit{La extensión}} Ha recibido una petición HTTP válida.
-				    \item \textbf{\textit{La extensión}} Tiene un certificado guardado en storage.
-				    \item \textbf{\textit{La extensión}} aplica el algoritmo de Chaffing en el encabezado de la petición HTTP ocultando el certificado en los headers de ésta.
-				    \item \textbf{\textit{La extensión}} libera la petición modificada al servidor.
-				\end{enumerate}
-				\paragraph{... Fin de la Trayectoria Principal ...}
-				
-				\paragraph{... Trayectoria Alternativa 1 ...}
-				\begin{enumerate}
-				    \item \textbf{\textit{La extensión}} no ha encontrado el certificado autentificador en storage.
-					\item \textbf{\textit{La extensión}} muestra al usuario el siguiente mensaje ''No se encuentra certificado'' en la figura \ref{fig:UI_certNotFound}
-				\end{enumerate}
-				\paragraph{... Fin de la Trayectoria Alternativa 1 ...}
-				
-					\paragraph{... Trayectoria Alternativa 2 ...}
-				\begin{enumerate}
-				    \item \textbf{\textit{La extensión}} no ha recibido ninguna petición HTTP válida.
-					\item \textbf{\textit{La extensión}} no realiza ninguna acción ya que, aunque se cuente con el certificado al carecer de petición HTTP es imposible generar una petición modificada con Chaffing.
+				    \item \textbf{\textit{La extensión}} ha creado  el certificado autentificador.
+					\item \textbf{\textit{La extensión}} no puede eliminar el certificado anterior.
+					\item \textbf{\textit{La extensión}} muestra al usuario el siguiente mensaje ''No se pudo guardar el certificado en el Storage'' en la figura
+					 \ref{fig:UI_certNotSavedInStorage}
 				\end{enumerate}
 				\paragraph{... Fin de la Trayectoria Alternativa 2 ...}
 				
 				\newpage
-			
-			%
-			%   DESCRIPCIÓN PII_CU9
-			%
-				\begin{table}[H]
-    				\begin{tabular}{ |p{3.5cm}||p{9.5cm}|}
-    					\hline
-    					\rowcolor{guindapoli}
-    					\multicolumn{2}{|c|}{\textbf{\textcolor{white}{Caso de uso: CI\_CU9. Liberación de Petición.}}}\\
-    					\hline
-    					\rowcolor{azulfuerte}Concepto & Descripción\\
-    					\hline
-    					\cellcolor{azulclaro}Actor & 
-    					Navegador de Google Chrome\\ 
-    					\hline
-    					\cellcolor{azulclaro}Propósito &
-    					Este caso de uso permite al Navegador de Google Chrome liberar la petición una vez que haya sido modificada por la extensión. Dentro de la petición se incluye el codigo autentificador junto con el patrón a utilizar en el proceso de \textit{Winnowing} una vez que sea recibido por el servidor.\\
-    					\hline
-    					\cellcolor{azulclaro}Entradas &
-    					Petición\\
-    					\hline
-    					\cellcolor{azulclaro}Salidas &
-    					Petición modificada enviada en red al servidor.\\
-    					\hline
-    					\cellcolor{azulclaro}Pre-condiciones&
-    					Haber completado exitosamente el proceso de \textit{Chaffing} al igual que la creación del patrón, e inyectarlo en la petición.\\
-    					\hline
-    					\cellcolor{azulclaro}Post-condiciones&
-    					Con los datos generados (Código Chaffing y patrón) generados por la extensión, se deben de inyectar en la petición para poder ser enviada al servidor a traves de la red.\\
-    					\hline
-    					\cellcolor{azulclaro}Reglas del negocio&
-    					\hyperref[CI_RN1]{\textbf{CI\_RN1}} \newline \hyperref[CI_RN3]{\textbf{CI\_RN3}} \newline
-    					\hyperref[CI_RN4]{\textbf{CI\_RN4}} \newline
-    					\hyperref[CI_RN5]{\textbf{CI\_RN5}} \\
-    					\hline
-    					\cellcolor{azulclaro}Errores &
-    					No se cuenta con acceso a internet \newline
-    					Hay un error de estructura en la petición \\		
-    					\hline
-    				\end{tabular}
-				\caption[DCU: CI\_CU9]{Descripción CU: CI\_CU9}
-				\end{table}
-				
-				\paragraph{... Trayectoria Principal ...}
-				\begin{enumerate}
-					\item \textbf{\textit{El Navegador Google Chrome}} realiza una petición con el encabezado HTTP modificado, el cual contiene dentro del apartado \textit{headers} del encabezado HTTP el certificado modificado con el proceso de \textit{Chaffing} y el patrón que ayudará al servidor al momento de hacer el proceso de \textit{Winnowing}.
-					\item \textbf{\textit{El analizador Wireshark}} captura la petición generada y muestra el encabezado modificado. Esto con el fin de mostrar que se ha generado el certificado y se ha modificado exitosamente con el proceso \textit{Chaffing}.				
-					\end{enumerate}
-				\paragraph{... Fin de la Trayectoria Principal ...}
-				
-				\paragraph{... Trayectoria Alternativa 1 ...}
-				\begin{enumerate}
-					\item \textbf{\textit{El Navegador de Google Chrome}} no puede establecer una conexión con el servidor debido a que no se cuenta con acceso a internet.
-					\item \textbf{\textit{El analizador Wireshark}} no podrá obtener los datos del encabezado, ya que no capturará la petición.
-				\end{enumerate}
-				\paragraph{... Fin de la Trayectoria Alternativa 1 ...}
-			
+		
 			\subsection{Diagrama de flujo (DF).}
 			    
 			    \begin{figure}[H]
-					\begin{center}			    	\includegraphics[height=16cm]{./imagenes/Disenio/Componente_1/CI_DF_P1.png}
+					\begin{center}			    	\includegraphics[height=16cm]{./imagenes/Disenio/Componente_1/CI_DF.png}
 						\caption{Diagrama de flujo del Componente I.}
 					\end{center}
 				\end{figure}
 				
 			    \subsubsection{Descripción diagrama de flujo.}
-			        Para el caso de este diagrama se inicia con una petición realizada por el navegador web para luego analizar si la extensión se encuentra activada, en caso de que no no se realiza ninguna acción, pero si si se encuentra se pedirá que se inicie sesión en la extensión con el propósito de generar un certificado válido para el usuario, mas tarde será necesario almacenar este certificado en la extensión y se procederá a interceptar la petición HTTP para modificarla, por lo que se genera el chaffing mediante la combinación de la petición y el certificado para luego liberar la petición modificada al servidor.
+			        Para el caso de este diagrama se inicia con una petición realizada por el navegador web para luego analizar si la extensión se encuentra activada, en caso de que no no se realiza ninguna acción, pero si sí se encuentra, se pedirá que se inicie sesión en la extensión con el propósito de generar un certificado válido para el usuario, mas tarde será necesario almacenar este certificado en la extensión y se procederá a interceptar la petición HTTP para modificarla, por lo que se genera el chaffing mediante la combinación de la petición y el certificado para luego liberar la petición modificada al servidor.
 				
 			\subsection{Diagrama de flujo de datos (DFD).}
 			    \begin{figure}[H]
-					\begin{center}			        	    \includegraphics[height=16cm]{./imagenes/Disenio/Componente_1/CI_DFD_P1.png}
+					\begin{center}			        	    \includegraphics[height=16cm]{./imagenes/Disenio/Componente_1/CI_DFD.png}
 						\caption{Diagrama de flujo de datos del Componente I.}
 					\end{center}
 				\end{figure}
@@ -2062,7 +2184,7 @@
 			\subsection{Diagrama de clases.}
 			
     			\begin{figure}[H]
-    				\begin{center}	\includegraphics[width=13cm]{./imagenes/Disenio/Componente_1/CI_DC_P1.png}
+    				\begin{center}	\includegraphics[width=13cm]{./imagenes/Disenio/Componente_1/CI_DC.png}
     				\caption{Diagrama de clases de Componente I.}
     				\end{center}
     			\end{figure}
@@ -2222,104 +2344,86 @@
           	
               	\subsubsection{Diagrama de secuencia 1}
                 	\begin{figure}[H]
-        			    \begin{center} \includegraphics[width=15cm]{./imagenes/Disenio/Componente_1/CI_SD_UC1_P1.png}
+        			    \begin{center} \includegraphics[width=15cm]{./imagenes/Disenio/Componente_1/CI_SD_UC1.png}
         			    \caption[Diagrama de secuencia 1 del Componente I]{Diagrama de secuencia del CI\_CU1. Realizar petición.}
         		        \end{center}
         		    \end{figure}
         		    
         		    \paragraph{Descripción:}
-        		    Para realizar una petición, es necesario seguir la siguiente secuencia. Primeramente, el usuario ingresa un URL al navegador, para que este construya la petición que mandará. Una vez que ha construido la petición, la manda a red, pero antes de eso la extensión que actúa como un sniffer, la interceptará.
+        		    Para realizar una petición, es necesario seguir la siguiente secuencia. Primeramente, el usuario ingresa un URL al navegador, para que este construya la petición que mandará. Una vez que ha construido la petición realiza la petición, es decir sale a red la petición.
     		    
     		    
     		     \subsubsection{Diagrama de secuencia 2}
     			    \begin{figure}[H]
-    				    \begin{center} \includegraphics[width=15cm]{./imagenes/Disenio/Componente_1/C1_SD_UC2_P1.png}
+    				    \begin{center} \includegraphics[width=15cm]{./imagenes/Disenio/Componente_1/CI_SD_UC2.png}
     				    \caption[Diagrama de secuencia 2 del Componente I]{Diagrama de secuencia del CI\_CU2. Habilitar extensión.}
     			        \end{center}
     			    \end{figure}
     			    
     			    \paragraph{Descripción:}
-    			    Para habilitar la extensión, el usuario necesita primero abrir la extensión. Una vez abierta la extensión, debe de dar click en el botón 'habilitar', para que la extensión ejecute la orden y se mantenga habilitada.
+    			    Para habilitar la extensión, el usuario necesita primero abrir la extensión. Una vez abierta, debe de dar click en el botón 'Activar' para que la extensión ejecute la orden y se mantenga habilitada.
     			    
     			
     			\subsubsection{Diagrama de secuencia 3}
     			    \begin{figure}[H]
-    				    \begin{center} \includegraphics[width=15cm]{./imagenes/Disenio/Componente_1/C1_SD_UC3_P1.png}
+    				    \begin{center} \includegraphics[width=15cm]{./imagenes/Disenio/Componente_1/CI_SD_UC3.png}
     				    \caption[Diagrama de secuencia 3 del Componente I]{Diagrama de secuencia del CI\_CU3. Deshabilitar extensión.}
     			        \end{center}
     			    \end{figure}
     			    
     			    \paragraph{Descripción:}
-    			    Para deshabilitar la extensión, el usuario necesita primero abrir la extensión. Una vez abierta la extensión, debe de dar click en el botón ''deshabilitar'', para que la extensión ejecute la orden y se mantenga deshabilitada.
+    			    Para deshabilitar la extensión, el usuario necesita primero abrir la extensión. Una vez abierta la extensión, debe de dar click en el botón 'Desactivar', para que la extensión ejecute la orden y se mantenga deshabilitada.
     			   
     			
     			\subsubsection{Diagrama de secuencia 4}
     			    \begin{figure}[H]
-    				    \begin{center} \includegraphics[width=15cm]{./imagenes/Disenio/Componente_1/C1_SD_UC4_P1.png}
-    				    \caption[Diagrama de secuencia 4 del Componente I]{Diagrama de secuencia del CI\_CU4. Interceptar petición.}
+    				    \begin{center} \includegraphics[width=15cm]{./imagenes/Disenio/Componente_1/CI_SD_UC4.png}
+    				    \caption[Diagrama de secuencia 4 del Componente I]{Diagrama de secuencia del CI\_CU4. Inicio de sesión en la extensión.}
     			        \end{center}
     			    \end{figure}
     			    
     			    \paragraph{Descripción:}
-    			    Una vez que el navegador ha enviado la petición, la extensión la interceptará. Lo primero que hace la extensión para conseguirlo es recibir la petición y bloquear su salida. Con ello la petición jamás saldrá a red y por ende no llegará al servidor.
-    			  
-              	\subsubsection{Diagrama de secuencia 5.}
-        		    \begin{figure}[H]
-        				\begin{center}    		    	\includegraphics[width=15cm]{./imagenes/Disenio/Componente_1/CI_SD_UC5_P1.png}
-        				\caption[Diagrama de secuencia 5 del Componente I]{Diagrama de secuencia del CI\_CU5. Inicio de sesión en la extensión.}
-        				\end{center}
-        			\end{figure}
-        			
-        		    \paragraph{Descripción:}
-        		    como primeros dos pasos de la secuencia para iniciar sesión en la extensión, el usuario ingresa su nombre de usuario y su contraseña, para después iniciar sesión en la extensión. Una vez que el usuario ha dado la orden de iniciar sesión, la extensión valida el nombre de usuario y la contraseña, retornando un mensaje en caso de que alguno de estos dos valores esté mal. 
+        		    Como primeros dos pasos de la secuencia para iniciar sesión en la extensión, el usuario ingresa su nombre de usuario y su contraseña, para después iniciar sesión en la extensión. Una vez que el usuario ha dado la orden de iniciar sesión, la extensión valida el nombre de usuario y la contraseña, retornando un mensaje en caso de que alguno de estos dos valores esté mal, si no es el caso, la extensión retornará un mensaje con el estatus del inicio de sesión. 
     			
     			
-    			\subsubsection{Diagrama de secuencia 6.}
+    			\subsubsection{Diagrama de secuencia 5.}
         			\begin{figure}[H]
-        				\begin{center}    		    	\includegraphics[width=15cm]{./imagenes/Disenio/Componente_1/CI_SD_UC6_P1.png}
-        				\caption[Diagrama de secuencia 6 del Componente I]{Diagrama de secuencia del CI\_CU6. Generación del certificado autentificador.}
+        				\begin{center}    		    	\includegraphics[width=15cm]{./imagenes/Disenio/Componente_1/CI_SD_UC5.png}
+        				\caption[Diagrama de secuencia 5 del Componente I]{Diagrama de secuencia del CI\_CU5. Cerrar sesión en la extensión.}
         				\end{center}
         			\end{figure}
         			
         			\paragraph{Descripción:}
-        			Una vez que el usuario ha iniciado sesión, la extensión procede a generar el certificado autentificador. Para ello se obtienen el nombre y la contraseña de usuario para concatenarlos en una única cadena y mandarlos a una función que genere un código HASH (sólo en este prototipo), para después obtener el certificado autentificador.
-    			
+        		        Como primer paso de este diagrama de secuencia se tiene que abrir la extensión para después dar click en el botón de 'Cerrar Sesión'.
+        		
+        		
+        		\subsubsection{Diagrama de secuencia 6.}
+        			\begin{figure}[H]
+        				\begin{center}    		    	\includegraphics[height=14cm]{./imagenes/Disenio/Componente_1/CI_SD_UC6.png}
+        				\caption[Diagrama de secuencia 6 del Componente I]{Diagrama de secuencia del CI\_CU6. Registrarse en servidor autentificador.}
+        				\end{center}
+        			\end{figure}
+        			
+        			\paragraph{Descripción:}	
+    			         Como primeros pasos de este diagrama de secuencia, la extensión se tiene que abrir para después dar click en el botón de 'Iniciar sesión' para desplegar la página principal y, una vez ahí, dar click en el botón de 'Registrarse'. Una vez en la página de registro, el usuario, como siguiente paso, llena los datos requeridos por el formulario para después dar click en el botón 'Crear Usuario'. La extensión validará los campos retornando un mensaje de error en caso de que alguno se llene mal, si no es el caso, retornará un aviso con el estatus del registro.
     			
     			\subsubsection{Diagrama de secuencia 7.}
         			\begin{figure}[H]
-        				\begin{center}    		    	\includegraphics[width=15cm]{./imagenes/Disenio/Componente_1/CI_SD_UC7_P1.png}
-        				\caption[Diagrama de secuencia 7 del Componente I]{Diagrama de secuencia del CI\_CU7. Almacenamiento del certificado autentificador.}
+        				\begin{center}    		    	\includegraphics[width=15cm]{./imagenes/Disenio/Componente_1/CI_SD_UC7.png}
+        				\caption[Diagrama de secuencia 7 del Componente I]{Diagrama de secuencia del CI\_CU7. Revocar certificado.}
         				\end{center}
         			\end{figure}
         			
         			\paragraph{Descripción:}
-        			Una vez que se ha generado el código autentificador, es necesario almacenarlo en el Storage de la extensión, para ello la extensión abre una nueva entrada en el Storage y almacena el certificado en ella. Finalmente, la extensión retorna un mensaje del estatus del almacenamiento, para que el usuario se entere si fue exitoso o no.
-    			
-    			
-    			\subsubsection{Diagrama de secuencia 8.}
-        			\begin{figure}[H]
-        				\begin{center}    		    	\includegraphics[width=15cm]{./imagenes/Disenio/Componente_1/CI_SD_UC8_P1.png}
-        				\caption[Diagrama de secuencia 8 del Componente I]{Diagrama de secuencia del CI\_CU8. Generación del chaffing.}
-        				\end{center}
-        			\end{figure}
-        			
-        			\paragraph{Descripción:}
-        			Cuando un usuario haga una petición, el navegador enviará dicha petición al servidor correspondiente. Sin embargo, en este momento es cuando la extensión interviene para realizar los pasos necesarios para generar el chaffing. Primeramente, la extensión intercepta la petición para elegir el encabezado a inyectar. Una vez que ha elegido el encabezado, busca obtener el certificado autentificador del Storage, para con base en él, crear el patrón de chaffing con el que se realizará la etapa de chaffing. Finalmente, la extensión agrega el patrón generado a una nueva entrada en el encabezado HTTP interceptado y le manda la señal al navegador para que éste la mande nuevamente. 
-    			
-    			
-    			\subsubsection{Diagrama de secuencia 9.}
-        			\begin{figure}[H]
-        				\begin{center}    		    	\includegraphics[width=15cm]{./imagenes/Disenio/Componente_1/CI_SD_UC9_P1.png}
-        				\caption[Diagrama de secuencia 9 del Componente I]{Diagrama de secuencia del CI\_CU9. Liberación de la petición.}
-        				\end{center}
-        			\end{figure}
         		
-        		    \paragraph{Descripción:}
-        		    El navegador una vez que recibe la señal de liberar petición, simplemente tiene que ejecutar su funcionamiento de 'realizar petición' para que ésta salga a red y busque llegar a su destino.
+    			
+    			
+    		
+    		
     		
 		    \subsection{Diagrama de actividades}
     		    \begin{figure}[H]
-    				\begin{center}	\includegraphics[width=15cm]{./imagenes/Disenio/Componente_1/CI_DA_P1.png}
+    				\begin{center}	\includegraphics[width=15cm]{./imagenes/Disenio/Componente_1/CI_DA.png}
     					\caption{Diagrama de actividades del Prototipo 2.}
     				\end{center}
     			\end{figure}
@@ -2506,7 +2610,431 @@
     		    Por último se enviará al servidor el patrón de chaffing junto con el mismo chaff, así podrá saber como realizar el \textit{winowwing} para obtener los datos correspondientes del certificado.
 
 
-			%INICIO DE DESCRIPCION DE CASOS DE USO DEl COMPONENTE 1
+    \section{Componente II: Servidor Autentificador.}
+			
+		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		%                               %
+		%    Desarrollo Componente 2    %
+		%                               %
+		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		\subsection{Diagrama de casos de uso.}
+		
+			\begin{figure}[H]
+            	\begin{center}	\includegraphics[width=13cm]{./imagenes/Disenio/Componente_2/CII_UCD.png}
+            	\caption{Diagrama de casos de uso del Componente II.}
+            	\end{center}
+    		\end{figure}
+		    
+		\subsubsection{Descripción de casos de uso.}
+		
+		\begin{table}[H]
+			\begin{tabular}{ |p{3.5cm}||p{9.5cm}|}
+				\hline
+				\rowcolor{guindapoli}
+				\multicolumn{2}{|c|}{\textbf{\textcolor{white}{Caso de uso: CII\_CU1. Crear nuevo usuario.}}}\\
+				\hline
+				\rowcolor{azulfuerte}Concepto & Descripción\\
+				\hline
+				\cellcolor{azulclaro}Actor & 
+				Extensión.\\ 
+				\hline
+				\cellcolor{azulclaro}Propósito &
+				Instanciar un nuevo usuario en la base de datos para posteriormente realizar la validación si es que este usuario ya se registró antes.\\
+				\hline
+				\cellcolor{azulclaro}Entradas &
+				Nombre de usuario, correo electrónico y contraseña.\\
+				\hline
+				\cellcolor{azulclaro}Salidas &
+				Usuario registrado en la base de datos.\\
+				\hline
+				\cellcolor{azulclaro}Pre-condiciones&
+				La extensión solicita la creación de un nuevo usuario al servidor autentificador.\\
+				\hline
+				\cellcolor{azulclaro}Post-condiciones&
+				Validación de entradas correctas \\
+				\hline
+				\cellcolor{azulclaro}Reglas del negocio&
+				%\hyperref[CI_RN2]{\textbf{CI\_RN1.}} \newline \hyperref[CI_RN3]{\textbf{CI\_RN4.}} \newline
+				%\hyperref[CI_RN6]{\textbf{CI\_RN7.}} \newline
+				\hyperref[CII_RN1]{\textbf{CII\_RN1}} \newline
+				\hyperref[CII_RN2]{\textbf{CII\_RN2}} \newline
+				\hyperref[CII_RN4]{\textbf{CII\_RN4}} \\
+				\hline
+				\cellcolor{azulclaro}Errores &
+				No se pudo registrar el usuario en la base de datos.\\
+				\hline
+		    \end{tabular}
+		    \caption[DCU: CII\_CU1]{Descripción CU: CII\_CU1}
+		\end{table}
+		
+		\paragraph{... Trayectoria Principal ...}
+			\begin{enumerate}
+				
+				\item \textbf{\textit{La extensión}} solicita a el servidor autentificador a registrar un nuevo usuario enviando los datos necesarios.
+				
+				\item \textbf{\textit{El servidor autentificador}} recibe los parámetros que le envió la extensión.
+				
+				\item \textbf{\textit{El servidor autentificador}} Genera un certificado de acuerdo a los datos dados por el usuario.
+				
+				\item \textbf{\textit{El servidor autentificador}} registra en su base de datos el nuevo usuario.
+				
+				\item \textbf{\textit{El servidor autentificador}} comunica a la extensión que el usuario ha sido creado.
+				
+				\item \textbf{\textit{La extensión}} despliega un mensaje de confirmación al usuario. 
+			
+			\end{enumerate}
+		\paragraph{... Fin de la Trayectoria Principal ...}
+		\paragraph{... Trayectoria alternativa 1 ...}
+		\begin{enumerate}
+		
+		    \item \textbf{\textit{La extensión}} solicita al servidor autentificador a registrar un nuevo usuario enviando los datos necesarios.
+		    
+		    \item \textbf{\textit{El servidor autentificador}} no recibe correctamente los datos.
+		    
+		    \item \textbf{\textit{La extensión}} despliega un mensaje de error.
+		\end{enumerate}
+		\paragraph{... Fin de Trayectoria alternativa ...}
+		
+		\paragraph{... Trayectoria alternativa 2 ...}
+		\begin{enumerate}
+		    \item \textbf{\textit{La extensión}} solicita al servidor autentificador a registrar un nuevo usuario enviando los datos necesarios.
+		    
+		    \item \textbf{\textit{El servidor autentificador}} recibe los parámetros que le envió la extensión.
+		    
+		    \item \textbf{\textit{El serivdor autentificador}} no puede registrar el nuevo usuario en su base de datos. El usuario ya existe.
+		    
+		    \item \textbf{\textit{La extensión}} despliega un mensaje de error.
+		\end{enumerate}
+		\paragraph{... Fin de Trayectoria alternativa}
+		
+		\begin{table}[H]
+			\begin{tabular}{ |p{3.5cm}||p{9.5cm}|}
+				\hline
+				\rowcolor{guindapoli}
+				\multicolumn{2}{|c|}{\textbf{\textcolor{white}{Caso de uso: CII\_CU2. Revocar certificado.}}}\\
+				\hline
+				\rowcolor{azulfuerte}Concepto & Descripción\\
+				\hline
+				\cellcolor{azulclaro}Actor & 
+				Extensión.\\ 
+				\hline
+				\cellcolor{azulclaro}Propósito &
+				Cambiar el certificado que se encuentra asignado a cierto usuario con un certificado nuevo.\\
+				\hline
+				\cellcolor{azulclaro}Entradas &
+				Usuario y contraseña.\\
+				\hline
+				\cellcolor{azulclaro}Salidas &
+				Certificado nuevo reasignado.\\
+				\hline
+				\cellcolor{azulclaro}Pre-condiciones&
+				Usuario previamente registrado en el servidor autentificador.\\
+				\hline
+				\cellcolor{azulclaro}Post-condiciones&
+				Extensión instalada en el navegador.\\
+				\hline
+				\cellcolor{azulclaro}Reglas del negocio&
+				%\hyperref[CI_RN2]{\textbf{CI\_RN1.}} \newline \hyperref[CI_RN3]{\textbf{CI\_RN4.}} \newline
+				%\hyperref[CI_RN6]{\textbf{CI\_RN7.}} \newline
+				\hyperref[CII_RN1]{\textbf{CII\_RN1}} \newline
+				\hyperref[CII_RN2]{\textbf{CII\_RN2}} \newline
+				\hyperref[CII_RN5]{\textbf{CII\_RN5}} \newline
+				\hyperref[CII_RN7]{\textbf{CII\_RN7}} \\
+				\hline
+				\cellcolor{azulclaro}Errores &
+				El certificado no se pudo crear correctamente. \newline
+				No se pudo asignar el certificado al usuario.\\
+				\hline
+		    \end{tabular}
+		    \caption[DCU: CII\_CU2]{Descripción CU: CII\_CU2}
+		\end{table}
+		
+		\paragraph{... Trayectoria principal ...}
+		\begin{enumerate}
+		    \item \textbf{\textit{La extensión}} solicita revocar certificado al usuario actual.
+		    
+		    \item \textbf{\textit{El servidor autentificador}} elimina el certificado antes asignado a ese usuario.
+		    
+		    \item \textbf{\textit{El servidor autentificador}} genera un nuevo certificado.
+		    
+		    \item \textbf{\textit{El servidor autentificador}} asigna el certificado generado al usuario.
+		    
+		    \item \textbf{\textit{El servidor autentificador}} manda el certificado de este usuario a la extensión.
+		\end{enumerate}
+		\paragraph{... Fin Trayectoria principal ...}
+		
+		\paragraph{... Trayectoria Alternativa 1 ...}
+		\begin{enumerate}
+		    \item \textbf{\textit{La extensión}} solicita revocar certificado al usuario actual.
+		    
+		    \item \textbf{\textit{El servidor autentificador}} no puede encontrar el usuario que solicitó revocar el certificado.
+		    
+		    \item \textbf{\textit{El servidor autentificador}} envía un código de error a la extensión.
+		\end{enumerate}
+		\paragraph{... Fin Trayectoria Alternativa 1 ...}
+		
+		\paragraph{... Trayectoria Alternativa 2 ...}
+		\begin{enumerate}
+		    \item \textbf{\textit{La extensión}} solicita revocar el certificado al usuario actual.
+		     
+		     \item \textbf{\textit{El servidor autentificador}} no puede generar un nuevo certificado.
+		     
+		     \item \textbf{\textit{El servidor autentificador}} envía un código de error a la extensión.
+		\end{enumerate}
+		\paragraph{... Fin Trayectoria Alternativa 2 ...}
+		
+		\paragraph{... Trayectoria Alternativa 3 ...}
+		\begin{enumerate}
+		    \item \textbf{\textit{La extensión}} solicita revocar el certificado al usuario actual.
+		    
+		    \item \textbf{\textit{El servidor autentificador}} genera un nuevo certificado.
+		    
+		    \item \textbf{\textit{El servidor autentificador}} elimina el certificado antes asignado a ese usuario.
+		    
+		    \item \textbf{\textit{El servidor autentificador}} asigna el certificado al usuario.
+		    
+		    \item \textbf{\textit{El servidor autentificador}} no puede enviarle el certificado al usuario.
+		    
+		    \item \textbf{\textit{El servidor autentificador}} envía un código de error a la extensión.
+		\end{enumerate}
+		\paragraph{... Fin Trayectorai Alternativa 3 ...}
+		
+		\begin{table}[H]
+			\begin{tabular}{ |p{3.5cm}||p{9.5cm}|}
+				\hline
+				\rowcolor{guindapoli}
+				\multicolumn{2}{|c|}{\textbf{\textcolor{white}{Caso de uso: CII\_CU3. Obtener certificado.}}}\\
+				\hline
+				\rowcolor{azulfuerte}Concepto & Descripción\\
+				\hline
+				\cellcolor{azulclaro}Actor & 
+				Extensión.\\ 
+				\hline
+				\cellcolor{azulclaro}Propósito &
+				Poder dar el certificado asignado a un usuario sin importar donde se encuentre este iniciado sesión.\\
+				\hline
+				\cellcolor{azulclaro}Entradas &
+				Usuario y contraseña.\\
+				\hline
+				\cellcolor{azulclaro}Salidas &
+				Certificado asignado a dicho usuario.\\
+				\hline
+				\cellcolor{azulclaro}Pre-condiciones&
+				Haber sido registrado y contar con un certificado en la autoridad certificadora.\\
+				\hline
+				\cellcolor{azulclaro}Post-condiciones&
+				Extensión habilitada e instalada en el navegador.\\
+				\hline
+				\cellcolor{azulclaro}Reglas del negocio&
+				%\hyperref[CI_RN2]{\textbf{CI\_RN1.}} \newline \hyperref[CI_RN3]{\textbf{CI\_RN4.}} \newline
+				%\hyperref[CI_RN6]{\textbf{CI\_RN7.}} \newline
+				\hyperref[CII_RN1]{\textbf{CII\_RN1}} \newline
+				\hyperref[CII_RN2]{\textbf{CII\_RN2}} \newline
+				\hyperref[CII_RN3]{\textbf{CII\_RN3}} \newline
+				\hyperref[CII_RN4]{\textbf{CII\_RN4}} \\
+				\hline
+				\cellcolor{azulclaro}Errores &
+				El servidor autentificador no puede comunicarse o enviar el certificado a la extensión.\\					
+				\hline
+		    \end{tabular}
+		    \caption[DCU: CII\_CU3]{Descripción CU: CII\_CU3}
+		\end{table}
+		
+		
+		\paragraph{... Trayectoria principal ...}
+		    \begin{enumerate}
+		        \item \textbf{\textit{La extensión}} solicita el certificado asignado al usuario con sesión iniciada actualmente.
+		        
+		        \item \textbf{\textit{El servidor autentificador}} valida al usuario registrado en su base de datos.
+		        
+		        \item \textbf{\textit{El servidor autentificador}} envía a la extensión el certificado asociado a este usuario.
+		    \end{enumerate}
+		\paragraph{... Fin Trayectoria principal ...}
+		
+		\paragraph{... Trayectoria Alternativa 1 ...}
+		    \begin{enumerate}
+		        \item \textbf{\textit{La extensión}} solicita el certificado asignado al usuario con sesión iniciada actualmente.
+		        
+		        \item \textbf{\textit{El servidor autentificador}} no encuentra el usuario registrado en su base de datos.
+		        
+		        \item \textbf{\textit{El servidor autentificador}} envía un código de error a la extensión.
+		    \end{enumerate}
+		\paragraph{... Fin Trayectoria Alternativa 1 ...}
+		
+		\paragraph{... Trayectoria Alternativa 2 ...}
+		    \begin{enumerate}
+		        \item \textbf{\textit{La extensión}} solicita el certificado asignado al usuario con sesión iniciada actualmente.
+		        
+		        \item \textbf{\textit{El servidor autentificador}} valida el usuario registrado en su base de datos.
+		        
+		        \item \textbf{\textit{El servidor autentificador}} no puede enviar el certificado a la extensión.
+		        
+		        \item \textbf{\textit{El servidor autentificador}} envía un código de error a la extensión.
+		    \end{enumerate}
+		\paragraph{... Fin Trayectoria Alternativa 1 ...}
+		
+		
+		\begin{table}[H]
+			\begin{tabular}{ |p{3.5cm}||p{9.5cm}|}
+				\hline
+				\rowcolor{guindapoli}
+				\multicolumn{2}{|c|}{\textbf{\textcolor{white}{Caso de uso: CII\_CU4. Verificar certificado.}}}\\
+				\hline
+				\rowcolor{azulfuerte}Concepto & Descripción\\
+				\hline
+				\cellcolor{azulclaro}Actor & 
+				Servidor autentificador.\\ 
+				\hline
+				\cellcolor{azulclaro}Propósito &
+				Poder saber si un certificado se encuentra asignado a un usuario, así como también si este fué emitido por el mismo servidor.\\
+				\hline
+				\cellcolor{azulclaro}Entradas &
+				Certificado a verificar.\\
+				\hline
+				\cellcolor{azulclaro}Salidas &
+				Respuesta booleana.\\
+				\hline
+				\cellcolor{azulclaro}Pre-condiciones&
+				Usuario registrado en el servidor autentificador.\\
+				\hline
+				\cellcolor{azulclaro}Post-condiciones&
+				- \\
+				\hline
+				\cellcolor{azulclaro}Reglas del negocio&
+				%\hyperref[CI_RN2]{\textbf{CI\_RN1.}} \newline \hyperref[CI_RN3]{\textbf{CI\_RN4.}} \newline
+				%\hyperref[CI_RN6]{\textbf{CI\_RN7.}} \newline
+				\hyperref[CII_RN1]{\textbf{CII\_RN1}} \newline
+				\hyperref[CII_RN2]{\textbf{CII\_RN2}} \newline
+				\hyperref[CII_RN7]{\textbf{CII\_RN7}} \\
+				\hline
+				\cellcolor{azulclaro}Errores &
+				El servidor autentificador no puede responder. \\					
+				\hline
+		    \end{tabular}
+		    \caption[DCU: CII\_CU4]{Descripción CU: CII\_CU4}
+		\end{table}
+		
+		\paragraph{... Trayectoria principal ...}
+		    \begin{enumerate}
+		        \item \textbf{\textit{El servidor autentificador}} recibe un certificado para verificar.
+		        
+		        \item \textbf{\textit{El servidor autentificador}} verifica que el certificado fue emitido por este mismo.
+		        
+		        \item \textbf{\textit{El servidor autentificador}} verifica que el certificado esté asignado a un usuario.
+		        
+		        \item \textbf{\textit{El servidor autentificador}} envía un \textit{true}. 
+		    \end{enumerate}
+		\paragraph{... Fin Trayectoria principal ...}
+		
+		\paragraph{... Trayectoria Alternativa 1 ...}
+		    \begin{enumerate}
+		        \item \textbf{\textit{El servidor autentificador}} recibe un certificado para verificar.
+		        
+		        \item \textbf{\textit{El servidor autentificador}} verifica que el certificado no fué emitido por el mismo.
+		        
+		        \item \textbf{\textit{El servidor autentificador}} envía un \textit{false}. 
+		    \end{enumerate}
+		\paragraph{... Fin Trayectoria Alternativa 1 ...}
+		
+		\paragraph{... Trayectoria Alternativa 2 ...}
+		\begin{enumerate}
+		
+		    \item \textbf{\textit{El servidor autentificador}} recibe un certificado para verificar.
+		        
+	        \item \textbf{\textit{El servidor autentificador}} verifica que el certificado fue emitido por este mismo.
+	        
+	        \item \textbf{\textit{El servidor autentificador}} verifica que el certificado no esta asignado a un usuario.
+	        
+	        \item \textbf{\textit{El servidor autentificador}} envía un \textit{false}. 
+	    \end{enumerate}
+		\paragraph{... Fin Trayectoria Alternativa 2 ...}
+		
+		\subsection{Diagrama de flujo.}
+		
+		\begin{figure}[H]
+        	\begin{center}	\includegraphics[width=11cm]{./imagenes/Disenio/Componente_2/C2_DF_P1.png}
+        	\caption{Diagrama de flujo de Componente II.}
+        	\end{center}
+		\end{figure}
+		
+		\subsection{Diagrama de flujo de datos.}
+		\begin{figure}[H]
+        	\begin{center}	\includegraphics[width=13cm]{./imagenes/Disenio/Componente_2/CII_DFD.png}
+        	\caption{Diagrama de flujo de datos del Componente II.}
+        	\end{center}
+		\end{figure}
+		
+		
+		\subsection{Diagrama de clases.}
+		
+		\begin{figure}[H]
+        	\begin{center}	\includegraphics[width=13cm]{./imagenes/Disenio/Componente_2/C2_DC_P1.png}
+        	\caption{Diagrama de clases de Componente II.}
+        	\end{center}
+		\end{figure}
+			    
+			    \subsubsection{Descripción de diagrama de clases}
+			    \textbf{\textit{Certificate Authority}}
+			    \begin{enumerate}
+    		        \item \textbf{user} : Variable que nos servirá para identificar a cada usuario registrado en el servidor.
+    		        \begin{itemize}
+    		            \item Tipo de dato: \textbf{User}.
+    		        \end{itemize}
+    		        
+    		        \item \textbf{certificado} : Variable donde se almacenará el certificado correspondiente a un usuario.
+    		        \begin{itemize}
+    		            \item Tipo de dato: \textbf{Certificate}.
+    		        \end{itemize}
+    		        
+    		        \item \textbf{status} : Variable que nos servirá para saber si el certificado sigue vigente o de lo contrario hay que revocarlo.
+    		        \begin{itemize}
+    		            \item Tipo de dato: \textbf{boolean}.
+    		        \end{itemize}
+
+    		        Métodos
+    		        \begin{enumerate}
+    		            \item \textbf{createUser()}: Crea una nueva isntancia de un usuario en la base de datos para registrar a un usuario.
+    		            
+    		            \item \textbf{validateUser()}: Valida si el usuario que se está registrando es un usuario válido.
+    		            
+    		            \item \textbf{searchUser()}: Busca a un usuario en la base de datos para saber si ya se encuentra registrado previamente.
+    		            
+    		            \item \textbf{getStatus()}: Obtiene el status del certificado de un usuario (False si el certificado ya expiró, True en caso que siga vigente).
+    		            
+    		            \item \textbf{updateCertificate()}: Actualiza un certificado nuevo a un usuario ya registrado.
+    		            
+    		            \item \textbf{revocateCertificate()}: Elimina un certficado asociado a un usuario ya registrado.
+    		            
+    		        \end{enumerate}
+			    \end{enumerate}
+			    
+			    \textbf{\textit{User}}
+			    \begin{enumerate}
+			        \item \textbf{email} : Variable que guarda el correo de un usuario que nos servirá para identificar a este; cada usuario solo puede tener un solo correo.
+			        \begin{itemize}
+			            \item tipo de dato: \textbf{String}
+			        \end{itemize}
+			        
+			        \item \textbf{password} : Variable que nos identificará 
+			        \begin{itemize}
+			            \item tipo de dato: \textbf{String}
+			        \end{itemize}
+			    \end{enumerate}
+			    
+			    
+		
+		\subsection{Diagramas de secuencias.}
+		
+		\begin{figure}[H]
+        	\begin{center}	\includegraphics[width=13cm]{./imagenes/Disenio/Componente_2/C2_DC_P1.png}
+        	\caption{Diagrama de clases de Componente II.}
+        	\end{center}
+		\end{figure}
+		
+	    \subsection{Diagrama de actividades.}
+	
+	
+	
 			        
     \chapter{\textcolor{azulescom}{Desarrollo}}
         \section{Componente I.}
