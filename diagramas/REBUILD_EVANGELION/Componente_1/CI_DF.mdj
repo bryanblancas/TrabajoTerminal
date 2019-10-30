@@ -342,7 +342,7 @@
 										"$ref": "AAAAAAFqUtkw0YGhlXU="
 									},
 									"font": "Arial;13;0",
-									"left": 530,
+									"left": 522,
 									"top": 1218,
 									"width": 85,
 									"height": 13,
@@ -351,7 +351,7 @@
 								}
 							],
 							"font": "Arial;13;0",
-							"left": 520,
+							"left": 512,
 							"top": 1208,
 							"width": 105,
 							"height": 33,
@@ -707,7 +707,7 @@
 								"$ref": "AAAAAAFqUxYHFcx1kvc="
 							},
 							"lineStyle": 2,
-							"points": "608:696;352:696;352:1152;576:1152;576:1208",
+							"points": "608:696;352:696;352:1152;568:1152;568:1208",
 							"nameLabel": {
 								"$ref": "AAAAAAFqUxjqfczKSy0="
 							}
