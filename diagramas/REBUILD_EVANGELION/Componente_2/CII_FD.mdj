@@ -55,8 +55,8 @@
 										"$ref": "AAAAAAFuFXUNVp7CA1c="
 									},
 									"font": "Arial;13;0",
-									"left": 376.25,
-									"top": 58.25,
+									"left": 344.25,
+									"top": 42.25,
 									"width": 32.5,
 									"height": 20.5,
 									"text": "Inicio",
@@ -64,8 +64,8 @@
 								}
 							],
 							"font": "Arial;13;0",
-							"left": 360,
-							"top": 48,
+							"left": 328,
+							"top": 32,
 							"width": 65,
 							"height": 41,
 							"nameLabel": {
@@ -433,7 +433,7 @@
 									"top": 578,
 									"width": 63.59716796875,
 									"height": 26,
-									"text": "Solicitar renovacion",
+									"text": "Solicitar renovación",
 									"wordWrap": true
 								}
 							],
@@ -953,7 +953,7 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 291,
+									"left": 275,
 									"top": 121,
 									"height": 13,
 									"alpha": 1.5707963267948966,
@@ -972,7 +972,7 @@
 								"$ref": "AAAAAAFuFXUNVp7CA1c="
 							},
 							"lineStyle": 2,
-							"points": "392:88;392:112;192:112;192:144",
+							"points": "360:72;360:112;192:112;192:144",
 							"nameLabel": {
 								"$ref": "AAAAAAFuFXjak5+9fSc="
 							}
@@ -1157,16 +1157,16 @@
 									"font": "Arial;13;0",
 									"left": 522,
 									"top": 146,
-									"width": 61,
+									"width": 62.8671875,
 									"height": 39,
-									"text": "Solicitar revocar certificado",
+									"text": "Solicitar revocación certificado",
 									"wordWrap": true
 								}
 							],
 							"font": "Arial;13;0",
 							"left": 512,
 							"top": 136,
-							"width": 81,
+							"width": 82.8671875,
 							"height": 59,
 							"nameLabel": {
 								"$ref": "AAAAAAFuGJFIYQOGXfI="
@@ -1374,7 +1374,7 @@
 									"top": 522,
 									"width": 93.22802734375,
 									"height": 52,
-									"text": "Alcaenar certificado a usuario correspondiente",
+									"text": "Almacenar certificado a usuario correspondiente",
 									"wordWrap": true
 								}
 							],
@@ -2164,7 +2164,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFuFXS/Pp67gWo="
 					},
-					"name": "Solicitar renovacion",
+					"name": "Solicitar renovación",
 					"ownedElements": [
 						{
 							"_type": "FCFlow",
@@ -2195,7 +2195,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFuFXS/Pp67gWo="
 					},
-					"name": "Solicitar revocar certificado",
+					"name": "Solicitar revocación certificado",
 					"ownedElements": [
 						{
 							"_type": "FCFlow",
@@ -2325,7 +2325,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFuFXS/Pp67gWo="
 					},
-					"name": "Alcaenar certificado a usuario correspondiente",
+					"name": "Almacenar certificado a usuario correspondiente",
 					"ownedElements": [
 						{
 							"_type": "FCFlow",
