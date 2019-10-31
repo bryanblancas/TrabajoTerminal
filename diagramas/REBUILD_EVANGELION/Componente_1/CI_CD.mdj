@@ -9,7 +9,7 @@
 			"_parent": {
 				"$ref": "AAAAAAFF+h6SjaM2Hec="
 			},
-			"name": "Model1",
+			"name": "CD",
 			"ownedElements": [
 				{
 					"_type": "UMLClassDiagram",
@@ -17,7 +17,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFpFq67/Y8z7iw="
 					},
-					"name": "CI_DC_P1",
+					"name": "CI_CD",
 					"ownedViews": [
 						{
 							"_type": "UMLAssociationView",
@@ -350,7 +350,7 @@
 											"top": 128,
 											"width": 80.9072265625,
 											"height": 13,
-											"text": "(from Model1)"
+											"text": "(from CD)"
 										},
 										{
 											"_type": "LabelView",
@@ -939,7 +939,7 @@
 											"top": 16,
 											"width": 80.9072265625,
 											"height": 13,
-											"text": "(from Model1)"
+											"text": "(from CD)"
 										},
 										{
 											"_type": "LabelView",
