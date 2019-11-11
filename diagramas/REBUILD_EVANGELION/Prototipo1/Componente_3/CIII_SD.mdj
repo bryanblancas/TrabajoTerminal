@@ -412,7 +412,11 @@
 											"left": 245,
 											"top": 116,
 											"width": 14,
+<<<<<<< HEAD:diagramas/REBUILD_EVANGELION/Componente_3/CIII_SD.mdj
 											"height": 80
+=======
+											"height": 128
+>>>>>>> 9569d0cba47ab937d1fad11872c03ab214875ca0:diagramas/REBUILD_EVANGELION/Prototipo1/Componente_3/CIII_SD.mdj
 										}
 									],
 									"font": "Arial;13;0",
@@ -456,8 +460,13 @@
 												"$ref": "AAAAAAFuE9cHnL3r1c8="
 											},
 											"font": "Arial;13;0",
+<<<<<<< HEAD:diagramas/REBUILD_EVANGELION/Componente_3/CIII_SD.mdj
 											"left": 293,
 											"top": 123,
+=======
+											"left": 445,
+											"top": 131,
+>>>>>>> 9569d0cba47ab937d1fad11872c03ab214875ca0:diagramas/REBUILD_EVANGELION/Prototipo1/Componente_3/CIII_SD.mdj
 											"width": 128.6162109375,
 											"height": 13,
 											"alpha": 1.585287063760439,
@@ -479,8 +488,13 @@
 											},
 											"visible": false,
 											"font": "Arial;13;0",
+<<<<<<< HEAD:diagramas/REBUILD_EVANGELION/Componente_3/CIII_SD.mdj
 											"left": 312,
 											"top": 123,
+=======
+											"left": 464,
+											"top": 131,
+>>>>>>> 9569d0cba47ab937d1fad11872c03ab214875ca0:diagramas/REBUILD_EVANGELION/Prototipo1/Componente_3/CIII_SD.mdj
 											"height": 13,
 											"alpha": 1.5707963267948966,
 											"distance": 25,
@@ -500,8 +514,13 @@
 											},
 											"visible": false,
 											"font": "Arial;13;0",
+<<<<<<< HEAD:diagramas/REBUILD_EVANGELION/Componente_3/CIII_SD.mdj
 											"left": 278,
 											"top": 124,
+=======
+											"left": 430,
+											"top": 132,
+>>>>>>> 9569d0cba47ab937d1fad11872c03ab214875ca0:diagramas/REBUILD_EVANGELION/Prototipo1/Componente_3/CIII_SD.mdj
 											"height": 13,
 											"alpha": -1.5707963267948966,
 											"distance": 10,
@@ -520,8 +539,13 @@
 												"$ref": "AAAAAAFuE9cHnL3r1c8="
 											},
 											"font": "Arial;13;0",
+<<<<<<< HEAD:diagramas/REBUILD_EVANGELION/Componente_3/CIII_SD.mdj
 											"left": 252,
 											"top": 140,
+=======
+											"left": 404,
+											"top": 148,
+>>>>>>> 9569d0cba47ab937d1fad11872c03ab214875ca0:diagramas/REBUILD_EVANGELION/Prototipo1/Componente_3/CIII_SD.mdj
 											"width": 14,
 											"height": 29
 										}
@@ -533,7 +557,11 @@
 									"tail": {
 										"$ref": "AAAAAAFuE9Vbir2cvC4="
 									},
+<<<<<<< HEAD:diagramas/REBUILD_EVANGELION/Componente_3/CIII_SD.mdj
 									"points": "258:120;288:120;288:140;265:140",
+=======
+									"points": "410:128;440:128;440:148;417:148",
+>>>>>>> 9569d0cba47ab937d1fad11872c03ab214875ca0:diagramas/REBUILD_EVANGELION/Prototipo1/Componente_3/CIII_SD.mdj
 									"nameLabel": {
 										"$ref": "AAAAAAFuE9cHnL3tB1w="
 									},
@@ -683,9 +711,15 @@
 												"$ref": "AAAAAAFuWA7cgW07g5Q="
 											},
 											"font": "Arial;13;0",
+<<<<<<< HEAD:diagramas/REBUILD_EVANGELION/Componente_3/CIII_SD.mdj
 											"left": 301,
 											"top": 176,
 											"width": 114.1689453125,
+=======
+											"left": 447,
+											"top": 184,
+											"width": 116.0986328125,
+>>>>>>> 9569d0cba47ab937d1fad11872c03ab214875ca0:diagramas/REBUILD_EVANGELION/Prototipo1/Componente_3/CIII_SD.mdj
 											"height": 13,
 											"alpha": 1.5707963267948966,
 											"distance": 10,
@@ -706,8 +740,13 @@
 											},
 											"visible": false,
 											"font": "Arial;13;0",
+<<<<<<< HEAD:diagramas/REBUILD_EVANGELION/Componente_3/CIII_SD.mdj
 											"left": 358,
 											"top": 161,
+=======
+											"left": 464,
+											"top": 187,
+>>>>>>> 9569d0cba47ab937d1fad11872c03ab214875ca0:diagramas/REBUILD_EVANGELION/Prototipo1/Componente_3/CIII_SD.mdj
 											"height": 13,
 											"alpha": 1.5707963267948966,
 											"distance": 25,
@@ -727,8 +766,13 @@
 											},
 											"visible": false,
 											"font": "Arial;13;0",
+<<<<<<< HEAD:diagramas/REBUILD_EVANGELION/Componente_3/CIII_SD.mdj
 											"left": 358,
 											"top": 196,
+=======
+											"left": 430,
+											"top": 188,
+>>>>>>> 9569d0cba47ab937d1fad11872c03ab214875ca0:diagramas/REBUILD_EVANGELION/Prototipo1/Componente_3/CIII_SD.mdj
 											"height": 13,
 											"alpha": -1.5707963267948966,
 											"distance": 10,
@@ -747,8 +791,13 @@
 												"$ref": "AAAAAAFuWA7cgW07g5Q="
 											},
 											"font": "Arial;13;0",
+<<<<<<< HEAD:diagramas/REBUILD_EVANGELION/Componente_3/CIII_SD.mdj
 											"left": 459,
 											"top": 192,
+=======
+											"left": 404,
+											"top": 204,
+>>>>>>> 9569d0cba47ab937d1fad11872c03ab214875ca0:diagramas/REBUILD_EVANGELION/Prototipo1/Componente_3/CIII_SD.mdj
 											"width": 14,
 											"height": 29
 										}
@@ -760,7 +809,11 @@
 									"tail": {
 										"$ref": "AAAAAAFuE9Vbir2cvC4="
 									},
+<<<<<<< HEAD:diagramas/REBUILD_EVANGELION/Componente_3/CIII_SD.mdj
 									"points": "258:192;459:192",
+=======
+									"points": "410:184;440:184;440:204;417:204",
+>>>>>>> 9569d0cba47ab937d1fad11872c03ab214875ca0:diagramas/REBUILD_EVANGELION/Prototipo1/Componente_3/CIII_SD.mdj
 									"nameLabel": {
 										"$ref": "AAAAAAFuWA7cgW09WU0="
 									},
@@ -817,8 +870,14 @@
 											},
 											"visible": false,
 											"font": "Arial;13;0",
+<<<<<<< HEAD:diagramas/REBUILD_EVANGELION/Componente_3/CIII_SD.mdj
 											"left": 526,
 											"top": 219,
+=======
+											"left": 203,
+											"top": 244,
+											"width": 125.01708984375,
+>>>>>>> 9569d0cba47ab937d1fad11872c03ab214875ca0:diagramas/REBUILD_EVANGELION/Prototipo1/Componente_3/CIII_SD.mdj
 											"height": 13,
 											"alpha": 1.5707963267948966,
 											"distance": 25,
@@ -928,8 +987,13 @@
 											},
 											"visible": false,
 											"font": "Arial;13;0",
+<<<<<<< HEAD:diagramas/REBUILD_EVANGELION/Componente_3/CIII_SD.mdj
 											"left": 272,
 											"top": 275,
+=======
+											"left": 265,
+											"top": 259,
+>>>>>>> 9569d0cba47ab937d1fad11872c03ab214875ca0:diagramas/REBUILD_EVANGELION/Prototipo1/Componente_3/CIII_SD.mdj
 											"height": 13,
 											"alpha": 1.5707963267948966,
 											"distance": 25,
@@ -949,8 +1013,13 @@
 											},
 											"visible": false,
 											"font": "Arial;13;0",
+<<<<<<< HEAD:diagramas/REBUILD_EVANGELION/Componente_3/CIII_SD.mdj
 											"left": 273,
 											"top": 240,
+=======
+											"left": 266,
+											"top": 224,
+>>>>>>> 9569d0cba47ab937d1fad11872c03ab214875ca0:diagramas/REBUILD_EVANGELION/Prototipo1/Componente_3/CIII_SD.mdj
 											"height": 13,
 											"alpha": -1.5707963267948966,
 											"distance": 10,
@@ -969,10 +1038,17 @@
 												"$ref": "AAAAAAFuWA9W5m1p8Wo="
 											},
 											"font": "Arial;13;0",
+<<<<<<< HEAD:diagramas/REBUILD_EVANGELION/Componente_3/CIII_SD.mdj
 											"left": 74,
 											"top": 256,
 											"width": 14,
 											"height": 80
+=======
+											"left": 122,
+											"top": 240,
+											"width": 14,
+											"height": 33
+>>>>>>> 9569d0cba47ab937d1fad11872c03ab214875ca0:diagramas/REBUILD_EVANGELION/Prototipo1/Componente_3/CIII_SD.mdj
 										}
 									],
 									"font": "Arial;13;0",
@@ -982,7 +1058,11 @@
 									"tail": {
 										"$ref": "AAAAAAFuWA5CQWz5GIQ="
 									},
+<<<<<<< HEAD:diagramas/REBUILD_EVANGELION/Componente_3/CIII_SD.mdj
 									"points": "459:256;87:256",
+=======
+									"points": "397:240;135:240",
+>>>>>>> 9569d0cba47ab937d1fad11872c03ab214875ca0:diagramas/REBUILD_EVANGELION/Prototipo1/Componente_3/CIII_SD.mdj
 									"nameLabel": {
 										"$ref": "AAAAAAFuWA9W5m1rlXQ="
 									},
@@ -1016,12 +1096,21 @@
 												"$ref": "AAAAAAFuWA+EKm2AaeU="
 											},
 											"font": "Arial;13;0",
+<<<<<<< HEAD:diagramas/REBUILD_EVANGELION/Componente_3/CIII_SD.mdj
 											"left": 118,
 											"top": 288,
 											"width": 196.55517578125,
 											"height": 13,
 											"alpha": 1.5308166436652164,
 											"distance": 100.07996802557443,
+=======
+											"left": 142,
+											"top": 296,
+											"width": 178.55517578125,
+											"height": 13,
+											"alpha": 1.1749449385581756,
+											"distance": 72.61542535852834,
+>>>>>>> 9569d0cba47ab937d1fad11872c03ab214875ca0:diagramas/REBUILD_EVANGELION/Prototipo1/Componente_3/CIII_SD.mdj
 											"hostEdge": {
 												"$ref": "AAAAAAFuWA+EKm2BA34="
 											},
@@ -1039,8 +1128,13 @@
 											},
 											"visible": false,
 											"font": "Arial;13;0",
+<<<<<<< HEAD:diagramas/REBUILD_EVANGELION/Componente_3/CIII_SD.mdj
 											"left": 141,
 											"top": 283,
+=======
+											"left": 189,
+											"top": 267,
+>>>>>>> 9569d0cba47ab937d1fad11872c03ab214875ca0:diagramas/REBUILD_EVANGELION/Prototipo1/Componente_3/CIII_SD.mdj
 											"height": 13,
 											"alpha": 1.5707963267948966,
 											"distance": 25,
@@ -1060,8 +1154,13 @@
 											},
 											"visible": false,
 											"font": "Arial;13;0",
+<<<<<<< HEAD:diagramas/REBUILD_EVANGELION/Componente_3/CIII_SD.mdj
 											"left": 107,
 											"top": 284,
+=======
+											"left": 155,
+											"top": 268,
+>>>>>>> 9569d0cba47ab937d1fad11872c03ab214875ca0:diagramas/REBUILD_EVANGELION/Prototipo1/Componente_3/CIII_SD.mdj
 											"height": 13,
 											"alpha": -1.5707963267948966,
 											"distance": 10,
@@ -1080,8 +1179,13 @@
 												"$ref": "AAAAAAFuWA+EKm2AaeU="
 											},
 											"font": "Arial;13;0",
+<<<<<<< HEAD:diagramas/REBUILD_EVANGELION/Componente_3/CIII_SD.mdj
 											"left": 81,
 											"top": 300,
+=======
+											"left": 122,
+											"top": 284,
+>>>>>>> 9569d0cba47ab937d1fad11872c03ab214875ca0:diagramas/REBUILD_EVANGELION/Prototipo1/Componente_3/CIII_SD.mdj
 											"width": 14,
 											"height": 33
 										}
@@ -1093,7 +1197,11 @@
 									"tail": {
 										"$ref": "AAAAAAFuE9Umjr16bPc="
 									},
+<<<<<<< HEAD:diagramas/REBUILD_EVANGELION/Componente_3/CIII_SD.mdj
 									"points": "87:280;117:280;117:300;94:300",
+=======
+									"points": "135:264;165:264;165:284;135:284",
+>>>>>>> 9569d0cba47ab937d1fad11872c03ab214875ca0:diagramas/REBUILD_EVANGELION/Prototipo1/Componente_3/CIII_SD.mdj
 									"nameLabel": {
 										"$ref": "AAAAAAFuWA+EKm2CWxg="
 									},
@@ -1891,7 +1999,7 @@
 											"left": 236,
 											"top": 148,
 											"width": 14,
-											"height": 29
+											"height": 77
 										}
 									],
 									"font": "Arial;13;0",
@@ -1935,9 +2043,15 @@
 												"$ref": "AAAAAAFuWBIHsm4wwIU="
 											},
 											"font": "Arial;13;0",
+<<<<<<< HEAD:diagramas/REBUILD_EVANGELION/Componente_3/CIII_SD.mdj
 											"left": 274,
 											"top": 185,
 											"width": 114.1689453125,
+=======
+											"left": 91,
+											"top": 183,
+											"width": 211.73876953125,
+>>>>>>> 9569d0cba47ab937d1fad11872c03ab214875ca0:diagramas/REBUILD_EVANGELION/Prototipo1/Componente_3/CIII_SD.mdj
 											"height": 13,
 											"alpha": 1.5707963267948966,
 											"distance": 10,
@@ -1958,8 +2072,13 @@
 											},
 											"visible": false,
 											"font": "Arial;13;0",
+<<<<<<< HEAD:diagramas/REBUILD_EVANGELION/Componente_3/CIII_SD.mdj
 											"left": 331,
 											"top": 170,
+=======
+											"left": 198,
+											"top": 177,
+>>>>>>> 9569d0cba47ab937d1fad11872c03ab214875ca0:diagramas/REBUILD_EVANGELION/Prototipo1/Componente_3/CIII_SD.mdj
 											"height": 13,
 											"alpha": 1.5707963267948966,
 											"distance": 25,
@@ -1979,8 +2098,13 @@
 											},
 											"visible": false,
 											"font": "Arial;13;0",
+<<<<<<< HEAD:diagramas/REBUILD_EVANGELION/Componente_3/CIII_SD.mdj
 											"left": 331,
 											"top": 205,
+=======
+											"left": 198,
+											"top": 212,
+>>>>>>> 9569d0cba47ab937d1fad11872c03ab214875ca0:diagramas/REBUILD_EVANGELION/Prototipo1/Componente_3/CIII_SD.mdj
 											"height": 13,
 											"alpha": -1.5707963267948966,
 											"distance": 10,
@@ -2002,7 +2126,11 @@
 											"left": 427,
 											"top": 201,
 											"width": 14,
+<<<<<<< HEAD:diagramas/REBUILD_EVANGELION/Componente_3/CIII_SD.mdj
 											"height": 59
+=======
+											"height": 89
+>>>>>>> 9569d0cba47ab937d1fad11872c03ab214875ca0:diagramas/REBUILD_EVANGELION/Prototipo1/Componente_3/CIII_SD.mdj
 										}
 									],
 									"font": "Arial;13;0",
@@ -2012,7 +2140,11 @@
 									"tail": {
 										"$ref": "AAAAAAFuE+FOzL7+vEM="
 									},
+<<<<<<< HEAD:diagramas/REBUILD_EVANGELION/Componente_3/CIII_SD.mdj
 									"points": "236:201;427:201",
+=======
+									"points": "74:208;323:208",
+>>>>>>> 9569d0cba47ab937d1fad11872c03ab214875ca0:diagramas/REBUILD_EVANGELION/Prototipo1/Componente_3/CIII_SD.mdj
 									"nameLabel": {
 										"$ref": "AAAAAAFuWBIHsm4yrUQ="
 									},
@@ -2046,9 +2178,15 @@
 												"$ref": "AAAAAAFuWBJBAW5GM/8="
 											},
 											"font": "Arial;13;0",
+<<<<<<< HEAD:diagramas/REBUILD_EVANGELION/Componente_3/CIII_SD.mdj
 											"left": 472,
 											"top": 211,
 											"width": 117.78076171875,
+=======
+											"left": 373,
+											"top": 216,
+											"width": 116.0986328125,
+>>>>>>> 9569d0cba47ab937d1fad11872c03ab214875ca0:diagramas/REBUILD_EVANGELION/Prototipo1/Componente_3/CIII_SD.mdj
 											"height": 13,
 											"alpha": 1.5874604477318315,
 											"distance": 60.00833275470999,
@@ -2069,8 +2207,13 @@
 											},
 											"visible": false,
 											"font": "Arial;13;0",
+<<<<<<< HEAD:diagramas/REBUILD_EVANGELION/Componente_3/CIII_SD.mdj
 											"left": 494,
 											"top": 211,
+=======
+											"left": 390,
+											"top": 219,
+>>>>>>> 9569d0cba47ab937d1fad11872c03ab214875ca0:diagramas/REBUILD_EVANGELION/Prototipo1/Componente_3/CIII_SD.mdj
 											"height": 13,
 											"alpha": 1.5707963267948966,
 											"distance": 25,
@@ -2090,8 +2233,13 @@
 											},
 											"visible": false,
 											"font": "Arial;13;0",
+<<<<<<< HEAD:diagramas/REBUILD_EVANGELION/Componente_3/CIII_SD.mdj
 											"left": 460,
 											"top": 212,
+=======
+											"left": 356,
+											"top": 220,
+>>>>>>> 9569d0cba47ab937d1fad11872c03ab214875ca0:diagramas/REBUILD_EVANGELION/Prototipo1/Componente_3/CIII_SD.mdj
 											"height": 13,
 											"alpha": -1.5707963267948966,
 											"distance": 10,
@@ -2110,8 +2258,13 @@
 												"$ref": "AAAAAAFuWBJBAW5GM/8="
 											},
 											"font": "Arial;13;0",
+<<<<<<< HEAD:diagramas/REBUILD_EVANGELION/Componente_3/CIII_SD.mdj
 											"left": 434,
 											"top": 228,
+=======
+											"left": 330,
+											"top": 236,
+>>>>>>> 9569d0cba47ab937d1fad11872c03ab214875ca0:diagramas/REBUILD_EVANGELION/Prototipo1/Componente_3/CIII_SD.mdj
 											"width": 14,
 											"height": 29
 										}
@@ -2123,7 +2276,11 @@
 									"tail": {
 										"$ref": "AAAAAAFuWBFUG23mrAo="
 									},
+<<<<<<< HEAD:diagramas/REBUILD_EVANGELION/Componente_3/CIII_SD.mdj
 									"points": "440:208;470:208;470:228;447:228",
+=======
+									"points": "336:216;366:216;366:236;343:236",
+>>>>>>> 9569d0cba47ab937d1fad11872c03ab214875ca0:diagramas/REBUILD_EVANGELION/Prototipo1/Componente_3/CIII_SD.mdj
 									"nameLabel": {
 										"$ref": "AAAAAAFuWBJBAW5IAwk="
 									},
@@ -2157,8 +2314,13 @@
 												"$ref": "AAAAAAFuWBKY9m5g0DA="
 											},
 											"font": "Arial;13;0",
+<<<<<<< HEAD:diagramas/REBUILD_EVANGELION/Componente_3/CIII_SD.mdj
 											"left": 261,
 											"top": 266,
+=======
+											"left": 121,
+											"top": 292,
+>>>>>>> 9569d0cba47ab937d1fad11872c03ab214875ca0:diagramas/REBUILD_EVANGELION/Prototipo1/Componente_3/CIII_SD.mdj
 											"width": 152.46435546875,
 											"height": 13,
 											"alpha": 1.5707963267948966,
@@ -2180,8 +2342,13 @@
 											},
 											"visible": false,
 											"font": "Arial;13;0",
+<<<<<<< HEAD:diagramas/REBUILD_EVANGELION/Componente_3/CIII_SD.mdj
 											"left": 337,
 											"top": 281,
+=======
+											"left": 197,
+											"top": 307,
+>>>>>>> 9569d0cba47ab937d1fad11872c03ab214875ca0:diagramas/REBUILD_EVANGELION/Prototipo1/Componente_3/CIII_SD.mdj
 											"height": 13,
 											"alpha": 1.5707963267948966,
 											"distance": 25,
@@ -2201,8 +2368,13 @@
 											},
 											"visible": false,
 											"font": "Arial;13;0",
+<<<<<<< HEAD:diagramas/REBUILD_EVANGELION/Componente_3/CIII_SD.mdj
 											"left": 338,
 											"top": 246,
+=======
+											"left": 198,
+											"top": 272,
+>>>>>>> 9569d0cba47ab937d1fad11872c03ab214875ca0:diagramas/REBUILD_EVANGELION/Prototipo1/Componente_3/CIII_SD.mdj
 											"height": 13,
 											"alpha": -1.5707963267948966,
 											"distance": 10,
@@ -2221,8 +2393,13 @@
 												"$ref": "AAAAAAFuWBKY9m5g0DA="
 											},
 											"font": "Arial;13;0",
+<<<<<<< HEAD:diagramas/REBUILD_EVANGELION/Componente_3/CIII_SD.mdj
 											"left": 229,
 											"top": 262,
+=======
+											"left": 61,
+											"top": 288,
+>>>>>>> 9569d0cba47ab937d1fad11872c03ab214875ca0:diagramas/REBUILD_EVANGELION/Prototipo1/Componente_3/CIII_SD.mdj
 											"width": 14,
 											"height": 29
 										}
@@ -2234,7 +2411,11 @@
 									"tail": {
 										"$ref": "AAAAAAFuWBFUG23mrAo="
 									},
+<<<<<<< HEAD:diagramas/REBUILD_EVANGELION/Componente_3/CIII_SD.mdj
 									"points": "434:262;242:262",
+=======
+									"points": "323:288;74:288",
+>>>>>>> 9569d0cba47ab937d1fad11872c03ab214875ca0:diagramas/REBUILD_EVANGELION/Prototipo1/Componente_3/CIII_SD.mdj
 									"nameLabel": {
 										"$ref": "AAAAAAFuWBKY9m5i7rI="
 									},
@@ -2575,9 +2756,9 @@
 												"$ref": "AAAAAAFuE994D763ph8="
 											},
 											"font": "Arial;13;0",
-											"left": 70.97900390625,
+											"left": 70,
 											"top": 5,
-											"width": 79.7490234375,
+											"width": 77,
 											"height": 13,
 											"text": "CIII_SD_UC3"
 										},
@@ -2590,7 +2771,7 @@
 											"font": "Arial;13;1",
 											"left": 5,
 											"top": 5,
-											"width": 60.97900390625,
+											"width": 60,
 											"height": 13,
 											"text": "interaction"
 										}
@@ -3642,9 +3823,9 @@
 												"$ref": "AAAAAAFuE9+vYL7I8hI="
 											},
 											"font": "Arial;13;0",
-											"left": 70.97900390625,
+											"left": 70,
 											"top": 5,
-											"width": 79.7490234375,
+											"width": 77,
 											"height": 13,
 											"text": "CIII_SD_UC4"
 										},
@@ -3657,7 +3838,7 @@
 											"font": "Arial;13;1",
 											"left": 5,
 											"top": 5,
-											"width": 60.97900390625,
+											"width": 60,
 											"height": 13,
 											"text": "interaction"
 										}
