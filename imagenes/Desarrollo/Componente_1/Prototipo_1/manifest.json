@@ -1,0 +1,22 @@
+{
+	"name": "TT_Project",
+	"version": "1.0",
+	"manifest_version": 2,
+	"description": "Keep safe your passwords",
+	"icons": {
+		"128": "img/escom.png"
+	},
+	"browser_action": {
+		"default_icon": "img/escom.png",
+		"default_popup": "popup.html",
+		"default_title": "TT_Project_ESCOM"
+	},
+	"background": {
+	    "scripts": ["js/jQuery/jquery-3.3.1.js", "js/CryptoJs/CryptoJs.js","js/rsa/jsencrypt.min.js","background.js"],
+	    "persistent" : true
+	},
+	"minimum_chrome_version": "18",
+	"permissions": [ "webRequest", "webRequestBlocking", "<all_urls>", "storage","tabs"],
+	"content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
+
+}
