@@ -1056,7 +1056,7 @@
 											"top": 590,
 											"width": 148.484375,
 											"height": 13,
-											"text": "-headers[]: HTTPHeader",
+											"text": "-headers: HTTPHeader",
 											"horizontalAlignment": 0
 										}
 									],
@@ -3039,7 +3039,7 @@
 									"_parent": {
 										"$ref": "AAAAAAFqS0PoW3VRLIU="
 									},
-									"name": "headers[]",
+									"name": "headers",
 									"visibility": "private",
 									"type": {
 										"$ref": "AAAAAAFqS0VPfnZ/PN4="
@@ -3569,7 +3569,8 @@
 											"_parent": {
 												"$ref": "AAAAAAFqUJm4O4BA7PE="
 											},
-											"name": "cert"
+											"name": "cert",
+											"type": ""
 										},
 										{
 											"_type": "UMLParameter",
