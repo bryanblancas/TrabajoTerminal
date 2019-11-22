@@ -313,20 +313,21 @@
     \chapter{\textcolor{azulescom}{Introducción}}
 	%\renewcommand\thesection{\arabic{section}}	
 	%\section{Introducción.}
-		En la actualidad la mayor\'ia de los usuarios de internet necesitan guardar contraseñas para sus distintas cuentas en las diferentes páginas web a las que ingresan, ya que recordarlas es un problema debido a la gran cantidad de servicios que se utilizan. Como consecuencia de que la autentificaci\'on por contraseña es la más utilizada en los servicio web hoy en día \cite{ComparisonAuthenticationMethodsResources}, estos han implementado mecanismos de seguridad tales como contraseñas que contengan un mínimo de caracteres determinados, al menos un carácter especial, considerar no incluir datos fáciles como nombres, fechas de nacimiento, entre otros. Como consecuencia, éstas son más difíciles de recordar y han orillado a los usuarios a optar por guardarlas en medios físicos o digitales para recordarlas cuando sea necesario. 
-		Sin embargo, perder esas claves presenta un grave problema de seguridad, teniendo como consecuencia: perdida de datos sensibles, robo de identidad, robo de cuentas bancarias, etc \cite{refRoboIdentidad}.\\
-		
-		La gran mayoría de servicios web han implementado la función ''recordar contraseña'', la cual hace que el usuario no tenga que ingresar sus credenciales\footnote{Credenciales se entiende como los datos que un servicio web requiere para poder acceder a él. Comúnmente son 'usuario' y 'contraseña'.} cada vez que se quiere acceder al servicio.  
-		
-		\begin{comment}
-		Esta función por lo general hace uso de cookies que es información almacenada en el explorador web del usuario, esto representa una amenaza de seguridad ya que permite rastrear la información de navegación del usuario, muy útil para sitios fraudulentos o se puede presentar un robo de cookies con el cual los intrusos podrían hacerse pasar como el usuario, entre otros problemas que \'estas representan.
-		\end{comment}
+	
+	    Hasta el 2017 la autentificación por contraseña es la más utilizada en los servicios web por su facilidad de implementación, mantenimiento y usabilidad para el usuario. Sin embargo, mientras esta autentificacion nos brinda la posibilidad de implementarla fácilmente, no es tan segura como otros métodos y requiere la memorización de las contraseñas  \cite{ComparisonAuthenticationMethodsResources}. 
 	    
-	    El método \textit{Chaffing and Winnowing} proporciona confidencialidad de los mensajes sin la necesidad de usar métodos de cifrado o esteganografía\cite{refRivestSeguridad}, agregando 'basura' (\textit{Chaffing}) para que el mensaje quede ininteligible ante la vista de terceros no implicados en la comunicación, y sólo el receptor pueda 'limpiar' (\textit{Winnowing}) el mensaje obteniendo la información relevante.\\
+	    Como consecuencia de ello, los servicios web han implementado mecanismos de seguridad tales como contraseñas con un mínimo de caracteres, al menos un carácter especial, entre otros, lo que ha provocado el surgimiento de herramientas de administración de contraseñas o directamente al almacenado de éstas en medios físicos ó digitales que podrían ser inseguros. Cabe resaltar que las consecuencias al hacer uso de estos medios inseguros pueden ocasionar perdía de datos sensibles, robo de identidad ó incluso robo de cuentas bancarias  \cite{refRoboIdentidad}.
 	    
-		Es por ello que en este trabajo terminal se propone realizar un nuevo método de autentificación por medio del método de \textit{Chaffing and Winnowing} con la ayuda de una extensión de Google Chrome, la cual servirá para la inyección del certificado de autentificación en el protocolo HTTP, emitido por un servidor autentificador que proveerá al usuario un certificado, utilizando una autoridad certificadora basandose en los datos del mismo (Usuario y Contraseña). El usuario obtendrá este certificado al iniciar sesión una única vez en la extensión, y una vez teniendo este certificado, solo será necesario iniciar sesión una  vez en cada servicio, ya que el certificado se asociará a esta cuenta y posteriormente cuando el usuario quiera acceder, se validará este certificado para dar respuesta al usuario. Así, si un servicio web tiene este tipo de autentificación disponible, lo podrá validar. Esto es, poder hacer el proceso de \textit{Winnowing} con el cual podrá obtener el certificado original y poder validarlo. El propósito principal de este trabajo es que los usuarios puedan realizar un inicio de sesión más cómodo, seguro y sin la necesidad de recordar sus distintas contraseñas constantemente.
+	    A su vez, Google Chrome ofrece una función conocida como \textit{'Recordar contraseña'}, la cual, con el consentimiento del usuario, guarda las credenciales\footnote{Credenciales se entiende como los datos que un servicio web requiere para poder acceder a él. Comúnmente son 'usuario' y 'contraseña'.} de los servicios web para después mostrarlas o autocompletar el formulario en cuestión. Sin embargo, esas contraseñas se almacenan en archivos de texto que no están cifrados o protegidos, por lo que son vulnerables frente a intrusos. Es decir, cualquiera con acceso al ordenador podría consultar esas contraseñas en la configuración del navegador \cite{bbvarecoradContrasenia}.
+        
+        Es por ello que en este trabajo terminal queremos brindarle a una aplicación web que cuente con inicio de sesión por contraseña una alternativa de autentificación rápida y segura para que sus usuarios puedan acceder sin la necesidad de utilizar herramientas como las anteriormente mencionadas.
+        
+	    %El método \textit{Chaffing and Winnowing} proporciona confidencialidad de los mensajes sin la necesidad de usar métodos de cifrado o estegánografia\cite{refRivestSeguridad}, agregando 'basura' (\textit{Chaffing}) para que el mensaje quede ininteligible ante la vista de terceros no implicados en la comunicación, y sólo el receptor pueda 'limpiar' (\textit{Winnowing}) el mensaje obteniendo la información relevante.\\
+	    
 		
     	\section{Objetivos.}
+    	En esta sección hablaremos de los objetivos tanto general como particulares que se quieren alcanzar al finalizar este trabajo terminal.
+    	
     		\subsection{Objetivo general. }
     			%Realizar una extensión en Google Chrome que modifique los datos del protocolo \acrshort{http}, para permitir que el servidor detecte el método de autentificación propuesto basado en \textit{Chaffing and Winnowing}.\\
     			Realizar un nuevo método de autentificación modificando los datos de la cabecera del protocolo HTTP utilizando Chaffing and Winnowing con la ayuda de una extensión del navegador Google Chrome.
@@ -337,9 +338,9 @@
     				\item Investigar sobre la técnica de \textit{Chaffing and Winnowing} para adaptar su implementación.
     				\item Inyectar el certificado autentificador (\textit{Chaffing}) en el encabezado HTTP para enviar la petición al servidor. 
     				\item Implementación de un Login en la extensión de Google Chrome.
-    				\item Investigar sobre Autoridades Certificadoras para implementar un servidor autentificador
+    				\item Investigar sobre Autoridades Certificadoras para implementar un servidor autentificador.
     				\item Generación de certificado autentificador del usuario
-    				\item Implementación de un servicio web de prueba.
+    				\item Implementación de este método de un servicio web de prueba.
     				\item Desarrollo de un API para nuestro servidor que obtenga el certificado del usuario (\textit{Winnowing}).
     				\item Modificar el código del servidor Apache para simular y comprobar el funcionamiento de la extensión. 
     				\item Realizar pruebas de seguridad para comprobar la eficacia de la extensión. 
@@ -397,17 +398,29 @@
             Es por esto que se propone una nueva alternativa de autentificación que brinda al usuario el acceso a cada uno de sus servicios web. El usuario se autentificará una sola vez en cada servicio, sin la necesidad de almacenar sus datos sensibles \footnote{Un dato sensible es un dato que requiere una mayor protección que el resto de datos de carácter personal.} en medios ajenos al servicio.
 		
     	\section{Justificación.}
-    	    Nuestro trabajo busca autentificar a los usuarios en los distintos servicios web de su preferencia, utilizando \textit{Chaffing and Winnowing}, debido a que nos brinda confidencialidad a un menor costo computacional \cite{refRivestSeguridad}. Además, buscamos quitarle al usuario la necesidad de iniciar sesión continuamente en un servicio web, ya que, en este nuevo método de autentificación propuesto, el usuario sólo debe ingresar una única vez al servicio web que desea usar.\\
-    	    Por medio un servidor autentificador, obtendremos un certificado real para cada usuario con el que se autentificará. Gracias a que el servidor autentificador es externo a la extensión y al servicio web, el usuario podrá acceder a sus cuentas sin importar que sean computadoras diferentes, siempre y cuando tengan instalada la extensión. 
-    
-    	\begin{comment}
-    	   Los usuarios de Internet, han optado por guardar sus contraseñas en medios físicos o digitales, lo cual presenta un problema grave de seguridad ya que la pérdida o acceso a uno de estos medios, significaría el acceso a todos los servicios guardados en éstos. Ante esto, la gran mayoría de los servicios web, han implementado una solución al problema de recordar las credenciales y lo tedioso de tener que ponerlas cada vez que se desea acceder, la cual es recordar tu usuario y contraseña, para que automáticamente puedas acceder al servicio. Dicha solución presenta un problema de seguridad, ya que los archivos en donde se guarda la información se pueden copiar y con ello replicarlos en cualquier otra computadora.\\
+    	    Este trabajo terminal busca verificar la viabilidad de implementar Chaffing and Winnowing como una alternativa de autentificación en una aplicación web con inicio de sesión por contraseña, logrando así que los usuarios de ésta puedan autentificarse de forma automática y segura. El motivo por el cual se quiere utilizar Chaffing and Winnowing es por su confidencialidad y rapidez sin la necesidad de cifrar la información \cite{refRivestSeguridad}.
     	    
-            Tenemos también algunas opciones que los navegadores y servicios nos ofrecen como el de “recordar contraseña”, sin embargo, estos métodos no son del todo seguros para los usuarios, por ejemplo, la configuración de Google Chrome nos permite observar todas las contraseñas de las diferentes páginas a las que hemos accedido sin ninguna especie de autentificación de quién accede a estas contraseñas, lo cual supone un claro riesgo a la integridad del dueño de estas cuentas.\\
-            
-            Es por ello, que este trabajo terminal busca beneficiar al usuario evitando que tenga que ingresar sus credenciales continuamente, y sin que el sistema tenga que guardar las credenciales del servicio web que el usuario use. Por lo tanto, este trabajo brinda una alternativa segura de autentificación en un servicio web. \\
-    	\end{comment}
-    	 
+    	    \subsection{Limites y alcances}
+    	    Los limites y alcances que tienen este trabajo terminal son los que se enlistan a continuación:
+	
+        	\textbf{Limites}
+        	\begin{itemize}
+        	    \item Los certificados que se usan para este trabajo son auto firmados debido a que no se cuenta con una autoridad certificadora de confianza.
+        	    \item Las pruebas se realizarán en un Servicio Web local y en fase de desarrollo, debido a que no contamos con un servidor o servicio de hosting.
+        	    \item El Servicio Web que desee implementar nuestro sistema debe de modificar su lógica de negocio de inicio de sesión para poder utilizar la API desarrollada en este trabajo.
+        	    \item El sistema no cuenta con una recuperación de contraseña para los usuarios que se registren en la extensión.
+        	    \item Es necesario que la extensión pueda conectarse con el servidor autentificador para el correcto funcionamiento del sistema.
+        	\end{itemize}
+        	
+        	\textbf{Alcances}
+        	\begin{itemize}
+        	    \item Este sistema es ofrecido como alternativa para un inicio de sesión (mediante usuario y contraseña) dedicado a páginas web que tengan este método de autentificación.
+        	    \item El sistema es ofrecido como una alternativa para el inicio de sesión para los servicios web que cuenten con autentificación mediante usuario y contraseña.
+        	    \item La probabilidad de que se repita alguno de los certificados que se emiten es $1/2^{256}$.
+        	    \item El sistema funciona únicamente sobre los servicios web que utilicen la API desarrollada.
+        	    \item Gracias a la interoperativilidad de los navegadores, la extensión podrá ser utilizada en los navegadores Opera a partir de la versión 63.0.3368.107  y Google Chrome de la versión 79.0.3928.
+            \end{itemize}
+    	
 	    \section{Metodolog\'ia.}
     		El proceso de desarrollo que seguiremos estará basado en la metodología de ''\textbf{Prototipos Evolutivos}'' con unas pequeñas adaptaciones que realizamos para que pueda funcionar mejor en el proceso de realización del sistema. Esta metodología ayuda a los desarrolladores a mejorar la comprensión del trabajo terminal a elaborar cuando los requerimientos no están completamente definidos o pueden ir cambiando a lo largo de la implementaci\'on . Así mismo, el paradigma nos brinda la posibilidad de utilizar fragmentos de programas existentes o aplicar herramientas que nos permitan generar rápidamente proyectos que funcione y puedan evolucionar \cite{Pressman}.\\ 
     		Al utilizar este paradigma de desarrollo se busca que, mediante la implementación parcial del trabajo, vayan surgiendo requerimientos no vistos desde el planteamiento del problema, de esta manera, nos es posible ir experimentando con un prototipo parcialmente funcional e identificar posibles mejoras o fallas, con el fin de lograr el objetivo final. \\
@@ -463,7 +476,7 @@
             	            \end{itemize}
             	        \item Componente 3
             	            \begin{itemize}
-            	                \item Diseñar una API en el servicio web que permita interceptar una petición HTTP.
+            	                \item Diseñar una API en el servicio web que permita realizar la etapa de winnowing.
             	            \end{itemize}
             	        \item Diseñar una arquitectura del sistema.
             	    \end{itemize}
@@ -490,10 +503,7 @@
                 \item Despliegue, entrega y Retroalimentaci\'on: Despu\'es de la implementación del prototipo se analizará si puede haber mejoras y si es conveniente la realización de otro prototipo evolucionando este o desechándolo.
                     
     		\end{enumerate}
-    		
-    		
-    		
-        
+    	
         \section{Organización del documento}
             Para dar inicio a este trabajo terminal, presentamos de manera breve la estructura de este reporte, con el objetivo de que el lector pueda tener un mejor entendimiento del trabajo.
              
@@ -525,7 +535,7 @@
         				\label{fig:DiagramaHTTP}
         			\end{center}
         	\end{figure}
-        	El navegador realiza una solicitud HTTP y el servidor procesa la solicitud y después envía una respuesta HTTP. En realidad, la comunicación se realiza en más etapas si se considera el procesamiento de la solicitud en el servidor. Dado que sólo nos ocupamos del protocolo HTTP, no se explicará la parte del procesamiento en el servidor en esta sección del artículo\cite{protocoloHTTP}. 
+        	El navegador realiza una solicitud HTTP y el servidor procesa la solicitud y después envía una respuesta HTTP. En realidad, la comunicación se realiza en más etapas si se considera el procesamiento de la solicitud en el servidor. Dado que sólo nos ocupamos del protocolo HTTP, no se explicará la parte del procesamiento en el servidor en esta sección del artículo \cite{protocoloHTTP}. 
         	\subsection{Solicitud HTTP}
         	    Una solicitud HTTP es un conjunto de líneas que el navegador envía al servidor. Comprende:
         	    \begin{itemize}
@@ -589,7 +599,16 @@
 				\label{fig:AC_verificacion}
 			\end{center}
 		\end{figure}
-        
+		
+		\subsection{Autoridad Certificadora.}
+		En una infraestrututra de llave pública, se utilizan certificados digitales que son emitidos por una entidad de confianza, esta se encarga de validar y asegurar la identidad y validez de los certificados emitidos. Una Autoridad Certificadora (CA por sus siglas en inglés \textit{Certificate Authority}) es uno de los componentes de esta infraestructura, la CA es conocida por dos atributos, su nombre y su llave pública y lleva a cabo 3 funciones principales:
+		\begin{enumerate}
+		    \item Emite certificados: crea los certificados de los subscriptores y los firma.
+		    \item Mantiene la información del estado de los certificados y permite la validación del estado de los certificados emitidos. 
+		    \item Mantiene archivos de la información de los estados de los certificados, ya sea expirados o revocados, que este mismo emitió.
+		\end{enumerate}
+		
+		La Autoridad Certificadora es el tercero de confianza que nos garantiza la autenticidad de los certificados que son emitidos y recibidos.\cite{refCertificateAuthority}
         
 	    %   %   %   %   %   %   %   %   %   
 		%		                        %
@@ -766,7 +785,7 @@
                 Anteriormente en la historia de la criptografía, se hizo una rápida mención del nacimiento de estos dos métodos de cifrado, en esta sección se explicará más profundamente sus funciones con el fin de que el lector conozca un poco más y entienda porque hemos decidido utilizar determinado método para cumplir con los objetivos de este trabajo.
                 
                 \subsubsection{Criptografía simétrica.}
-                En la criptografía simétrica, tanto el emisor como el receptor comparten una única llave secreta para cifrar y descifrar la información que se deseé transmitir. Esto implica que ambas partes de la comunicación deben tener un acuerdo antes de que se realice la comunicación. La seguridad de este tipo de algoritmos radica en mantener segura la llave secreta, por tanto, si ésta es revelada, cualquiera con acceso a ella puede descifrar el mensaje. Por estas razones, este tipo de criptografía puede ser visto como "criptografía de llave privada". Algunos de los algoritmos más famosos de criptografía simétrica son: DES (Data Encryption Standard), TripleDES, AES (Advanced Encryption Standard) y IDEA (International Data Encryption Algorithm) \cite{refCriptografia}.\\
+                En la criptografía simétrica, tanto el emisor como el receptor comparten una única llave secreta para cifrar y descifrar la información que se deseé transmitir. Esto implica que ambas partes de la comunicación deben tener un acuerdo antes de que se realice la comunicación. La seguridad de este tipo de algoritmos radica en mantener segura la llave secreta, por tanto, si ésta es revelada, cualquiera con acceso a ella puede descifrar el mensaje. Por estas razones, este tipo de criptografía puede ser visto como 'criptografía de llave privada'. Algunos de los algoritmos más famosos de criptografía simétrica son: DES (Data Encryption Standard), TripleDES, AES (Advanced Encryption Standard) y IDEA (International Data Encryption Algorithm) \cite{refCriptografia}.\\
                 En el esquema de la Figura \ref{fig:criptoSimetrica}, se muestran los pasos que sigue un protocolo de criptografía simétrica. Definamos 'A' como una entidad que pretende enviar un mensaje a otra entidad llamada 'B'. Luego entonces, ambas partes acordarán una 'Llave Secreta' con la que 'A' cifrará el mensaje utilizando un algoritmo establecido, mandando el resultado (Texto Cifrado) a 'B' que descifrará el mensaje con la misma llave y algoritmo que 'A'.
                 
                 \begin{figure}[H]
@@ -792,7 +811,7 @@
         		
     		\textbf{Algoritmo RSA.}\\
     		\textit{RSA} es el algoritmo de cifrado asimétrico más popular en la actualidad. Creado por Ron Rivest, Adi Shamir y Leonard Adleman y publicado en el año 1977. El algoritmo es considerado seguro, en tanto sean utilizadas llaves de longitud suficientemente seguras (se siguen utilizando llaves de 1024 bits, pero ya se recomienda al menos una longitud de 2048). El algoritmo sirve tanto para cifrar y descifrar, así como también para la generación de firmas digitales. Es, en la actualidad, ampliamente utilizado en protocolos de comercio electrónico. La seguridad \textit{RSA} está basada en la dificultad de realizar el \textit{factoreo} de números grandes. La llave privada y la publica son generadas o calculadas en función de un par de números primos, del orden de los 200 dígitos o más grandes aún \cite{refCriptografia}. \\
-    		Al describir ya concretamente al algoritmo, se establece que para la generación del para de llaves (Llave publica y privada) se deberán seleccionar dos números primos grandes aleatorios, $p$ y $q$, y se calculara $n$ como su producto:
+    		Al describir ya concretamente al algoritmo, se establece que para la generación del par de llaves (llave publica y privada) se deberán seleccionar dos números primos grandes aleatorios, $p$ y $q$, y se calculara $n$ como su producto:
     		
     		\begin{center}
     		    $n=pq$
@@ -1057,8 +1076,8 @@
          Para nuestro trabajo terminal usaremos \textit{Chaffing and Winnowing}, proponiendo así un nuevo método de autentificación para servicios web. \\
 
 
-    
     \part{Prototipo 1.}
+    
     
 	\chapter{\textcolor{azulescom}{Análisis.}}
 	    
@@ -1286,7 +1305,7 @@
 			JavaScript fue declarado como estándar del European Computer Manufacturers Association (ECMA) en 1997, y poco después, también fue estandarizado por ISO \cite{refJavaScript}. \\ 
 			JavaScript es un lenguaje interpretado, usado mayormente como complemento de ciertos objetivos específicos, sin embargo, uno de las innovaciones que ayudó a JavaScript fue el desarrollo de nuevos motores de interpretación, creados para acelerar el procesamiento del código. La clave de los motores más exitosos fue transformar el código de Javascript en código máquina para obtener una velocidad de ejecución mejor que antes. Esto a la vez permitió superar viejas limitaciones de rendimiento y confirmar el lenguaje JavaScript como la mejor opción para la Web.\\
 			
-			Para aprovechar esta prometedora plataforma de trabajo ofrecida por los nuevos navegadores, JavaScript fue expandido en cuestión de portabilidad e integración, a la vez, interfaces de programación de aplicaciones (APIs) fueron incorporando por defecto con cada navegador para asistir a JavaScript en funciones elementales. El objetivo de esto, fue principalmente hacer disponible poderosas funciones a través de técnicas de programación sencillas y estándares, expandiendo el alcance del lenguaje y facilitando la creación de programas útiles para la Web \cite{refElGranLibro}.
+			Para aprovechar esta prometedora plataforma de trabajo ofrecida por los nuevos navegadores, JavaScript fue expandido en cuestión de portabilidad e integración, a la vez, interfaces de programación de aplicaciones (APIs) fueron incorporando por defecto con cada navegador para asistir a JavaScript en funciones elementales. El objetivo de esto, fue principalmente hacer disponible funciones a través de técnicas de programación sencillas y estándares, expandiendo el alcance del lenguaje y facilitando la creación de programas útiles para la Web \cite{refElGranLibro}.
 			
 			\paragraph{JQuery. \\}
 			 Antes de continuar con JQuery, debemos saber que es un framework. Un framework es un producto que sirve como base para la programación avanzada de aplicaciones, la cual aporta una serie de funciones o códigos para realizar tareas habituales. Dicho de otra manera, un framework son librerías de código que contienen procesos o rutinas listos para hacer uso. Habitualmente los programadores utilizan los frameworks para no tener que desarrollar ellos mismos las tareas más básicas, puesto que en el propio framework ya hay implementaciones que están probadas, funcionan y no se necesitan volver a programar.\\
@@ -1362,10 +1381,33 @@
             \paragraph{VSFTPD.\\}
             VSFTPD son las siglas para Very Secure File Transport Protocol Daemon y es un servidor de FTP que nos da la ventaja de garantizarnos seguridad, estabilidad y desempeño al momento de montarlo, además de que nos permite configurar su control de acceso mediante una serie de criterios, un factor muy útil y necesario que utilizaremos más adelante para el desarrollo de nuestro segundo prototipo.
             \cite{refVSFTPD}
-				
+            La herramienta se escogió debido a la comparación de los diferentes protocolos de internet que permiten el intercambio de archivos, los cuales son:\\
+            \begin{itemize}
+                \item \textbf{FTP}: \textit{File Transfer Protocol} ó \textit{Protocolo de transferencia de archivos} es un protocolo para transferencia de archivos entre sistemas conectados a una red. Desde un equipo cliente se puede puede conectar a un servidor para descargar archivos desde él o para enviarle archivos, independientemente del sistema operativo utilizado en cada equipo. FTP nos permite tener un control de accesos de las diferentes carpetas, dando así diferentes prioridades. Al subir archivos al servidor FTP si se remplaza alguno, éste no podrá recuperarse \cite{FTPprotocoloOSI}.
+                \item \textbf{HTTP}: \textit{Hypertext Transfer Protocol} ó \textit{Transferencia de HiperTexto} es un protocolo cliente-servidor que establece los intercambios de información entre los clientes web y los servidores HTTP. La versión mas reciente de HTTP es la 1.1, y su especificación se encuentra recogida en el documento RFC 2616. HTTP se establece sobre la capa TCP/IP \cite{HTTPprotocloOSI}. Las tres operaciones más usadas que permiten a un cliente dialogar con el servidor son \cite{FTPprotocoloOSI}:
+                \begin{enumerate}
+                    \item GET: Recoger un objeto
+                    \item POST: Enviar información al servidor
+                    \item HEAD: Solicitar las caracteristicas de un objeto 
+                \end{enumerate}
+                \item \textbf{TFTP}: \textit{Protocolo Trivial de Transferencia de Archivos} es un protocolo que proporciona la transferencia de archivos sin autenticación de usuario. TFTP está más enfocado a las aplicaciones que no necesitan las interacciones sofisticadas que proporciona el protocolo de transferencia de archivos (FTP) \cite{TFTPprotocoloOSI}.
+                \item \textbf{SMTP}: \textit{Simple Mail Transfer Protocol} ó \textit{Protocolo Simple de Transferencia de Correo} es protocolo que funciona en línea, encapsulado en una trama TCP/IP. El correo se envía directamente al Servidor de Correo del destinatario. El protocolo SMTP funciona con comandos de textos enviados al servidor SMTP. A cada comando enviado por el Cliente le sigue una respuesta del servidor SMTP compuesta por un número y un mensaje descriptivo \cite{SMTPprotocoloOSI}. 
+                \item \textbf{HTTPS}: \textit{HyperText Transfer Protocol Secure} ó \textit{Protocolo Seguro de Transferencia de Hipertexto} es un protocolo de comunicación de Internet que protege la integridad y la confidencialidad de los datos de los usuarios entre sus ordenadores y el sitio web. Los datos que se envían mediante HTTPS están protegidos con el protocolo Seguridad en la capa de transporte (TLS), que da estas tres capas clave de seguridad \cite{HTTPSprotocolOSI}: 
+                \begin{enumerate}
+                    \item Cifrado: Se cifran los datos intercambiados.
+                    \item Integridad de los datos: Los datos no pueden modificarse ni dañarse durante las transferencias.
+                    \item Autenticación: Demuestra que los usuarios se comunican con el sitio web previsto. Proporciona protección frente a los ataques \textit{man-in-the-middle}.
+                \end{enumerate}
+                
+            \end{itemize}
+            
 			\paragraph{Wireshark. \\}
 			Wireshark es una analizador de paquetes de red. Un analizador captura paquetes de red y muestra los datos del paquete con el mayor detalle posible. Ésta herramienta es software libre y es el mejor analizador de paquetes hoy en día \cite{refWireshark}. Utilizaremos Wireshark para analizar los paquetes que viajan a través de la red, en este caso la petición modificada la cual contiene el certificado y el patrón ocultados mediante el método \textit{Chaffing}.
 			\label{WiresharkDefinition}
+			
+			\paragraph{}
+			
+			
 			
 		\subsection{Hardware.}
 			En el ámbito del hardware, utilizaremos los equipos de cómputo con los cuales contamos actualmente los integrantes de este equipo, los cuales se especificarán a continuación: 
@@ -1492,7 +1534,7 @@
     	\section{Diagrama BPMN}
         	\begin{figure}[H]
             		\begin{center}
-            		\includegraphics[width=16cm]{./imagenes/Analisis/BPMN.png}
+            		\includegraphics[width=14cm]{./imagenes/Analisis/BPMN.png}
             		\caption{Diagrama de Modelo y Notación de Procesos de Negocio}
     	            \end{center}
     	    \end{figure}   
@@ -1500,7 +1542,7 @@
     	    \subsection{Diagrama BPMN Proceso: Inicio de Sesión}
         	    \begin{figure}[H]
                 		\begin{center}
-                		\includegraphics[width=14cm]{./imagenes/Analisis/BPMN_IS.png}
+                		\includegraphics[width=12cm]{./imagenes/Analisis/BPMN_IS.png}
                 		\caption{Diagrama BPMN del proceso Iniciar Sesión}
         	            \end{center}
         	    \end{figure}   
@@ -1534,7 +1576,7 @@
 		    El propósito de este prototipo es utilizar la técnica de \textit{Chaffing and Winnowing} en este nuevo método de autentificación, para evitarle al usuario la tediosa tarea de ingresar sus credenciales cada vez que accede al servicio y brindarle la seguridad necesaria al iniciar sesión.\\
 		    
 		    Para inyectar el certificado autentificador, es necesario crear un \textit{''patrón de chaffing''}, este patrón lo generaremos aleatoriamente para después mandarlo junto con la petición HTTP.
-		    Dicho patrón irá cifrado con la clave pública del Componente III (Servicio web). El objetivo de mandar el patrón junto con el protocolo HTTP, es que el servidor pueda descifrar el patrón con su clave privada y con él realizar la etapa de \textit{winnowing} para extraer el certificado.\\
+		    Dicho patrón irá cifrado con la clave pública del Componente III (API). El objetivo de mandar el patrón junto con el protocolo HTTP, es que el servidor pueda descifrar el patrón con su clave privada y con él realizar la etapa de \textit{winnowing} para extraer el certificado.\\
 		    %Por el momento, dicho patrón no irá cifrado, ya que para esto es necesario la implementación del servidor del servicio web de prueba, para poder conocer su llave pública y cifrar el patrón. Sin embargo, en el prototipo 1 del subsistema 3 se implementará el servidor y con ello su cifrado asimétrico. El objetivo de mandar el patrón junto con el protocolo HTTP, es que el servidor pueda leer el patrón y realizar la etapa de \textit{winnowing}, para extraer el certificado.\\
             
 
@@ -1723,16 +1765,16 @@
 			%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     		%                                                       %
     		%                                                       %
-    		%            Análisis CIII: SERVICIO WEB                %
+    		%            Análisis CIII: API                %
     		%                                                       %
     		%                                                       %
     		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	       
-        \section{Componente III: Servicio Web y API.}
+        \section{Componente III: API.}
             
             \subsection{Descripción.}
 	        
-    	        Para el componente III, se va a implementar un servicio web de prueba para mostrar la funcionalidad del inicio de sesión por este método propuesto, por lo cual dicho servicio no se ve reflejado en el análisis desarrollo del Componente III.
+    	        Para el componente III, se utilizará un servicio web de prueba para mostrar la funcionalidad del inicio de sesión por este método propuesto, por lo cual dicho servicio no se ve reflejado en el análisis desarrollo del Componente III.
     	        
     	        Se realizará la etapa de \textit{winnowing} a la petición HTTP para obtener el certificado. Esto último lo realizará una API dedicada exclusivamente a ello, con conexión al Componente II para checar el estatus y validez del certificado. 
     	        
@@ -1793,7 +1835,7 @@
 	                \textbf{CIII\_RNF3. Tamaño de llaves.} Se utilizarán llaves de un tamaño de 2048 bits para el cifrado de tipo RSA.\\
 	                \label{CIII_RNF3}
 	                
-	                \textbf{CIII\_RNF4. Framework de desarrollo.} Se utilizará Spring Framework Core 5 para implementar el servicio web de prueba con JAVA 8.\\
+	                \textbf{CIII\_RNF4. Framework de desarrollo.} Se utilizará Spring Framework Core 5 para implementar la API con JAVA 8.\\
 	                \label{CIII_RNF4}
 	       
             \subsection{Reglas del negocio.}
@@ -1818,7 +1860,7 @@
 		    \subsection{Diagrama de casos de uso}
 			    
 			    \begin{figure}[H]
-		            \begin{center}			                \includegraphics[width=16cm]{./imagenes/Disenio/Componente_1/CI_UCD.png}
+		            \begin{center}			                \includegraphics[width=14cm]{./imagenes/Disenio/Componente_1/CI_UCD.png}
 						\caption{Diagrama de casos de uso del Componente I.}
                     \end{center}    					
 				\end{figure}
@@ -2477,15 +2519,15 @@
     		            \begin{itemize}
     		                \item Tipo de dato de retorno: \textbf{void}
     		            \end{itemize}
-    		            \item \textbf{login(str user, str pass)}: Este método permite iniciar sesión para obtener el certificado del usuario.
+    		            \item \textbf{login(String user, String pass)}: Este método permite iniciar sesión para obtener el certificado del usuario.
     		            \begin{itemize}
     		                \item Tipo de dato de retorno: \textbf{int}
     		            \end{itemize}
-    		            \item \textbf{logout(str pass, str email)}: Este método permite cerrar sesión en la extensión y eliminar el certificado almacenado.
+    		            \item \textbf{logout(String pass, String email)}: Este método permite cerrar sesión en la extensión y eliminar el certificado almacenado.
     		            \begin{itemize}
     		                \item Tipo de dato de retorno: \textbf{void}
     		            \end{itemize}
-    		            \item \textbf{revokeCert(str user, str pass)}: Este método permite revocar el certificado del usuario.
+    		            \item \textbf{revokeCert(String user, String pass)}: Este método permite revocar el certificado del usuario.
     		            \begin{itemize}
     		                \item Tipo de dato de retorno: \textbf{void}
     		            \end{itemize}
@@ -2559,7 +2601,7 @@
           	
               	\subsubsection{Diagrama de secuencia: Realizar petición.}
                 	\begin{figure}[H]
-        			    \begin{center} \includegraphics[width=15cm]{./imagenes/Disenio/Componente_1/CI_SD_UC1.png}
+        			    \begin{center} \includegraphics[width=14cm]{./imagenes/Disenio/Componente_1/CI_SD_UC1.png}
         			    \caption[Diagrama de secuencia 1 del Componente I]{Diagrama de secuencia del CI\_CU1. Realizar petición.}
         		        \end{center}
         		    \end{figure}
@@ -2570,7 +2612,7 @@
     		    
     		     \subsubsection{Diagrama de secuencia: Habilitar extensión.}
     			    \begin{figure}[H]
-    				    \begin{center} \includegraphics[width=15cm]{./imagenes/Disenio/Componente_1/CI_SD_UC2.png}
+    				    \begin{center} \includegraphics[width=14cm]{./imagenes/Disenio/Componente_1/CI_SD_UC2.png}
     				    \caption[Diagrama de secuencia 2 del Componente I]{Diagrama de secuencia del CI\_CU2. Habilitar extensión.}
     			        \end{center}
     			    \end{figure}
@@ -2581,7 +2623,7 @@
     			
     			\subsubsection{Diagrama de secuencia: Deshabilitar extensión.}
     			    \begin{figure}[H]
-    				    \begin{center} \includegraphics[width=15cm]{./imagenes/Disenio/Componente_1/CI_SD_UC3.png}
+    				    \begin{center} \includegraphics[width=14cm]{./imagenes/Disenio/Componente_1/CI_SD_UC3.png}
     				    \caption[Diagrama de secuencia 3 del Componente I]{Diagrama de secuencia del CI\_CU3. Deshabilitar extensión.}
     			        \end{center}
     			    \end{figure}
@@ -2592,7 +2634,7 @@
     			
     			\subsubsection{Diagrama de secuencia: Inicio de sesión}
     			    \begin{figure}[H]
-    				    \begin{center} \includegraphics[width=15cm]{./imagenes/Disenio/Componente_1/CI_SD_UC4.png}
+    				    \begin{center} \includegraphics[width=14cm]{./imagenes/Disenio/Componente_1/CI_SD_UC4.png}
     				    \caption[Diagrama de secuencia 4 del Componente I]{Diagrama de secuencia del CI\_CU4. Inicio de sesión en la extensión.}
     			        \end{center}
     			    \end{figure}
@@ -2603,7 +2645,7 @@
     			
     			\subsubsection{Diagrama de secuencia: Cerrar sesión.}
         			\begin{figure}[H]
-        				\begin{center}    		    	\includegraphics[width=15cm]{./imagenes/Disenio/Componente_1/CI_SD_UC5.png}
+        				\begin{center}    		    	\includegraphics[width=14cm]{./imagenes/Disenio/Componente_1/CI_SD_UC5.png}
         				\caption[Diagrama de secuencia 5 del Componente I]{Diagrama de secuencia del CI\_CU5. Cerrar sesión en la extensión.}
         				\end{center}
         			\end{figure}
@@ -2624,7 +2666,7 @@
     			
     			\subsubsection{Diagrama de secuencia: Revocar certificado.}
         			\begin{figure}[H]
-        				\begin{center}    		    	\includegraphics[width=15cm]{./imagenes/Disenio/Componente_1/CI_SD_UC7.png}
+        				\begin{center}    		    	\includegraphics[width=14cm]{./imagenes/Disenio/Componente_1/CI_SD_UC7.png}
         				\caption[Diagrama de secuencia 7 del Componente I]{Diagrama de secuencia del CI\_CU7. Revocar certificado.}
         				\end{center}
         			\end{figure}
@@ -2656,7 +2698,7 @@
     				\end{center}
     			\end{figure}
                 
-                En ella, el usuario puede activar y desactivar la extensión para empezar a cachar peticiones, ademas cuenta con un botón de inicio de sesión \textit{(Iniciar Sesión)}, el cual al darle click abrirá la pantalla 'Tab de la extensión' (Figura \ref{fig:CI_PantallaInicial}). La cual se muestra a continuación.
+                En ella, el usuario puede activar y desactivar la extensión para empezar a interceptar peticiones, ademas cuenta con un botón de inicio de sesión \textit{(Iniciar Sesión)}, el cual al darle click abrirá la pantalla 'Tab de la extensión' (Figura \ref{fig:CI_PantallaInicial}). La cual se muestra a continuación.
                 
     		    \begin{figure}[H]
     				\begin{center}	\includegraphics[width=15cm]{./imagenes/Disenio/Componente_1/UI_inicio.PNG}
@@ -2668,7 +2710,7 @@
     			El navegador Google Chrome tiene ciertas restricciones con los certificados que no son firmados por una autoridad certificadora de confianza, y debido a que nuestros certificados son autofirmados. nos aparecerá un mensaje de alerta por parte del navegador, para evitar que esto sea un problema, en la extensión vamos a seleccionar la opción de \textit{Aviso}, donde nos abrirá una pestaña nueva de un aviso de seguridad, vamos a escoger la opción de \textit{opciones avanzadas}, y se desplegará información adicional con la opción de \textit{Proceder a la ip x.x.x.x}, como se muestra en la siguiente imagen: 
     			
     			\begin{figure}[H]
-    				\begin{center}	\includegraphics[width=15cm]{./imagenes/Disenio/Componente_1/Ext_aviso.png}
+    				\begin{center}	\includegraphics[width=12cm]{./imagenes/Disenio/Componente_1/Ext_aviso.png}
     				\caption{Pantalla de aviso.}
     		        \label{fig:Ext_aviso}
     				\end{center}
@@ -2790,37 +2832,36 @@
     			
 			El usuario visualizará y tendrá interacción con este componente para obtener el certificado y llevar a cabo el proceso de Chaffing. Este proceso se lleva a cabo en segundo plano de la extensión (background) el cual cacha la petición e inyecta el resultado del Chaffing en el header de la petición hecha previamente. Una vez inyectado el código, la extensión libera la petición y ésta viaja en red al servidor de prueba.
 			
-			Se ha analizado con un analizador de protocolos (Wireshark), para poder ver la información que viaja en red, y así poder ver el contenido del header de la petición. En la figura \ref{fig:wiresharkAnalizandoInterfaz} se muestra esta petición capturada con el analizador de protocolos Wireshark.
+			%Se ha analizado con un analizador de protocolos (Wireshark), para poder ver la información que viaja en red, y así poder ver el contenido del header de la petición. En la figura \ref{fig:wiresharkAnalizandoInterfaz} se muestra esta petición capturada con el analizador de protocolos Wireshark.
 			
-			\begin{figure}[H]
-        		\begin{center}	\includegraphics[width=11cm]{./imagenes/Desarrollo/Componente_1/Prototipo_1/wiresharkFull.jpeg}
-        			\caption{Wireshark analizando en red WI-FI filtrando analisis por \textit{http}.}
-        			\label{fig:wiresharkAnalizandoInterfaz}
-        		\end{center}
-        	\end{figure}
+			%\begin{figure}[H]
+        	%	\begin{center}	\includegraphics[width=11cm]{./imagenes/Desarrollo/Componente_1/Prototipo_1/wiresharkFull.jpeg}
+        	%		\caption{Wireshark analizando en red WI-FI filtrando analisis por \textit{http}.}
+        	%		\label{fig:wiresharkAnalizandoInterfaz}
+        	%	\end{center}
+        	%\end{figure}
 	
-        	Para un análisis más específico, se muestra la petición en una herramienta que proporciona wireshark, \textit{Show Packet Bytes...}, la cual muestra el encabezado completo, teniendo una herramienta para seleccionar la codificación del texto (Figura \ref{fig:analisisPeticionInterfaz}). Para este caso se ha optado por elegir la codificación ISO8859-1, ya que en ésta nos permite ver de manera legible el encabezado.
+        	%Para un análisis más específico, se muestra la petición en una herramienta que proporciona wireshark, \textit{Show Packet Bytes...}, la cual muestra el encabezado completo, teniendo una herramienta para seleccionar la codificación del texto (Figura \ref{fig:analisisPeticionInterfaz}). Para este caso se ha optado por elegir la codificación ISO8859-1, ya que en ésta nos permite ver de manera legible el encabezado.
 	
-        	\begin{figure}[H]
-        		\begin{center}	\includegraphics[width=11cm]{./imagenes/Desarrollo/Componente_1/Prototipo_1/wiresharkFrame_ISO_header.jpeg}
-        			\caption{Análisis de petición en \textit{Show Packet Bytes...}}
-        			\label{fig:analisisPeticionInterfaz}
-        		\end{center}
-        	\end{figure}
+        	%\begin{figure}[H]
+        	%	\begin{center}	\includegraphics[width=11cm]{./imagenes/Desarrollo/Componente_1/Prototipo_1/wiresharkFrame_ISO_header.jpeg}
+        	%		\caption{Análisis de petición en \textit{Show Packet Bytes...}}
+        	%		\label{fig:analisisPeticionInterfaz}
+        	%	\end{center}
+        	%\end{figure}
     	   
     	    \subsection{Requisitos de diseño.}
     			   En este apartado, se especificarán los requisitos de diseño para que el prototipo opere de forma correcta, de igualmanera se tiene por entendido que son necesarios los Requisitos del diseño del primer prototipo.
     			   \subsubsection{Requisitos de ejecución de la extensi\'on}
-    			        Para poder ejecutar el prototipo dos es necesario contar con todo lo requerido para el prototipo uno y agregarle la interacci\'on con \textbf{jQuery 3.3.1 } y \textbf{Bootstrap} que son dos poderosos frameworks que corren sobre JavaScript y que nos permiten interactuar un poco mejor con el usuario haciendo la interfaz de la extensi\'on más amigable y entendible, estos ya se encuentran insertados en la extensión por lo que no es necesario que el usuario realice acción alguna.
-    			        Otros de los requisitos para su ejecución es contar con un \textbf{usuario y contraseña} válidos ya que ser\'an de suma    			    Para deshabilitar la extensión, el usuario necesita primero abrir la extensión. Una vez abierta la extensión, debe de dar click en el botón ''deshabilitar'', para que la extensión ejecute la orden y se mantenga deshabilitada.
+    			        Para poder ejecutar el prototipo dos es necesario contar con todo lo requerido para el prototipo uno y agregarle la interacci\'on con \textbf{jQuery 3.3.1 } y \textbf{Bootstrap} que son dos frameworks que corren sobre JavaScript y que nos permiten interactuar un poco mejor con el usuario haciendo la interfaz de la extensi\'on más amigable y entendible, estos ya se encuentran insertados en la extensión por lo que no es necesario que el usuario realice acción alguna.
+    			        Otros de los requisitos para su ejecución es contar con un \textbf{usuario y contraseña} válidos ya que ser\'an de suma importancia para el correcto funcionamiento del prototipo dos. Para deshabilitar la extensión, el usuario necesita primero abrir la extensión. Una vez abierta la extensión, debe de dar click en el botón ''deshabilitar'', para que la extensión ejecute la orden y se mantenga deshabilitada.
 
- importancia para el correcto funcionamiento del prototipo dos.
     			     \subsubsection{Requisitos para el envío del código autentificador}   
     			        Para este prototipo se considera necesaria los siguientes requisitos de diseño:
     			        \begin{itemize}
     			            \item \textbf{Código Autentificador} Archivo indispenzable en este prototito debido a que sin este es imposible acompletar el proceso.
                             
-    			            \item \textbf{Iniciar Sesión} Este botón generará un certificado de prueba y se almacenará en el Storage del navegador Google Chrome. Esto con el fin, que al momento de cachar la petición, la extensión de encargará de inyectar el certificado almacenado modificado con el método \textit{Chaffing} en el encabezado de protocolo HTTP.
+    			            \item \textbf{Iniciar Sesión} Este botón generará un certificado de prueba y se almacenará en el Storage del navegador Google Chrome. Esto con el fin, que al momento de interceptar la petición, la extensión de encargará de inyectar el certificado almacenado modificado con el método \textit{Chaffing} en el encabezado de protocolo HTTP.
     			           
     			        \end{itemize}
     			        \newpage
@@ -2864,7 +2905,7 @@
                     %Para cada elemento de como resultó el patrón.
                     $certBits \longleftarrow getBits(Cert)$\;
                     $acceptBits \longleftarrow getBits(Accept)$\;
-                    \ForEach{$ i $ in Pattern}{
+                    \ForEach{ $ i $ in Pattern}{
                         %Si es un 1, se coloca el siguiente byte del certificado.
                         \eIf{$i == '1'$}{
                         $Chaffing \longleftarrow Chaffing + certBits[countCert]$\;
@@ -2884,16 +2925,16 @@
     		    \begin{center}
     		        $C_k = MITZ057abZ251$
     		    \end{center}
-    		    y utilizaremos el campo \textit{agent user} del header de la petición, lo cual tendrá lo siguiente:
+    		    y utilizaremos el campo \textit{Accept} del header de la petición como \textit{chaff}, lo cual tendrá lo siguiente:
     		    \begin{center}
     		        $P_{HTTP} = Mozilla5.5/Chrome8.1/Safari$
     		    \end{center}
-    		    Entonces, nuestro patrón de chaffing terminará teniendo un tamaño de la longitud de los caracteres de nuestro certificado $+$ la longitud de los datos de la petición HTTP, esta variable se llamará \textit{lenPattern}. A continuación vamos a utilizar un arreglo de banderas de ese tamaño múltiplicado por 8, para que así podamos llenar de ceros y unos este arereglo y cada una de las posiciones nos represente en el chaffing un bit, este arreglo inicia con 0 todos sus valores, y que al final será nuestro patrón, esta variable será \textit{patternChaffing}.\\
+    		    Entonces, nuestro patrón de chaffing terminará teniendo un tamaño de la longitud de los caracteres de nuestro certificado más la longitud de los datos de la petición HTTP, esta variable se llamará \textit{lenPattern}. A continuación vamos a utilizar un arreglo de banderas de ese tamaño múltiplicado por 8, para que así podamos llenar de ceros y unos este arereglo y cada una de las posiciones nos represente en el chaffing un bit, este arreglo inicia con 0 todos sus valores, y que al final será nuestro patrón, esta variable será \textit{Pattern}.\\
     		    
-    		    La idea es generar posiciones aleatorias dentro del rango del tamaño de \textit{lenPattern}, y poner un 1 en dicha posición si es que hay un 0, en caso de que no se encuentre un 0 se repetirá el procedimiento obteniendo una posición aleatoria diferente, y esto se realizará el mismo número de veces del tamaño de nuestro certificado, para obtener un patrón de combinaciones entre los caracteres. Utilizaremos un contador para conseguir esto, aumentándolo cada vez que se obtenga un número aleatorio válido. En nuestro algoritmo, nuestra variable \textit{random} contiene la posición aleatoria donde se validará si en esa posición se puede poner un 1 o no.\\
+    		    Este algoritmo nos permite generar posiciones aleatorias dentro del rango del tamaño de \textit{lenPattern}, y tantas veces como se tengan caracteres en el certiicado, se pondrá un 1 en dicha posición si es que hay un 0, en caso de que no se encuentre un 0 se repetirá el procedimiento obteniendo una posición aleatoria diferente, esto nos generará nuestro patrón para el Chaffing. Utilizaremos un contador para conseguir esto, aumentándolo cada vez que se obtenga un número aleatorio válido. En nuestro algoritmo, nuestra variable \textit{random} contiene la posición aleatoria donde se validará si en esa posición se puede poner un 1 o no.\\
     		    
     		    \begin{figure}[H]
-        			\begin{center}	                  \includegraphics[width=14cm]{./imagenes/Disenio/Componente_1/algorithm1_1.png}
+        			\begin{center}	                  \includegraphics[width=12cm]{./imagenes/Disenio/Componente_1/algorithm1_1.png}
     				\caption{Arreglo del patrón de chaffing}
         			\end{center}
         		\end{figure}
@@ -2901,15 +2942,15 @@
     		    Supongamos, por ejemplo, que el primer número aleatorio que se obtiene es 4, entonces en la posición 4 colocaremos un 1: 
     		    
     		    \begin{figure}[H]
-        			\begin{center}	                  \includegraphics[width=14cm]{./imagenes/Disenio/Componente_1/algorithm1_2.png}
+        			\begin{center}	                  \includegraphics[width=13cm]{./imagenes/Disenio/Componente_1/algorithm1_2.png}
     				\caption{Arreglo del patrón de chaffing después de una iteración}
         			\end{center}
         		\end{figure}
         		
-        		Este algoritmo nos permite llenar de unos el mismo número de veces que el número de unos contenga nuestro certificado en bits, lo que nos asegura que cada posición le corresponde a un bit ya sea del certificado o de la petición a enviar. Supongamos que al terminar este algoritmo, nuestro arreglo queda algo parecido a lo siguiente:
+        		Este algoritmo nos permite llenar de unos el mismo número de veces que el número de unos contenga nuestro certificado en bits, lo que nos asegura que cada posición le corresponde a un byte ya sea del certificado o de la petición a enviar. Supongamos que al terminar este algoritmo, nuestro arreglo queda algo parecido a lo siguiente:
         		
         		\begin{figure}[H]
-        			\begin{center}	                  \includegraphics[width=14cm]{./imagenes/Disenio/Componente_1/algorithm1_3.png}
+        			\begin{center}	                  \includegraphics[width=13cm]{./imagenes/Disenio/Componente_1/algorithm1_3.png}
     				\caption{Arreglo del patrón de chaffing final}
         			\end{center}
         		\end{figure}
@@ -2919,6 +2960,11 @@
     		    Cuando se detecte un 1 en el arreglo del patrón, vamos a proceder a colcoar el byte siguiente correspondiente al arreglo del certificado. En caso análogo, si se encuentra con un 0, entonces se colocorá el siguiente caracter del encabezado Accept, se llevará el control de ambos mediante sus respectivos contadores.\\
     		    
     		    Por último, es importante mencionar que se mandará el Chaffing en base64 para evitar problemas con los caractéres no válidos que se puedan generar. Seguido del Chaffing en base64, vamos a enviar el patrón con un cifrado híbrido, cifrando primero el patrón con AES, la llave que utilizaremos para realizar este cifrado la cifraremos con RSA utilizando la llave pública del servidor. 
+
+                \subsubsection{Complejidad computacional.}
+                    Haciendo un analisis de los algoritmos anteriormente mostrados, deducimos que la complejidad del algoritmo de \textit{chaffing} es:
+                    $O(n)$
+                    Donde $n$ es la longitud de carácteres del certificado.
 
         \section{Componente II: Servidor Autentificador.}
 			
@@ -3197,12 +3243,12 @@
     			\begin{tabular}{ |p{3.5cm}||p{9.5cm}|}
     				\hline
     				\rowcolor{guindapoli}
-    				\multicolumn{2}{|c|}{\textbf{\textcolor{white}{Caso de uso: CII\_CU4. Obtener código del  certificado.}}}\\
+    				\multicolumn{2}{|c|}{\textbf{\textcolor{white}{Caso de uso: CII\_CU4. Obtener código del certificado.}}}\\
     				\hline
     				\rowcolor{azulfuerte}Concepto & Descripción\\
     				\hline
     				\cellcolor{azulclaro}Actor & 
-    				Componente III. Servicio web.\\ 
+    			    Componente III. API.\\ 
     				\hline
     				\cellcolor{azulclaro}Propósito &
     				Retornar un SHA256 del certificado de un usuario especificado.\\
@@ -3233,7 +3279,7 @@
     		
     		\paragraph{... Trayectoria principal ...}
     		    \begin{enumerate}
-    		        \item \textbf{\textit{El servidor autentificador}} recibe un SHA256 del nombre de usuario enviado por \textbf{\textit{Componente III. Servicio Web}}.
+    		        \item \textbf{\textit{El servidor autentificador}} recibe un SHA256 del nombre de usuario enviado por \textbf{\textit{Componente III. API}}.
     		        
     		        \item \textbf{\textit{El servidor autentificador}} busca el certificado de dicho usuario.
     		        
@@ -3243,7 +3289,7 @@
     		
     		\paragraph{... Trayectoria alternativa 1 ...}
     		    \begin{enumerate}
-    		        \item \textbf{\textit{El servidor autentificador}} recibe un SHA256 del nombre de usuario enviado por \textbf{\textit{Componente III. Servicio Web}}.
+    		        \item \textbf{\textit{El servidor autentificador}} recibe un SHA256 del nombre de usuario enviado por \textbf{\textit{Componente III. API}}.
     		        
     		        \item \textbf{\textit{El servidor autentificador}} busca el certificado de dicho usuario.
     		        
@@ -3276,7 +3322,7 @@
     		
     		\subsubsection{Descripción diagrama de flujo de datos.}
     		En este caso contamos con dos entidades externas, la extensión que por una parte puede solicitar un certificado mediante los datos solicitados por la autoridad, solicitar la generación de un nuevo usuario o bien solicitar la revocación de un certificado ligado a un usuario. La extensión le proporcionará los datos necesarios a la autoridad certificadora para que esta pueda crear y guardar al usuario con un certificado único para el mismo. Al solicitar un certificado la autoridad le devolverá a la extensión el certificado perteneciente al usuario enviado. Si se solicita la creación de usuario, la autoridad solo devolverá como respuesta creación exitosa. Si la extensión solicita a la autoridad la revocación de un certificado, la autoridad necesita los datos del usuario a quien se le eliminará su certificado, para esto los datos del usuario deben ser correctos, si lo son, se procede a eliminar el certificado y a crear un nuevo, este certificado se guarda como certificado del usuario y se procede a devolver como respuesta dicho certificado creado previamente.
-            Por otra parte, el servicio web le solicitará a la autoridad la verificación de un certificado, esto con el fin de definir si el certificado fue generado por dicha autoridad y si ese certificado es valido.
+            Por otra parte, la API le solicitará a la autoridad la verificación de un certificado, esto con el fin de definir si el certificado fue generado por dicha autoridad y si ese certificado es valido.
 		
 		    \subsection{Diagrama de clases.}
 		
@@ -3308,19 +3354,19 @@
                     
 		            \textbf{Métodos}
     		        \begin{enumerate}
-    		            \item \textbf{createNewUser(str pass, str email)}: Este método permite crear un nuevo usuario y guardar a éste en la base de datos .
+    		            \item \textbf{createNewUser(String pass, String email)}: Este método permite crear un nuevo usuario y guardar a éste en la base de datos .
     		            \begin{itemize}
     		                \item Tipo de dato de retorno: \textbf{User}
     		            \end{itemize}
-    		            \item \textbf{revokeCert(str email, str pass)}: Este método permite revocar el certificado actual del usuario con las credenciales recibidas.
+    		            \item \textbf{revokeCert(String email, String pass)}: Este método permite revocar el certificado actual del usuario con las credenciales recibidas.
     		            \begin{itemize}
     		                \item Tipo de dato de retorno: \textbf{int}
     		            \end{itemize}
-    		            \item \textbf{login(str pass, str email)}: Este método permite retornar el certificado del usuario de las credenciales recibidas.
+    		            \item \textbf{login(String pass, String email)}: Este método permite retornar el certificado del usuario de las credenciales recibidas.
     		            \begin{itemize}
     		                \item Tipo de dato de retorno: \textbf{String}
     		            \end{itemize}
-    		            \item \textbf{checkCert(str SHAuser)}: Este método permite retornar el sha256 del certificado del usuario recibido.
+    		            \item \textbf{checkCert(String SHAuser)}: Este método permite retornar el sha256 del certificado del usuario recibido.
     		            \begin{itemize}
     		                \item Tipo de dato de retorno: \textbf{String}
     		            \end{itemize}
@@ -3334,7 +3380,7 @@
     		            \begin{itemize}
     		                \item Tipo de dato de retorno: \textbf{String}
     		            \end{itemize}
-    		            \item \textbf{revokeCert(str userName, str pass)}: Este método permite revocar el certificado actual del usuario.
+    		            \item \textbf{revokeCert(String userName, String pass)}: Este método permite revocar el certificado actual del usuario.
     		            \begin{itemize}
     		                \item Tipo de dato de retorno: \textbf{int}
     		            \end{itemize}
@@ -3345,7 +3391,7 @@
                    
 		            \textbf{Métodos}
     		        \begin{enumerate}
-    		            \item \textbf{doSHA(str message)}: Este método permite cifrar el mensaje recibido con SHA256.
+    		            \item \textbf{doSHA(String message)}: Este método permite cifrar el mensaje recibido con SHA256.
     		            \begin{itemize}
     		                \item Tipo de dato de retorno: \textbf{String}
     		            \end{itemize}
@@ -3429,22 +3475,22 @@
 		
         		\subsubsection{Descripción del diagrama de actividades.}
         		El componente cuenta con los siguientes pasos.
-        		Por una parte la interacción entre la extensión y la autoridad certificadora, la cual la extensión podrá solicitar la creación de un nuevo usuario, iniciar sesión para obtener el certificado y la revocación de un certificado. Para el inicio de sesión la extensión debe de enviarle los datos de usuario para asi la autoridad poder verificar dichos datos, si los datos son correctos y existen el la base de datos se procede a generar un certificado para el usuario y se registra en la base de datos. Si se solicita el inicio de sesión, es decir obtener un certificado, la autoridad al recibir dicha petición se procede a buscar el usuario solicitado, si existe la autoridad regresa como respuesta el certificado del usuario. Si la extensión solicita la revocación de un certificado, la autoridad debe buscar al usuario en la base de datos, si existe un usuario con esos datos, se procede a eliminar su certificado y crear uno nuevo, devolviendo como respuesta el nuevo certificado. Ahora bien, si el servicio web solicita la verificación de un certificado, la autoridad deberá verificar dicho certificado, si el certificado fue creado por la autoridad, este regresa respuesta satisfactoria.
+        		Por una parte la interacción entre la extensión y la autoridad certificadora, la cual la extensión podrá solicitar la creación de un nuevo usuario, iniciar sesión para obtener el certificado y la revocación de un certificado. Para el inicio de sesión la extensión debe de enviarle los datos de usuario para asi la autoridad poder verificar dichos datos, si los datos son correctos y existen el la base de datos se procede a generar un certificado para el usuario y se registra en la base de datos. Si se solicita el inicio de sesión, es decir obtener un certificado, la autoridad al recibir dicha petición se procede a buscar el usuario solicitado, si existe la autoridad regresa como respuesta el certificado del usuario. Si la extensión solicita la revocación de un certificado, la autoridad debe buscar al usuario en la base de datos, si existe un usuario con esos datos, se procede a eliminar su certificado y crear uno nuevo, devolviendo como respuesta el nuevo certificado. Ahora bien, si la API solicita la verificación de un certificado, la autoridad deberá verificar dicho certificado, si el certificado fue creado por la autoridad, este regresa respuesta satisfactoria.
 	
-	    \section{Componente III: Servicio Web y API.}
+	    \section{Componente III: API.}
 	
 	        \subsection{Diagrama de casos de uso.}
 	    
         	    \begin{figure}[H]
-        	        \centering
-    
-        	        \includegraphics[height=13cm]{imagenes/Disenio/Componente_3/CIII_UCD.png}
+        	        \centering       	        \includegraphics[height=11cm]{imagenes/Disenio/Componente_3/CIII_UCD.png}
         	        \caption{Diagrama de caso de uso del componente III}
         	        \label{fig:CIII_UCD}
         	    \end{figure}
 	    
 	        \subsubsection{Descripción de diagrama de casos de uso.}
-	    
+	        
+	        
+	        \begin{comment}
     	    \begin{table}[H]
     			\begin{tabular}{ |p{3.5cm}||p{9.5cm}|}
     				\hline
@@ -3515,7 +3561,6 @@
     			\end{enumerate}
     		\paragraph{... Fin de la Trayectoria Alternativa 1 ...}
     			
-    		
     		\paragraph{... Trayectoria Alternativa 2 ...}
     			\begin{enumerate}
     				\item \textbf{\textit{El servicio web}} recibe una nueva petición HTTP con el certificado inyectado.
@@ -3572,7 +3617,7 @@
     			\end{enumerate}
     		\paragraph{... Fin de la Trayectoria Alternativa 4 ...}
     	    \newpage
-    		
+    		\end{comment}
     		
     		
     		
@@ -3580,7 +3625,7 @@
     			\begin{tabular}{ |p{3.5cm}||p{9.5cm}|}
     				\hline
     				\rowcolor{guindapoli}
-    				\multicolumn{2}{|c|}{\textbf{\textcolor{white}{Caso de uso: CIII\_CU2. Comprobar certificado.}}}\\
+    				\multicolumn{2}{|c|}{\textbf{\textcolor{white}{Caso de uso: CIII\_CU1. Comprobar certificado.}}}\\
     				\hline
     				\rowcolor{azulfuerte}Concepto & Descripción\\
     				\hline
@@ -3596,7 +3641,7 @@
     				SHA256 del certificado en el servidor autentificador del usuario.\\
     				\hline
     				\cellcolor{azulclaro}Pre-condiciones&
-    				\textbf{CIII\_CU1}.\\
+    				-\\
     				\hline
     				\cellcolor{azulclaro}Post-condiciones&
     				-\\
@@ -3608,7 +3653,7 @@
     			    No se encuentra al usuario.\\
     				\hline
     		    \end{tabular}
-    		    \caption[DCU: CIII\_CU2]{Descripción CU: CIII\_CU2}
+    		    \caption[DCU: CIII\_CU1]{Descripción CU: CIII\_CU1}
     		\end{table}
     		
     		\paragraph{... Trayectoria Principal ...}
@@ -3647,14 +3692,12 @@
     		\newpage
     			
     			
-    			
-    			
     		
     		\begin{table}[H]
     			\begin{tabular}{ |p{3.5cm}||p{9.5cm}|}
     				\hline
     				\rowcolor{guindapoli}
-    				\multicolumn{2}{|c|}{\textbf{\textcolor{white}{Caso de uso: CIII\_CU3. Enviar petición.}}}\\
+    				\multicolumn{2}{|c|}{\textbf{\textcolor{white}{Caso de uso: CIII\_CU2. Enviar petición.}}}\\
     				\hline
     				\rowcolor{azulfuerte}Concepto & Descripción\\
     				\hline
@@ -3682,7 +3725,7 @@
     				La petición no tiene el certificado inyectado.\\
     				\hline
     		    \end{tabular}
-    		    \caption[DCU: CIII\_CU3]{Descripción CU: CIII\_CU3}
+    		    \caption[DCU: CIII\_CU2]{Descripción CU: CIII\_CU2}
     		\end{table}
     		
     		\paragraph{... Trayectoria Principal ...}
@@ -3703,14 +3746,11 @@
             \newpage
     		
     		
-    		
-    		
-    		
     		\begin{table}[H]
     			\begin{tabular}{ |p{3.5cm}||p{9.5cm}|}
     				\hline
     				\rowcolor{guindapoli}
-    				\multicolumn{2}{|c|}{\textbf{\textcolor{white}{Caso de uso: CIII\_CU4. Redirigir página.}}}\\
+    				\multicolumn{2}{|c|}{\textbf{\textcolor{white}{Caso de uso: CIII\_CU3. Redirigir página.}}}\\
     				\hline
     				\rowcolor{azulfuerte}Concepto & Descripción\\
     				\hline
@@ -3738,7 +3778,7 @@
     				No se puede desplegar la respuesta del servicio web.\\
     				\hline
     		    \end{tabular}
-    		    \caption[DCU: CIII\_CU4]{Descripción CU: CIII\_CU4}
+    		    \caption[DCU: CIII\_CU3]{Descripción CU: CIII\_CU3}
     		\end{table}
     		
     		\paragraph{... Trayectoria Principal ...}
@@ -3758,21 +3798,22 @@
     		\paragraph{... Fin de la Trayectoria Alternativa 1 ...}
 			\newpage
 	     
+	     
             \subsection{Diagrama de flujo.}
             
                 \begin{figure}[H]
-                	\begin{center}	\includegraphics[width=9cm]{./imagenes/Disenio/Componente_3/CIII_DF.png}
+                	\begin{center}	\includegraphics[width=11cm]{./imagenes/Disenio/Componente_3/CIII_DF.png}
                 	\caption{Diagrama de flujo de Componente III.}
                 	\end{center}
         		\end{figure}
         
                 \subsubsection{Descripción diagrama de flujo.}
-                Para el caso de este diagrama se inicia con una petición, la cual es recibida por el servicio y analizada para verificar si el encabezado tiene el certificado. Si la petición no tiene el certificado, se procede a iniciar sesión normalmente. Si la petición contiene un certificado, Se procede a iniciar sesión con certificado, después de eso, se lleva a cabo el proceso de Winnowing. Si se realiza satisfactoriamente el winnowing, se inicia sesión donde puede o no estar registrado el usuario, de cualquier manera el usuario al registrarse o iniciar sesión se usara el certificado.
+                Para el caso de este diagrama se inicia con una petición, la cual es recibida por la API y analizada para verificar si el encabezado tiene el certificado. Si la petición no tiene el certificado, este componente ignora dicha petición. Si la petición contiene un certificado, se procede a iniciar sesión con certificado,  Si se realiza satisfactoriamente el winnowing, se inicia sesión donde puede o no estar registrado el usuario, de cualquier manera el usuario al registrarse o iniciar sesión se usara el certificado.
         
             \subsection{Diagrama de flujo de datos.}
         
                 \begin{figure}[H]
-                	\begin{center}	\includegraphics[width=8cm]{./imagenes/Disenio/Componente_3/CIII_DFD.png}
+                	\begin{center}	\includegraphics[width=12cm]{./imagenes/Disenio/Componente_3/CIII_DFD.png}
                 	\caption{Diagrama de flujo de datos de Componente III.}
                 	\end{center}
         		\end{figure}
@@ -3784,7 +3825,7 @@
             \subsection{Diagrama de clases.}
             
                 \begin{figure}[H]
-                	\begin{center}	\includegraphics[width=16cm]{./imagenes/Disenio/Componente_3/CIII_CD.png}
+                	\begin{center}	\includegraphics[width=14cm]{./imagenes/Disenio/Componente_3/CIII_CD.png}
                 	\caption{Diagrama de Clases de componente 3.}
                 	\end{center}
         		\end{figure}      
@@ -3847,15 +3888,15 @@
                     
 		            \textbf{Métodos}
     		        \begin{enumerate}
-    		            \item \textbf{doSHA(str message)}: Este método calcula el sha256 de la cadena de texto message.
+    		            \item \textbf{doSHA(String message)}: Este método calcula el sha256 de la cadena de texto message.
     		            \begin{itemize}
     		                \item Tipo de dato de retorno: \textbf{String}
     		            \end{itemize}
-    		            \item \textbf{decryptPattern(str encryptedPattern)}: Este método descifra el patrón de chaffing.
+    		            \item \textbf{decryptPattern(String encryptedPattern)}: Este método descifra el patrón de chaffing.
     		            \begin{itemize}
     		                \item Tipo de dato de retorno: \textbf{String}
     		            \end{itemize}
-    		            \item \textbf{verifyCertificate(str certificate)}: Este método verifica la autenticidad de un certificado.
+    		            \item \textbf{verifyCertificate(String certificate)}: Este método verifica la autenticidad de un certificado.
     		            \begin{itemize}
     		                \item Tipo de dato de retorno: \textbf{int}
     		            \end{itemize}
@@ -3915,7 +3956,7 @@
                     
 		            \textbf{Métodos}
     		        \begin{enumerate}
-    		            \item \textbf{doSHA(str message)}: Este método cifra el mensaje que se le manda.
+    		            \item \textbf{doSHA(String message)}: Este método cifra el mensaje que se le manda.
     		            \begin{itemize}
     		                \item Tipo de dato de retorno: \textbf{String}
     		            \end{itemize}
@@ -3927,7 +3968,7 @@
                     
 		            \textbf{Métodos}
     		        \begin{enumerate}
-    		            \item \textbf{verifyCertificado(str certificate)}: Este método verifica la validez de un certificado.
+    		            \item \textbf{verifyCertificado(String certificate)}: Este método verifica la validez de un certificado.
     		            \begin{itemize}
     		                \item Tipo de dato de retorno: \textbf{int}
     		            \end{itemize}
@@ -3939,11 +3980,11 @@
                     
 		            \textbf{Métodos}
     		        \begin{enumerate}
-    		            \item \textbf{encode(str message)}: Este método codifica el mensaje recibido a base64.
+    		            \item \textbf{encode(String message)}: Este método codifica el mensaje recibido a base64.
     		            \begin{itemize}
     		                \item Tipo de dato de retorno: \textbf{String}
     		            \end{itemize}
-    		            \item \textbf{decode(str message)}: Este método decodifica el mensaje recibido de base64 a UTF-8.
+    		            \item \textbf{decode(String message)}: Este método decodifica el mensaje recibido de base64 a UTF-8.
     		            \begin{itemize}
     		                \item Tipo de dato de retorno: \textbf{String}
     		            \end{itemize}
@@ -3951,6 +3992,7 @@
                     
             \subsection{Diagramas de secuencias.}
         
+                \begin{comment}
                 \textbf{Diagrama de Secuencia 1.Iniciar sesión}    
                 \begin{figure}[H]
                 	\begin{center}	\includegraphics[width=12cm]{./imagenes/Disenio/Componente_3/CIII_SD_UC1.png}
@@ -3960,36 +4002,37 @@
             
                 \subsubsection{Descripción de diagrama de Secuencia CIII\_SD\_UC1.}
                 Para este diagrama, el servicio web recibirá una petición, y posteriormente la API se encargará de interceptarla, realizará la etapa de Winnowing y obtendrá el certificado de la petición con Chaffing, se la enviará al Servidor Autentificador para que este busque si ya tiene registrado a este certificado, enviando una respuesta al servicio web del tipo acceso que dará, ya que si no lo tiene registrado tendrá que iniciar sesión de forma tradicional por primera vez en el servicio, de forma contraria si se encuentra registrado dará acceso de forma inmediata a la sesión del usuario correspondiente.\\
-        
-                \textbf{Diagrama de Secuencia 2. Comprobar Certificado.} 
+                \end{comment}
+                
+                \textbf{Diagrama de Secuencia 1. Comprobar Certificado.} 
                 \begin{figure}[H]
                 	\begin{center}	\includegraphics[width=12cm]{./imagenes/Disenio/Componente_3/CIII_SD_UC2.png}
-                	\caption{Diagrama de Secuencia de Caso de Uso 2. Comprobar certificado.}
+                	\caption{Diagrama de Secuencia de Caso de Uso 1. Comprobar certificado.}
                 	\end{center}
         		\end{figure}
             
-                \subsubsection{Descripción de diagrama de Secuencia CIII\_SD\_UC2.}
+                \subsubsection{Descripción de diagrama de Secuencia CIII\_SD\_UC1.}
                 Después de que el servicio web reciba una petición, la API la interceptará para realizar la etapa de Winnowing y posteriormente envíe el certificado al servidor autentificador, el Servidor Autentificador validará los datos del usuario y dependiendo si existe o no ese usuario registrado, con un certificado válido(actualizado) o uno inválido(revocado) le regresará un status a la API y está sabrá el como darle respuesta al Servicio Web basado en el estatus que recibió del Servidor Autentificador.\\
         
-                \textbf{Diagrama de Secuencia 3. Enviar Petición.}    
+                \textbf{Diagrama de Secuencia 2. Enviar Petición.}    
                 \begin{figure}[H]
                 	\begin{center}	\includegraphics[width=12cm]{./imagenes/Disenio/Componente_3/CIII_SD_UC3.png}
-                	\caption{Diagrama de Secuencia de Caso de Uso 3. Enviar petición.}
+                	\caption{Diagrama de Secuencia de Caso de Uso 2. Enviar petición.}
+                	\end{center}
+        		\end{figure}
+    		
+                \subsubsection{Descripción de diagrama de Secuencia CIII\_SD\_UC2.}
+                La extensión envía una petición con Chaffing al Servicio Web, donde la API intercepta dicha petición para analizar si es una petición que contenga un Chaffing el cuál podamos analizar, posteriormente realizará la etapa de Winnowing si es una petición de nuestro interés y enviará el certificado al servicio web.\\
+        
+                \textbf{Diagrama de Secuencia 3. Redirigir Página.} 
+                \begin{figure}[H]
+                	\begin{center}	\includegraphics[width=12cm]{./imagenes/Disenio/Componente_3/CIII_SD_UC4.png}
+                	\caption{Diagrama de Secuencia de Caso de Uso 3. Redirigir página.}
                 	\end{center}
         		\end{figure}
     		
                 \subsubsection{Descripción de diagrama de Secuencia CIII\_SD\_UC3.}
-                La extensión envía una petición con Chaffin al Servicio Web, donde la API intercepta dicha petición para analizar si es una petición que contenga un Chaffing el cuál podamos analizar, posteriormente realizará la etapa de Winnowing si es una petición de nuestro interés y enviará el certificado al servicio web.\\
-        
-                \textbf{Diagrama de Secuencia 4. Redirigir Página.} 
-                \begin{figure}[H]
-                	\begin{center}	\includegraphics[width=12cm]{./imagenes/Disenio/Componente_3/CIII_SD_UC4.png}
-                	\caption{Diagrama de Secuencia de Caso de Uso 4. Redirigir página.}
-                	\end{center}
-        		\end{figure}
-    		
-                \subsubsection{Descripción de diagrama de Secuencia CIII\_SD\_UC4.}
-                El navegador teniendo lista la petición con Chaffing la envía al Servicio Web, donde este con la ayuda de la API, valida dicha petición y elige el inicio de sesión para el usuario, posteriormente le envía una respuesta al navegador y por último este mismo redirige la página dependiendo es esta misma respuesta.
+                El navegador teniendo lista la petición con Chaffing la envía al Servicio Web, donde éste mediante la API, valida dicha petición y elige el inicio de sesión para el usuario, posteriormente le envía una respuesta al navegador y por último este mismo redirige la página dependiendo es esta misma respuesta.
             
             \subsection{Diagrama de actividades}
             
@@ -4150,6 +4193,10 @@
                     \caption{Algoritmo para la verificaci\'on del certificado.}
                 \end{algorithm}
                 
+                 \subsubsection{Complejidad computacional.}
+                    Haciendo un analisis del algoritmo de winnowing anteriormente mostrado, deducimos que la complejidad del algoritmo de \textit{winnowing} es:
+                    $O(n)$ donde $n$ es el tamaño de carácteres del certificado.
+                
                 Para el caso de la verificaci\'on se cuenta con los siguientes datos de entrada:
                 \begin{itemize}
                     \item \textbf{cert}: Contiene el certificado recibido en la petici\'on HTTP proveniente del anterior algoritmo.
@@ -4195,34 +4242,49 @@
             \end{itemize}
             \subsection{Archivo background.js}
             Es el archivo que contiene la mayor parte de la lógica del comportamiento de este componente, vamos a explicar alguna de las funciones más relevantes de su desarrollo\\
-            Primero veremos \textit{chrome.webRequest.onBeforeSendHeaders.addListener}, que nos servira para preparar lo necesario con la interacción de la petición antes de que sea mandada a red.
+            Lo primero que debe de realizar la extensión es interceptar la petición antes de que esta salga a red para poder realizar todo el proceso de Chaffing.
             
             \subsubsection{Interceptar petición.}
-            Primero que nada, se necesita comprobar que la extensión se encuentre habilitada, checando la bandera de \textit{btnActivar}, si se encuentra en \textit{true} entonces procedemos a obtener todos los parametros que necesitaremos manejar, una vez que ya tenemos todos nuestros datos entonces vamos a filtrar el tipo de petición, ya que para este prototipo nos interesa únicamente la petición de tipo \textit{main\_frame} y obteniendo esta petición vamos a obtener el header de \textit{Accept}, con esto puede realizar el llamado a la función de \textit{getCertificateFromStorage}. Es importante mencionar que durante todos estos procesos, la petición se bloquea para evitar que salga en red y así podamos analizar y realizar los procesos necesarios para el funcionamiento.
+            Primero que nada, se necesita comprobar que la extensión se encuentre habilitada, checando la bandera de \textit{btnActivar}, si se encuentra en \textit{true} entonces procedemos a obtener todos los parametros que necesitaremos manejar. 
             \lstinputlisting[
 	            language=JavaScript,
-	            caption=background.js función para interceptar el encabezado,
-	            firstline=10, lastline=57,
-	            label={cod:onBeforeSendHeaders}
+	            caption=background.js función para interceptar datos del encabezado,
+	            firstline=10, lastline=32,
+	            label={cod:interceptarEncabezado}
 	         ]{./imagenes/Desarrollo/Componente_1/Prototipo_1/background.js}
+	         
+            Una vez que ya tenemos todos nuestros datos entonces vamos a filtrar el tipo de petición, ya que para este prototipo nos interesa únicamente la petición de tipo \textit{main\_frame} y obteniendo esta petición vamos a obtener el header de \textit{Accept}, con esto puede realizar el llamado a la función de \textit{getCertificateFromStorage}.
+            \lstinputlisting[
+	            language=JavaScript,
+	            caption=background.js Obteniendo el header de accept y bloqueando la petición,
+	            firstline=34, lastline=46,
+	            label={cod:getHeaderAndAccept}
+	         ]{./imagenes/Desarrollo/Componente_1/Prototipo_1/background.js}
+            Finalmente se bloquea la petición para poder realizar los procesos que siguen a continuación.
             
             \subsubsection{Creación del patrón de Chaffing}
-            La función anterior mencionada nos servirá para poder generar el patrón de chaffing de manera aleatoria, utilizando la lógica que se menciona en el resto del documento, utilizaremos una función de getSecureRandomNumber.
+            Esta función nos servirá para poder generar el patrón de chaffing de manera aleatoria, utilizando la lógica que se menciona en el resto del documento, la función de getSecureRandomNumber coloca unos en alguna posición de nuestro patrón igual al número de caracteres que tenga el certificado, recibido en esta misma función.
             \lstinputlisting[
 	            language=JavaScript,
-	            caption=background.js función para interceptar el encabezado,
-	            firstline=104, lastline=133,
-	            label={cod:getPatternBite}
+	            caption=background.js función para generar el patrón de Chaffing,
+	            firstline=86, lastline=105,
+	            label={cod:getPattern}
 	         ]{./imagenes/Desarrollo/Componente_1/Prototipo_1/background.js}
             
             \subsubsection{Generación del chaffing.}
-	         Esta función nos va a generar el Chaffing resultante basándose en el patrón que se genera con la función previamente mostrada, lo que hace esta función es recorrer cada elemento del arreglo del patrón, y cuando encuentre un 0 va a colocar el siguiente caracter del certificado en la cadena del chaffing, de modo análogo, si encuentra un 1 entonces pondrá en la siguiente posicón del arreglo de chaffing el siguiente caracter del arreglo del encabezado de Accept.\\
-	         
-	         Finalmente vamos a proceder a enviar el arreglo de Chaffing y nuetro patrón al servidor, el chaffing se agregará como un nuevo header del encabezado, y el patrón se cifrará de forma híbrida primero con el cifrado por bloques de \textit{AES}, y después cifrando con \textit{RSA} la llave que se utilizó para AES con la llave pública del servidor. Esto nos garantiza que solo el servidor le llegue el patrón de forma segura para realizar su respectiva etapa de Winnowing.
+	         Esta función nos va a generar el Chaffing resultante basándose en el patrón que se genera con la función previamente mostrada, donde recorrerá cada elemento del arreglo del patrón, y cuando encuentre un 0 va a colocar el siguiente caracter del certificado en la cadena del chaffing, de modo análogo, si encuentra un 1 entonces pondrá en la siguiente posicón del arreglo de chaffing el siguiente caracter del arreglo del encabezado de Accept.\\
 	         \lstinputlisting[
 	            language=JavaScript,
-	            caption=background.js función para interceptar el encabezado,
-	            firstline=152, lastline=235,
+	            caption=background.js Función para generar el chaffing,
+	            firstline=124, lastline=139,
+	            label={cod:makingChaffing}
+	         ]{./imagenes/Desarrollo/Componente_1/Prototipo_1/background.js}
+	         
+	         Finalmente vamos a proceder a enviar el arreglo de Chaffing y nuetro patrón al servidor, primero pasaremos el chaffing resultante a base 64, una vez realizado esto se agregará como un nuevo header del encabezado, y el patrón se cifrará de forma híbrida; primero con el cifrado por bloques de \textit{AES}, y después cifrando con \textit{RSA} la llave que se utilizó para cifrar con AES utilizando la llave pública del servicio al que se le mandará. Esto nos garantiza que solo el servidor le llegue el patrón de forma segura para realizar su respectiva etapa de Winnowing.
+	         \lstinputlisting[
+	            language=JavaScript,
+	            caption=background.js Función para generar el chaffing,
+	            firstline=148, lastline=172,
 	            label={cod:makeChaffingBite}
 	         ]{./imagenes/Desarrollo/Componente_1/Prototipo_1/background.js}
         	
@@ -4365,7 +4427,7 @@
 	         ]{./imagenes/Desarrollo/Componente_2/Prototipo_1/verificarCertificadoCert.js}
        
        
-        \section{Componente III. Servicio Web y API.}
+        \section{Componente III. API.}
 	        En esta sección se mostrarán los pasos que se realizaron para implementar el Componenete III. Dichos pasos constan de versiones de los softwares utilizados y configuraciones necesarias para el funcionamiento.
 	        
 	        \subsection{API}
@@ -4497,7 +4559,7 @@
 	    Las pruebas son un factor importante para comprobar la eficiencia y correcto funcionamiento de nuestro sistema. Las pruebas que aquí se presentan fueron realizadas con los equipos de la sección de Hardware en Herramientas a Usar, sobre una red local creada con un celular Huawei P20, cuya velocidad de conexión es de 76Mb/s, con una intensidad de señal catalogada como 'Excelente', es decir, los equipos estaban dentro de un radio de 3m del punto de conexión (Huawei P20).
         
 	    \section{Pruebas de integración.}
-    	    Estas pruebas nos sirven para comprobar que los componentes de nuestro sistema estén interactuando de forma correcta entre ellos. Como sabemos, nuestro sistema en general se compone principalmente de 3 componentes, para este primer prototipo existe una comunicación entre el primer componente (Extesnión) y el segundo componente (Servidor Autentificador), además de una comunicación entre el primer componente y el tercero (Servicio Web).\\
+    	    Estas pruebas nos sirven para comprobar que los componentes de nuestro sistema estén interactuando de forma correcta entre ellos. Como sabemos, nuestro sistema en general se compone principalmente de 3 componentes, para este primer prototipo existe una comunicación entre el primer componente (Extensión) y el segundo componente (Servidor Autentificador), además de una comunicación entre el primer componente y el tercero (API).\\
     	    
     	    \subsection{Extensión y Servidor autentificador.}
     	    Vamos a empezar con la interacción entre el cliente y el servidor autentificador, uno de los casos en el que estos dos componentes interactuan es cuando el usuario inicia sesión en la extensión, aquí el Servidor Autentificador verifica si el usuario está registrado y si este es el caso, entonces le debe de devolver el certificado junto con un código diciendo que el usuario está registrado dentro del servidor.
@@ -4522,33 +4584,31 @@
     	    \end{figure}
     	    Aquí se muestra una salida de los datos con los que interactua la API del Servicio Web con la extensión, la respuesta en la que la API si encuentra al usuario registrado, podemos ver que entre la información se encuentra que el certificado recibido es un certificado válido. 
     	    
-    	    \subsection{Servidor Autentificador y Servicio Web.}
+    	    \subsection{Servidor Autentificador y API.}
     	    Cuando el usuario intenta iniciar una sesión en el servicio web, entonces este se debe de comunicar con el Servidor Autentificador para corroborar que el certificado que le ha llegado, vamos a utilizar un sniffer para comprobar que la información que le esté llegando a uno de los dos servidores sea el correcto: 
     	    
     	    \begin{figure}[H]
     	        \centering
     	        \includegraphics[width=14cm]{imagenes/Pruebas/Integracion/Prototipo_1/Wireshark_C2_C3.jpg}
-    	        \caption{Resultados de la comunicación entre el Servicio Web y el Servidor Autentificador.}
+    	        \caption{Resultados de la comunicación entre la API y el Servidor Autentificador.}
     	        \label{fig:com2comp3}
     	    \end{figure}
 	    
-	     \section{Tiempos de ejecución.}
+        \section{Tiempos de ejecución.}
 	     
-	        En esta sección mostraremos el tiempo de ejecución de los algoritmos desarrollados para el Prototipo 1.
+	        En esta sección mostraremos el tiempo de ejecución de los algoritmos desarrollados para el Prototipo 1. Todas las pruebas fueron realizadas en igualdad de condiciones, es decir, la computadora recién prendida (sin ningún programa abierto) y sólo ejecutando el algoritmo.
 	        
 	        \subsection{Algoritmo de Chaffing.}
 	        
-	            Se realizaron 1000 pruebas al algoritmo de \textit{Chaffing}, el cual incluye: creación de patrón, proceso de chaffing y cifrado de patrón. En cada una de las pruebas se utilizó una función de JavaScript llamada \textit{performance.now()}, la cual mide el tiempo con una precisión de milisegundos.\\
-	            El tiempo que se muestra a continuación es el promedio de las 1000 ejecuciones del algoritmo.
+	            Se realizó una prueba al algoritmo de \textit{Chaffing}, el cual incluye: creación de patrón, proceso de chaffing y cifrado de patrón. Para esta prueba se utilizó una función de JavaScript llamada \textit{performance.now()}, la cual mide el tiempo con una precisión de milisegundos.\\
 	            
-	            \paragraph{Tiempo promedio de ejecución: }  434.2925ms.\\
+	            \paragraph{Tiempo de ejecución: }  434.2925ms.\\
 	            
 	        \subsection{Algoritmo de Winnowing.}
 	        
-	            Se realizaron 1000 pruebas al algoritmo de \textit{Winnowing}, el cual incluye: descifrado del patrón y proceso de winnowing. En cada una de las pruebas se utilizó una función de Java llamada \textit{System.currentTimeMillis()}, la cual mide el tiempo con una precisión de milisegundos.\\
-	            El tiempo que se muestra a continuación es el promedio de las 1000 ejecuciones del algoritmo.
+	            Se realizó una pruebaa al algoritmo de \textit{Winnowing}, el cual incluye: descifrado del patrón y proceso de winnowing. para esta prueba se utilizó una función de Java llamada \textit{System.currentTimeMillis()}, la cual mide el tiempo con una precisión de milisegundos.\\
 	            
-	            \paragraph{Tiempo promedio de ejecución: } 53.99 ms.\\
+	            \paragraph{Tiempo de ejecución: } 53.99 ms.\\
 	            
 	        \subsection{Inicio de sesión.}
 	    
@@ -4567,7 +4627,7 @@
     	\section{Arquitectura del sistema.}
             \begin{figure}[H]
         		\begin{center}
-        		\includegraphics[width=15cm]{./imagenes/Analisis/ArquitecturaSistema.png}
+        		\includegraphics[width=15cm]{./imagenes/Analisis/ArquitecturaSistema_P2.png}
         		\caption{Arquitectura General del Sistema}
 	            \end{center}
 	        \end{figure}    
@@ -4625,6 +4685,7 @@
                         \item Contraseña
                     \end{itemize}
                 \end{itemize}
+                
             
             \subsection{Cambios al estudio de requerimientos y reglas de negocio.}
             
@@ -4640,14 +4701,12 @@
             Todo lo anterior, desde los certificados almacenados en el servidor FTP y ya no desde los certificados almacenados en la autoridad certificadora.
             Como requerimiento no funcional se agrega:\\
             
-            {
             \setlength{\parindent}{0cm}
-            
+        
             \textbf{CII\_RNF5. Servidor de acceso.} la autoridad certificadora deberá tener acceso y privilegios en el servidor FTP donde se almacenarán los certificados.
             
-            }
 	        
-        \section{Componente III: Servicio Web y API.}
+        \section{Componente III: API.}
             \subsection{Descripción.}
         
                 Para este prototipo, hemos planteado la modificación del proceso de \textit{Winnowing} que realiza la API, debido a que el patrón y por tanto el proceso de \textit{Chaffing} en el Componente I han cambiado. Además, como una mejora en la seguridad, nos hemos planteado que el Servicio Web no tenga almacenado en su base de datos el certificado del usuario. De esta manera la única entidad que almacenará los certificados de los usuarios será el Componente II.
@@ -4679,8 +4738,8 @@
     \chapter{\textcolor{azulescom}{Diseño.}}
 			
 		\section{Componente I: Extensión.}
-		%ESTO VA EN DISEÑO DEL COMP I
-		    \subsection{Cambios realizados.}
+		
+		    \subsection{Cambios en el algoritmo.}
 		        Los cambios planteados son muy parecidos entre si ya que uno es consecuencia del otro por lo que la parte que se modificó recae completamente en el algoritmo de este componente, resultando como se muestra a continuación:\\
 		        Algoritmo utilizado para la generación del patrón de chaffing:\\
                 \begin{algorithm}[H] % Algoritmo para obtener el patrón de Chaffing_v2
@@ -4737,8 +4796,11 @@
                     \caption{getChaff: Generación de chaffing del prototipo 2}
                 \end{algorithm}
                 En este caso el algoritmo que genera gran parte de los datos que se incluirán en la cabecera \textit{HTTP} inicia calculando la longitud del certificado original para luego mandar a llamar a la función \textit{getPattern(int, int)} que calcula el patrón como se explicó previamente; esta función recibe dos enteros como entrada los cuales estáticamente definimos como 150 bytes necesarios para determinar el números de unos con los que contará el patrón, esto debido a que la longitud máxima de RSA es de 254 bytes, sin embargo requiere de ciertos bytes extras que utiliza para poder realizar el cifrado y descifrado de manera correcta, por lo que a nuestro sistema se ajusto a esta cantidad de 150 bytes.
-                %hay que pinches justificar esto bien%
-
+                
+                \subsubsection{Complejidad computacional.}
+                    Haciendo un analisis de los algoritmos anteriormente mostrados, deducimos que la complejidad del algoritmo de \textit{chaffing} del prototipo 2 es:
+                    $O(n)$ donde $n$ es el
+                
         
         \section{Componente II: Servidor Autentificador.}
             \subsection{Cambios realizados.}
@@ -4778,7 +4840,7 @@
                     \end{figure}
                     
                 \subsubsection{Diagrama de secuencia: Verificar certificado.}
-                Nuevamente se realizaron cambios para ajustar la procedencia del certificado para que se obtenga del servidor de acceso FTP al momento en que el Servicio Web requiera buscar a un usuario en el Servidor Autentificador. Autentificador.
+                Nuevamente se realizaron cambios para ajustar la procedencia del certificado para que se obtenga del servidor de acceso FTP al momento en que la API requiera buscar a un usuario en el Servidor Autentificador. Autentificador.
 	                \begin{figure}[H]
                         \centering                        \includegraphics[width=14cm]{imagenes/Disenio/Componente_2/Prototipo2/CII_SD_UC4_PII.png}
                         \caption{Ajustes al Diagrama de Secuencia verificar certificado del componente II.}
@@ -4786,17 +4848,58 @@
                     \end{figure}
                     
                     
-	    \section{Componente III: Servicio Web y API.}
+	    \section{Componente III: API.}
 	        \subsection{Cambios realizados.}
-	        Para estos cambios se eliminó la lógica en la que el mismo Servicio Web guardara los certificados con los que le daba acceso a los usuarios en una base de datos, en cambio se sustituyó con una comunicación con el componente dos, Servidor Autentificador, para que le pregunte únicamente si el usuario se encuentra registrado, y le devuelva un hash del certificado para compararlo con el que recibió por parte de la Extensión, esto con el fin de saber si existe el usuario y su certificado está actualizado o si requiere de actualizarlo por alguna revocación.
+	        Para estos cambios se eliminó la lógica en la que el mismo Servicio Web guarda los certificados con los que le da acceso a los usuarios en una base de datos, en cambio se sustituyó con una comunicación con el componente dos, Servidor Autentificador, para que le pregunte únicamente si el usuario se encuentra registrado, y le devuelva un hash del certificado para compararlo con el que recibió por parte de la Extensión, esto con el fin de saber si existe el usuario y su certificado está actualizado o si requiere de actualizarlo por alguna revocación.
 	        
-	        \subsubsection{Diagrama de Flujo.}
+	        \subsection{Cambio en el algoritmo.}
+                Debido a que se realizaron cambios en la etapa de \textit{Chaffing} del componente 1, es necesario ajustar igualmente la forma en la que se realiza el Winnowing para este componente, ahora el algoritmo que realiza la obtención del patrón y la etapa de \textit{Winnowing} se explica a continuación.
+                
+                \begin{algorithm}[H]
+                    \SetAlgoLined
+                    \KwData{chaffing, patternCipher, privateKey, sizeCert}
+                    \KwResult{cert,header}
+                    
+                    $pattern[] \longleftarrow rsa.decipher(patternCipher, privateKey)$\;
+                    $cert \longleftarrow " "$\;
+                    $rep \longleftarrow sizeCert / numOnes(pattern)$\;
+                    % contadores
+                    $contRep \longleftarrow 0$\; 
+                    \While{$i < rep$}{
+                        \While{$ j < pattern.length$}{
+                            %Obteniendo el certificado
+                            \If{$cert.length == sizeCert$}{
+                                $break$\;
+                            }
+                            \If{$patt[j] == 1$}{
+                                    $cert +=     chaffing[i+(pattern.length * contRep)]$\;
+                            }
+                            $j \longleftarrow j + 1$\;
+                        }
+                        $i \longleftarrow i + 1$\;
+                     }
+                    \SetAlgorithmName{Algoritmo}{algoritmo}{Algoritmos}
+                    \caption{Cambios en el algoritmo de Winnowing para obtener el certificado.}
+                \end{algorithm}
+                
+                Para este prototipo, ahora vamos a tener un el patrón de chaffing cifrado únicamente mediante RSA, y este patrón será de un tamaño aproximado de 150 bytes, para realizar este algoritmo se requiere del chaffing con el que se va a trabajar, el patrón cifrado con RSA, la llave privada para descifrar el patrón y el tamaño en bytes del certificado.\\
+                
+                Primero se realiza el descifrado de este patrón mediante RSA, una vez que tenemos descifrado el patrón, vamos a proceder a realizar la etapa de Winnowing. Necesitamos saber cuántas veces necesitamos recorrer este patrón, por lo cual se obtiene en una variable dividiendo el tamaño del certificado, mencionado anteriormente, y el número de unos que contiene el patrón, ahora recorreremos el patrón en busca de un uno, cuando lo encontramos quiere decir que este es un caracter válido para tomar como caracter del certificado, por lo que lo agregamos a nuestra variable del certificado, y repetiremos esto tantas veces como el resultado de la división anteriormente mencionada.\\
+                
+                Al finalizar esta etapa de \textit{Winnowing}, nos quedamos con el certificado que fue enviado en la petición, así podremos proseguir con la lógica de nuestro sistema, que es comunicarnos con el Servidor Autentificador, para verificar con este mismo si el certificado es uno válido para nuestro inicio de sesión.
+                
+                \subsubsection{Complejidad computacional.}
+                    Haciendo un analisis del algoritmo anteriormente mostrado, deducimos que la complejidad del algoritmo de \textit{winnowing} del prototipo 2 es:
+                    $O(n)$
+                
+	        \subsection{Diagrama de Flujo.}
 	        \begin{figure}[H]
-                \centering
-                \includegraphics[width=14cm]{imagenes/Disenio/Componente_3/Prototipo2/CIII_DF_PII.png}
+                \centering                \includegraphics[width=13cm]{imagenes/Disenio/Componente_3/Prototipo2/CIII_DF_PII.png}
                 \caption{Ajustes al Diagrama de Flujo Componente III.}
                 \label{fig:CII_FD_PII}
             \end{figure}
+            
+            Se realizaron unos cambios para este diagrama, se agregó un flujo en el cuál se muestra la forma en el que la API se comunica con el Servidor Autentificador para saber la validez del certificado, primero le envía el Hash del usuario que se puede obtener con el certificado, el Servidor Autentificador lo busca y le envía el hash de este certificado, después la API transforma el primer certificado que recibió mediante la petición y lo compara con el Hash que recibe del Servidor Autentificador, si son iguales entonces podemos dar acceso al usuario que envío esta petición, sin embargo si la comparación resulta diferente, entonces quiere decir que el usuario no tiene un certificado válido o actualizado, por lo que debe de volver a iniciar sesión en el Servicio Web para que pueda reasignarle correctamente su certificado válido a esta cuenta.
 	    
 	\chapter{\textcolor{azulescom}{Desarrollo.}}
 	
@@ -4876,7 +4979,7 @@
             
         
 	
-	    \section{Componente III: Servicio Web y API.}
+	    \section{Componente III: API.}
 	    
 	        \subsection{Nuevo Proceso de Winnowing y eliminación del descifrado AES.}
 
@@ -4890,7 +4993,6 @@
 	            ]{./imagenes/Desarrollo/Componente_3/Prototipo_2/WinnowingService.java}
             
             	En donde nos podemos percatar de la eliminación por un lado del decode en base 64 y del descifrado del patrón mediante AES y por otro de la nueva implementación del patrón y el ajuste para obtener el mismo resultado eliminando algunos pasos. 
-
 
             \subsection{Guardado del certificado}
 
@@ -4939,7 +5041,7 @@ return shaCert+" 1";
         	        \caption{Analizador de protocolos Wireshark de la petición dada por el usuario hacia servicio web.)}    	 \label{fig:Wireshark_C1_C3}
     	        \end{figure}
 	        
-	        \subsection{Servidor Autentificador y Servicio Web}
+	        \subsection{Servidor Autentificador y API}
 	        
     	        La comunicación entre el Componente II y Componente III sirve para verificar el certificado, debido a que la API (después de obtener el Winnowing) hace una petición a la autoridad certificadora para verificar si el certificado que obtuvo aún no ha sido revocado. En la figura \ref{fig:Wireshark_C2_C3} muestra desde el analizador de protocolos \textit{Wireshark} la respuesta que le manda la autoridad certificadora a la API.
     	        
@@ -4997,23 +5099,21 @@ return shaCert+" 1";
 	    
 	    
 	    \section{Tiempos de ejecución.}
-	        En esta sección mostraremos el tiempo de ejecución de los algoritmos desarrollados para el Prototipo 2, así como la comparación con el Prototipo 1 para demostrar la mejoría que hubo.\\
+	        En esta sección mostraremos el tiempo de ejecución de los algoritmos desarrollados para el Prototipo 2, así como la comparación con el Prototipo 1 para demostrar la mejoría que hubo. Todas las pruebas fueron realizadas en igualdad de condiciones, es decir, la computadora recién prendida (sin ningún programa abierto) y sólo ejecutando el algoritmo.\\
 	        
 	        \subsection{Algoritmo de Chaffing.}
 	        
-	            Se realizaron 1000 pruebas al algoritmo de \textit{Chaffing}, el cual incluye: creación de patrón, proceso de chaffing y cifrado de patrón, todo del prototipo 2. En cada una de las pruebas se utilizó una función de JavaScript llamada \textit{performance.now()}, la cual mide el tiempo con una precisión de milisegundos.\\
-	            El tiempo que se muestra a continuación es el promedio de las 1000 ejecuciones del algoritmo.
+                Se realizó una prueba al algoritmo de \textit{Chaffing}, el cual incluye: creación de patrón, proceso de chaffing y cifrado de patrón, todo del prototipo 2. Para la prueba se utilizó una función de JavaScript llamada \textit{performance.now()}, la cual mide el tiempo con una precisión de milisegundos.\\
 	            
-	            \paragraph{Tiempo promedio de ejecución: } 17.43 ms.\\
+	            \paragraph{Tiempo de ejecución: } 17.43 ms.\\
 	            
 	            Si comparamos el tiempo de ejecución del algoritmo de \textit{Chaffing} del Prototipo 1, el cual era de 434.2925 ms, podemos ver que la mejoría fue de 416.8625ms gracias, principalmente, a la disminución del tamaño del patrón (que afecta directamente a la manera en que se crea y en que se recorre para hacer el Chaffing) y a la eliminación del cifrado por bloques AES.
 	            
 	        \subsection{Algoritmo de Winnowing.}
 	        
-	            Se realizaron 1000 pruebas al algoritmo de \textit{Winnowing}, el cual incluye: descifrado del patrón y proceso de winnowing. En cada una de las pruebas se utilizó una función de Java llamada \textit{System.currentTimeMillis()}, la cual mide el tiempo con una precisión de milisegundos.\\
-	            El tiempo que se muestra a continuación es el promedio de las 1000 ejecuciones del algoritmo.
+	            Se realizó una prueba al algoritmo de \textit{Winnowing}, el cual incluye: descifrado del patrón y proceso de winnowing. Para la prueba se utilizó una función de Java llamada \textit{System.currentTimeMillis()}, la cual mide el tiempo con una precisión de milisegundos.\\
 	            
-	            \paragraph{Tiempo promedio de ejecución: } 12.46 ms.\\
+	            \paragraph{Tiempo de ejecución: } 12.46 ms.\\
 	            
 	            Si comparamos el tiempo de ejecución del algoritmo de \textit{Winnowing} del Prototipo 1, el cual era de 53.99ms, podemos ver que la mejoría fue de 41.53ms gracias a la disminución del tamaño del patrón y a la eliminación del descifrado por bloques AES.
 	        
@@ -5027,21 +5127,36 @@ return shaCert+" 1";
 	            
 	            Si comparamos el tiempo de inicio de sesión del Prototipo 1, el cual era de 1101.68ms, podemos ver que la mejoría fue de 766.4ms con lo cual se comprueba que el Prototipo 2 es una mejora sustancial al sistema desarrollado en este trabajo sin la pérdida de seguridad.
 	
+	%PREGUNTAR A SABDRA
+        %Chaffing por si sólo nos procporciona confidencialidad, sin embargo el sistema nos proporciona confidencialidad y autentificación\\
 	\chapter{\textcolor{azulescom}{Conclusiones}}
-    	Durante el tiempo en el que se estuvo desarrollando este proyecto, aprendimos de diversas situaciones y problemáticas que se nos fueron presentando en el camino. Primero que nada nos dimos cuenta que la metodología que decidamos utilizar para realizar este tipo de proyecto es un factor crucial, ya que dependiendo de esta metodología es como vamos a diseñar y desarrollar nuestro sistema. Cabe mencionar que la metodología que utliizamos (metodología híbrida de prototipos evolutivos por componentes) nos fue de gran ayuda al momento de responder a cambios repentinos para los componentes de los cuales no teníamos contemplados desde un principio.\\
+	    A lo largo del desarrollo de este trabajo, uno de los puntos que concluimos es que no pudimos evitar completamente el uso de autentificación por usuario y contraseña, pero logramos proporcionar una alternativa al inicio de sesión de los servicios web que deseen implementar este método de autentificación.\\
+	    
+	    Otro punto es que se recomienda que aquel servicio web que desee implementar este método cuente con un certificado SSL para no dejar vulnerable al sistema. Además, debido a las modificaciones que se deben de realizar en la lógica de inicio de sesión del servicio web, no fue posible para este trabajo implementarlo en uno que se encuentre en producción, por lo que se desarrollo un servicio web de prueba.\\
+        
+        
+        %En en el prototipo 1 estaba mal por que se ocupaba el header Accept y en prototipo 2 se creo otro apartado del header\\
+        
+        %La autoridad certificadora es de gran ayuda para la verificacion del certificado, generacion del certificado autentificador del usuario\\
+        
+        %No se pudo implementar en un servicio web en produccion debido a que se debe modificar la lógica de incio de sesión del servicio\\
+        
+        Gracias a que la API nos ayuda a conectar softwares, nos proporciono un medio para la comunicación entre servicio web y autoriudad autentificadora, y así mismo llevar a cabo el proceso de Winnowing.\\
+        
+        Finalmente, gracias a la metodología implementada, pudimos desarrollar un prototipo funcional que cumplía con nuestro objetivo, además de mejorarlo en cuestión de tiempo de ejecución de los algoritmos, creando así el prototipo final. Uno de los puntos más importantes de esta mejora fue la reducción del tamaño del patrón que se manda hacia el servicio web, cambiando incluso el cifrando que se implementa.\\
     	
-    	Gracias a la investigación que fuimos realizando para la sección del marco teórico, se fue recopilando información sobre algunos puntos del sistema que anteriormente no se tenían contemplados, detalles más técnicos que nos fueron de gran ayuda para delimitar ciertos aspectos de los componentes, como por ejemplo las longitudes y tiempos de los métodos criptográficos utilizados, las delimitaciones de los lenguajes que se utilizaron para el desarrollo, entre otros.\\
-    	
-    	Otro factor crucial que nos ayudó a finalizar el desarrollo de nuestro sistema fue el complementar el prototipo uno, desarrollando el prototipo dos, gracias a que terminamos el primero prototipo, nos pudimos dar cuenta de una forma más fácil y práctica ciertos aspectos que podían mejorarse, uno de los cambios más significativos fue el reducir el tamaño del patrón que se envíaba en el componente de la Extensión, pasando de un tamaño aproximado de 2000 bytes para el prototipo uno, a un tamaño fijo de 150 bytes en el prototipo dos, e incluso pasamos de utilizar un cifrado híbrido con AES y RSA en el primer prototipo, a solamente un cifrado RSA para el segundo prototipo ya que el tamaño del patrón ahora podía enviarse mediante este método de cifrado. Gracias a estos cambios, los tiempos de ejcución de nuestro algoritmo se redujeron en gran medida, hecho que se puede apreciar en la sección de pruebas.\\
-    	
-    	Desarrollar estos prototipos y cumplir con los objetivos que se tenían establecidos fue un verdadero reto, surgieron algunas complicaciones durante el proceso, a tal grado de necesitar abandonar buenas ideas que se tenían en mente desde un principio, pero esto también nos ayudó a diseñar nuevas propuestas, y darnos un panorama más amplio de lo que se podía o no hacer y con base a todo esto, quedarnos con un prototipo que nos satisface finalizar gracias a su funcionalidad y alcances que tiene.
 	
-	\chapter{\textcolor{azulescom}{Avances y trabajo por hacer.}}
-	    Se pretenden realizar algunas mejoras a futuro para el sistema, es decir, crear otro prototipo más para seguir con nuestra metodología y aprovechar los prototipos que ya se tienen implementados. El primer punto que queremos atacar es el tiempo de cifrado con el cual mandamos el patrón, este punto ya lo hemos mejorado pero sentimos que sería bueno incrementar un poco más la velocidad de nuestro sistema, aprovechando que la velocidad es uno de los puntos fuertes que tiene el método \textit{Chaffing and Winnowing}.\\
+	\chapter{\textcolor{azulescom}{Trabajo a futuro.}}
+	    Como trabajo a futuro se proponen las siguientes modificaciones para crear un nuevo prototipo con base al último desarrollado:\\
 	    
-	    Otro de los puntos que nos interesa es el implementar este sistema en un Servicio Web real, y no solo en el de prueba que nosotros mismos desarrollamos, esto nos ayudará a realizar pruebas más veraces sobre el desempeño de nuestro sistema, así como también poder conocer las opiniones de los usuarios que lleguen a utilizar esta extensión, para poder así mejorarla con base a esta experiencia de usuario.\\
+	    Se pretende implementar un módulo en la extensión que le permita al usuario administrar los servicios en los cuales se tenga asociado un certificado, con el motivo de darle un mejor control e información al usuario sobre sus cuentas utilizadas para este método de autentificación.\\
 	    
-	    Por último estamos también considerando en implementar la opción de "recuperar contraseña" de la cuenta del usuario en la extensión, esto para el caso en el que el usuario se olvide de sus credenciales. Sin embargo esto lo sentimos poco necesario ya que el giro del sistema es precisamente que el usuario pueda ingresar a sus múltiples cuentas sin la necesidad de recordarlas, aunque lo tendremos en consideración para un posible desarrollo.
+	    Además se tiene contemplado adaptar un mecanismo biométrico para la obtención de certificado en la extensión, esta 
+	    parte sustituirá el inicio de sesión por usuario y contraseña; se propone que este mecanismo biométrico sea un lector de huella dactilar.\\
+	    
+	    Tenemos considerado también la implementación del algoritmo ECDSA (Eliptic Curve Digital Signature Algorithm) para el cifrado del patrón de Chaffing en el componente de la extensión, esto con el motivo de incrementar la rapidéz del cifrado.\\
+	    
+	    Finalmente, como última propuesta se tiene el implementar este método de auntentificación en un servicio web en producción para poder observar su desempeño.
 	\newpage
 
 	%Para agregar una cita en el documento se usa \cite{refKey}, por automático los ordena conforme se van agregando
@@ -5060,6 +5175,9 @@ return shaCert+" 1";
 	
 		\bibitem{refCriptology} 
 		A. Beutelspacher, \textit{Cryptology}, edición 1994, Washington, Estados Unidos de América: Mathematical Association of America, 1994.
+		
+		\bibitem{bbvarecoradContrasenia}
+		BBVA de México (2018), ¿Es seguro guardar las contraseñas en el navegador? [En línea] Disponible: https://www.bbva.com/es/seguro-guardar-contrasenas-navegador/ [Último acceso: 15 de noviembre de 2019]   
 	
 	    \bibitem{protocoloHTTP} 
         CCM (2017), El protocolo HTTP, [En línea]. Disponible: https://es.ccm.net/contents/264-el-protocolo-http. [Último acceso: 6 Mayo 2019].
@@ -5184,6 +5302,25 @@ return shaCert+" 1";
         \bibitem{refVSFTPD}
         Security Appstop (2012), About vsftpd [En línea]. Disponible:
         https://security.appspot.com/vsftpd.html\#about [Último acceso: 10 de noviembre 2019]
+        
+        \bibitem{refCertificateAuthority}
+        Johannes A. Buchmann, Evangelos Karatsiolis, A.W.: Introduction to Public Key Infrastructures. Springer (2013)
+        % http://sedici.unlp.edu.ar/bitstream/handle/10915/65814/Documento_completo.pdf-PDFA.pdf?sequence=1&isAllowed=y
+        
+        \bibitem{FTPprotocoloOSI}
+        Hostalia whitepapers (2010), ¿Sabes cómo utlizar el protocolo FTP? [En línea]. Disponible: https://www.hostalia.com/news/noviembre10/sabes-como-utilizar-el-protocolo-FTP.pdf [Último acceso: 19 de octubre de 2019]
+        
+        \bibitem{HTTPprotocloOSI}
+        E-Reding (2001), Protocolo HTTP [En línea]. Disponible: http://bibing.us.es/proyectos/abreproy/11372/fichero/Memoria\%252F05+-+Protocolo+HTTP.pdf [Último acceso: 21 de octubre de 2019]
+        
+        \bibitem{TFTPprotocoloOSI}
+        IBM (2018), Protocolo trivial de transferencia de archivos [En línea]. Disponible: https://www.ibm.com/support/knowledgecenter/es/ssw\_ibm\_i\_73/rzal5/\\rzal5overview.htm [Último acceso: 28 de octubre de 2019]
+        
+        \bibitem{SMTPprotocoloOSI}
+        EcuRed (2011), Protocolo SMTP [En línea]. Disponible: https://www.ecured.cu/Protocolo\_SMTP [Último acceso: 05 de noviembre de 2019] 
+        
+        \bibitem{HTTPSprotocolOSI}
+        Ayuda de Search de Console (2019), Proteger sitios web con el protocolo HTTPS [En Línea]. Disponible: https://support.google.com/webmasters/answer/6073543?hl=es-419 [Último acceso: 06 de noviembre de 2019]
 	
 	\end{thebibliography}	
 

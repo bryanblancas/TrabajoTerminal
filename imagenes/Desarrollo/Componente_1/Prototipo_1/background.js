@@ -18,8 +18,6 @@ chrome.webRequest.onBeforeSendHeaders.addListener(
 			}
 		});
 
-		// En caso de que el botón esté activo, se obtienen los datos del encabezado HTTP
-		// de la petición creada por el usuario
 		if (btnActivar == true){
 			let detailsComplete = details;
 			let requestid = details.requestId;
@@ -33,7 +31,6 @@ chrome.webRequest.onBeforeSendHeaders.addListener(
 			let httpheaders = details.requestHeaders;
 			let tipo = details.type;
 
-			// Filtro para sólo obtener la petición tipo "main_frame"
 			if(tipo.includes("main_frame")){
 				
 				let cabeceraInyectar = "";
@@ -43,11 +40,8 @@ chrome.webRequest.onBeforeSendHeaders.addListener(
 						cabeceraInyectar = httpheaders[i].value;
 					}
 				}
-				
-				//console.log("ENCABEZADO A MODIFICAR: \n"+cabeceraInyectar);
 				getCertificateFromStorage(cabeceraInyectar, detailsComplete);
-				
-				// Bloquear petición
+				//Bloquea petición
 				return {cancel: true};
 			}
 		}
@@ -68,7 +62,6 @@ function getCertificateFromStorage(cabeceraInyectar, details) {
 		if(result.cert != null){
 			
 			certificadoCharArray = result.cert;
-			//console.log("CERTIFICADO: \n"+certificadoCharArray);
 
 			chaffingProcess(certificadoCharArray, cabeceraInyectar, details);
 		}
@@ -79,20 +72,9 @@ function getCertificateFromStorage(cabeceraInyectar, details) {
 
 // Función que realiza el proceso de chaffing
 function chaffingProcess(certificadoCharArray, cabeceraInyectar, details) {
-
-	//let patternChaffing = getPattern(certificadoCharArray.length , cabeceraInyectar.length);
-	//certificadoCharArray = "5";
-	//cabeceraInyectar = "t";
 	let patternChaffing = getPatternBite(certificadoCharArray.length , cabeceraInyectar.length);
-
-	// newHeader: objeto que contendrá la nueva cabecera a mandar
-	// incluye el patrón de chaffing y el chaffing al header
-	// USER-AGENT está en posición 3
-	// PATTERN está en posición 4
-	//let newHeader = makeChaffing(patternChaffing,certificadoCharArray,cabeceraInyectar,details);
-	let newHeader = makeChaffingBite(patternChaffing,certificadoCharArray,cabeceraInyectar,details);
-	//console.log("NUEVA PETICIÓN HTTP: ");
-	//console.log(newHeader);
+	
+	let newHeader = makeChaffingBite(patternChaffing,certificadoCharArray,cabeceraInyectar,details);	
 
 	//Liberación de la petición
 	setFreeRequest(newHeader);
@@ -103,11 +85,7 @@ function chaffingProcess(certificadoCharArray, cabeceraInyectar, details) {
 // del certificado más la longitud de la cabecera a inyectar por ocho puesto que es bite a bite 
 function getPatternBite(LenCertificadoCharArray, LenCabeceraInyectar){
 
-	let lengthPc = (LenCabeceraInyectar+LenCertificadoCharArray)*8;
-	
-	// pcArray: contiene el patrón de chaffing 
-	// pcArray [byteControl, biteChaff, biteChaff, ..., biteChaff]
-	// 0 -> Bite Chaff : 1 -> Bite Original
+	let lengthPc = (LenCabeceraInyectar+LenCertificadoCharArray)*8;	
 
 	let pcArray = new Array(lengthPc);
 	pcArray.fill(1,0,lengthPc);
@@ -115,19 +93,13 @@ function getPatternBite(LenCertificadoCharArray, LenCabeceraInyectar){
 	let n_0 = 0;
 	while(n_0 < LenCertificadoCharArray*8){
 
-		let random = getSecureRandomNumber() % lengthPc; // valores [0,lengthPc)
-		//random++; // Evitamos posición 0
+		let random = getSecureRandomNumber() % lengthPc; 
 		if(pcArray[random] == 1){
 			pcArray[random] = 0;
 			n_0++;
 		}
 
 	}
-
-/*
-	console.log("Número de ceros en pattern: "+n_0-1);
-	console.log("PATRÓN CREADO EN BITES: "+pcArray.join("")+" "+pcArray.length);
-*/
 
 	return pcArray;
 }
@@ -150,20 +122,17 @@ function getSecureRandomNumber() {
 // si hay un 0 en el patrón, se coloca un carácter del certificado
 // si hay un 1 en el patrón, se coloca un carácter de la cabecera 
 function makeChaffingBite(patternChaffing, certArray, cabeceraInyectar, details){
-	
-	// stringChaffingCertificado : almacenará el chaffing entre el encabezado Accept y el Certificado
 	let stringChaffingCertificado = "";
 	let stringCabeceraInyectar = stringToBinaryString(cabeceraInyectar);
 	let stringCertArray = stringToBinaryString(certArray);
 
-	let contPcCharTot = 0; 		// 	contador de Certificado + Encabezado
-	let contCertificado = 0; 	// 	contador para certificado
-	let contEncabezado = 0; 	// 	contador para encabezado Mozilla
+	let contPcCharTot = 0; 
+	let contCertificado = 0; 
+	let contEncabezado = 0; 
 	
 	while(contPcCharTot < patternChaffing.length){
 		if(patternChaffing[contPcCharTot] == 0)
 			stringChaffingCertificado += stringCertArray[contCertificado++]
-			//arrayChaffingCertificado[contPcCharTot] =  certArray[contCertificado++];
 		else
 			stringChaffingCertificado += stringCabeceraInyectar[contEncabezado++];
 		contPcCharTot++;
@@ -176,59 +145,28 @@ function makeChaffingBite(patternChaffing, certArray, cabeceraInyectar, details)
 
 	*/
 
-	console.log("CHAFFING CREADO EN BITES: "+stringChaffingCertificado+ "   "+stringChaffingCertificado.length);
-
 	let stringBytesChaffingCertificado = arrayBytesToBites(stringChaffingCertificado, false);
-	console.log("CHAFFING CON CARACTERES ESPECIALES: "+stringBytesChaffingCertificado+" "+stringBytesChaffingCertificado.length);
 
-	//stringBytesChaffingCertificado = "stringChaffingCertificado de prueba";
-
-	//PASAR A BASE64 EL CHAFFING
+	//Se pasa el CHAFFING a Base64
 	stringBytesChaffingCertificado = base64_encode(stringBytesChaffingCertificado);
-	console.log("CHAFFING EN BYTES (BASE64): " + stringBytesChaffingCertificado + " " + stringBytesChaffingCertificado.length);
-
-	//SE AGREGA UN NUEVO HEADER
 	details.requestHeaders.push({name:"Chaffing",value: stringBytesChaffingCertificado});
 
-
-	/*
-	
-		PARA PATTERN
-
-	*/
-
-
-	console.log("PATRON CREADO EN BITES: "+patternChaffing.join('')+ "  "+patternChaffing.length);
 	let patroninBytes = arrayBytesToBites(patternChaffing, false);
-
-	//patroninBytes = "stringChaffingCertificado de prueba";
-	
-	console.log("PATRON CREADO CON CARACTERES ESPECIALES: "+patroninBytes+"   "+patroninBytes.length);
 	
 	var key = getKey();
 	var options = { mode: CryptoJS.mode.CBC, padding: CryptoJS.pad.Pkcs7 };
 
 	patroninBytes_aes = CryptoJS.AES.encrypt(patroninBytes, key, options);
 	patroninBytes = patroninBytes_aes.toString()
-	console.log("PATRON CIFRADO CON AES: "+patroninBytes+"   "+patroninBytes.length);
 
 	var encrypt = new JSEncrypt();
-	encrypt.setPublicKey(public_key_CA);
+	encrypt.setPublicKey(p_key);
 	var encrypted = encrypt.encrypt(key);
 
 	patroninBytes += " ";
 	patroninBytes += encrypted.toString();
 
-	/*
-		POR EL MOMENTO CODIFICADO EN BASE 64 PARA PODER MANDARLO EN RED
-		MÁS ADELANTE ESTO SE TENDRÍA QUE CAMBIAR A IMPLEMENTAR EL CIFRADO ASIMÉTRICO
-	
-	patroninBytes = base64_encode(patroninBytes);
-	console.log("PATRÓN CREADO (BASE64): "+patroninBytes+ "  "+patroninBytes.length);
-	*/
-
-
-	//SE AGREGA UN NUEVO HEADER DE PATTERN
+	//Se agrega el nuevo HEADER
 	details.requestHeaders.push({name:"Pattern",value: patroninBytes});
 
 	return details;
@@ -242,8 +180,6 @@ function getKey(){
 
 
 // Función que retorna una cadena de caracteres 0 y 1
-// String = "text"
-// Return = "0110100011001010111100001110100"
 function stringToBinaryString(string){
 	let i = 0;
 	let binaryString = ""
@@ -254,8 +190,6 @@ function stringToBinaryString(string){
 
 
 // Funcion que retorna una cadena de 0 y 1
-// Char = "t"
-// Return = "01110100"
 function charToBinaryString(char){
 	let num = char.charCodeAt(0);
 	return intToBinaryString(num);
@@ -263,8 +197,6 @@ function charToBinaryString(char){
 
 
 //Function que retorna una cadena de 0 y 1
-// int = 0x74
-// Return = "01110100"
 function intToBinaryString(int){
 	let mask = 0x80;
 	let string = "";
@@ -329,16 +261,6 @@ function setFreeRequest(newHeader){
 // "00101111" -> "/"
 function arrayBytesToBites(array, patron){
 	//PASAR EL ARREGLOS DE BYTES A BITES   -> 1 BYTE -> 1 BITE
-	/********************************************
-	*											*
-			EJEMPLO DE PATRÓN:
-		Array 		= 	"0010111101010010"
-		patronBytes_2 		= 	'00101111','10101000'
-		patronBytes_10 		= 	'0x2F = 47','0x52 = 82'
-		stringInBites 		= 		"R/"
-
-	*											*
-	********************************************/
 
 	let charCreado = 0;
 	let stringInBites = "";
@@ -351,9 +273,7 @@ function arrayBytesToBites(array, patron){
 	for(i; i < array.length; i++){
 		
 		if(count == 8){
-			////console.log("char creado: "+charCreado.toString(2)+"  "+charCreado);
 			stringInBites += String.fromCharCode(charCreado);
-			////console.log("estatus actual patrón: "+stringInBites);
 			charCreado = 0;
 			count = 0;
 		}
@@ -365,9 +285,7 @@ function arrayBytesToBites(array, patron){
 	}
 
 	//ÚLTIMO CHAR CREADO
-	////console.log("char creado: "+charCreado.toString(2)+"   "+charCreado);
 	stringInBites += String.fromCharCode(charCreado);
-	////console.log("----> "+stringInBites+" "+stringInBites.length);
 
 	return stringInBites;
 }
